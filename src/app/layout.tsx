@@ -7,7 +7,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log(props);
   return (
     <ClientProvider>
       <AuthContext>

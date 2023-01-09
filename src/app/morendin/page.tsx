@@ -12,7 +12,6 @@ export const getCaller = async () => {
 };
 
 export default async function MorenDin(props: PropsWithChildren) {
-  console.log(props);
   const caller = await getCaller();
   const hello = await caller.example.hello({ text: "World" });
 

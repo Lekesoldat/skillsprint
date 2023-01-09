@@ -6,7 +6,6 @@ import { trpc } from "../../../utils/trpc";
 export default function AuthShowcase() {
   const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
   const res = useSession();
-  console.log(res.data);
   const { data: sessionData } = useQuery({
     queryKey: ["session"],
     queryFn: () => getSession(),

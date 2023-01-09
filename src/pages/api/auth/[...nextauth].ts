@@ -3,13 +3,12 @@ import NextAuth, { type NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 
 import { env } from "../../../env/server.mjs";
-import { db, xata } from "../../../lib/xata/xata-client";
+import { xata } from "../../../lib/xata/xata-client";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
     session({ session, user }) {
-      console.log({ session, user });
       if (session.user) {
         session.user.id = user.id;
       }
