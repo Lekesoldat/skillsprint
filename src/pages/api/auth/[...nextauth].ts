@@ -1,23 +1,27 @@
+import { XataAdapter } from "@next-auth/xata-adapter";
 import NextAuth, { type NextAuthOptions } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import GitHubProvider from "next-auth/providers/github";
 
 import { env } from "../../../env/server.mjs";
+import { db, xata } from "../../../lib/xata/xata-client";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
     session({ session, user }) {
+      console.log({ session, user });
       if (session.user) {
         session.user.id = user.id;
       }
       return session;
     },
   },
+  adapter: XataAdapter(xata),
   // Configure one or more authentication providers
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GitHubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
     // ...add more providers here
   ],
