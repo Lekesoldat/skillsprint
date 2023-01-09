@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { signOut, signIn, useSession, getSession } from "next-auth/react";
+import { trpc } from "../../../utils/trpc";
 
 export default function AuthShowcase() {
   const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
