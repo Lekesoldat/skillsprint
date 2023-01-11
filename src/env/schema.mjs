@@ -20,12 +20,25 @@ export const serverSchema = z.object({
 });
 
 /**
+ * You can't destruct `process.env` as a regular object in the Next.js
+ * middleware, so you have to do it manually here.
+ * @type {{ [k in keyof z.infer<typeof serverSchema>]: z.infer<typeof serverSchema>[k] | undefined }}
+ */
+export const serverEnv = {
+  NODE_ENV: process.env.NODE_ENV,
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+};
+
+/**
  * Specify your client-side environment variables schema here.
  * This way you can ensure the app isn't built with invalid env vars.
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  // NEXT_PUBLIC_BAR: z.string(),
+  // NEXT_PUBLIC_CLIENTVAR: z.string(),
 });
 
 /**
@@ -35,5 +48,5 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
+  // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };

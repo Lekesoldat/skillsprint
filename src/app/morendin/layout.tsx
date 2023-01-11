@@ -1,16 +1,7 @@
-import { getSession } from "next-auth/react";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
-import { createContextInner } from "../../server/trpc/context";
-import { appRouter } from "../../server/trpc/router/_app";
 
-export const getCaller = async () => {
-  const session = await getSession();
-  const context = await createContextInner({ session });
-  return appRouter.createCaller(context);
-};
-
-export default async function MorenDinLayout(props: PropsWithChildren) {
+export default function MorenDinLayout(props: PropsWithChildren) {
   return (
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
       <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">

@@ -11,7 +11,6 @@ export default function RootLayout({
     <ClientProvider>
       <AuthContext>
         <html>
-          <head></head>
           <body>{children}</body>
         </html>
       </AuthContext>
