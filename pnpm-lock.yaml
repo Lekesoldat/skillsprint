@@ -17,6 +17,7 @@ specifiers:
   '@xata.io/client': ^0.21.6
   autoprefixer: ^10.4.7
   class-variance-authority: ^0.4.0
+  clsx: ^1.2.1
   eslint: ^8.30.0
   eslint-config-next: 13.1.1
   next: 13.1.1
@@ -27,6 +28,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   superjson: 1.9.1
+  tailwind-merge: ^1.8.1
   tailwindcss: ^3.2.0
   typescript: ^4.9.4
   zod: ^3.20.2
@@ -40,11 +42,13 @@ dependencies:
   '@trpc/server': 10.8.2
   '@xata.io/client': 0.21.6_typescript@4.9.4
   class-variance-authority: 0.4.0_typescript@4.9.4
+  clsx: 1.2.1
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.18.8_q76c2b4vyoegvsbrcwkfvimnai
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   superjson: 1.9.1
+  tailwind-merge: 1.8.1
   zod: 3.20.2
 
 devDependencies:
@@ -1826,6 +1830,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /code-block-writer/11.0.3:
     resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==}
@@ -4439,6 +4448,10 @@ packages:
       '@pkgr/utils': 2.3.1
       tslib: 2.4.1
     dev: true
+
+  /tailwind-merge/1.8.1:
+    resolution: {integrity: sha512-+fflfPxvHFr81hTJpQ3MIwtqgvefHZFUHFiIHpVIRXvG/nX9+gu2P7JNlFu2bfDMJ+uHhi/pUgzaYacMoXv+Ww==}
+    dev: false
 
   /tailwindcss/3.2.4_postcss@8.4.21:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
