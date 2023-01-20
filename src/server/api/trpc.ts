@@ -18,9 +18,9 @@
  */
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
-import { xata } from "../db";
 
 import { getServerAuthSession } from "../auth";
+import { prisma } from "../db";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -35,10 +35,10 @@ type CreateContextOptions = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
-export const createInnerTRPCContext = (opts: CreateContextOptions) => {
+const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
-    db: xata.db,
+    prisma,
   };
 };
 

@@ -1,13 +1,19 @@
+import { PrismaClient } from "@prisma/client";
+
 import { env } from "../env/server.mjs";
-import { XataClient } from "../lib/xata/xata";
 
 declare global {
   // eslint-disable-next-line no-var
-  var xata: XataClient | undefined;
+  var prisma: PrismaClient | undefined;
 }
 
-export const xata = global.xata || new XataClient();
+export const prisma =
+  global.prisma ||
+  new PrismaClient({
+    log:
+      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+  });
 
 if (env.NODE_ENV !== "production") {
-  global.xata = xata;
+  global.prisma = prisma;
 }
