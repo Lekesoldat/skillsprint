@@ -3,6 +3,7 @@ import { cva } from "class-variance-authority";
 
 interface ButtonProps {
   text: string;
+  size?: VariantProps<typeof buttonStyle>["size"];
   type?: VariantProps<typeof buttonStyle>["type"];
 }
 
