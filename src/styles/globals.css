@@ -8,5 +8,6 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  @apply text-brand-white;
+  @apply bg-background;
+  @apply text-brand-black;
 }

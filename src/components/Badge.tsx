@@ -23,11 +23,14 @@ const badgeStyle = cva(
     "border-brand-black",
 
     // Spacing
+    "w-fit",
     "py-1.5",
     "px-2.5",
 
     // Misc
     "rounded-md",
+    "grid",
+    "place-content-center",
   ],
   {
     variants: {

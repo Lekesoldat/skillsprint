@@ -22,6 +22,7 @@ module.exports = {
         black: "#000000",
         gray: "#87898C",
       },
+      background: "#F3F3F3",
     },
   },
   plugins: [],
