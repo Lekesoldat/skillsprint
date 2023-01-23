@@ -1,6 +1,7 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import type { Session } from "@supabase/supabase-js";
-import { useRouter } from "next/router";
 import type { FC } from "react";
 import { useSupabase } from "../context/AuthContext";
 
@@ -9,6 +10,7 @@ interface AuthProps {
 }
 export const AuthShowcase: FC<AuthProps> = (props) => {
   const { supabase } = useSupabase();
+  const router = useRouter();
   return (
     <div>
       <div className="break-normal break-all">
@@ -20,6 +22,8 @@ export const AuthShowcase: FC<AuthProps> = (props) => {
         <button
           onClick={async () => {
             await supabase.auth.signOut();
+            router.refresh();
+            return;
           }}
         >
           Logout
