@@ -1,31 +1,49 @@
 import { BookOpen, LineChart, Medal, Trophy } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Points } from "../Points";
+
+const links = [
+  {
+    icon: <BookOpen />,
+    path: "/tasks",
+    text: "Oppgaver",
+  },
+  {
+    icon: <Trophy />,
+    path: "/leaderboard",
+    text: "Ledertavle",
+  },
+  {
+    icon: <Medal />,
+    path: "/achievements",
+    text: "Prestasjoner",
+  },
+  {
+    icon: <LineChart />,
+    path: "/insight",
+    text: "Innsikt",
+  },
+];
 export const TopNav = () => {
   return (
     <nav className="w-full py-4">
       <div className="container mx-auto flex items-center justify-between">
         {/* Brand Icon */}
-        <Image src={"/Logo.svg"} alt="logo" width={40} height={40} />
+        <Link href="/">
+          <Image src={"/Logo.svg"} alt="logo" width={40} height={40} />
+        </Link>
 
         {/* Links */}
-        <ul className="flex gap-x-8 uppercase md:flex-row">
-          <li className="flex gap-x-2">
-            <BookOpen />
-            Oppgaver
-          </li>
-          <li className="flex gap-x-2">
-            <Trophy />
-            Ledertavle
-          </li>
-          <li className="flex gap-x-2">
-            <Medal />
-            Prestasjoner
-          </li>
-          <li className="flex gap-x-2">
-            <LineChart />
-            Innsikt
-          </li>
+        <ul className="flex gap-x-16 uppercase md:flex-row">
+          {links.map((link) => (
+            <Link key={link.path} href={link.path}>
+              <li className="flex gap-x-2">
+                {link.icon}
+                {link.text}
+              </li>
+            </Link>
+          ))}
         </ul>
 
         {/* Points */}

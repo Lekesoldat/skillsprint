@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { PropsWithChildren } from "react";
 import AuthProvider from "../context/auth-context";
 import { ClientProvider } from "../context/trpc-context";
+import { TopNav } from "../components/nav/TopNav";
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
@@ -12,6 +13,7 @@ export default function RootLayout(props: PropsWithChildren) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+        <TopNav />
         <AuthProvider>
           <ClientProvider>{props.children}</ClientProvider>
         </AuthProvider>
