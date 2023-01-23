@@ -1,13 +1,9 @@
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
 
 export const getServerAuthSession = async (
   ctx: Pick<CreateNextContextOptions, "req" | "res">
 ) => {
-  const supabase = createServerSupabaseClient(ctx);
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  return session;
+  return await unstable_getServerSession(ctx.req, ctx.res, authOptions);
 };

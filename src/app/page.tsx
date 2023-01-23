@@ -1,15 +1,10 @@
+import { getSession } from "next-auth/react";
 import Link from "next/link";
-import { AuthShowcase } from "../components/AuthShowcase";
-import { Login } from "../components/Login";
-import { createServerClient } from "../lib/supabase/supabase";
+import AuthShowcase from "../components/AuthShowcase";
 
 export default async function Page() {
-  const supabase = createServerClient();
-  const { data } = await supabase.auth.getSession();
-  console.log(data);
-  if (!data.session) {
-    return <Login session={data.session} />;
-  }
+  const session = await getSession();
+  console.log(session);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -41,26 +36,9 @@ export default async function Page() {
           </Link>
         </div>
         <div className="flex justify-center text-white">
-          <AuthShowcase session={data.session} />
+          <AuthShowcase />
         </div>
       </div>
     </main>
   );
 }
-
-// const AuthShowcase = async () => {
-//   const sessionData = await getSession();
-//   return (
-//     <div className="flex flex-col items-center justify-center gap-4">
-//       <p className="text-center text-2xl text-white">
-//         {sessionData && JSON.stringify(sessionData)}
-//       </p>
-//       <button
-//         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-//         onClick={sessionData ? () => void signOut() : () => void signIn()}
-//       >
-//         {sessionData ? "Sign out" : "Sign in"}
-//       </button>
-//     </div>
-//   );
-// };
