@@ -22,8 +22,8 @@ const buttonStyle = cva(
     "uppercase",
 
     // Border
-    "border-brand-black",
     "border",
+    "border-brand-black",
 
     // Size
     "min-w-[150px]",
