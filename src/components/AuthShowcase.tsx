@@ -1,34 +1,27 @@
 "use client";
+import { useQuery } from "@tanstack/react-query";
+import { signOut, signIn, getSession } from "next-auth/react";
 
-import { useRouter } from "next/navigation";
-import type { Session } from "@supabase/supabase-js";
-import type { FC } from "react";
-import { useSupabase } from "../context/AuthContext";
+export default function AuthShowcase() {
+  const { data: sessionData } = useQuery({
+    queryKey: ["session"],
+    queryFn: () => getSession(),
+  });
 
-interface AuthProps {
-  session: Session | null;
-}
-export const AuthShowcase: FC<AuthProps> = (props) => {
-  const { supabase } = useSupabase();
-  const router = useRouter();
   return (
-    <div>
-      <div className="break-normal break-all">
-        {JSON.stringify(props.session, null, 2)}
-      </div>
-      {props.session == null ? (
-        <button>Login</button>
-      ) : (
-        <button
-          onClick={async () => {
-            await supabase.auth.signOut();
-            router.refresh();
-            return;
-          }}
-        >
-          Logout
-        </button>
+    <div className="flex flex-col items-center justify-center gap-2">
+      {sessionData && (
+        <p className="text-2xl text-blue-500">
+          Logged in as {sessionData?.user?.name}
+        </p>
       )}
+      {JSON.stringify(sessionData)}
+      <button
+        className="rounded-md border border-black bg-violet-50 px-4 py-2 text-xl shadow-lg hover:bg-violet-100"
+        onClick={sessionData ? () => signOut() : () => signIn()}
+      >
+        {sessionData ? "Sign out" : "Sign in"}
+      </button>
     </div>
   );
-};
+}

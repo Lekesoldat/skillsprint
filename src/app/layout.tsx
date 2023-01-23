@@ -1,12 +1,9 @@
 import "../styles/globals.css";
 import type { PropsWithChildren } from "react";
-import SupabaseProvider from "../context/AuthContext";
-import { createServerClient } from "../lib/supabase/supabase";
+import AuthProvider from "../context/auth-context";
+import { ClientProvider } from "../context/trpc-context";
 
-export default async function RootLayout(props: PropsWithChildren) {
-  const supabase = createServerClient();
-  const { data } = await supabase.auth.getSession();
-
+export default function RootLayout(props: PropsWithChildren) {
   return (
     <html>
       <head>
@@ -15,9 +12,9 @@ export default async function RootLayout(props: PropsWithChildren) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <SupabaseProvider session={data.session}>
-          {props.children}
-        </SupabaseProvider>
+        <AuthProvider>
+          <ClientProvider>{props.children}</ClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

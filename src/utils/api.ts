@@ -7,6 +7,7 @@
  */
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
+import { createTRPCReact } from "@trpc/react-query";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
 
@@ -18,7 +19,7 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
 
-const config = {
+export const config = {
   /**
    * Transformer used for data de-serialization from the server
    * @see https://trpc.io/docs/data-transformers
@@ -54,10 +55,22 @@ export const api = createTRPCNext<AppRouter>({
   ssr: false,
 });
 
+// For client side
+export const trpcReact = createTRPCReact<AppRouter>({
+  unstable_overrides: {
+    useMutation: {
+      async onSuccess(opts) {
+        await opts.originalFn();
+        await opts.queryClient.invalidateQueries();
+      },
+    },
+  },
+});
+
 /**
  * Vanilla trpc client
  */
-export const trpc = createTRPCProxyClient<AppRouter>(config);
+export const proxyClient = createTRPCProxyClient<AppRouter>(config);
 
 /**
  * Inference helper for inputs
