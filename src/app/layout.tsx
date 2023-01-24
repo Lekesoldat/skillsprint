@@ -11,6 +11,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--space-grotesk",
   subsets: ["latin", "latin-ext"],
 });
+
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <html>
@@ -20,7 +21,10 @@ export default function RootLayout(props: PropsWithChildren) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={"flex min-h-screen flex-col" + ` ${spaceGrotesk.variable}`}
+        className={
+          "flex min-h-screen flex-col font-space-grotesk" +
+          ` ${spaceGrotesk.variable}`
+        }
       >
         <AuthProvider>
           <ClientProvider>
