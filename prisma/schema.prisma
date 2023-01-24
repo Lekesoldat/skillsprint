@@ -57,3 +57,11 @@ model TaskAttempt {
 
     @@id([userId, taskId])
 }
+
+model Achievement {
+    id          String @id @default(cuid())
+    title       String
+    icon        String
+    description String
+    requirement Int
+}
