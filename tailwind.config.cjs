@@ -24,6 +24,9 @@ module.exports = {
         // background: "#F3F3F3",
         background: "#FDF5E5",
       },
+      fontFamily: {
+        "space-grotesk": "var(--space-grotesk)",
+      },
     },
   },
   plugins: [],
