@@ -19,12 +19,14 @@
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.4.1",
     "@tanstack/react-query": "^4.20.0",
+    "@tanstack/react-table": "^8.7.6",
     "@trpc/client": "^10.8.1",
     "@trpc/next": "^10.8.1",
     "@trpc/react-query": "^10.8.1",
     "@trpc/server": "^10.8.1",
     "argon2": "^0.30.3",
     "class-variance-authority": "^0.4.0",
+    "clsx": "^1.2.1",
     "encoding": "^0.1.13",
     "lucide-react": "^0.105.0",
     "next": "13.1.2",
@@ -32,6 +34,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.9.1",
+    "tailwind-merge": "^1.8.1",
     "zod": "^3.20.2"
   },
   "devDependencies": {
