@@ -9,9 +9,9 @@ interface TableRowProps {
 
 export const TableRow: FC<TableRowProps> = ({ row }) => {
   return (
-    <tr key={row.id} className="border-b border-slate-300">
+    <tr key={row.id}>
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id} className="p-2 text-center">
+        <td key={cell.id} className="mx-auto text-center">
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       ))}

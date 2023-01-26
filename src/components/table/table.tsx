@@ -2,11 +2,11 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import React from "react";
+import { AvatarCell } from "./avatar-cell";
 import { TableHeader } from "./table-header";
 import { TableRow } from "./table-row";
 
@@ -20,28 +20,13 @@ export type Person = {
 
 const columnHelper = createColumnHelper<Person>();
 
-const capitalize = (str: string) =>
-  str[0] ? str[0].toUpperCase() + str.slice(1) : str.slice(1);
-
 const columns = [
   columnHelper.accessor("rank", {
     cell: (info) => info.getValue(),
     header: () => "#",
   }),
   columnHelper.accessor("avatar", {
-    cell: (info) => (
-      <div className="w-12">
-        <Avatar>
-          <AvatarImage
-            src={info.getValue()}
-            alt={info.row.original.name.slice(0, 2)}
-          />
-          <AvatarFallback>
-            {capitalize(info.row.original.name.slice(0, 2))}
-          </AvatarFallback>
-        </Avatar>
-      </div>
-    ), // TODO do url
+    cell: (info) => <AvatarCell info={info} />, // TODO do url
     header: () => undefined,
   }),
   columnHelper.accessor("name", {
@@ -83,33 +68,19 @@ export function Table() {
   });
 
   return (
-    <table className="rounded bg-white px-8 py-4 font-space-grotesk shadow-4-skew">
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <TableHeader key={headerGroup.id} headerGroup={headerGroup} />
-        ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row, i) => (
-          <TableRow key={row.id} row={row} />
-        ))}
-      </tbody>
-      <tfoot>
-        {table.getFooterGroups().map((footerGroup) => (
-          <tr key={footerGroup.id}>
-            {footerGroup.headers.map((header) => (
-              <th key={header.id}>
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
-                      header.column.columnDef.footer,
-                      header.getContext()
-                    )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </tfoot>
-    </table>
+    <div className="w-[800px] rounded-xl border-2 border-black bg-white py-2 shadow-4-skew">
+      <table className="w-full table-auto divide-y divide-gray-300">
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableHeader key={headerGroup.id} headerGroup={headerGroup} />
+          ))}
+        </thead>
+        <tbody className="divide-y divide-gray-200">
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id} row={row} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

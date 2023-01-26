@@ -11,7 +11,7 @@ export const TableHeader: FC<TableHeaderProps> = ({ headerGroup }) => {
   return (
     <tr>
       {headerGroup.headers.map((header) => (
-        <th key={header.id} className="p-2 text-slate-500">
+        <th key={header.id} className="py-2 text-slate-500">
           {header.isPlaceholder
             ? null
             : flexRender(header.column.columnDef.header, header.getContext())}
