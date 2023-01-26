@@ -8,6 +8,7 @@ module.exports = {
         "4-hard": "0px 4px",
         "2-skew": "2px 2px",
         "4-skew": "4px 4px",
+        achievment: "inset 0px -4px",
       },
       colors: {
         brand: {
@@ -20,6 +21,8 @@ module.exports = {
           white: "#FFFFFF",
           black: "#000000",
           gray: "#87898C",
+          lightGray: "#E5E5E5",
+          orange: "#FDA16E",
         },
         // background: "#F3F3F3",
         background: "#FDF5E5",
