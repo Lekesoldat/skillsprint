@@ -1,6 +1,6 @@
 import { Achievement } from "@prisma/client";
 import { cva } from "class-variance-authority";
-import { Progress } from "./Progress";
+import { Progress } from "./ui/Progress";
 
 interface AchievementListProps {
   list: Achievement[];

@@ -6,7 +6,7 @@ import {
   type ElementRef,
 } from "react";
 
-import { cn } from "../utils/classnames";
+import { cn } from "../../utils/classnames";
 
 export const Progress = forwardRef<
   ElementRef<typeof ProgressPrimitive.Root>,
