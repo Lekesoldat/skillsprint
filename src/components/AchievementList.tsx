@@ -1,9 +1,12 @@
-import { Achievement } from "@prisma/client";
 import { cva } from "class-variance-authority";
+import type { RouterOutputs } from "../utils/api";
 import { Progress } from "./Progress";
 
+type Achievements = RouterOutputs["achievement"]["getAll"]; // Achievement[]
+
+type Achievement = Achievements[number]; // Achievement
 interface AchievementListProps {
-  list: Achievement[];
+  list: Achievements;
 }
 export const AchievementList = ({ list }: AchievementListProps) => {
   return (
@@ -21,7 +24,7 @@ const Achievement = ({
   description,
   color,
   requirement,
-}: Achievement) => {
+}: Achievements[number]) => {
   return (
     <div className="flex border-t-2 border-brand-lightGray px-4 py-4 first:border-t-0">
       {/* Left side */}

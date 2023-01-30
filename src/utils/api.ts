@@ -5,9 +5,8 @@
  *
  * We also create a few inference helpers for input and output types
  */
-import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
+import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import { createTRPCReact } from "@trpc/react-query";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
 
@@ -52,25 +51,8 @@ export const api = createTRPCNext<AppRouter>({
    * Whether tRPC should await queries when server rendering pages
    * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
    */
-  ssr: false,
+  ssr: true,
 });
-
-// For client side
-export const trpcReact = createTRPCReact<AppRouter>({
-  unstable_overrides: {
-    useMutation: {
-      async onSuccess(opts) {
-        await opts.originalFn();
-        await opts.queryClient.invalidateQueries();
-      },
-    },
-  },
-});
-
-/**
- * Vanilla trpc client
- */
-export const proxyClient = createTRPCProxyClient<AppRouter>(config);
 
 /**
  * Inference helper for inputs
