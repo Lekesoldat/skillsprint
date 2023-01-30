@@ -18,7 +18,7 @@ async function createCategories() {
       prisma.category.upsert({
         where: { id: category.id },
         create: category,
-        update: {},
+        update: category,
       })
     )
   );
@@ -50,7 +50,7 @@ async function createDefaultUsers() {
       prisma.user.upsert({
         where: { name: user.name },
         create: user,
-        update: {},
+        update: user,
       })
     )
   );
@@ -61,6 +61,7 @@ const users = await createDefaultUsers();
 async function createDefaultAchievements() {
   const data: Prisma.AchievementCreateInput[] = [
     {
+      id: "cldd5ejes0000tlzydlvd651d",
       icon: "🏕️",
       title: "Leirbål",
       description: "Fullfør 3 oppgaver på rad",
@@ -68,6 +69,7 @@ async function createDefaultAchievements() {
       color: "PINK",
     },
     {
+      id: "cldd5ejes0001tlzy3je4q6bc",
       icon: "🔥",
       title: "Skogbrann",
       description: "Fullfør 5 oppgaver på rad",
@@ -75,6 +77,7 @@ async function createDefaultAchievements() {
       color: "YELLOW",
     },
     {
+      id: "cldd5ejes0002tlzyh9ub0ndz",
       icon: "👀",
       title: "Pionér",
       description: "Prøv 1 oppgave fra <kategorinavn>",
@@ -82,6 +85,7 @@ async function createDefaultAchievements() {
       color: "PINK",
     },
     {
+      id: "cldd5ejes0003tlzy5fw3uef8",
       icon: "💯",
       title: "Profesjonell",
       description: "Fullfør en hel kategori",
@@ -89,6 +93,7 @@ async function createDefaultAchievements() {
       color: "ORANGE",
     },
     {
+      id: "cldd5ejes0004tlzyh8a7gdt4",
       icon: "🕵🏻",
       title: "Utforsker",
       description: "Løs 1 oppgave i hver kategori",
@@ -96,6 +101,7 @@ async function createDefaultAchievements() {
       color: "BLUE",
     },
     {
+      id: "cldd5ejes0005tlzyu6adx7pk",
       icon: "🏆",
       title: "Winner Winner",
       description: "Chicken Dinner",
@@ -107,9 +113,9 @@ async function createDefaultAchievements() {
   return await prisma.$transaction(
     data.map((achievement) =>
       prisma.achievement.upsert({
+        where: { id: achievement.id },
         create: achievement,
-        where: { title: achievement.title },
-        update: {},
+        update: achievement,
       })
     )
   );
@@ -121,12 +127,21 @@ async function createDefaultTasks() {
   console.info("Creating default tasks");
   const data: Prisma.TaskCreateInput[] = [
     {
-      id: "cldiog5kk000008l29k73fx8g ",
+      id: "cldiog5kk000008l29k73fx8g",
       title: "Oppgave 1",
       description: "Beskrivelse av oppgave 1",
       category: { connect: { id: faker.helpers.arrayElement(categories).id } },
       points: 400,
       answer: "42",
+    },
+    {
+      id: "cldioiaq9000f08l27ek850k3",
+      title: "Oppgave 1a",
+      description: "Beskrivelse av oppgave 1a",
+      category: { connect: { id: faker.helpers.arrayElement(categories).id } },
+      points: 350,
+      answer: "32",
+      prevTask: { connect: { id: "cldiog5kk000008l29k73fx8g" } },
     },
   ];
   return await prisma.$transaction(
@@ -134,7 +149,7 @@ async function createDefaultTasks() {
       prisma.task.upsert({
         where: { id: task.id },
         create: task,
-        update: {},
+        update: task,
       })
     )
   );

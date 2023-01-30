@@ -77,7 +77,7 @@ enum AchievementColor {
 model Achievement {
     id          String           @id @default(cuid())
     icon        String
-    title       String           @unique
+    title       String
     description String
     color       AchievementColor @default(PINK)
     requirement Int
