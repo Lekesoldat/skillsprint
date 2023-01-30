@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 import type { RouterOutputs } from "../utils/api";
-import { Progress } from "./Progress";
+import { Progress } from "./ui/Progress";
 
 type Achievements = RouterOutputs["achievement"]["getAll"]; // Achievement[]
 
