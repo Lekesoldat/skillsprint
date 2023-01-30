@@ -3,7 +3,8 @@ import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // Prisma adapter for NextAuth, optional and can be removed
 import { serverEnv } from "../../../env/schema.mjs";
-import { proxyClient } from "../../../utils/api";
+import { appRouter } from "../../../server/api/root";
+import { createInnerTRPCContext } from "../../../server/api/trpc";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
@@ -56,7 +57,10 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const user = await proxyClient.auth.login.mutate({
+        const caller = appRouter.createCaller(
+          createInnerTRPCContext({ session: null })
+        );
+        const user = await caller.auth.login({
           username: credentials?.username || "",
           password: credentials?.password || "",
         });
