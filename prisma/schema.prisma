@@ -38,7 +38,11 @@ model Task {
     points      Int
     category    Category      @relation(fields: [categoryId], references: [id])
     categoryId  String
+    answer      String
     TaskAttempt TaskAttempt[]
+    nextTaskId  String?       @unique
+    nextTask    Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
+    prevTask    Task?         @relation("TaskOrder")
 }
 
 enum AttemptStatus {
