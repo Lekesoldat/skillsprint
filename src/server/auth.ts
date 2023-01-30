@@ -1,9 +1,15 @@
-import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { unstable_getServerSession } from "next-auth";
+import type { GetServerSidePropsContext } from "next";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 
-export const getServerAuthSession = async (
-  ctx: Pick<CreateNextContextOptions, "req" | "res">
-) => {
-  return await unstable_getServerSession(ctx.req, ctx.res, authOptions);
+/*
+ * Wrapper for getServerSession so that you don't need
+ * to import the authOptions in every file.
+ * @see https://next-auth.js.org/configuration/nextjs
+ **/
+export const getServerAuthSession = (ctx: {
+  req: GetServerSidePropsContext["req"];
+  res: GetServerSidePropsContext["res"];
+}) => {
+  return getServerSession(ctx.req, ctx.res, authOptions);
 };
