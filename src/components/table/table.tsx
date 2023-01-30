@@ -1,12 +1,17 @@
+"use client";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import React from "react";
+import { AvatarCell } from "./avatar-cell";
+import { TableHeader } from "./table-header";
+import { TableRow } from "./table-row";
 
-type Person = {
+export type Person = {
+  rank: string;
   avatar: string;
   name: string;
   points: number;
@@ -15,40 +20,46 @@ type Person = {
 
 const columnHelper = createColumnHelper<Person>();
 
-const capitalize = (str: string) =>
-  str[0] ? str[0].toUpperCase() + str.slice(1) : str.slice(1);
-
 const columns = [
-  columnHelper.accessor("name", {
+  columnHelper.accessor("rank", {
     cell: (info) => info.getValue(),
-    header: (info) => capitalize(info.column.id),
+    header: () => "#",
   }),
   columnHelper.accessor("avatar", {
-    cell: (info) => <img src={info.getValue()} className="w-10" />, // TODO do url
+    cell: (info) => <AvatarCell info={info} />, // TODO do url
     header: () => undefined,
+  }),
+  columnHelper.accessor("name", {
+    cell: (info) => <p className="text-start">{info.getValue()}</p>,
+    header: () => <p className="text-start">Brukernavn</p>,
   }),
   columnHelper.accessor("points", {
     cell: (info) => info.getValue(),
-    header: (info) => capitalize(info.column.id),
+    header: "Poeng",
   }),
   columnHelper.accessor("bestStreak", {
     cell: (info) => `${info.getValue()} 🔥`,
-    header: "Best streak",
+    header: "Beste streak",
   }),
 ];
 
-function Table() {
+export function Table() {
   const [data, setData] = React.useState(() => [
     {
-      name: "test",
-      avatar:
-        "https://gravatar.com/avatar/319db1cef635624179f447689a689e42?s=400&d=robohash&r=x",
-      points: 2000,
+      name: "Amund Apekatt",
+      rank: "1.",
+      avatar: "https://cdn-icons-png.flaticon.com/512/2202/2202112.png",
+      points: 2351,
       bestStreak: 14,
     },
+    {
+      name: "Ole Isbjørn",
+      rank: "2.",
+      avatar: "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+      points: 1964,
+      bestStreak: 4,
+    },
   ]);
-  console.log(data);
-  const rerender = React.useReducer(() => ({}), {})[1];
 
   const table = useReactTable({
     data,
@@ -57,56 +68,19 @@ function Table() {
   });
 
   return (
-    <div className="p-2 text-brand-black">
-      <table>
+    <div className="w-[800px] rounded-xl border-2 border-black bg-white py-2 shadow-4-skew">
+      <table className="w-full table-auto divide-y divide-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
+            <TableHeader key={headerGroup.id} headerGroup={headerGroup} />
           ))}
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-200">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
+            <TableRow key={row.id} row={row} />
           ))}
         </tbody>
-        <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
       </table>
-      <div className="h-4" />
-      <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button>
     </div>
   );
 }
