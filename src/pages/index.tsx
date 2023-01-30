@@ -32,6 +32,7 @@ export default function Index() {
               deploy it.
             </div>
           </Link>
+          <AuthShowcase />
         </div>
       </div>
     </main>
