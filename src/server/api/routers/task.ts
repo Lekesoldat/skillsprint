@@ -64,7 +64,7 @@ export const taskRouter = createTRPCRouter({
 
       return res;
     }),
-  getAll: protectedProcedure.query(async ({ ctx }) => {
+  getAll: publicProcedure.query(async ({ ctx }) => {
     try {
       return await ctx.prisma.task.findMany();
     } catch (error) {

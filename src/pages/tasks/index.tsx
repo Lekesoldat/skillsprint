@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { api } from "../../utils/api";
 
 export default function Task() {
@@ -7,5 +8,13 @@ export default function Task() {
 
   if (!data) return <>Loading...</>;
 
-  return <></>;
+  return (
+    <>
+      {data.map((task) => (
+        <Link key={task.id} href={`/tasks/${task.id}`}>
+          <p>{task.title}</p>
+        </Link>
+      ))}
+    </>
+  );
 }
