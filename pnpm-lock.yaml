@@ -1,8 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@faker-js/faker': ^7.6.0
   '@next-auth/prisma-adapter': ^1.0.5
   '@next/font': ^13.1.5
+  '@paralleldrive/cuid2': ^2.0.1
   '@previewjs/config-helper-nextjs': ^1.0.5
   '@prisma/client': ^4.8.0
   '@radix-ui/react-avatar': ^1.0.1
@@ -75,6 +77,8 @@ dependencies:
   zod: 3.20.2
 
 devDependencies:
+  '@faker-js/faker': 7.6.0
+  '@paralleldrive/cuid2': 2.0.1
   '@previewjs/config-helper-nextjs': 1.0.5_next@13.1.2+react@18.2.0
   '@types/node': 18.11.18
   '@types/prettier': 2.7.2
@@ -356,6 +360,11 @@ packages:
       - supports-color
     dev: true
 
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
+
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -521,6 +530,10 @@ packages:
     requiresBuild: true
     optional: true
 
+  /@noble/hashes/1.1.5:
+    resolution: {integrity: sha512-LTMZiiLc+V4v1Yi16TD6aX2gmtKszNye0pQgbaLqkvhIqP7nVsSaJsWloGQjJfJ8offaoP5GtX3yY5swbcJxxQ==}
+    dev: true
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -545,6 +558,12 @@ packages:
   /@panva/hkdf/1.0.2:
     resolution: {integrity: sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==}
     dev: false
+
+  /@paralleldrive/cuid2/2.0.1:
+    resolution: {integrity: sha512-fi9nN5kCPGv9pcKQjk9g3riSTVcwR5TCFAGPUStbR61b1nXZ07GvxeoyStELKsJDCji1lwuUiUwLtagNTBllQA==}
+    dependencies:
+      '@noble/hashes': 1.1.5
+    dev: true
 
   /@phc/format/1.0.0:
     resolution: {integrity: sha512-m7X9U6BG2+J+R1lSOdCiITLLrxm+cWlNI3HUFA92oLO77ObGNzaKdh8pMLqdZcshtkKuV84olNNXDfMc4FezBQ==}
