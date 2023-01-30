@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "./trpc";
 import { authRouter } from "./routers/auth";
 import { achievementRouter } from "./routers/achievement";
+import { taskRouter } from "./routers/task";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { achievementRouter } from "./routers/achievement";
 export const appRouter = createTRPCRouter({
   auth: authRouter,
   achievement: achievementRouter,
+  task: taskRouter,
 });
 
 // export type definition of API
