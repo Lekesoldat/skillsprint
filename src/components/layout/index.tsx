@@ -14,7 +14,7 @@ export function Layout(props: PropsWithChildren) {
   return (
     <main
       className={
-        "flex h-full min-h-screen w-full flex-col font-space-grotesk" +
+        "flex h-full min-h-screen w-full flex-col bg-background font-space-grotesk" +
         ` ${spaceGrotesk.variable}`
       }
     >
