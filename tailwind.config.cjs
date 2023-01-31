@@ -32,6 +32,9 @@ module.exports = {
       fontFamily: {
         "space-grotesk": "var(--space-grotesk)",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
     },
   },
   plugins: [],
