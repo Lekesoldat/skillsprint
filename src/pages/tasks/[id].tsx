@@ -5,7 +5,9 @@ export default function TaskPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isError } = api.task.getById.useQuery({ id: id as string });
+  const { data, isError } = api.task.getByIdIncludeCategory.useQuery({
+    id: id as string,
+  });
 
   if (isError) return <>Error bruvv...</>;
   if (!data) return <>Loading...</>;

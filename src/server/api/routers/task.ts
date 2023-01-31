@@ -90,4 +90,23 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
+  getByIdIncludeCategory: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ ctx, input: { id } }) => {
+      try {
+        return await ctx.prisma.task.findUniqueOrThrow({
+          where: { id },
+          include: { category: true },
+        });
+      } catch (error) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          cause: error,
+        });
+      }
+    }),
 });
