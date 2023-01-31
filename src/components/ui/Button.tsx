@@ -42,7 +42,7 @@ const buttonStyle = cva(
         lg: "text-lg px-4 py-3",
       },
       type: {
-        shadow: ["shadow-brand-black", "shadow-4-skew"],
+        shadow: ["shadow-brand-black", "shadow-4-right"],
       },
     },
     defaultVariants: {
