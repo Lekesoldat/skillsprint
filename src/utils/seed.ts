@@ -1,4 +1,5 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import argon2 from "argon2";
 import { faker } from "@faker-js/faker";
 
@@ -128,16 +129,16 @@ async function createDefaultTasks() {
   const data: Prisma.TaskCreateInput[] = [
     {
       id: "cldiog5kk000008l29k73fx8g",
-      title: "Oppgave 1",
-      description: "Beskrivelse av oppgave 1",
+      title: "Oppgave 1a",
+      description: "Beskrivelse av oppgave 1a",
       category: { connect: { id: faker.helpers.arrayElement(categories).id } },
       points: 400,
       answer: "42",
     },
     {
       id: "cldioiaq9000f08l27ek850k3",
-      title: "Oppgave 1a",
-      description: "Beskrivelse av oppgave 1a",
+      title: "Oppgave 1b",
+      description: "Beskrivelse av oppgave 1b",
       category: { connect: { id: faker.helpers.arrayElement(categories).id } },
       points: 350,
       answer: "32",
