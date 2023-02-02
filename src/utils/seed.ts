@@ -11,7 +11,7 @@ async function createCategories() {
   console.info("Creating default categories");
   const data: Prisma.CategoryCreateInput[] = [
     { id: "cldacdi520000sbxe8eyqu26y", name: "Algebra" },
-    { id: "cldacdi520001sbxekmyct9yd", name: "Grafer og funksjone" },
+    { id: "cldacdi520001sbxekmyct9yd", name: "Grafer og funksjoner" },
     { id: "cldacdi530002sbxeu6rgijzl", name: "Likninger og likningssett" },
   ];
   return await prisma.$transaction(

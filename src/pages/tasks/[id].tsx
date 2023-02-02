@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
+import MathInput from "../../components/math/MathInput";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { api } from "../../utils/api";
-import MathInput from "../../components/math/MathInput";
 
 export default function TaskPage() {
   const router = useRouter();
