@@ -1,21 +1,30 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
+import React from "react";
+import { cn } from "../../utils/classnames";
 
-interface ButtonProps {
-  text: string;
-  size?: VariantProps<typeof buttonStyle>["size"];
-  type?: VariantProps<typeof buttonStyle>["type"];
-}
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
 
-export const Button = (props: ButtonProps) => {
-  return (
-    <button type="button" className={buttonStyle({ type: props.type })}>
-      {props.text}
-    </button>
-  );
-};
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, ...props }, ref) => {
+    return (
+      <button
+        className={cn(buttonVariants({ size, variant }), className)}
+        ref={ref}
+        {...props}
+      >
+        {props.children}
+      </button>
+    );
+  }
+);
+Button.displayName = "Button";
 
-const buttonStyle = cva(
+export { Button, buttonVariants };
+
+const buttonVariants = cva(
   [
     // Text
     "text-brand-black",
@@ -41,7 +50,7 @@ const buttonStyle = cva(
         md: "text-md px-3.5 py-2.5",
         lg: "text-lg px-4 py-3",
       },
-      type: {
+      variant: {
         shadow: ["shadow-brand-black", "shadow-4-right"],
       },
     },

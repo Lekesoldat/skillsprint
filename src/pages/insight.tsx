@@ -4,7 +4,7 @@ import { Button } from "../components/ui/Button";
 export default function Page() {
   return (
     <>
-      <Button text={"This is a button"} type="shadow" />
+      <Button variant="shadow">This is a button</Button>
       <Badge text={"This is a badge"} color="red" />
     </>
   );
