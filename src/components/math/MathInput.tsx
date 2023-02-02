@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import type { MathfieldElement } from "mathlive";
 
-const MathInput = () => {
+interface MathInputProps {
+  onChange: (value: string) => void;
+}
+
+const MathInput: FC<MathInputProps> = ({ onChange }) => {
   const ref = useRef<MathfieldElement>(null);
-  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     import("mathlive");
@@ -13,24 +16,21 @@ const MathInput = () => {
     console.log(ref.current);
     const el = ref.current;
     if (el) {
-      el.virtualKeyboardMode = "manual";
+      el.virtualKeyboardMode = "onfocus";
       el.onchange = () => {
-        setValue(el.value);
-        console.log(el.value);
+        onChange(el.value);
       };
     }
   }, [ref]);
 
   return (
-    <div>
-      <math-field
-        sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
-        fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
-        ref={ref}
-        class="border border-black"
-        // virtual-keyboard-mode="manual"
-      ></math-field>
-    </div>
+    <math-field
+      sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
+      fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
+      ref={ref}
+      // virtual-keyboard-mode="manual"
+      class="min-w-[300px] rounded-md border border-black bg-white py-2 px-4 text-xl shadow-2-hard"
+    ></math-field>
   );
 };
 export default MathInput;
