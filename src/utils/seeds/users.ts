@@ -18,7 +18,7 @@ export async function createUsers() {
   for (let i = 0; i < 20; i++) {
     data.push({
       name: faker.name.firstName(),
-      password: faker.internet.password(),
+      password: await argon2.hash(faker.internet.password()),
     });
   }
 

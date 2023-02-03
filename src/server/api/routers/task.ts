@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
-export const taskRouter = createTRPCRouter({
+export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
     .input(z.string())
     .mutation(async ({ input, ctx }) => {
@@ -75,7 +75,10 @@ export const taskRouter = createTRPCRouter({
 
       return res;
     }),
-  getAll: publicProcedure.query(async ({ ctx }) => {
+});
+
+export const taskRouter = createTRPCRouter({
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     try {
       return await ctx.prisma.task.findMany();
     } catch (error) {
@@ -85,6 +88,7 @@ export const taskRouter = createTRPCRouter({
       });
     }
   }),
+
   getById: publicProcedure
     .input(
       z.object({
@@ -101,7 +105,8 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
-  getByIdIncludeCategory: publicProcedure
+
+  getByIdIncludeCategory: protectedProcedure
     .input(
       z.object({
         id: z.string(),
