@@ -47,14 +47,25 @@ export const taskRouter = createTRPCRouter({
           message: "Invalid Task",
         });
       }
-      const attempt = await ctx.prisma.taskAttempt.findUniqueOrThrow({
+      const attempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
-          userId_taskId: { userId: ctx.session.user.id, taskId: task.id },
+          userId: ctx.session.user.id,
+          taskId: task.id,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 1,
       });
+      if (!attempt) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "User had not started an attempt",
+        });
+      }
       const res = await ctx.prisma.taskAttempt.update({
         where: {
-          userId_taskId: { taskId: attempt.taskId, userId: attempt.userId },
+          id: attempt.id,
         },
         data: {
           result: input.answer === task.answer ? "SUCCESS" : "FAIL",

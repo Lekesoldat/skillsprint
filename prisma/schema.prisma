@@ -52,6 +52,7 @@ enum AttemptResult {
 }
 
 model TaskAttempt {
+    id          String        @id @default(cuid())
     user        User          @relation(fields: [userId], references: [id])
     userId      String
     task        Task          @relation(fields: [taskId], references: [id])
@@ -59,8 +60,6 @@ model TaskAttempt {
     result      AttemptResult @default(PENDING)
     createdAt   DateTime      @default(now())
     elapsedTime Int           @default(0)
-
-    @@id([userId, taskId])
 }
 
 enum AchievementColor {
