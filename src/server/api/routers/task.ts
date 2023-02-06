@@ -171,6 +171,8 @@ export const taskAttemptRouter = createTRPCRouter({
       });
     }),
 
+  // TODO:
+  // 1.Kalkuler points på gruppen slik at det blir average
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
     const start = new Date();
     const [tasks, attempts] = await ctx.prisma.$transaction([
@@ -219,6 +221,9 @@ export const taskAttemptRouter = createTRPCRouter({
     const userList = sortAndAggretatePoints(userAttempts);
     const groupList = sortAndAggretatePoints(groupAttempts);
 
-    return [userList, groupList] as const;
+    return {
+      userList,
+      groupList,
+    };
   }),
 });
