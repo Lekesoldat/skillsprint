@@ -1,7 +1,7 @@
 import { createTRPCRouter } from "./trpc";
 import { authRouter } from "./routers/auth";
 import { achievementRouter } from "./routers/achievement";
-import { taskRouter } from "./routers/task";
+import { taskAttemptRouter, taskRouter } from "./routers/task";
 import { categoryRouter } from "./routers/category";
 
 /**
@@ -12,6 +12,7 @@ import { categoryRouter } from "./routers/category";
 export const appRouter = createTRPCRouter({
   auth: authRouter,
   achievement: achievementRouter,
+  taskAttempt: taskAttemptRouter,
   task: taskRouter,
   category: categoryRouter,
 });

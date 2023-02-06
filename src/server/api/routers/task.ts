@@ -3,6 +3,56 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const taskRouter = createTRPCRouter({
+  getAll: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.prisma.task.findMany();
+    } catch (error) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        cause: error,
+      });
+    }
+  }),
+
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ ctx, input: { id } }) => {
+      try {
+        return await ctx.prisma.task.findUniqueOrThrow({ where: { id } });
+      } catch (error) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          cause: error,
+        });
+      }
+    }),
+
+  getByIdIncludeCategory: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ ctx, input: { id } }) => {
+      try {
+        return await ctx.prisma.task.findUniqueOrThrow({
+          where: { id },
+          include: { category: true },
+        });
+      } catch (error) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          cause: error,
+        });
+      }
+    }),
+});
+
+export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
     .input(z.string())
     .mutation(async ({ input, ctx }) => {
@@ -47,66 +97,30 @@ export const taskRouter = createTRPCRouter({
           message: "Invalid Task",
         });
       }
-      const attempt = await ctx.prisma.taskAttempt.findUniqueOrThrow({
+      const attempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
-          userId_taskId: { userId: ctx.session.user.id, taskId: task.id },
+          userId: ctx.session.user.id,
+          taskId: task.id,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 1,
       });
-      const res = await ctx.prisma.taskAttempt.update({
+      if (!attempt) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "User had not started an attempt",
+        });
+      }
+      return await ctx.prisma.taskAttempt.update({
         where: {
-          userId_taskId: { taskId: attempt.taskId, userId: attempt.userId },
+          id: attempt.id,
         },
         data: {
           result: input.answer === task.answer ? "SUCCESS" : "FAIL",
           elapsedTime: new Date().getTime() - attempt.createdAt.getTime(),
         },
       });
-
-      return res;
-    }),
-  getAll: publicProcedure.query(async ({ ctx }) => {
-    try {
-      return await ctx.prisma.task.findMany();
-    } catch (error) {
-      throw new TRPCError({
-        code: "BAD_REQUEST",
-        cause: error,
-      });
-    }
-  }),
-  getById: publicProcedure
-    .input(
-      z.object({
-        id: z.string(),
-      })
-    )
-    .query(async ({ ctx, input: { id } }) => {
-      try {
-        return await ctx.prisma.task.findUniqueOrThrow({ where: { id } });
-      } catch (error) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          cause: error,
-        });
-      }
-    }),
-  getByIdIncludeCategory: publicProcedure
-    .input(
-      z.object({
-        id: z.string(),
-      })
-    )
-    .query(async ({ ctx, input: { id } }) => {
-      try {
-        return await ctx.prisma.task.findUniqueOrThrow({
-          where: { id },
-          include: { category: true },
-        });
-      } catch (error) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          cause: error,
-        });
-      }
     }),
 });
