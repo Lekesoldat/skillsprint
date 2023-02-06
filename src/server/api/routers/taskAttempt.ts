@@ -121,11 +121,8 @@ export const taskAttemptRouter = createTRPCRouter({
       });
     }),
 
-  // TODO:
-  // 1.Kalkuler points på gruppen slik at det blir average
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
     try {
-      const start = new Date();
       const [tasks, attempts] = await ctx.prisma.$transaction([
         ctx.prisma.task.findMany(),
         ctx.prisma.taskAttempt.findMany({
@@ -136,11 +133,12 @@ export const taskAttemptRouter = createTRPCRouter({
           },
         }),
       ]);
-      console.log(differenceInSeconds(new Date(), start));
 
       const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
 
       const groupAttempts = new Map<string, number>();
+      const groupAttemptsCounter = new Map<string, number>();
+
       const userAttempts = new Map<string, number>();
 
       attempts.forEach((a) => {
@@ -150,11 +148,14 @@ export const taskAttemptRouter = createTRPCRouter({
 
         // Group Attempts
         const entry = groupAttempts.get(timestamp);
+        const entryCounter = groupAttemptsCounter.get(timestamp);
 
-        if (entry) {
+        if (entry && entryCounter) {
           groupAttempts.set(timestamp, entry + points);
+          groupAttemptsCounter.set(timestamp, entryCounter + 1);
         } else {
           groupAttempts.set(timestamp, points);
+          groupAttemptsCounter.set(timestamp, 1);
         }
 
         // User Attempts
@@ -169,8 +170,19 @@ export const taskAttemptRouter = createTRPCRouter({
         }
       });
 
+      // Calculate average points at each timestamp
+      const averageGroupAttempts = new Map<string, number>();
+
+      groupAttempts.forEach((points, time) => {
+        const counter = groupAttemptsCounter.get(time);
+
+        if (counter) {
+          averageGroupAttempts.set(time, points / counter);
+        }
+      });
+
       const userList = sortAndAggretatePoints(userAttempts);
-      const groupList = sortAndAggretatePoints(groupAttempts);
+      const groupList = sortAndAggretatePoints(averageGroupAttempts);
 
       return {
         userList,
