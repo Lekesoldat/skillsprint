@@ -1,8 +1,9 @@
 import { createTRPCRouter } from "./trpc";
 import { authRouter } from "./routers/auth";
 import { achievementRouter } from "./routers/achievement";
-import { taskAttemptRouter, taskRouter } from "./routers/task";
+import { taskRouter } from "./routers/task";
 import { categoryRouter } from "./routers/category";
+import { taskAttemptRouter } from "./routers/taskAttempt";
 
 /**
  * This is the primary router for your server.
