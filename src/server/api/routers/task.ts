@@ -1,6 +1,10 @@
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds } from "date-fns";
 import { z } from "zod";
+import {
+  roundToTenthMinute,
+  sortAndAggretatePoints,
+} from "../../../utils/dates";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { ComputeEngine } from "@cortex-js/compute-engine";
 
@@ -166,4 +170,55 @@ export const taskAttemptRouter = createTRPCRouter({
         },
       });
     }),
+
+  getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
+    const start = new Date();
+    const [tasks, attempts] = await ctx.prisma.$transaction([
+      ctx.prisma.task.findMany(),
+      ctx.prisma.taskAttempt.findMany({
+        where: {
+          result: {
+            equals: "SUCCESS",
+          },
+        },
+      }),
+    ]);
+    console.log(differenceInSeconds(new Date(), start));
+
+    const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
+
+    const groupAttempts = new Map<string, number>();
+    const userAttempts = new Map<string, number>();
+
+    attempts.forEach((a) => {
+      const rounded = roundToTenthMinute(a.createdAt);
+      const timestamp = format(rounded, "HH:mm");
+      const points = taskToPoints.get(a.taskId) || 0;
+
+      // Group Attempts
+      const entry = groupAttempts.get(timestamp);
+
+      if (entry) {
+        groupAttempts.set(timestamp, entry + points);
+      } else {
+        groupAttempts.set(timestamp, points);
+      }
+
+      // User Attempts
+      if (ctx.session.user.id === a.userId) {
+        const entry = userAttempts.get(timestamp);
+
+        if (entry) {
+          userAttempts.set(timestamp, entry + points);
+        } else {
+          userAttempts.set(timestamp, points);
+        }
+      }
+    });
+
+    const userList = sortAndAggretatePoints(userAttempts);
+    const groupList = sortAndAggretatePoints(groupAttempts);
+
+    return [userList, groupList] as const;
+  }),
 });
