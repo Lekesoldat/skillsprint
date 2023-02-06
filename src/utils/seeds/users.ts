@@ -15,6 +15,7 @@ export async function createUsers() {
       password: await argon2.hash("hunter2"),
     },
   ];
+
   for (let i = 0; i < 20; i++) {
     data.push({
       name: faker.name.firstName(),
