@@ -1,27 +1,89 @@
-import type { Category, Prisma, Task, User } from "@prisma/client";
+import type { Prisma, Task, User } from "@prisma/client";
 import { faker, prismaClient } from "./seed";
 
-export async function createTasks(categories: Category[]) {
+export async function createTasks() {
   console.info("\n📝 Seeding tasks...");
   const data: Prisma.TaskCreateInput[] = [
     {
       id: "cldiog5kk000008l29k73fx8g",
       title: "Oppgave 1a",
-      description: "Beskrivelse av oppgave 1a",
-      category: { connect: { id: faker.helpers.arrayElement(categories).id } },
-      points: 400,
-      answer: "42",
+      description:
+        "En en liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Hva er formelen for grunnlinjen i denne trekanten?",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 50,
+      answer: "g=\\frac{2A}{h}",
     },
     {
       id: "cldioiaq9000f08l27ek850k3",
       title: "Oppgave 1b",
-      description: "Beskrivelse av oppgave 1b",
-      category: { connect: { id: faker.helpers.arrayElement(categories).id } },
-      points: 350,
-      answer: "32",
+      description:
+        "En en liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Bruk formelen og regn ut lengden til grunnlinjen.",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 75,
+      answer: "3",
       prevTask: { connect: { id: "cldiog5kk000008l29k73fx8g" } },
     },
+    {
+      id: "cldudjgkh000008ig5tnn2ixf",
+      title: "Oppgave 2a",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(5a+20b+10c)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 25,
+      answer: "5(a+4b+2c)",
+    },
+    {
+      id: "cldudoi2p000208igdu8ebtud",
+      title: "Oppgave 2b",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(2a^2 b-2ab)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 50,
+      answer: "2ab(a-1)",
+      prevTask: { connect: { id: "cldudjgkh000008ig5tnn2ixf" } },
+    },
+    {
+      id: "cldudqbi5000308ig86l16ppf",
+      title: "Oppgave 2c",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(2b^3 + 10b^2 - 4b)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 75,
+      answer: "2b(b^2 + 5b - 2)",
+      prevTask: { connect: { id: "cldudoi2p000208igdu8ebtud" } },
+    },
+    {
+      id: "cldudr1a2000408ig1qzaa7pm",
+      title: "Oppgave 2d",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(5x^3 y^2-10x^2 y+xy^2)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 100,
+      answer: "xy(5x^2 y-10x+y)",
+      prevTask: { connect: { id: "cldudqbi5000308ig86l16ppf" } },
+    },
+    {
+      id: "cldudrdaz000508ig6393dei9",
+      title: "Oppgave 2e",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(9x^3 y^2 + 27x^2 y^3)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 100,
+      answer: "9x^2 y^2 (x + 3y)",
+      prevTask: { connect: { id: "cldudr1a2000408ig1qzaa7pm" } },
+    },
+    {
+      id: "cldudrj6k000608igclru197t",
+      title: "Oppgave 2f",
+      description:
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(4xy^2 z+8x^2 yz + 16xyz^2)",
+      category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
+      points: 125,
+      answer: "4xyz(y+2x+4z)",
+      prevTask: { connect: { id: "cldudrdaz000508ig6393dei9" } },
+    },
   ];
+
   return await prismaClient.$transaction(
     data.map((task) =>
       prismaClient.task.upsert({
@@ -139,14 +201,123 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
     "cldogid0u00b13b6kaqqkc53d",
     "cldogid0u00b23b6k1t9xhb8l",
     "cldogid0u00b33b6kaqcyxixj",
+    "clduedkhe00b43b6kpbdsdr0a",
+    "clduedkhe00b53b6kxz054b20",
+    "clduedkhe00b63b6kocgr2zic",
+    "clduedkhe00b73b6kf0s8ongn",
+    "clduedkhe00b83b6kzsak93ar",
+    "clduedkhe00b93b6khvo6zcgg",
+    "clduedkhe00ba3b6kwgpr4b8m",
+    "clduedkhe00bb3b6kuy19145x",
+    "clduedkhe00bc3b6kdih0i9ld",
+    "clduedkhe00bd3b6ku9lsudqv",
+    "clduedkhe00be3b6kq6fxdcei",
+    "clduedkhe00bf3b6koffjgg0e",
+    "clduedkhe00bg3b6kpx0d84z4",
+    "clduedkhe00bh3b6kyvaostqz",
+    "clduedkhe00bi3b6kzg2hns8l",
+    "clduedkhe00bj3b6kfnnoss0k",
+    "clduedkhe00bk3b6kn0jfnmp1",
+    "clduedkhe00bl3b6kky4gsylh",
+    "clduedkhe00bm3b6k2nqi2w2r",
+    "clduedkhe00bn3b6kakjkrr84",
+    "clduedkhe00bo3b6k4dzzn1od",
+    "clduedkhe00bp3b6kkefle35e",
+    "clduedkhe00bq3b6kzb0s3sfh",
+    "clduedkhe00br3b6kkra0jdvb",
+    "clduedkhe00bs3b6kfzdqprv2",
+    "clduedkhe00bt3b6k4e3lgokq",
+    "clduedkhe00bu3b6k8h21133v",
+    "clduedkhe00bv3b6kkpgqjels",
+    "clduedkhe00bw3b6kbg43xieh",
+    "clduedkhe00bx3b6k4x8m4p9g",
+    "clduedkhe00by3b6k931rsmzg",
+    "clduedkhe00bz3b6kvzsg0pq0",
+    "clduedkhe00c03b6k2o2wn8jg",
+    "clduedkhe00c13b6k25a6jo1n",
+    "clduedkhe00c23b6k7g268hms",
+    "clduedkhe00c33b6kn8in1fim",
+    "clduedkhe00c43b6kuxbabywt",
+    "clduedkhe00c53b6ki5gw98mb",
+    "clduedkhe00c63b6ka27g7ihw",
+    "clduedkhe00c73b6ku1alngez",
+    "clduedkhe00c83b6kv60sdjf3",
+    "clduedkhe00c93b6k0rkwuo36",
+    "clduedkhe00ca3b6kt124j7jr",
+    "clduedkhe00cb3b6k1wrj3l81",
+    "clduedkhe00cc3b6khvddalaz",
+    "clduedkhe00cd3b6kod2undov",
+    "clduedkhe00ce3b6k0g7uhmfd",
+    "clduedkhe00cf3b6kv5ajq8da",
+    "clduedkhe00cg3b6k95voohrh",
+    "clduedkhe00ch3b6k9wjas4k7",
+    "clduedkhe00ci3b6kr2uvk50c",
+    "clduedkhe00cj3b6ku9ztwof7",
+    "clduedkhe00ck3b6kycox7k1i",
+    "clduedkhe00cl3b6kzvz1r2qx",
+    "clduedkhe00cm3b6k9qaopxq0",
+    "clduedkhe00cn3b6k5kyt6ucl",
+    "clduedkhe00co3b6kvzkpi82q",
+    "clduedkhe00cp3b6kb1dgw5dt",
+    "clduedkhe00cq3b6k2f0eus0z",
+    "clduedkhe00cr3b6kcnp6ippi",
+    "clduedkhe00cs3b6ka2gwejyg",
+    "clduedkhe00ct3b6kouvsa38o",
+    "clduedkhe00cu3b6kn87pnazk",
+    "clduedkhe00cv3b6k1m0h9fxj",
+    "clduedkhe00cw3b6k5tj2e7ln",
+    "clduedkhe00cx3b6k2ntdlxfp",
+    "clduedkhe00cy3b6kziboiic0",
+    "clduedkhe00cz3b6kce2wtg4e",
+    "clduedkhe00d03b6kdzjpygtg",
+    "clduedkhe00d13b6kct5tgzgx",
+    "clduedkhe00d23b6kovbebgc7",
+    "clduedkhe00d33b6kedkokpu5",
+    "clduedkhe00d43b6k0mvfw1yk",
+    "clduedkhe00d53b6kqqn8l560",
+    "clduedkhe00d63b6k4j8vt4ht",
+    "clduedkhe00d73b6k7b60nw0h",
+    "clduedkhe00d83b6kjbz2wn6a",
+    "clduedkhe00d93b6ky3bclmca",
+    "clduedkhe00da3b6kcdr03bjn",
+    "clduedkhe00db3b6kwsozw5vm",
+    "clduedkhe00dc3b6kc5vmlk0u",
+    "clduedkhe00dd3b6ksdlzue1j",
+    "clduedkhe00de3b6k2icw11po",
+    "clduedkhe00df3b6kse6mf5vw",
+    "clduedkhe00dg3b6kuifaopzq",
+    "clduedkhe00dh3b6k28ez7f9x",
+    "clduedkhe00di3b6kdjzuo0yh",
+    "clduedkhe00dj3b6k5drzt8mv",
+    "clduedkhe00dk3b6kba24wk18",
+    "clduedkhe00dl3b6kyqcb8cqp",
+    "clduedkhe00dm3b6kryd380at",
+    "clduedkhe00dn3b6kigi6xl5l",
+    "clduedkhe00do3b6kmm5lqhrs",
+    "clduedkhe00dp3b6kocwu0pj5",
+    "clduedkhe00dq3b6kti5pq3lr",
+    "clduedkhe00dr3b6k93bf9its",
+    "clduedkhe00ds3b6kp5ztg91e",
+    "clduedkhe00dt3b6k9l3xhaqm",
+    "clduedkhe00du3b6kb208vn5y",
+    "clduedkhe00dv3b6kr3lveriq",
   ];
 
   const start = new Date(2023, 2, 4, 12);
   const end = new Date(2023, 2, 4, 15);
 
+  let count = 0;
+
   const promises = mock.map((id) => {
     const taskId = faker.helpers.arrayElement(tasks).id;
-    const userId = faker.helpers.arrayElement(users).id;
+    const userId =
+      count <= 5
+        ? "cldacds260001sb515t861jm3"
+        : faker.helpers.arrayElement(users).id;
+
+    if (count <= 5) {
+      count++;
+    }
 
     const result = completed.get([taskId, userId])
       ? "PENDING"
