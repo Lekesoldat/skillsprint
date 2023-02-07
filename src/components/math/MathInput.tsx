@@ -1,36 +1,37 @@
-import { FC, useEffect, useRef, useState } from "react";
-import type { MathfieldElement } from "mathlive";
+import { FC, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import type { MathfieldElement, MathfieldElementAttributes } from "mathlive";
+import {
+  useController,
+  UseControllerProps,
+  UseFormRegister,
+} from "react-hook-form";
+import { FormValues } from "../../pages/tasks/[id]";
 
-interface MathInputProps {
-  onChange: (value: string) => void;
-}
+// export interface MathProps extends MathfieldElementAttributes {}
 
-const MathInput: FC<MathInputProps> = ({ onChange }) => {
+export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
   const ref = useRef<MathfieldElement>(null);
+
+  const { field } = useController(props);
 
   useEffect(() => {
     import("mathlive");
-  }, []);
-
-  useEffect(() => {
-    console.log(ref.current);
-    const el = ref.current;
-    if (el) {
-      el.virtualKeyboardMode = "onfocus";
-      el.onchange = () => {
-        onChange(el.value);
-      };
+    if (ref.current) {
+      ref.current.onchange = field.onChange;
+      ref.current.onblur = field.onBlur;
     }
-  }, [ref]);
+  }, [field]);
 
   return (
     <math-field
+      name={field.name}
       sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
       fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
-      ref={ref}
-      // virtual-keyboard-mode="manual"
+      virtual-keyboard-mode="manual"
       class="min-w-[300px] rounded-md border border-black bg-white py-2 px-4 text-xl shadow-2-hard"
-    ></math-field>
+      ref={ref}
+    >
+      {field.value}
+    </math-field>
   );
 };
-export default MathInput;

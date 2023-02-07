@@ -41,6 +41,7 @@
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.0",
     "react-string-replace": "^1.1.0",
     "superjson": "1.9.1",
     "tailwind-merge": "^1.8.1",

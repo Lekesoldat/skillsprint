@@ -2,18 +2,25 @@ import { useRouter } from "next/router";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { api } from "../../utils/api";
-import MathInput from "../../components/math/MathInput";
+import { MathInput } from "../../components/math/MathInput";
 import { TaskDescription } from "../../components/math/MathDisplay";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+export type FormValues = {
+  answer: string;
+};
 
 export default function TaskPage() {
   const router = useRouter();
   const { id } = router.query;
-  const [userAnswer, setUserAnswer] = useState("");
+  const { handleSubmit, control } = useForm<FormValues>();
 
-  const { data: task, isError } = api.task.getByIdIncludeCategory.useQuery({
-    id: id as string,
-  });
+  const { data: task, isError } = api.task.getByIdIncludeCategory.useQuery(
+    {
+      id: id as string,
+    },
+    { enabled: !!id }
+  );
 
   if (isError) return <>Error bruvv...</>;
   if (!task) return <>Loading...</>;
@@ -27,15 +34,14 @@ export default function TaskPage() {
           <p className="text-4xl">{task.description}</p>
           <TaskDescription description="Dette er en oppgave math(\frac{x+2}2)" />
         </div>
-        <MathInput onChange={setUserAnswer} />
-        <div>
-          <Button
-            variant="shadow"
-            onClick={() => alert("You answered " + userAnswer)}
-          >
+        <form
+          onSubmit={handleSubmit((data) => alert(JSON.stringify(data.answer)))}
+        >
+          <MathInput control={control} name="answer" />
+          <Button variant="shadow" type="submit">
             Sjekk svar
           </Button>
-        </div>
+        </form>
       </div>
     </div>
   );
