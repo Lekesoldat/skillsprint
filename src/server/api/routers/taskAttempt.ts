@@ -121,6 +121,62 @@ export const taskAttemptRouter = createTRPCRouter({
       });
     }),
 
+  getGroupedAndAggregatedPoints: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const res = await ctx.prisma.$queryRaw<
+        { timestamp: string; user_sum: number; group_sum: number }[]
+      >`
+        WITH group_results AS (
+          SELECT 
+            date_trunc('hour', ta."createdAt") as timestamp, 
+            extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+            sum(t.points), 
+            count(*)
+          FROM "TaskAttempt" ta
+          JOIN "Task" t ON t."id" = ta."taskId"
+          WHERE result = 'SUCCESS'
+          GROUP BY 1,2
+          ORDER BY 1,2
+        ),
+
+        user_results AS (
+          SELECT 
+            date_trunc('hour', ta."createdAt") as timestamp, 
+            extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+            sum(t.points), 
+            count(*)
+          FROM "TaskAttempt" ta
+          JOIN "Task" t ON t."id" = ta."taskId"
+          WHERE result = 'SUCCESS'
+          AND ta."userId" = ${ctx.session.user.id}
+          GROUP BY 1,2
+          ORDER BY 1,2
+        )
+
+        SELECT 
+          gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
+          sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as group_sum,
+          sum(ur.sum/ur.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
+        FROM group_results gr
+        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
+    `;
+
+      const transformed = res.map((x) => ({
+        timestamp: format(new Date(x.timestamp), "HH:mm"),
+        user_sum: +x.user_sum ?? 0,
+        group_sum: +x.group_sum ?? 0,
+      }));
+
+      return transformed;
+    } catch (error) {
+      console.error(error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        cause: error,
+      });
+    }
+  }),
+
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
     try {
       const [tasks, attempts] = await ctx.prisma.$transaction([

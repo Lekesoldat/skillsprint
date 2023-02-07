@@ -10,13 +10,14 @@ import {
 import { api } from "../../utils/api";
 
 export const PerformanceGraph = () => {
-  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
+  const { data, error } =
+    api.taskAttempt.getGroupedAndAggregatedPoints.useQuery();
 
   if (error) return <>Error..</>;
   if (!data) return <>Loading..</>;
 
   return (
-    <ResponsiveContainer width="50%" aspect={4.0 / 2.0}>
+    <ResponsiveContainer width="100%" aspect={3}>
       <LineChart
         data={data}
         margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
@@ -25,8 +26,13 @@ export const PerformanceGraph = () => {
         <YAxis />
         <Tooltip />
         <Legend iconType="circle" />
-        <Line type="monotone" dataKey="userPoints" stroke="#22CA94" />
-        <Line type="monotone" dataKey="groupPoints" stroke="#FDA16E" />
+        <Line type="monotone" dataKey="user_sum" stroke="#22CA94" name="Deg" />
+        <Line
+          type="monotone"
+          dataKey="group_sum"
+          stroke="#FDA16E"
+          name="Klassen"
+        />
       </LineChart>
     </ResponsiveContainer>
   );
