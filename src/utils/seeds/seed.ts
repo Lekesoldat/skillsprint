@@ -13,6 +13,7 @@ await prismaClient.$connect();
 export { prismaClient, faker };
 
 async function init() {
+  const startSeeding = new Date();
   console.info("--- --- --- --- --- --- ---");
   console.info("🌱 Seeding database!");
 
@@ -41,7 +42,12 @@ async function init() {
   await createTaskAttempts(tasks, users);
   console.log(`Took ${differenceInSeconds(new Date(), startAttempts)}s`);
 
-  console.info("\n🌴 Done seeding database!");
+  console.info(
+    `\n🌴 Done seeding database after ${differenceInSeconds(
+      new Date(),
+      startSeeding
+    )}s!`
+  );
   console.info("--- --- --- --- --- --- ---");
 }
 
