@@ -1,11 +1,11 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
 import { TRPCError } from "@trpc/server";
-import { differenceInSeconds, format } from "date-fns";
+import { format } from "date-fns";
 import { z } from "zod";
 import {
   roundToTenthMinute,
-  sortAndAggretatePoints,
-} from "../../../utils/dates";
+  sortAndAggretatePoints
+} from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const taskAttemptRouter = createTRPCRouter({
@@ -135,59 +135,84 @@ export const taskAttemptRouter = createTRPCRouter({
       ]);
 
       const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
-
-      const groupAttempts = new Map<string, number>();
       const groupAttemptsCounter = new Map<string, number>();
 
-      const userAttempts = new Map<string, number>();
+      const pointsAtTime = new Map<
+        string,
+        { groupPoints: number; userPoints: number }
+      >();
 
       attempts.forEach((a) => {
+        // Round timestamp to nearest tenth and extract HH:mm
         const rounded = roundToTenthMinute(a.createdAt);
         const timestamp = format(rounded, "HH:mm");
+
         const points = taskToPoints.get(a.taskId) || 0;
 
-        // Group Attempts
-        const entry = groupAttempts.get(timestamp);
-        const entryCounter = groupAttemptsCounter.get(timestamp);
+        // Get points at time as well as counter
+        const entry = pointsAtTime.get(timestamp);
+        const counter = groupAttemptsCounter.get(timestamp);
 
-        if (entry && entryCounter) {
-          groupAttempts.set(timestamp, entry + points);
-          groupAttemptsCounter.set(timestamp, entryCounter + 1);
-        } else {
-          groupAttempts.set(timestamp, points);
-          groupAttemptsCounter.set(timestamp, 1);
-        }
+        // If timestamp and counter exists, increase counter and update points
+        if (entry && counter) {
+          groupAttemptsCounter.set(timestamp, counter + 1);
 
-        // User Attempts
-        if (ctx.session.user.id === a.userId) {
-          const entry = userAttempts.get(timestamp);
+          // If current user is the task solver, update user and tasks
+          if (ctx.session.user.id === a.userId) {
+            pointsAtTime.set(timestamp, {
+              groupPoints: entry.groupPoints + points,
+              userPoints: entry.userPoints + points,
+            });
 
-          if (entry) {
-            userAttempts.set(timestamp, entry + points);
+            // Else only update group points
           } else {
-            userAttempts.set(timestamp, points);
+            pointsAtTime.set(timestamp, {
+              groupPoints: entry.groupPoints + points,
+              userPoints: entry.userPoints,
+            });
+          }
+
+          // If entry does not exist, add to map and increase counter
+        } else {
+          groupAttemptsCounter.set(timestamp, 1);
+
+          // If current user is the task solver, add points to user and group
+          if (ctx.session.user.id === a.userId) {
+            pointsAtTime.set(timestamp, {
+              groupPoints: points,
+              userPoints: points,
+            });
+
+            // Else only add to group
+          } else {
+            pointsAtTime.set(timestamp, {
+              groupPoints: points,
+              userPoints: 0,
+            });
           }
         }
       });
 
-      // Calculate average points at each timestamp
-      const averageGroupAttempts = new Map<string, number>();
+      // Calculate Averages
+      const averageAdjusted = new Map<
+        string,
+        { groupPoints: number; userPoints: number }
+      >();
 
-      groupAttempts.forEach((points, time) => {
-        const counter = groupAttemptsCounter.get(time);
+      pointsAtTime.forEach((points, timestamp) => {
+        const counter = groupAttemptsCounter.get(timestamp);
 
         if (counter) {
-          averageGroupAttempts.set(time, points / counter);
+          averageAdjusted.set(timestamp, {
+            userPoints: points.userPoints,
+            groupPoints: points.groupPoints / counter,
+          });
         }
       });
 
-      const userList = sortAndAggretatePoints(userAttempts);
-      const groupList = sortAndAggretatePoints(averageGroupAttempts);
+      const sortedAndAggregated = sortAndAggretatePoints(averageAdjusted);
 
-      return {
-        userList,
-        groupList,
-      };
+      return sortedAndAggregated;
     } catch (error) {
       console.error(error);
       throw new TRPCError({
