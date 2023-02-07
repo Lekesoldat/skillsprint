@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { z } from "zod";
 import {
   roundToTenthMinute,
-  sortAndAggretatePoints
+  sortAndAggretatePoints,
 } from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
@@ -156,7 +156,7 @@ export const taskAttemptRouter = createTRPCRouter({
         SELECT 
           gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
           sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as group_sum,
-          sum(ur.sum/ur.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
+          sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
         FROM group_results gr
         LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
     `;
