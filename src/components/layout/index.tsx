@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 
 import { Space_Grotesk } from "@next/font/google";
+import localFont from "@next/font/local";
 import { FooterContent } from "./FooterContent";
 import { TopNav } from "./TopNav";
 
@@ -9,6 +10,31 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--space-grotesk",
   subsets: ["latin", "latin-ext"],
 });
+
+// const katex = localFont({
+//   src: [
+//     {
+//       path: "./Roboto-Regular.woff2",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "./Roboto-Italic.woff2",
+//       weight: "400",
+//       style: "italic",
+//     },
+//     {
+//       path: "./Roboto-Bold.woff2",
+//       weight: "700",
+//       style: "normal",
+//     },
+//     {
+//       path: "./Roboto-BoldItalic.woff2",
+//       weight: "700",
+//       style: "italic",
+//     },
+//   ],
+// });
 
 export function Layout(props: PropsWithChildren) {
   return (

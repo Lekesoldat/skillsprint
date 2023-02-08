@@ -1,4 +1,5 @@
 import { TRPCError } from "@trpc/server";
+import { differenceInSeconds } from "date-fns";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
@@ -56,26 +57,30 @@ export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
     .input(z.string())
     .mutation(async ({ input, ctx }) => {
-      const task = await ctx.prisma.task.findUnique({
+      const attempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
-          id: input,
-        },
-      });
-      if (!task) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Invalid Task",
-        });
-      }
-      const res = await ctx.prisma.taskAttempt.create({
-        data: {
-          result: "PENDING",
-          taskId: task.id,
           userId: ctx.session.user.id,
-          elapsedTime: 0,
+          taskId: input,
         },
+        orderBy: {
+          createdAt: "asc",
+        },
+        take: 1,
       });
-      return res;
+      if (attempt && attempt.result !== "FAIL") {
+        return attempt;
+      } else {
+        const newAttempt = await ctx.prisma.taskAttempt.create({
+          data: {
+            result: "PENDING",
+            taskId: input,
+            userId: ctx.session.user.id,
+            elapsedTime: 0,
+            createdAt: new Date(),
+          },
+        });
+        return newAttempt;
+      }
     }),
 
   attemptAnswer: protectedProcedure
@@ -103,7 +108,7 @@ export const taskAttemptRouter = createTRPCRouter({
           taskId: task.id,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: "asc",
         },
         take: 1,
       });
@@ -113,13 +118,17 @@ export const taskAttemptRouter = createTRPCRouter({
           message: "User had not started an attempt",
         });
       }
+      console.log({
+        attempt: input.answer,
+        answer: task.answer,
+      });
       return await ctx.prisma.taskAttempt.update({
         where: {
           id: attempt.id,
         },
         data: {
           result: input.answer === task.answer ? "SUCCESS" : "FAIL",
-          elapsedTime: new Date().getTime() - attempt.createdAt.getTime(),
+          elapsedTime: differenceInSeconds(new Date(), attempt.createdAt),
         },
       });
     }),

@@ -37,6 +37,7 @@ specifiers:
   mathlive: ^0.87.1
   next: 13.1.5
   next-auth: ^4.19.0
+  next-superjson-plugin: ^0.5.4
   postcss: ^8.4.14
   prettier: ^2.8.1
   prettier-plugin-tailwindcss: ^0.2.1
@@ -79,6 +80,7 @@ dependencies:
   mathlive: 0.87.1
   next: 13.1.5_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.19.0_s6zlkfvllybxhmcq5pkr2zsuza
+  next-superjson-plugin: 0.5.4_zs7tdjpwlv3kowpl5sfo3nythq
   react: 18.2.0
   react-chartjs-2: 5.2.0_uxqdnqzacoapcp4mwytn5yclyu
   react-dom: 18.2.0_react@18.2.0
@@ -2596,6 +2598,12 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /https-proxy-agent/5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
@@ -3045,6 +3053,17 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+    dev: false
+
+  /next-superjson-plugin/0.5.4_zs7tdjpwlv3kowpl5sfo3nythq:
+    resolution: {integrity: sha512-AUAqdL+yv/jqnkd583jffimRYbfbztkKkNf7qv0WhOVUGW0cIFYdtQHbOEseeCHK95hcPy7rDZY94nujjjRseQ==}
+    peerDependencies:
+      next: ^13
+      superjson: ^1
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      next: 13.1.5_biqbaboplfbrettd7655fr4n2y
+      superjson: 1.9.1
     dev: false
 
   /next-tick/1.1.0:
