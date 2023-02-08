@@ -67,7 +67,7 @@ export function Table() {
   });
 
   return (
-    <div className="w-[800px] rounded-xl border-2 border-black bg-white py-2 shadow-4-skew">
+    <div className="w-[800px] rounded-xl border-2 border-black bg-white py-2 shadow-4-right">
       <table className="w-full table-auto divide-y divide-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

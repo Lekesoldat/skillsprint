@@ -13,7 +13,6 @@ export const authRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      console.log(input);
       if (input.password1 !== input.password2) {
         throw new TRPCError({
           code: "BAD_REQUEST",

@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { Layout } from "../components/layout";
 
 import "../styles/globals.css";
+import "../styles/font.css";
 
 import { api } from "../utils/api";
 

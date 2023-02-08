@@ -1,4 +1,3 @@
-import { getSession } from "next-auth/react";
 import Link from "next/link";
 import AuthShowcase from "../components/AuthShowcase";
 

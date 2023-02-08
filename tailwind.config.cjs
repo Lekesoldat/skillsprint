@@ -6,8 +6,10 @@ module.exports = {
       boxShadow: {
         "2-hard": "0px 2px",
         "4-hard": "0px 4px",
-        "2-skew": "2px 2px",
-        "4-skew": "4px 4px",
+        "2-left": "-2px 2px",
+        "2-right": "2px 2px",
+        "4-left": "-4px 4px",
+        "4-right": "4px 4px",
         achievment: "inset 0px -4px",
       },
       colors: {
@@ -29,6 +31,9 @@ module.exports = {
       },
       fontFamily: {
         "space-grotesk": "var(--space-grotesk)",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
   },
