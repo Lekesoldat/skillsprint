@@ -13,6 +13,7 @@ export const categoryRouter = createTRPCRouter({
       });
     }
   }),
+
   getById: publicProcedure
     .input(
       z.object({
