@@ -63,14 +63,19 @@ export const taskAttemptRouter = createTRPCRouter({
           taskId: input,
         },
         orderBy: {
-          createdAt: "asc",
+          createdAt: "desc",
         },
         take: 1,
       });
-      if (attempt && attempt.result !== "FAIL") {
+      console.log(attempt);
+
+      if (
+        attempt &&
+        (attempt.result === "PENDING" || attempt.result === "SUCCESS")
+      ) {
         return attempt;
       } else {
-        const newAttempt = await ctx.prisma.taskAttempt.create({
+        return ctx.prisma.taskAttempt.create({
           data: {
             result: "PENDING",
             taskId: input,
@@ -79,7 +84,6 @@ export const taskAttemptRouter = createTRPCRouter({
             createdAt: new Date(),
           },
         });
-        return newAttempt;
       }
     }),
 
