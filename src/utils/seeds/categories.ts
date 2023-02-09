@@ -6,8 +6,9 @@ export async function createCategories() {
   console.info("\n📒 Seeding categories...");
   const data: Prisma.CategoryCreateInput[] = [
     { id: "cldacdi520000sbxe8eyqu26y", name: "Algebra" },
-    { id: "cldacdi520001sbxekmyct9yd", name: "Grafer og funksjoner" },
-    { id: "cldacdi530002sbxeu6rgijzl", name: "Likninger og likningssett" },
+    { id: "cldacdi520001sbxekmyct9yd", name: "Funksjoner" },
+    { id: "cldacdi530002sbxeu6rgijzl", name: "Likninger" },
+    { id: "cldx7ez8a000008juf4sl1wdq", name: "Økonomi" },
   ];
 
   return await prismaClient.$transaction(
