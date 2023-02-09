@@ -121,44 +121,71 @@ export const taskAttemptRouter = createTRPCRouter({
       });
     }),
 
+  getUserAttempts: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const res = await ctx.prisma.taskAttempt.groupBy({
+        by: ["result"],
+        where: {
+          userId: ctx.session.user.id,
+          OR: [{ result: "SUCCESS" }, { result: "FAIL" }],
+        },
+        _count: {
+          result: true,
+        },
+      });
+
+      return res
+        .map((r) => ({
+          result: r.result,
+          count: r._count.result,
+        }))
+        .reverse();
+    } catch (error) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        cause: error,
+      });
+    }
+  }),
+
   getGroupedAndAggregatedPoints: protectedProcedure.query(async ({ ctx }) => {
     try {
       const res = await ctx.prisma.$queryRaw<
         { timestamp: string; user_sum: number; group_sum: number }[]
       >`
-        WITH group_results AS (
-          SELECT 
-            date_trunc('hour', ta."createdAt") as timestamp, 
-            extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
-            sum(t.points), 
-            count(*)
-          FROM "TaskAttempt" ta
-          JOIN "Task" t ON t."id" = ta."taskId"
-          WHERE result = 'SUCCESS'
-          GROUP BY 1,2
-          ORDER BY 1,2
-        ),
-
-        user_results AS (
-          SELECT 
-            date_trunc('hour', ta."createdAt") as timestamp, 
-            extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
-            sum(t.points), 
-            count(*)
-          FROM "TaskAttempt" ta
-          JOIN "Task" t ON t."id" = ta."taskId"
-          WHERE result = 'SUCCESS'
-          AND ta."userId" = ${ctx.session.user.id}
-          GROUP BY 1,2
-          ORDER BY 1,2
-        )
-
+      WITH group_results AS (
         SELECT 
-          gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
-          sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as group_sum,
-          sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
-        FROM group_results gr
-        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
+          date_trunc('hour', ta."createdAt") as timestamp, 
+          extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+          sum(t.points), 
+          count(*)
+        FROM "TaskAttempt" ta
+        JOIN "Task" t ON t."id" = ta."taskId"
+        WHERE result = 'SUCCESS'
+        GROUP BY 1,2
+        ORDER BY 1,2
+      ),
+
+      user_results AS (
+        SELECT 
+          date_trunc('hour', ta."createdAt") as timestamp, 
+          extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+          sum(t.points), 
+          count(*)
+        FROM "TaskAttempt" ta
+        JOIN "Task" t ON t."id" = ta."taskId"
+        WHERE result = 'SUCCESS'
+        AND ta."userId" = ${ctx.session.user.id}
+        GROUP BY 1,2
+        ORDER BY 1,2
+      )
+
+      SELECT 
+        gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
+        sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as group_sum,
+        sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
+      FROM group_results gr
+      LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
     `;
 
       const transformed = res.map((x) => ({
@@ -174,6 +201,28 @@ export const taskAttemptRouter = createTRPCRouter({
         code: "INTERNAL_SERVER_ERROR",
         cause: error,
       });
+    }
+  }),
+
+  getCategoriesOfSuccesses: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.prisma.$queryRaw<
+        {
+          name: string;
+          count: number;
+        }[]
+      >`
+      SELECT 
+        name, 
+        count(*)::int
+      FROM "TaskAttempt" ta
+      JOIN "Task" t ON t.id = ta."taskId" 
+      JOIN "Category" cat ON cat.id = t."categoryId"
+      WHERE ta.result='SUCCESS' AND ta."userId"=${ctx.session.user.id}
+      GROUP BY 1
+      `;
+    } catch (error) {
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", cause: error });
     }
   }),
 
