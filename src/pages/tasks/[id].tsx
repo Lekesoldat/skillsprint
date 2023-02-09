@@ -32,7 +32,7 @@ export default function TaskPage(
   );
 
   const { mutate } = api.taskAttempt.attemptAnswer.useMutation({
-    onSettled: (data, err) => {
+    onSettled: (data, _err) => {
       setStatus(data?.result || "PENDING");
     },
   });
@@ -96,7 +96,6 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
   const attempt = await caller.taskAttempt.startAttempt(id);
-  console.log(attempt);
   return {
     props: {
       attempt,
