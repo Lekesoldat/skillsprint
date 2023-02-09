@@ -12,8 +12,8 @@ export const TaskDescription: FC<TaskDescriptionProps> = ({ description }) => {
   return (
     <p>
       {reactStringReplace(description, /math\((.+)\)/, (match, i) => (
-        <span className="h-full">
-          <math-field read-only class="ml-1 inline-flex">
+        <span className="h-full" key={i}>
+          <math-field class="ml-1 inline-flex" read-only>
             {match}
           </math-field>
         </span>
