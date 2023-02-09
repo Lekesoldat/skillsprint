@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import argon2 from "argon2";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
@@ -63,4 +63,12 @@ export const authRouter = createTRPCRouter({
       }
       return user;
     }),
+
+  me: protectedProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+  }),
 });

@@ -30,10 +30,15 @@ export default function TaskPage(
     },
     { enabled: !!props.id }
   );
+  const utils = api.useContext();
 
   const { mutate } = api.taskAttempt.attemptAnswer.useMutation({
     onSettled: (data, _err) => {
-      setStatus(data?.result || "PENDING");
+      const res = data?.result || "PENDING";
+      setStatus(res);
+      if (res === "SUCCESS") {
+        void utils.auth.me.invalidate();
+      }
     },
   });
 

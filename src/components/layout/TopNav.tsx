@@ -1,9 +1,9 @@
-import { BookOpen, LineChart, Medal, Trophy } from "lucide-react";
+import { BookOpen, LineChart, Loader2, Medal, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { api } from "../../utils/api";
 import { cn } from "../../utils/classnames";
-import { Points } from "../ui/Points";
 
 const links = [
   {
@@ -29,6 +29,7 @@ const links = [
 ];
 export const TopNav = () => {
   const currentPath = usePathname();
+  const { data: user } = api.auth.me.useQuery();
 
   return (
     <nav className="container mx-auto flex items-center justify-between">
@@ -55,7 +56,9 @@ export const TopNav = () => {
       </ul>
 
       {/* Points */}
-      <Points points={1231} />
+      <span className="grid min-w-[150px] place-content-center border-2 border-brand-black bg-brand-purple py-3 px-5 font-bold shadow-4-right shadow-brand-black">
+        {user ? <>🎉 {user.points} p</> : <Loader2 className="animate-spin" />}
+      </span>
     </nav>
   );
 };
