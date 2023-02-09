@@ -2,6 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { differenceInSeconds } from "date-fns";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { ComputeEngine } from "@cortex-js/compute-engine";
 
 export const taskRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -67,7 +68,6 @@ export const taskAttemptRouter = createTRPCRouter({
         },
         take: 1,
       });
-      console.log(attempt);
 
       if (
         attempt &&
@@ -122,16 +122,23 @@ export const taskAttemptRouter = createTRPCRouter({
           message: "User had not started an attempt",
         });
       }
+      const ce = new ComputeEngine();
+      const answer = ce.parse(input.answer);
+      const solution = ce.parse(task.answer);
+
       console.log({
-        attempt: input.answer,
-        answer: task.answer,
+        answer: answer.toString(),
+        solution: solution.toString(),
+        same: answer.isSame(solution),
       });
+      const result = answer.isSame(solution) ? "SUCCESS" : "FAIL";
+
       return await ctx.prisma.taskAttempt.update({
         where: {
           id: attempt.id,
         },
         data: {
-          result: input.answer === task.answer ? "SUCCESS" : "FAIL",
+          result,
           elapsedTime: differenceInSeconds(new Date(), attempt.createdAt),
         },
       });
