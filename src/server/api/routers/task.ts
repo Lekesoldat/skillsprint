@@ -58,7 +58,7 @@ export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
     .input(z.string())
     .mutation(async ({ input, ctx }) => {
-      const attempt = await ctx.prisma.taskAttempt.findFirst({
+      const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
           userId: ctx.session.user.id,
           taskId: input,
@@ -70,10 +70,11 @@ export const taskAttemptRouter = createTRPCRouter({
       });
 
       if (
-        attempt &&
-        (attempt.result === "PENDING" || attempt.result === "SUCCESS")
+        recentAttempt &&
+        (recentAttempt.result === "PENDING" ||
+          recentAttempt.result === "SUCCESS")
       ) {
-        return attempt;
+        return recentAttempt;
       } else {
         return ctx.prisma.taskAttempt.create({
           data: {
@@ -106,22 +107,25 @@ export const taskAttemptRouter = createTRPCRouter({
           message: "Invalid Task",
         });
       }
-      const attempt = await ctx.prisma.taskAttempt.findFirst({
+      const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
           userId: ctx.session.user.id,
           taskId: task.id,
         },
         orderBy: {
-          createdAt: "asc",
+          createdAt: "desc",
         },
         take: 1,
       });
-      if (!attempt) {
+      if (!recentAttempt) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "User had not started an attempt",
         });
       }
+
+      const alreadyAnswered = recentAttempt.result === "SUCCESS";
+
       const ce = new ComputeEngine();
       const answer = ce.parse(input.answer);
       const solution = ce.parse(task.answer);
@@ -131,15 +135,21 @@ export const taskAttemptRouter = createTRPCRouter({
         solution: solution.toString(),
         same: answer.isSame(solution),
       });
-      const result = answer.isSame(solution) ? "SUCCESS" : "FAIL";
+      const result: "SUCCESS" | "FAIL" = answer.isSame(solution)
+        ? "SUCCESS"
+        : "FAIL";
+
+      if (alreadyAnswered) {
+        return { ...recentAttempt, status: result };
+      }
 
       return await ctx.prisma.taskAttempt.update({
         where: {
-          id: attempt.id,
+          id: recentAttempt.id,
         },
         data: {
           result,
-          elapsedTime: differenceInSeconds(new Date(), attempt.createdAt),
+          elapsedTime: differenceInSeconds(new Date(), recentAttempt.createdAt),
         },
       });
     }),

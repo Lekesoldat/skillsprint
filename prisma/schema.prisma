@@ -20,6 +20,7 @@ model User {
     emailVerified DateTime?
     image         String?
     password      String
+    points        Int           @default(0)
     TaskAttempt   TaskAttempt[]
 }
 

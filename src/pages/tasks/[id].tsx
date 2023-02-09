@@ -1,20 +1,14 @@
-import { useRouter } from "next/router";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
-import { api, RouterOutputs } from "../../utils/api";
+import type { RouterOutputs } from "../../utils/api";
+import { api } from "../../utils/api";
 import { MathInput } from "../../components/math/MathInput";
 import { TaskDescription } from "../../components/math/MathDisplay";
 import { useForm } from "react-hook-form";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { appRouter } from "../../server/api/root";
-import { createContext, useState } from "react";
-import superjson from "superjson";
-import {
-  createInnerTRPCContext,
-  createTRPCContext,
-} from "../../server/api/trpc";
-import { getSession } from "next-auth/react";
+import { useState } from "react";
+import { createInnerTRPCContext } from "../../server/api/trpc";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 
