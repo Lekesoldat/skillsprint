@@ -101,15 +101,17 @@ export const taskAttemptRouter = createTRPCRouter({
           id: input.taskId,
         },
       });
+
       if (!task) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "Invalid Task",
         });
       }
+      const userId = ctx.session.user.id;
       const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
-          userId: ctx.session.user.id,
+          userId,
           taskId: task.id,
         },
         orderBy: {
@@ -141,9 +143,20 @@ export const taskAttemptRouter = createTRPCRouter({
 
       if (alreadyAnswered) {
         return { ...recentAttempt, status: result };
+      } else if (result === "SUCCESS") {
+        await ctx.prisma.user.update({
+          where: {
+            id: userId,
+          },
+          data: {
+            points: {
+              increment: task.points,
+            },
+          },
+        });
       }
 
-      return await ctx.prisma.taskAttempt.update({
+      return ctx.prisma.taskAttempt.update({
         where: {
           id: recentAttempt.id,
         },
