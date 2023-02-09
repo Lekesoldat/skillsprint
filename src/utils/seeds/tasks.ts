@@ -4,11 +4,12 @@ import { faker, prismaClient } from "./seed";
 export async function createTasks() {
   console.info("\n📝 Seeding tasks...");
   const data: Prisma.TaskCreateInput[] = [
+    // Algebra
     {
       id: "cldiog5kk000008l29k73fx8g",
       title: "Oppgave 1a",
       description:
-        "En en liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Hva er formelen for grunnlinjen i denne trekanten?",
+        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Hva er formelen for grunnlinjen i denne trekanten?",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 50,
       answer: "g=\\frac{2A}{h}",
@@ -17,7 +18,7 @@ export async function createTasks() {
       id: "cldioiaq9000f08l27ek850k3",
       title: "Oppgave 1b",
       description:
-        "En en liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Bruk formelen og regn ut lengden til grunnlinjen.",
+        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Bruk formelen og regn ut lengden til grunnlinjen.",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 75,
       answer: "3",
@@ -82,6 +83,108 @@ export async function createTasks() {
       answer: "4xyz(y+2x+4z)",
       prevTask: { connect: { id: "cldudrdaz000508ig6393dei9" } },
     },
+
+    // Økonomi
+    {
+      id: "cldx7ix84000108juf6y64x3i",
+      title: "Oppgave 1a",
+      description:
+        "En baker tjener 41 500 kroner i bruttolønn per måned. Bakeren betaler 35 % i skatt hver måned. Bruk gjerne regneark når du løser oppgavene. Hvor mye utgjør prosenttrekket i kroner per måned?",
+      category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
+      points: 50,
+      answer: "14525",
+    },
+    {
+      id: "cldxc2oz2000109l8bp33fmcf",
+      title: "Oppgave 1b",
+      description:
+        "En baker tjener 41 500 kroner i bruttolønn per måned. Bakeren betaler 35 % i skatt hver måned. Bruk gjerne regneark når du løser oppgavene. Hva er bakerens nettolønn per måned?",
+      category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
+      points: 75,
+      answer: "26975",
+      prevTask: { connect: { id: "cldx7ix84000108juf6y64x3i" } },
+    },
+    {
+      id: "cldx7ra2p000008mt7td7grls",
+      title: "Oppgave 2a",
+      description:
+        "Charlotte skal på språkreise i Malaga og ønsker å veksle norske kroner til euro. Bruk tabellen til høyre for å finne vekslingskurs for ønsket valuta. Hvor mange norske kroner må hun betale for 50 €?",
+      category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
+      points: 50,
+      answer: "523.52",
+    },
+    {
+      id: "cldx7vlv2000008mmbhex1qxi",
+      title: "Oppgave 2b",
+      description:
+        "Charlotte skal på språkreise i Malaga og ønsker å veksle norske kroner til euro. Bruk tabellen til høyre for å finne vekslingskurs for ønsket valuta. Hvor mange euro får hun for 600 norske kroner?",
+      category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
+      points: 75,
+      answer: "57.30",
+      prevTask: { connect: { id: "cldx7ra2p000008mt7td7grls" } },
+    },
+
+    // Likninger
+    {
+      id: "cldx88udv000008l49cllfn9h",
+      title: "Oppgave 1a",
+      description:
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2=121)",
+      category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
+      points: 50,
+      answer: "x=11,x=-11",
+    },
+    {
+      id: "cldx891wg000108l4hv703vl7",
+      title: "Oppgave 1b",
+      description:
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2+23=72)",
+      category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
+      points: 75,
+      answer: "x=7,x=-7",
+      prevTask: { connect: { id: "cldx88udv000008l49cllfn9h" } },
+    },
+    {
+      id: "cldx899n7000208l489j16ufq",
+      title: "Oppgave 1c",
+      description:
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2-16=9)",
+      category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
+      points: 90,
+      answer: "x=5,x=-5",
+      prevTask: { connect: { id: "cldx891wg000108l4hv703vl7" } },
+    },
+    {
+      id: "cldx89jld000308l4bautag2d",
+      title: "Oppgave 1d",
+      description:
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(2x^2=128)",
+      category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
+      points: 100,
+      answer: "x=8,x=-8",
+      prevTask: { connect: { id: "cldx899n7000208l489j16ufq" } },
+    },
+
+    // Funksjoner
+    {
+      id: "cldx8ew9o000408l4fild651m",
+      title: "Oppgave 1a",
+      description:
+        "Et håndballag fra CSK ønsker å reise til Storhamar-cup med buss. Å leie sjåfør og buss tur/retur vil koste 30 000 kr. Bussen tar maksimalt 50 passasjerer. Skriv ned funksjonsuttrykket som viser utgiftene per person.",
+      category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
+      points: 50,
+      answer: "f(x)=\\frac{30000}{x}",
+    },
+    {
+      id: "cldx8f46d000508l4ap9983lt",
+      title: "Oppgave 1b",
+      description:
+        "Et håndballag fra CSK ønsker å reise til Storhamar-cup med buss. Å leie sjåfør og buss tur/retur vil koste 30 000 kr. Bussen tar maksimalt 50 passasjerer. Skriv ned funksjonsuttrykket som viser utgiftene per person. Hvor mye koster turen per person dersom 20 stykker deltar?",
+      category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
+      points: 75,
+      answer: "1500",
+      prevTask: { connect: { id: "cldx8ew9o000408l4fild651m" } },
+    },
   ];
 
   return await prismaClient.$transaction(
@@ -100,7 +203,7 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
 
   const completed = new Map<[string, string], boolean>();
 
-  const mock = [
+  const cuids = [
     "cldogid0u008c3b6kjg2uw1vg",
     "cldogid0u008d3b6kank7s9lk",
     "cldogid0u008e3b6kchb2v769",
@@ -301,6 +404,156 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
     "clduedkhe00dt3b6k9l3xhaqm",
     "clduedkhe00du3b6kb208vn5y",
     "clduedkhe00dv3b6kr3lveriq",
+    "cldx7beqe00p13b6kum225s9c",
+    "cldx7beqe00p23b6kbwmlyruq",
+    "cldx7beqe00p33b6kxxvplhv1",
+    "cldx7beqe00p43b6katmjdoa4",
+    "cldx7beqe00p53b6kmqq9apeo",
+    "cldx7beqe00p63b6kvjaqzit1",
+    "cldx7beqe00p73b6kny2i0jql",
+    "cldx7beqe00p83b6kup8ly8ty",
+    "cldx7beqe00p93b6ky95rm3zu",
+    "cldx7beqe00pa3b6kgisw6vdk",
+    "cldx7beqe00pb3b6kf2f6vwqs",
+    "cldx7beqe00pc3b6k9nbq143x",
+    "cldx7beqe00pd3b6k0zc14ree",
+    "cldx7beqe00pe3b6kzj55ynby",
+    "cldx7beqe00pf3b6kfv08371f",
+    "cldx7beqe00pg3b6kyjtq74k5",
+    "cldx7beqe00ph3b6kczi9lwvy",
+    "cldx7beqe00pi3b6kmgs03ucs",
+    "cldx7beqe00pj3b6kdcz62h1j",
+    "cldx7beqe00pk3b6k184gsz8y",
+    "cldx7beqe00pl3b6kxvxs6mgl",
+    "cldx7beqe00pm3b6k6fwylrk3",
+    "cldx7beqf00pn3b6k3m1cu56n",
+    "cldx7beqf00po3b6k52qhwq8w",
+    "cldx7beqf00pp3b6kc0bou8sq",
+    "cldx7beqf00pq3b6ktp7s23rd",
+    "cldx7beqf00pr3b6kyc036eqw",
+    "cldx7beqf00ps3b6ksqm0zngp",
+    "cldx7beqf00pt3b6kw1ufg76j",
+    "cldx7beqf00pu3b6ku8941ele",
+    "cldx7beqf00pv3b6kohdjra0i",
+    "cldx7beqf00pw3b6k136w1re5",
+    "cldx7beqf00px3b6kkf54b6rb",
+    "cldx7beqf00py3b6k30qubeyy",
+    "cldx7beqf00pz3b6koy416vs8",
+    "cldx7beqf00q03b6kpwirp427",
+    "cldx7beqf00q13b6kxm22sl9t",
+    "cldx7beqf00q23b6k00hew4zx",
+    "cldx7beqf00q33b6kb13bs5x9",
+    "cldx7beqf00q43b6kjs86p70k",
+    "cldx7beqf00q53b6knilx7nt1",
+    "cldx7beqf00q63b6ks9b1pijk",
+    "cldx7beqf00q73b6ker4giksj",
+    "cldx7beqf00q83b6kawct1vcu",
+    "cldx7beqf00q93b6kyr627qz3",
+    "cldx7beqf00qa3b6kys37iyr6",
+    "cldx7beqf00qb3b6k7jysywea",
+    "cldx7beqf00qc3b6kmy49z1zq",
+    "cldx7beqf00qd3b6kx6zg9mlf",
+    "cldx7beqf00qe3b6kreysdsnq",
+    "cldx7beqf00qf3b6kky19678s",
+    "cldx7beqf00qg3b6kyb0kyilh",
+    "cldx7beqf00qh3b6k5r0bo3dr",
+    "cldx7beqf00qi3b6kcyigdd6h",
+    "cldx7beqf00qj3b6k5hnfl2ia",
+    "cldx7beqf00qk3b6ko9oq76oe",
+    "cldx7beqf00ql3b6kzkg0bmuz",
+    "cldx7beqf00qm3b6k8c1ifhop",
+    "cldx7beqf00qn3b6ka1eni1xx",
+    "cldx7beqf00qo3b6kmet80n7n",
+    "cldx7beqf00qp3b6kmpxvhfhv",
+    "cldx7beqf00qq3b6kx00kr164",
+    "cldx7beqf00qr3b6krq1blh24",
+    "cldx7beqf00qs3b6kpalgesz9",
+    "cldx7beqf00qt3b6krhrp8zaf",
+    "cldx7beqf00qu3b6k869mnao4",
+    "cldx7beqf00qv3b6k75mdutqd",
+    "cldx7beqf00qw3b6knm2cm8vs",
+    "cldx7beqf00qx3b6k88a8yb5r",
+    "cldx7beqf00qy3b6kawb5c7hb",
+    "cldx7beqf00qz3b6kuc9gf1oo",
+    "cldx7beqf00r03b6k1z27v1o5",
+    "cldx7beqf00r13b6k8vc01lhl",
+    "cldx7beqf00r23b6ki51kz33j",
+    "cldx7beqf00r33b6k3w1ppwv2",
+    "cldx7beqf00r43b6kmwlk2758",
+    "cldx7beqf00r53b6k2ehdjzci",
+    "cldx7beqf00r63b6koqvafk5a",
+    "cldx7beqf00r73b6k1eb8r1v4",
+    "cldx7beqf00r83b6kq0uqp416",
+    "cldx7beqf00r93b6km27d00xr",
+    "cldx7beqf00ra3b6kd1rv2omf",
+    "cldx7beqf00rb3b6kh790q6nd",
+    "cldx7beqf00rc3b6km3rzn00p",
+    "cldx7beqf00rd3b6kydiv4srw",
+    "cldx7beqf00re3b6ka4xqgsrz",
+    "cldx7beqf00rf3b6kpgrlk2cx",
+    "cldx7beqf00rg3b6kyoay46sn",
+    "cldx7beqf00rh3b6kpambj661",
+    "cldx7beqf00ri3b6kwwwhcaui",
+    "cldx7beqf00rj3b6ktya0oljj",
+    "cldx7beqf00rk3b6kc1vq6iln",
+    "cldx7beqf00rl3b6kmgli7d4v",
+    "cldx7beqf00rm3b6kvzuht61n",
+    "cldx7beqf00rn3b6k7r8j39ok",
+    "cldx7beqf00ro3b6kida3itvl",
+    "cldx7beqf00rp3b6kw35arnis",
+    "cldx7beqf00rq3b6ks30pk1he",
+    "cldx7beqf00rr3b6k3a044y4r",
+    "cldx7beqf00rs3b6k3vapkeg5",
+    "cldx7beqf00rt3b6k29o0yfm8",
+    "cldx7beqf00ru3b6krvvn6s5n",
+    "cldx7beqf00rv3b6kr2rmg4p6",
+    "cldx7beqf00rw3b6k4ykqi76s",
+    "cldx7beqf00rx3b6kxup1y8a3",
+    "cldx7beqf00ry3b6k5ot0uhkx",
+    "cldx7beqf00rz3b6knlyjk01c",
+    "cldx7beqf00s03b6ke1v6vt5p",
+    "cldx7beqf00s13b6k0munwl9m",
+    "cldx7beqf00s23b6k41eyhf0c",
+    "cldx7beqf00s33b6kwi0q8eln",
+    "cldx7beqf00s43b6kg02ldzun",
+    "cldx7beqf00s53b6ke3a4r79j",
+    "cldx7beqf00s63b6kim66oqmp",
+    "cldx7beqf00s73b6krq2jcydj",
+    "cldx7beqf00s83b6kjxdoz6j9",
+    "cldx7beqf00s93b6kcnjha7do",
+    "cldx7beqf00sa3b6knunab8jl",
+    "cldx7beqf00sb3b6kpy6xuyci",
+    "cldx7beqf00sc3b6kr0t1caw3",
+    "cldx7beqf00sd3b6kzxkne2m1",
+    "cldx7beqf00se3b6k4tpmgvbf",
+    "cldx7beqf00sf3b6ku6vrgl93",
+    "cldx7beqf00sg3b6kzfi87o78",
+    "cldx7beqf00sh3b6k6ze4ayjh",
+    "cldx7beqf00si3b6k03e9yl46",
+    "cldx7beqf00sj3b6kt885cbfv",
+    "cldx7beqf00sk3b6kl3iwwcbw",
+    "cldx7beqf00sl3b6ksz2ywq9p",
+    "cldx7beqf00sm3b6kdfl2hqp8",
+    "cldx7beqf00sn3b6kysx584ul",
+    "cldx7beqf00so3b6khgg3mij3",
+    "cldx7beqf00sp3b6kdm0cg80b",
+    "cldx7beqf00sq3b6kjueklir0",
+    "cldx7beqf00sr3b6kgluwhmg6",
+    "cldx7beqf00ss3b6klcv5pfft",
+    "cldx7beqf00st3b6k3kqffn2k",
+    "cldx7beqf00su3b6kmvgctmwt",
+    "cldx7beqf00sv3b6kq8w9dvk8",
+    "cldx7beqf00sw3b6kmfokmxm2",
+    "cldx7beqf00sx3b6k3zomnvaj",
+    "cldx7beqf00sy3b6kfbxnuivj",
+    "cldx7beqf00sz3b6ku1e7ghbm",
+    "cldx7beqf00t03b6khmwqg1qe",
+    "cldx7beqf00t13b6kxmiihjkn",
+    "cldx7beqf00t23b6kf56r65nk",
+    "cldx7beqf00t33b6ki935k2lc",
+    "cldx7beqf00t43b6kcvgnbn3a",
+    "cldx7beqf00t53b6knl376lb4",
+    "cldx7beqf00t63b6k1dl1dtp9",
   ];
 
   const start = new Date(2023, 2, 4, 12);
@@ -308,14 +561,14 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
 
   let count = 0;
 
-  const promises = mock.map((id) => {
+  const promises = cuids.map((id) => {
     const taskId = faker.helpers.arrayElement(tasks).id;
     const userId =
-      count <= 5
+      count <= 10
         ? "cldacds260001sb515t861jm3"
         : faker.helpers.arrayElement(users).id;
 
-    if (count <= 5) {
+    if (count <= 10) {
       count++;
     }
 
