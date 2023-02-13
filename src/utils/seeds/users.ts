@@ -7,10 +7,12 @@ export async function createUsers() {
   console.info("\n🎓 Seeding users...");
   const data: Prisma.UserCreateInput[] = [
     {
+      id: "cle2wz3id0000fxpb8bgt5f3f",
       name: "anhkha",
       password: await argon2.hash("hunter2"),
     },
     {
+      id: "cle2wz3id0002fxpb0digx7tv",
       name: "holtet",
       password: await argon2.hash("hunter2"),
     },

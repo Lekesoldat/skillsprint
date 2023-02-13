@@ -155,12 +155,12 @@ export const taskAttemptRouter = createTRPCRouter({
       >`
       WITH group_results AS (
         SELECT 
-          date_trunc('hour', ta."createdAt") as timestamp, 
-          extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+          date_trunc('hour', ta."created_at") as timestamp, 
+          extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
           sum(t.points), 
           count(*)
         FROM "TaskAttempt" ta
-        JOIN "Task" t ON t."id" = ta."taskId"
+        JOIN "Task" t ON t."id" = ta."task_id"
         WHERE result = 'SUCCESS'
         GROUP BY 1,2
         ORDER BY 1,2
@@ -168,14 +168,14 @@ export const taskAttemptRouter = createTRPCRouter({
 
       user_results AS (
         SELECT 
-          date_trunc('hour', ta."createdAt") as timestamp, 
-          extract(minute FROM ta."createdAt")::int/10 + 1 as ten_min, 
+          date_trunc('hour', ta."created_at") as timestamp, 
+          extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
           sum(t.points), 
           count(*)
         FROM "TaskAttempt" ta
-        JOIN "Task" t ON t."id" = ta."taskId"
+        JOIN "Task" t ON t."id" = ta."task_id"
         WHERE result = 'SUCCESS'
-        AND ta."userId" = ${ctx.session.user.id}
+        AND ta."user_id" = ${ctx.session.user.id}
         GROUP BY 1,2
         ORDER BY 1,2
       )
@@ -216,9 +216,9 @@ export const taskAttemptRouter = createTRPCRouter({
         name, 
         count(*)::int
       FROM "TaskAttempt" ta
-      JOIN "Task" t ON t.id = ta."taskId" 
-      JOIN "Category" cat ON cat.id = t."categoryId"
-      WHERE ta.result='SUCCESS' AND ta."userId"=${ctx.session.user.id}
+      JOIN "Task" t ON t.id = ta."task_id" 
+      JOIN "Category" cat ON cat.id = t."category_id"
+      WHERE ta.result='SUCCESS' AND ta."user_id"=${ctx.session.user.id}
       GROUP BY 1
       `;
     } catch (error) {

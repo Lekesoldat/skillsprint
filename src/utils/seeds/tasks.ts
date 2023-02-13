@@ -213,7 +213,7 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
     const taskId = faker.helpers.arrayElement(tasks).id;
     const userId =
       count <= 10
-        ? "cldacds260001sb515t861jm3"
+        ? "cle2wz3id0002fxpb0digx7tv"
         : faker.helpers.arrayElement(users).id;
 
     if (count <= 10) {
