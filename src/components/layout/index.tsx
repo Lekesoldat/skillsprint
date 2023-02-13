@@ -22,7 +22,7 @@ export function Layout(props: PropsWithChildren) {
         <TopNav />
       </header>
 
-      <main className="mx-auto w-full max-w-7xl flex-grow">
+      <main className="mx-auto w-full max-w-7xl flex-grow py-10">
         {props.children}
       </main>
 
