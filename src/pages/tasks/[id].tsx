@@ -1,15 +1,16 @@
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { getServerSession } from "next-auth";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { TaskDescription } from "../../components/math/MathDisplay";
+import { MathInput } from "../../components/math/MathInput";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
+import { Loader } from "../../components/ui/Loader";
+import { appRouter } from "../../server/api/root";
+import { createInnerTRPCContext } from "../../server/api/trpc";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
-import { MathInput } from "../../components/math/MathInput";
-import { TaskDescription } from "../../components/math/MathDisplay";
-import { useForm } from "react-hook-form";
-import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { appRouter } from "../../server/api/root";
-import { useState } from "react";
-import { createInnerTRPCContext } from "../../server/api/trpc";
-import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 export type FormValues = {
@@ -43,7 +44,7 @@ export default function TaskPage(
   });
 
   if (isError) return <>Error bruvv...</>;
-  if (!task) return <>Loading...</>;
+  if (!task) return <Loader />;
 
   return (
     <div className="bg-[url('/grid.svg')]">

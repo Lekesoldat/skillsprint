@@ -7,12 +7,13 @@ import {
   Tooltip,
 } from "recharts";
 import { api } from "../../utils/api";
+import { Loader } from "../ui/Loader";
 
 export const CategoryPie = () => {
   const { data, error } = api.taskAttempt.getUserAttempts.useQuery();
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data) return <Loader />;
 
   return (
     <ResponsiveContainer width="100%" aspect={3}>

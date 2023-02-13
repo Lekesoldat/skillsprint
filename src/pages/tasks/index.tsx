@@ -1,24 +1,29 @@
 import Link from "next/link";
+import { TaskCard } from "../../components/TaskCard";
+import { Loader } from "../../components/ui/Loader";
 import { api } from "../../utils/api";
 
 export default function Task() {
   const { data, isError } = api.category.getCategoriesAndTasks.useQuery();
-
   if (isError) return <>Error bruvv...</>;
 
-  if (!data) return <>Loading...</>;
+  if (!data) return <Loader />;
 
   return (
-    <div className="grid h-full grid-cols-4">
+    // Grid
+    <div className="grid grid-cols-3 gap-8">
       {data.map((d) => (
-        <div key={d.id}>
-          <div>{d.name}</div>
-          <div>
+        // Columns
+        <div key={d.id} className="flex flex-col items-center">
+          {/* Title */}
+          <div className="font-bold uppercase">{d.name}</div>
+
+          {/* Tasks container*/}
+          <div className="flex w-full flex-col items-center">
             {d.tasks.map((t) => (
+              // Task
               <Link key={t.id} href={`/tasks/${t.id}`}>
-                <p>
-                  {t.title} - {t.points}p
-                </p>
+                <TaskCard title={t.title} points={t.points} />
               </Link>
             ))}
           </div>

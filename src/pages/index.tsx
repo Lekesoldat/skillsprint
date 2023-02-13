@@ -1,4 +1,3 @@
-import Link from "next/link";
 import AuthShowcase from "../components/AuthShowcase";
 
 export default function Index() {

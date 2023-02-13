@@ -10,6 +10,13 @@ module.exports = {
         "2-right": "2px 2px",
         "4-left": "-4px 4px",
         "4-right": "4px 4px",
+
+        "4-right-border-pink": "4px 4px #F8BED4, 5px 5px black",
+        "4-right-border-green": "4px 4px #22CA94, 5px 5px black",
+        "4-right-border-blue": "4px 4px #4B83F9, 5px 5px black",
+        "4-right-border-yellow": "4px 4px #FDDD6D, 5px 5px black",
+        "4-right-border-purple": "4px 4px #C8BEFD, 5px 5px black",
+        "4-right-border-orange": "4px 4px #FDA16E, 6px 6px black",
         achievment: "inset 0px -4px",
       },
       colors: {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { api } from "../../utils/api";
 import { cn } from "../../utils/classnames";
+import { Loader } from "../ui/Loader";
 
 const links = [
   {
@@ -57,7 +58,7 @@ export const TopNav = () => {
 
       {/* Points */}
       <span className="grid min-w-[150px] place-content-center border-2 border-brand-black bg-brand-purple py-3 px-5 font-bold shadow-4-right shadow-brand-black">
-        {user ? <>🎉 {user.points} p</> : <Loader2 className="animate-spin" />}
+        {user ? <>🎉 {user.points} p</> : <Loader />}
       </span>
     </nav>
   );

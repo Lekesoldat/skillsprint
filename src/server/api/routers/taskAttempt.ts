@@ -134,12 +134,10 @@ export const taskAttemptRouter = createTRPCRouter({
         },
       });
 
-      return res
-        .map((r) => ({
-          result: r.result,
-          count: r._count.result,
-        }))
-        .reverse();
+      return res.map((r) => ({
+        result: r.result,
+        count: r._count.result,
+      }));
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
