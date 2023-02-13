@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { TaskDescription } from "../../components/math/MathDisplay";
 import { MathInput } from "../../components/math/MathInput";
+import { TaskCompletionPopover } from "../../components/TaskCompletionPopover";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { Loader } from "../../components/ui/Loader";
@@ -33,9 +34,12 @@ export default function TaskPage(
   );
   const utils = api.useContext();
 
+  const [submitted, setSubmitted] = useState(false);
+
   const { mutate } = api.taskAttempt.attemptAnswer.useMutation({
     onSettled: (data, _err) => {
       const res = data?.result || "PENDING";
+      setSubmitted(true);
       setStatus(res);
       if (res === "SUCCESS") {
         void utils.auth.me.invalidate();
@@ -64,9 +68,16 @@ export default function TaskPage(
           })}
         >
           <MathInput control={control} name="answer" />
-          <Button variant="shadow" type="submit">
-            Sjekk svar
-          </Button>
+
+          <TaskCompletionPopover
+            points={task.points}
+            status={status}
+            open={status != "PENDING" && submitted}
+          >
+            <Button variant="shadow" type="submit">
+              Sjekk svar
+            </Button>
+          </TaskCompletionPopover>
         </form>
         {status === "SUCCESS" && (
           <p className="text-green-600">Du har svart riktig!</p>
