@@ -5,7 +5,6 @@ import { FooterContent } from "./FooterContent";
 import { TopNav } from "./TopNav";
 
 const spaceGrotesk = Space_Grotesk({
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--space-grotesk",
   subsets: ["latin", "latin-ext"],
 });
