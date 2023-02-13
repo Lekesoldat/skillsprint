@@ -11,8 +11,8 @@ export default function Task() {
 
   return (
     // Grid
-    <div className="grid grid-cols-3 gap-8">
-      {data.map((d) => (
+    <div className="mx-10 grid grid-cols-3 gap-8">
+      {data.tasks.map((d) => (
         // Columns
         <div key={d.id} className="flex flex-col items-center">
           {/* Title */}
@@ -23,7 +23,11 @@ export default function Task() {
             {d.tasks.map((t) => (
               // Task
               <Link key={t.id} href={`/tasks/${t.id}`}>
-                <TaskCard title={t.title} points={t.points} />
+                <TaskCard
+                  title={t.title}
+                  points={t.points}
+                  solved={data.successes.includes(t.id)}
+                />
               </Link>
             ))}
           </div>

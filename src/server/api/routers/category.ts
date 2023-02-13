@@ -16,23 +16,38 @@ export const categoryRouter = createTRPCRouter({
 
   getCategoriesAndTasks: protectedProcedure.query(async ({ ctx }) => {
     try {
-      const res = await ctx.prisma.category.findMany({
-        include: {
-          task: {
-            select: {
-              id: true,
-              title: true,
-              points: true,
-            },
+      const [tasks, successes] = await ctx.prisma.$transaction([
+        ctx.prisma.category.findMany({
+          include: {
+            task: {
+              select: {
+                id: true,
+                title: true,
+                points: true,
+              },
 
-            orderBy: {
-              title: "asc",
+              orderBy: {
+                title: "asc",
+              },
             },
           },
-        },
-      });
+        }),
+        ctx.prisma.taskAttempt.findMany({
+          select: {
+            taskId: true,
+          },
+          where: {
+            AND: [
+              {
+                userId: ctx.session.user.id,
+                result: "SUCCESS",
+              },
+            ],
+          },
+        }),
+      ]);
 
-      return res.map((cat) => ({
+      const transformedTasks = tasks.map((cat) => ({
         id: cat.id,
         name: cat.name,
         tasks: cat.task.map((t) => ({
@@ -41,6 +56,11 @@ export const categoryRouter = createTRPCRouter({
           points: t.points,
         })),
       }));
+
+      return {
+        tasks: transformedTasks,
+        successes: successes.flatMap((s) => s.taskId),
+      };
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",

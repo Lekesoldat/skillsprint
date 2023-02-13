@@ -1,4 +1,4 @@
-import { BookOpen, LineChart, Loader2, Medal, Trophy } from "lucide-react";
+import { BookOpen, LineChart, Medal, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
