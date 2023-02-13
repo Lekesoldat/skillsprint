@@ -11,7 +11,8 @@
     "start": "next start",
     "migrate": "doppler run -- prisma migrate dev",
     "gen": "prisma generate",
-    "seed": "doppler run -- tsx src/utils/seeds/seed.ts"
+    "seed": "doppler run -- tsx src/utils/seeds/seed.ts",
+    "reset-and-seed": "doppler run --command=\"prisma migrate reset && tsx src/utils/seeds/seed.ts\""
   },
   "dependencies": {
     "@cortex-js/compute-engine": "^0.12.2",
