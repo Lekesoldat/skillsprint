@@ -594,11 +594,11 @@ export async function createTaskAttempts(tasks: Task[], users: User[]) {
         createdAt,
       },
       update: {
-        elapsedTime,
         taskId,
         userId,
         result,
         createdAt,
+        elapsedTime,
       },
     });
   });

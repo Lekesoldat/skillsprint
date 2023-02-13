@@ -18,7 +18,7 @@ export const categoryRouter = createTRPCRouter({
     try {
       const res = await ctx.prisma.category.findMany({
         include: {
-          Task: {
+          task: {
             select: {
               id: true,
               title: true,
@@ -35,7 +35,7 @@ export const categoryRouter = createTRPCRouter({
       return res.map((cat) => ({
         id: cat.id,
         name: cat.name,
-        tasks: cat.Task.map((t) => ({
+        tasks: cat.task.map((t) => ({
           id: t.id,
           title: t.title,
           points: t.points,
