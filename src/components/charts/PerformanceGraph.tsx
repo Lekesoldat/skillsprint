@@ -8,13 +8,14 @@ import {
   YAxis,
 } from "recharts";
 import { api } from "../../utils/api";
+import { Loader } from "../ui/Loader";
 
 export const PerformanceGraph = () => {
   const { data, error } =
     api.taskAttempt.getGroupedAndAggregatedPoints.useQuery();
 
   if (error) return <>Error..</>;
-  if (!data) return <>Loading..</>;
+  if (!data) return <Loader />;
 
   return (
     <ResponsiveContainer width="100%" aspect={3}>
