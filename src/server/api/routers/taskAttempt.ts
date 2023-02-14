@@ -2,11 +2,22 @@ import { ComputeEngine } from "@cortex-js/compute-engine";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format } from "date-fns";
 import { z } from "zod";
-import {
-  roundToTenthMinute,
-  sortAndAggretatePoints,
-} from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+
+const GroupedAndAggregatedPointsSchema = z
+  .object({
+    timestamp: z.date(),
+    user_sum: z.number().nullable(),
+    group_sum: z.number(),
+  })
+  .array();
+
+const SuccessfullCategoriesSchema = z
+  .object({
+    name: z.string(),
+    count: z.number(),
+  })
+  .array();
 
 export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
@@ -147,53 +158,49 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getGroupedAndAggregatedPoints: protectedProcedure.query(async ({ ctx }) => {
-    interface GroupedAndAggregatedPoints {
-      timestamp: string;
-      user_sum: number;
-      group_sum: number;
-    }
-
     try {
-      const res = await ctx.prisma.$queryRaw<GroupedAndAggregatedPoints[]>`
-      WITH group_results AS (
+      const res = await ctx.prisma.$queryRaw`
+        WITH group_results AS (
+          SELECT 
+            date_trunc('hour', ta."created_at") as timestamp, 
+            extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
+            sum(t.points), 
+            count(*)
+          FROM "TaskAttempt" ta
+          JOIN "Task" t ON t."id" = ta."task_id"
+          WHERE result = 'SUCCESS'
+          GROUP BY 1,2
+          ORDER BY 1,2
+        ),
+
+        user_results AS (
+          SELECT 
+            date_trunc('hour', ta."created_at") as timestamp, 
+            extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
+            sum(t.points), 
+            count(*)
+          FROM "TaskAttempt" ta
+          JOIN "Task" t ON t."id" = ta."task_id"
+          WHERE result = 'SUCCESS'
+          AND ta."user_id" = ${ctx.session.user.id}
+          GROUP BY 1,2
+          ORDER BY 1,2
+        )
+
         SELECT 
-          date_trunc('hour', ta."created_at") as timestamp, 
-          extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
-          sum(t.points), 
-          count(*)
-        FROM "TaskAttempt" ta
-        JOIN "Task" t ON t."id" = ta."task_id"
-        WHERE result = 'SUCCESS'
-        GROUP BY 1,2
-        ORDER BY 1,2
-      ),
+          gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
+          sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as group_sum,
+          sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as user_sum
+        FROM group_results gr
+        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
+      `;
 
-      user_results AS (
-        SELECT 
-          date_trunc('hour', ta."created_at") as timestamp, 
-          extract(minute FROM ta."created_at")::int/10 + 1 as ten_min, 
-          sum(t.points), 
-          count(*)
-        FROM "TaskAttempt" ta
-        JOIN "Task" t ON t."id" = ta."task_id"
-        WHERE result = 'SUCCESS'
-        AND ta."user_id" = ${ctx.session.user.id}
-        GROUP BY 1,2
-        ORDER BY 1,2
-      )
+      const validated = GroupedAndAggregatedPointsSchema.parse(res);
 
-      SELECT 
-        gr.timestamp + (gr.ten_min * interval '10 minutes') as timestamp,
-        sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as group_sum,
-        sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as user_sum
-      FROM group_results gr
-      LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
-    `;
-
-      const transformed = res.map((x) => ({
+      const transformed = validated.map((x) => ({
         timestamp: format(new Date(x.timestamp), "HH:mm"),
-        user_sum: +x.user_sum ?? 0,
-        group_sum: +x.group_sum ?? 0,
+        user_sum: x.user_sum ?? 0,
+        group_sum: x.group_sum ?? 0,
       }));
 
       return transformed;
@@ -207,125 +214,21 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getCategoriesOfSuccesses: protectedProcedure.query(async ({ ctx }) => {
-    interface SuccessfullCategories {
-      name: string;
-      count: number;
-    }
-
     try {
-      return await ctx.prisma.$queryRaw<SuccessfullCategories[]>`
-      SELECT 
-        name, 
-        count(*)::int
-      FROM "TaskAttempt" ta
-      JOIN "Task" t ON t.id = ta."task_id" 
-      JOIN "Category" cat ON cat.id = t."category_id"
-      WHERE ta.result='SUCCESS' AND ta."user_id"=${ctx.session.user.id}
-      GROUP BY 1
+      const res = await ctx.prisma.$queryRaw`
+        SELECT 
+          name, 
+          count(*)::int
+        FROM "TaskAttempt" ta
+        JOIN "Task" t ON t.id = ta."task_id" 
+        JOIN "Category" cat ON cat.id = t."category_id"
+        WHERE ta.result='SUCCESS' AND ta."user_id"=${ctx.session.user.id}
+        GROUP BY 1
       `;
+
+      return SuccessfullCategoriesSchema.parse(res);
     } catch (error) {
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", cause: error });
-    }
-  }),
-
-  getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
-    try {
-      const [tasks, attempts] = await ctx.prisma.$transaction([
-        ctx.prisma.task.findMany(),
-        ctx.prisma.taskAttempt.findMany({
-          where: {
-            result: {
-              equals: "SUCCESS",
-            },
-          },
-        }),
-      ]);
-
-      const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
-      const groupAttemptsCounter = new Map<string, number>();
-
-      const pointsAtTime = new Map<
-        string,
-        { groupPoints: number; userPoints: number }
-      >();
-
-      attempts.forEach((a) => {
-        // Round timestamp to nearest tenth and extract HH:mm
-        const rounded = roundToTenthMinute(a.createdAt);
-        const timestamp = format(rounded, "HH:mm");
-
-        const points = taskToPoints.get(a.taskId) || 0;
-
-        // Get points at time as well as counter
-        const entry = pointsAtTime.get(timestamp);
-        const counter = groupAttemptsCounter.get(timestamp);
-
-        // If timestamp and counter exists, increase counter and update points
-        if (entry && counter) {
-          groupAttemptsCounter.set(timestamp, counter + 1);
-
-          // If current user is the task solver, update user and tasks
-          if (ctx.session.user.id === a.userId) {
-            pointsAtTime.set(timestamp, {
-              groupPoints: entry.groupPoints + points,
-              userPoints: entry.userPoints + points,
-            });
-
-            // Else only update group points
-          } else {
-            pointsAtTime.set(timestamp, {
-              groupPoints: entry.groupPoints + points,
-              userPoints: entry.userPoints,
-            });
-          }
-
-          // If entry does not exist, add to map and increase counter
-        } else {
-          groupAttemptsCounter.set(timestamp, 1);
-
-          // If current user is the task solver, add points to user and group
-          if (ctx.session.user.id === a.userId) {
-            pointsAtTime.set(timestamp, {
-              groupPoints: points,
-              userPoints: points,
-            });
-
-            // Else only add to group
-          } else {
-            pointsAtTime.set(timestamp, {
-              groupPoints: points,
-              userPoints: 0,
-            });
-          }
-        }
-      });
-
-      // Calculate Averages
-      const averageAdjusted = new Map<
-        string,
-        { groupPoints: number; userPoints: number }
-      >();
-
-      pointsAtTime.forEach((points, timestamp) => {
-        const counter = groupAttemptsCounter.get(timestamp);
-
-        if (counter) {
-          averageAdjusted.set(timestamp, {
-            userPoints: points.userPoints,
-            groupPoints: points.groupPoints / counter,
-          });
-        }
-      });
-
-      const sortedAndAggregated = sortAndAggretatePoints(averageAdjusted);
-
-      return sortedAndAggregated;
-    } catch (error) {
-      console.error(error);
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        cause: error,
-      });
     }
   }),
 });
