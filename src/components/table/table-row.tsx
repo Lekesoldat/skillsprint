@@ -32,7 +32,7 @@ const rowStyle = cva(["mx-auto text-center"], {
   variants: {
     onLeaderboard: {
       true: [
-        "bg-brand-yellow border-y-[1px] first:border-l-[1px] last:border-r-[1px] border-brand-black shadow-2-hard",
+        "bg-brand-yellow border-y-[1px] first:border-l-[1px] last:border-r-[1px] border-brand-black",
       ],
     },
   },
