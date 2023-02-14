@@ -1,11 +1,9 @@
-import { FC, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import type { MathfieldElement, MathfieldElementAttributes } from "mathlive";
-import {
-  useController,
-  UseControllerProps,
-  UseFormRegister,
-} from "react-hook-form";
-import { FormValues } from "../../pages/tasks/[id]";
+import type { MathfieldElement } from "mathlive";
+import type { FC } from "react";
+import { useEffect, useRef } from "react";
+import type { UseControllerProps } from "react-hook-form";
+import { useController } from "react-hook-form";
+import type { FormValues } from "../../pages/tasks/[id]";
 
 // export interface MathProps extends MathfieldElementAttributes {}
 
