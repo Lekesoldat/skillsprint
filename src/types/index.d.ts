@@ -1,5 +1,5 @@
-import { DOMAttributes } from "react";
-import { MathfieldElementAttributes } from "mathlive";
+import type { DOMAttributes } from "react";
+import type { MathfieldElementAttributes } from "mathlive";
 
 type CustomElement<T> = Partial<T & DOMAttributes<T>>;
 

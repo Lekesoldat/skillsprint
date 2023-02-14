@@ -4,6 +4,7 @@ import { achievementRouter } from "./routers/achievement";
 import { taskRouter } from "./routers/task";
 import { categoryRouter } from "./routers/category";
 import { taskAttemptRouter } from "./routers/taskAttempt";
+import { userRouter } from "./routers/user";
 
 /**
  * This is the primary router for your server.
@@ -16,6 +17,7 @@ export const appRouter = createTRPCRouter({
   taskAttempt: taskAttemptRouter,
   task: taskRouter,
   category: categoryRouter,
+  user: userRouter,
 });
 
 // export type definition of API
