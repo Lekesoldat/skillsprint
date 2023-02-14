@@ -147,10 +147,14 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getGroupedAndAggregatedPoints: protectedProcedure.query(async ({ ctx }) => {
+    interface GroupedAndAggregatedPoints {
+      timestamp: string;
+      user_sum: number;
+      group_sum: number;
+    }
+
     try {
-      const res = await ctx.prisma.$queryRaw<
-        { timestamp: string; user_sum: number; group_sum: number }[]
-      >`
+      const res = await ctx.prisma.$queryRaw<GroupedAndAggregatedPoints[]>`
       WITH group_results AS (
         SELECT 
           date_trunc('hour', ta."created_at") as timestamp, 
@@ -203,13 +207,13 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getCategoriesOfSuccesses: protectedProcedure.query(async ({ ctx }) => {
+    interface SuccessfullCategories {
+      name: string;
+      count: number;
+    }
+
     try {
-      return await ctx.prisma.$queryRaw<
-        {
-          name: string;
-          count: number;
-        }[]
-      >`
+      return await ctx.prisma.$queryRaw<SuccessfullCategories[]>`
       SELECT 
         name, 
         count(*)::int
