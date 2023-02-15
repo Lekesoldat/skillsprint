@@ -42,18 +42,22 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
+      name: "brukernavn og passord",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         username: {
-          label: "Username",
+          label: "Brukernavn",
           type: "text",
           placeholder: "bumi_bever",
         },
-        password: { label: "Password", type: "password" },
+        password: {
+          label: "Passord",
+          type: "password",
+          placeholder: "********",
+        },
       },
       async authorize(credentials, req) {
         const user = await proxyClient.auth.login.mutate({
