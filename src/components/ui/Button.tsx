@@ -2,20 +2,24 @@ import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import React from "react";
 import { cn } from "../../utils/classnames";
+import { Loader } from "./Loader";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, loading, ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ size, variant }), className)}
         ref={ref}
+        disabled={!!loading || props.disabled}
         {...props}
       >
-        {props.children}
+        {loading ? <Loader /> : props.children}
       </button>
     );
   }
@@ -25,23 +29,7 @@ Button.displayName = "Button";
 export { Button, buttonVariants };
 
 const buttonVariants = cva(
-  [
-    // Text
-    "text-brand-black",
-    "font-bold",
-    "uppercase",
-
-    // Border
-    "border",
-    "border-brand-black",
-
-    // Size
-    "min-w-[150px]",
-
-    // Misc
-    "rounded",
-    "bg-brand-yellow",
-  ],
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-60",
   {
     variants: {
       size: {
@@ -51,11 +39,14 @@ const buttonVariants = cva(
         lg: "text-lg px-4 py-3",
       },
       variant: {
-        shadow: ["shadow-brand-black", "shadow-4-right"],
+        brand:
+          "uppercase bg-brand-yellow text-brand-black border-brand-black font-bold border-2 shadow-brand",
+        outline: "bg-white border-2 border-brand-black",
       },
     },
     defaultVariants: {
       size: "lg",
+      variant: "brand",
     },
   }
 );

@@ -1,7 +1,6 @@
-import { Settings2 } from "lucide-react";
+import React, { useEffect } from "react";
 import { PropsWithChildren } from "react";
 import { RouterOutputs } from "../utils/api";
-import { Button } from "./ui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/Popover";
 
 type Status = RouterOutputs["taskAttempt"]["attemptAnswer"]["result"];
@@ -9,18 +8,29 @@ type Status = RouterOutputs["taskAttempt"]["attemptAnswer"]["result"];
 interface TaskCompletionPopoverProps {
   points: number;
   status: Status;
-  open: boolean;
+  submitted: boolean;
 }
 
 export function TaskCompletionPopover({
   children,
-  open,
+  submitted,
   points,
   status,
 }: PropsWithChildren<TaskCompletionPopoverProps>) {
+  const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    if (!submitted || !open) return;
+    const timeout = setTimeout(() => setOpen(false), 4000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [open, submitted]);
   return (
-    <Popover open={open}>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
+    <Popover open={open && submitted}>
+      <PopoverTrigger asChild onClick={() => setOpen(true)}>
+        {children}
+      </PopoverTrigger>
       <PopoverContent className="w-60">
         <div className="grid gap-4">
           <div className="space-y-2">
@@ -38,9 +48,6 @@ export function TaskCompletionPopover({
               </p>
             )}
           </div>
-          <Button size="xs">
-            {status === "FAIL" ? "Prøv igjen" : "Gå videre"}
-          </Button>
         </div>
       </PopoverContent>
     </Popover>

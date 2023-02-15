@@ -1,5 +1,9 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { getServerSession } from "next-auth";
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from "next";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { TaskDescription } from "../../components/math/MathDisplay";
@@ -7,48 +11,43 @@ import { MathInput } from "../../components/math/MathInput";
 import { TaskCompletionPopover } from "../../components/TaskCompletionPopover";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
-import { Loader } from "../../components/ui/Loader";
-import { appRouter } from "../../server/api/root";
 import { createInnerTRPCContext } from "../../server/api/trpc";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import superjson from "superjson";
+import { appRouter } from "../../server/api/root";
 
 export type FormValues = {
   answer: string;
 };
 
-export default function TaskPage(
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) {
+export default function TaskPage({
+  task,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { handleSubmit, control } = useForm<FormValues>();
-  const [status, setStatus] = useState<
-    RouterOutputs["taskAttempt"]["attemptAnswer"]["result"]
-  >(props.attempt.result);
-
-  const { data: task, isError } = api.task.getByIdIncludeCategory.useQuery(
-    {
-      id: props.id,
-    },
-    { enabled: !!props.id }
-  );
   const utils = api.useContext();
-
   const [submitted, setSubmitted] = useState(false);
 
-  const { mutate } = api.taskAttempt.attemptAnswer.useMutation({
-    onSettled: (data, _err) => {
-      const res = data?.result || "PENDING";
-      setSubmitted(true);
-      setStatus(res);
-      if (res === "SUCCESS") {
-        void utils.auth.me.invalidate();
-      }
-    },
-  });
+  const { data: attempt, isLoading } = api.taskAttempt.startAttempt.useQuery(
+    task.id
+  );
+  const { mutate, isLoading: isAnswering } =
+    api.taskAttempt.attemptAnswer.useMutation({
+      onSettled: (data) => {
+        const res = data?.result || "PENDING";
+        setSubmitted(true);
+        if (data) {
+          void utils.taskAttempt.startAttempt.setData(task.id, data);
+          console.log({ attempt });
+        }
+        if (res === "SUCCESS") {
+          void utils.auth.me.invalidate();
+        }
+      },
+    });
 
-  if (isError) return <>Error bruvv...</>;
-  if (!task) return <Loader />;
+  console.log(attempt);
 
   return (
     <div className="bg-[url('/grid.svg')]">
@@ -71,52 +70,68 @@ export default function TaskPage(
 
           <TaskCompletionPopover
             points={task.points}
-            status={status}
-            open={status != "PENDING" && submitted}
+            status={attempt?.result || "PENDING"}
+            // show={answered && }
+            submitted={
+              submitted && attempt
+                ? attempt.result !== "PENDING"
+                : false && !isAnswering
+            }
           >
-            <Button variant="shadow" type="submit">
+            <Button type="submit" loading={isLoading}>
               Sjekk svar
             </Button>
           </TaskCompletionPopover>
+          {/* {attempt?.result === "SUCCESS" && task.nextTaskId && (
+            <Link href={`/tasks/${task.nextTaskId}`}>
+              <Button>Gå videre</Button>
+            </Link>
+          )} */}
         </form>
-        {status === "SUCCESS" && (
-          <p className="text-green-600">Du har svart riktig!</p>
-        )}
-        {status === "FAIL" && (
-          <p className="text-red-600">Du har svart feil!</p>
-        )}
       </div>
     </div>
   );
 }
 
 type Props = {
-  attempt: RouterOutputs["taskAttempt"]["startAttempt"];
-  id: string;
+  task: RouterOutputs["task"]["getByIdIncludeCategory"];
 };
 
-export const getServerSideProps: GetServerSideProps<
-  Props,
-  { id: string }
-> = async (ctx) => {
-  const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  const caller = appRouter.createCaller(
-    createInnerTRPCContext({
-      session: session,
-    })
-  );
-  const id = ctx.params?.id;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson, // optional - adds superjson serialization
+  });
 
+  const tasksIds = await ssg.task.getAllAvailableTaskIds.fetch();
+
+  const paths = tasksIds.map(({ id }) => ({ params: { id: id } }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props, { id: string }> = async (
+  ctx
+) => {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson, // optional - adds superjson serialization
+  });
+  const id = ctx.params?.id;
   if (!id) {
     return {
       notFound: true,
     };
   }
-  const attempt = await caller.taskAttempt.startAttempt(id);
+
+  const task = await ssg.task.getByIdIncludeCategory.fetch({ id: id });
   return {
     props: {
-      attempt,
-      id,
+      task,
     },
   };
 };
