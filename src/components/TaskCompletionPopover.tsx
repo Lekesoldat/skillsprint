@@ -1,6 +1,7 @@
+import type { PropsWithChildren } from "react";
 import React, { useEffect } from "react";
-import { PropsWithChildren } from "react";
-import { RouterOutputs } from "../utils/api";
+import type { RouterOutputs } from "../utils/api";
+
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/Popover";
 
 type Status = RouterOutputs["taskAttempt"]["attemptAnswer"]["result"];
@@ -26,6 +27,7 @@ export function TaskCompletionPopover({
       clearTimeout(timeout);
     };
   }, [open, submitted]);
+
   return (
     <Popover open={open && submitted}>
       <PopoverTrigger asChild onClick={() => setOpen(true)}>
