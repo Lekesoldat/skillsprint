@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+// Necessary for Next auth
+
+model User {
+    id            String        @id @default(cuid())
+    name          String        @unique
+    email         String?       @unique
+    emailVerified DateTime?
+    image         String?
+    password      String
+    points        Int           @default(0)
+    bestStreak    Int           @default(0) @map("best_streak")
+    TaskAttempt   TaskAttempt[]
+}
+
+// Fragile-flower
+
+model Category {
+    id   String @id @default(cuid())
+    name String
+    task Task[]
+}
+
+model Task {
+    id          String        @id @default(cuid())
+    title       String
+    description String
+    points      Int
+    category    Category      @relation(fields: [categoryId], references: [id])
+    categoryId  String        @map("category_id")
+    answer      String
+    TaskAttempt TaskAttempt[]
+    nextTaskId  String?       @unique @map("next_task_id")
+    nextTask    Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
+    prevTask    Task?         @relation("TaskOrder")
+}
+
+enum AttemptResult {
+    PENDING
+    SUCCESS
+    FAIL
+}
+
+model TaskAttempt {
+    id          String        @id @default(cuid())
+    user        User          @relation(fields: [userId], references: [id])
+    userId      String        @map("user_id")
+    task        Task          @relation(fields: [taskId], references: [id])
+    taskId      String        @map("task_id")
+    result      AttemptResult @default(PENDING)
+    createdAt   DateTime      @default(now()) @map("created_at")
+    elapsedTime Int           @default(0) @map("elapsed_time")
+}
+
+enum AchievementColor {
+    GREEN
+    BLUE
+    RED
+    PINK
+    YELLOW
+    PURPLE
+    GRAY
+    LIGHTGRAY
+    ORANGE
+}
+
+model Achievement {
+    id          String           @id @default(cuid())
+    icon        String
+    title       String
+    description String
+    color       AchievementColor @default(PINK)
+    requirement Int
+}

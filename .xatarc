@@ -1,6 +1,0 @@
-{
-  "databaseURL": "https://fragile-flower-ljr06e.eu-west-1.xata.sh/db/thesis",
-  "codegen": {
-    "output": "src/lib/xata/xata.ts"
-  }
-}
