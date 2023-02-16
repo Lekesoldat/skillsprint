@@ -3,7 +3,7 @@ import { TaskCard } from "../../components/TaskCard";
 import { Loader } from "../../components/ui/Loader";
 import { api } from "../../utils/api";
 
-export default function Task() {
+export default function Page() {
   const { data, isError } = api.category.getCategoriesAndTasks.useQuery();
   if (isError) return <>Error bruvv...</>;
 
