@@ -82,11 +82,29 @@ export default function TaskPage({
               Sjekk svar
             </Button>
           </TaskCompletionPopover>
-          {/* {attempt?.result === "SUCCESS" && task.nextTaskId && (
-            <Link href={`/tasks/${task.nextTaskId}`}>
-              <Button>Gå videre</Button>
-            </Link>
-          )} */}
+          {attempt?.result === "SUCCESS" && (
+            <div>
+              <p className="mb-4 font-medium text-brand-green">
+                Du har svart på denne oppgaven allerede
+              </p>
+              <div className="flex justify-between">
+                {task.prevTask?.id ? (
+                  <Link href={`/tasks/${task.prevTask.id}`}>
+                    <Button size="xs">Gå tilbake</Button>
+                  </Link>
+                ) : (
+                  <div />
+                )}
+                {task.nextTaskId ? (
+                  <Link href={`/tasks/${task.nextTaskId}`}>
+                    <Button size="xs">Gå videre</Button>
+                  </Link>
+                ) : (
+                  <div />
+                )}
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </div>

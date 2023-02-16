@@ -41,7 +41,7 @@ export const taskRouter = createTRPCRouter({
       try {
         return await ctx.prisma.task.findUniqueOrThrow({
           where: { id },
-          include: { category: true },
+          include: { category: true, prevTask: { select: { id: true } } },
         });
       } catch (error) {
         throw new TRPCError({
