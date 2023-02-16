@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/nb_NO";
 import { PrismaClient } from "@prisma/client";
 
 faker.seed(69);

@@ -1,9 +1,14 @@
-import type { Prisma } from "@prisma/client";
+import type { Faker } from "@faker-js/faker";
+import type { Prisma, PrismaClient } from "@prisma/client";
 import argon2 from "argon2";
+import { users } from "./ids";
 
-import { faker, prismaClient } from "./clients";
-
-export async function createUsers() {
+export async function createUsers({
+  prismaClient,
+}: {
+  prismaClient: PrismaClient;
+  faker: Faker;
+}) {
   console.info("\n🎓 Seeding users...");
   const data: Prisma.UserCreateInput[] = [
     {
@@ -56,14 +61,24 @@ export async function createUsers() {
       name: "hilde",
       password: await argon2.hash("haug"),
     },
+    {
+      id: "cle79f67w000c08ml2leeejzg",
+      name: "markus",
+      password: await argon2.hash("hauge"),
+    },
+    {
+      id: "cle79fd58000d08mlfqj8efzr",
+      name: "kristian",
+      password: await argon2.hash("gran"),
+    },
   ];
 
-  for (let i = 0; i < 20; i++) {
+  users.forEach(async (u) => {
     data.push({
-      name: faker.name.firstName(),
-      password: await argon2.hash(faker.internet.password()),
+      name: u.username,
+      password: await argon2.hash(u.password),
     });
-  }
+  });
 
   return await prismaClient.$transaction(
     data.map((user) =>
