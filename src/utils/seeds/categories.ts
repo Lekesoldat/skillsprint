@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client";
 
-import { prismaClient } from "./dev-seed";
+import { prismaClient } from "./clients";
 
 export async function createCategories() {
   console.info("\n📒 Seeding categories...");

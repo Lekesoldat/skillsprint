@@ -1,15 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { PrismaClient } from "@prisma/client";
 import { differenceInSeconds } from "date-fns";
 import { createCategories } from "./categories";
 import { createTasks } from "./tasks";
 import { createUsers } from "./users";
-
-faker.seed(69);
-const prismaClient = new PrismaClient();
-await prismaClient.$connect();
-
-export { prismaClient, faker };
 
 async function prod_init() {
   const startSeeding = new Date();
