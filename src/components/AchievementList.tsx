@@ -22,6 +22,7 @@ const Achievement = ({
   title,
   icon,
   description,
+  progress,
   color,
   requirement,
 }: Achievements[number]) => {
@@ -39,11 +40,13 @@ const Achievement = ({
         {/* Title and requirement */}
         <div className="flex justify-between">
           <p className="font-bold uppercase">{title}</p>
-          <p>2 av {requirement}</p>
+          <p>
+            {progress} av {requirement}
+          </p>
         </div>
 
         {/* Progress */}
-        <Progress value={(2 / requirement) * 100} />
+        <Progress value={(progress / requirement) * 100} />
 
         {/* Description */}
         <p className="text-brand-gray">{description}</p>
