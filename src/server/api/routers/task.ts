@@ -1,9 +1,9 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const taskRouter = createTRPCRouter({
-  getAll: protectedProcedure.query(async ({ ctx }) => {
+  getAll: publicProcedure.query(async ({ ctx }) => {
     try {
       return await ctx.prisma.task.findMany();
     } catch (error) {
@@ -31,7 +31,7 @@ export const taskRouter = createTRPCRouter({
       }
     }),
 
-  getByIdIncludeCategory: protectedProcedure
+  getByIdIncludeCategory: publicProcedure
     .input(
       z.object({
         id: z.string(),
@@ -41,7 +41,7 @@ export const taskRouter = createTRPCRouter({
       try {
         return await ctx.prisma.task.findUniqueOrThrow({
           where: { id },
-          include: { category: true },
+          include: { category: true, prevTask: { select: { id: true } } },
         });
       } catch (error) {
         throw new TRPCError({
@@ -50,4 +50,9 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
+  getAllAvailableTaskIds: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.task.findMany({
+      select: { id: true },
+    });
+  }),
 });

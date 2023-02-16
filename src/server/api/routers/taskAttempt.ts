@@ -22,23 +22,16 @@ const SuccessfullCategoriesSchema = z
 export const taskAttemptRouter = createTRPCRouter({
   startAttempt: protectedProcedure
     .input(z.string())
-    .mutation(async ({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
           userId: ctx.session.user.id,
           taskId: input,
+          result: { in: ["PENDING", "SUCCESS"] },
         },
-        orderBy: {
-          createdAt: "desc",
-        },
-        take: 1,
+        take: -1,
       });
-
-      if (
-        recentAttempt &&
-        (recentAttempt.result === "PENDING" ||
-          recentAttempt.result === "SUCCESS")
-      ) {
+      if (recentAttempt) {
         return recentAttempt;
       } else {
         return ctx.prisma.taskAttempt.create({
@@ -102,12 +95,13 @@ export const taskAttemptRouter = createTRPCRouter({
         solution: solution.toString(),
         same: answer.isSame(solution),
       });
+
       const result: "SUCCESS" | "FAIL" = answer.isSame(solution)
         ? "SUCCESS"
         : "FAIL";
 
       if (alreadyAnswered) {
-        return { ...recentAttempt, status: result };
+        return { ...recentAttempt, result: result };
       } else if (result === "SUCCESS") {
         await ctx.prisma.user.update({
           where: {

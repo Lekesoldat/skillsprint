@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       boxShadow: {
+        brand: "2px 2px black",
         "2-hard": "0px 2px",
         "4-hard": "0px 4px",
         "2-left": "-2px 2px",
@@ -40,5 +42,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };

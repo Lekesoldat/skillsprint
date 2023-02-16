@@ -30,7 +30,9 @@ const links = [
 ];
 export const TopNav = () => {
   const currentPath = usePathname();
-  const { data: user } = api.auth.me.useQuery();
+  const { data: user } = api.auth.me.useQuery(undefined, {
+    staleTime: Infinity,
+  });
 
   return (
     <nav className="container mx-auto flex items-center justify-between">
