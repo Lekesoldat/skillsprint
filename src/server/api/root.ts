@@ -1,6 +1,6 @@
 import { createTRPCRouter } from "./trpc";
 import { authRouter } from "./routers/auth";
-import { achievementRouter } from "./routers/achievement";
+import { achievementRouter } from "./routers/achievement/achievement";
 import { taskRouter } from "./routers/task";
 import { categoryRouter } from "./routers/category";
 import { taskAttemptRouter } from "./routers/taskAttempt";

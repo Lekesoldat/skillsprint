@@ -38,7 +38,7 @@ export const TopNav = () => {
     <nav className="container mx-auto flex items-center justify-between">
       {/* Brand Icon */}
       <Link href="/">
-        <Image src={"/Logo.svg"} alt="logo" width={40} height={40} />
+        <Image src={"/logo.png"} alt="logo" width={60} height={60} />
       </Link>
 
       {/* Links */}

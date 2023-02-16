@@ -1,7 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
 import { differenceInSeconds } from "date-fns";
-import { createAchievements } from "./achievements";
 import { createCategories } from "./categories";
 import { createTaskAttempts, createTasks } from "./tasks";
 import { createUsers } from "./users";
@@ -21,11 +20,6 @@ async function init() {
   const startUsers = new Date();
   const users = await createUsers();
   console.log(`Took ${differenceInSeconds(new Date(), startUsers)}s`);
-
-  // Achievements
-  const startAchievements = new Date();
-  await createAchievements();
-  console.log(`Took ${differenceInSeconds(new Date(), startAchievements)}s`);
 
   // Categories
   const startCategories = new Date();
