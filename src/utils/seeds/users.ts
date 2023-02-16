@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import argon2 from "argon2";
 
-import { prismaClient, faker } from "./seed";
+import { prismaClient, faker } from "./dev-seed";
 
 export async function createUsers() {
   console.info("\n🎓 Seeding users...");

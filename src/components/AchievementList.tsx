@@ -12,7 +12,7 @@ export const AchievementList = ({ list }: AchievementListProps) => {
   return (
     <div className="m-10 w-fit rounded-xl border-2 border-brand-lightGray bg-brand-white py-1">
       {list.map((a) => (
-        <Achievement key={a.id} {...a} />
+        <Achievement key={a.title} {...a} />
       ))}
     </div>
   );

@@ -1,9 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
 import { differenceInSeconds } from "date-fns";
-import { createAchievements } from "./achievements";
 import { createCategories } from "./categories";
-import { createTaskAttempts, createTasks } from "./tasks";
+import { createTasks } from "./tasks";
 import { createUsers } from "./users";
 
 faker.seed(69);
@@ -12,20 +11,15 @@ await prismaClient.$connect();
 
 export { prismaClient, faker };
 
-async function init() {
+async function prod_init() {
   const startSeeding = new Date();
   console.info("--- --- --- --- --- --- ---");
-  console.info("🌱 Seeding database!");
+  console.info("🌱 Seeding database for production!");
 
   // Users
   const startUsers = new Date();
-  const users = await createUsers();
+  await createUsers();
   console.log(`Took ${differenceInSeconds(new Date(), startUsers)}s`);
-
-  // Achievements
-  const startAchievements = new Date();
-  await createAchievements();
-  console.log(`Took ${differenceInSeconds(new Date(), startAchievements)}s`);
 
   // Categories
   const startCategories = new Date();
@@ -34,16 +28,11 @@ async function init() {
 
   // Tasks
   const startTasks = new Date();
-  const tasks = await createTasks();
+  await createTasks();
   console.log(`Took ${differenceInSeconds(new Date(), startTasks)}s`);
 
-  // Task Attempts
-  const startAttempts = new Date();
-  await createTaskAttempts(tasks, users);
-  console.log(`Took ${differenceInSeconds(new Date(), startAttempts)}s`);
-
   console.info(
-    `\n🌴 Done seeding database after ${differenceInSeconds(
+    `\n🌴 Done seeding database for production after ${differenceInSeconds(
       new Date(),
       startSeeding
     )}s!`
@@ -51,4 +40,4 @@ async function init() {
   console.info("--- --- --- --- --- --- ---");
 }
 
-await init();
+await prod_init();

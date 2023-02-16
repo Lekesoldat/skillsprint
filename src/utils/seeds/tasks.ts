@@ -1,6 +1,6 @@
 import type { Prisma, Task, User } from "@prisma/client";
 import { taskAttemptCuids } from "./ids";
-import { faker, prismaClient } from "./seed";
+import { faker, prismaClient } from "./dev-seed";
 
 export async function createTasks() {
   console.info("\n📝 Seeding tasks...");
