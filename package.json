@@ -13,7 +13,7 @@
     "gen": "prisma generate",
     "dev-seed": "doppler run -- tsx src/utils/seeds/dev-seed.ts",
     "prod-seed": "doppler run --command=\"prisma migrate reset && tsx src/utils/seeds/prod-seed.ts\"",
-    "reset-and-dev-seed": "doppler run --command=\"prisma migrate reset && tsx src/utils/seeds/seed.ts\""
+    "reset-and-dev-seed": "doppler run --command=\"prisma migrate reset && tsx src/utils/seeds/dev-seed.ts\""
   },
   "dependencies": {
     "@cortex-js/compute-engine": "^0.12.2",
