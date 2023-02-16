@@ -19,14 +19,11 @@ export const PerformanceGraph = () => {
 
   return (
     <ResponsiveContainer width="100%" aspect={3}>
-      <LineChart
-        data={data}
-        margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
-      >
+      <LineChart data={data}>
         <XAxis dataKey="timestamp" />
         <YAxis />
         <Tooltip />
-        <Legend iconType="circle" />
+        <Legend iconType="circle" verticalAlign="top" />
         <Line type="monotone" dataKey="user_sum" stroke="#22CA94" name="Deg" />
         <Line
           type="monotone"

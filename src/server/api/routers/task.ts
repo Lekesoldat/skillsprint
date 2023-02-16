@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
+import { addSeconds, compareDesc } from "date-fns";
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
 export const taskRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -54,5 +55,46 @@ export const taskRouter = createTRPCRouter({
     return await ctx.prisma.task.findMany({
       select: { id: true },
     });
+  }),
+
+  getLastSolvedTasks: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const res = await ctx.prisma.taskAttempt.findMany({
+        take: -5,
+        where: {
+          userId: ctx.session.user.id,
+          result: "SUCCESS",
+        },
+        include: {
+          task: {
+            select: {
+              id: true,
+              title: true,
+              category: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      return res
+        .map((r) => ({
+          taskId: r.task.id,
+          title: r.task.title,
+          category: r.task.category.name,
+          createdAt: r.createdAt,
+          elapsedTime: r.elapsedTime,
+          finishedAt: addSeconds(r.createdAt, r.elapsedTime),
+        }))
+        .sort((a, b) => compareDesc(a.finishedAt, b.finishedAt));
+    } catch (error) {
+      throw new TRPCError({
+        code: "NOT_FOUND",
+        cause: error,
+      });
+    }
   }),
 });

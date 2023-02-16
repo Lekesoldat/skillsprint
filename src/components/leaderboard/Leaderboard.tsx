@@ -6,8 +6,8 @@ import {
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
 import { AvatarCell } from "./AvatarCell";
-import { TableHeader } from "./TableHeader";
-import { TableRow } from "./TableRow";
+import { LeaderboardHeader } from "./LeaderboardHeader";
+import { LeaderboardRow } from "./LeaderboardRow";
 
 export type RankedUser = RouterOutputs["user"]["getTopFive"][number];
 
@@ -36,7 +36,7 @@ const columns = [
   }),
 ];
 
-export function Table() {
+export function Leaderboard() {
   const { data } = api.user.getTopFive.useQuery();
 
   const table = useReactTable({
@@ -50,12 +50,12 @@ export function Table() {
       <table className="w-full table-auto divide-y divide-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableHeader key={headerGroup.id} headerGroup={headerGroup} />
+            <LeaderboardHeader key={headerGroup.id} headerGroup={headerGroup} />
           ))}
         </thead>
         <tbody className="divide-y divide-gray-200">
           {table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id} row={row} />
+            <LeaderboardRow key={row.id} row={row} />
           ))}
         </tbody>
       </table>

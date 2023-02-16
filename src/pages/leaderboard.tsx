@@ -1,9 +1,9 @@
-import { Table } from "../components/table/Table";
+import { Leaderboard } from "../components/leaderboard/Leaderboard";
 
-export default function Leaderboard() {
+export default function Page() {
   return (
     <div className="flex place-content-center">
-      <Table />
+      <Leaderboard />
     </div>
   );
 }

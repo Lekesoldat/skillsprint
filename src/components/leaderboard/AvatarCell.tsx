@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import type { CellContext } from "@tanstack/react-table";
 import type { FC } from "react";
-import type { RankedUser } from "./Table";
+import type { RankedUser } from "./Leaderboard";
 
 interface AvatarCellProps {
   info: CellContext<RankedUser, string | null>;
