@@ -1,4 +1,4 @@
-import { Table } from "../components/table/table";
+import { Table } from "../components/table/Table";
 
 export default function Leaderboard() {
   return (

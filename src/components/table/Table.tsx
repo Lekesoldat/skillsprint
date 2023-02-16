@@ -5,9 +5,9 @@ import {
 } from "@tanstack/react-table";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
-import { AvatarCell } from "./avatar-cell";
-import { TableHeader } from "./table-header";
-import { TableRow } from "./table-row";
+import { AvatarCell } from "./AvatarCell";
+import { TableHeader } from "./TableHeader";
+import { TableRow } from "./TableRow";
 
 export type RankedUser = RouterOutputs["user"]["getTopFive"][number];
 

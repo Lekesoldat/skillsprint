@@ -1,7 +1,7 @@
 import type { HeaderGroup } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 import type { FC } from "react";
-import type { RankedUser } from "./table";
+import type { RankedUser } from "./Table";
 
 interface TableHeaderProps {
   headerGroup: HeaderGroup<RankedUser>;
