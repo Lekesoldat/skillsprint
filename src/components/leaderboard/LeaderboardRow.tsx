@@ -3,13 +3,13 @@ import { flexRender } from "@tanstack/react-table";
 import { cva } from "class-variance-authority";
 import { useSession } from "next-auth/react";
 import type { FC } from "react";
-import type { RankedUser } from "./Table";
+import type { RankedUser } from "./Leaderboard";
 
 interface TableRowProps {
   row: Row<RankedUser>;
 }
 
-export const TableRow: FC<TableRowProps> = ({ row }) => {
+export const LeaderboardRow: FC<TableRowProps> = ({ row }) => {
   const { data } = useSession();
 
   return (
