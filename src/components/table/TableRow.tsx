@@ -3,7 +3,7 @@ import { flexRender } from "@tanstack/react-table";
 import { cva } from "class-variance-authority";
 import { useSession } from "next-auth/react";
 import type { FC } from "react";
-import type { RankedUser } from "./table";
+import type { RankedUser } from "./Table";
 
 interface TableRowProps {
   row: Row<RankedUser>;
