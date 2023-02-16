@@ -1,7 +1,7 @@
 import {
   createColumnHelper,
   getCoreRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import { format } from "date-fns";
 import type { RouterOutputs } from "../../utils/api";
@@ -40,7 +40,7 @@ export const TaskTable = () => {
   });
 
   return (
-    <div className="rounded-xl border-2 border-black bg-white py-4 px-8 shadow-4-right">
+    <div className="h-fit flex-1 rounded-xl border-2 border-black bg-brand-white py-4 px-8 shadow-4-right">
       <table className="w-full table-auto divide-y divide-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
