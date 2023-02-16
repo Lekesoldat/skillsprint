@@ -51,49 +51,50 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
-    getAllAvailableTaskIds: publicProcedure.query(async ({ ctx }) => {
-      return await ctx.prisma.task.findMany({
-        select: { id: true },
-      })}),
+  getAllAvailableTaskIds: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.task.findMany({
+      select: { id: true },
+    });
+  }),
 
-    getLastSolvedTasks: protectedProcedure.query(async ({ ctx }) => {
-      try {
-        const res = await ctx.prisma.taskAttempt.findMany({
-          take: -5,
-          where: {
-            userId: ctx.session.user.id,
-            result: "SUCCESS",
-          },
-          include: {
-            task: {
-              select: {
-                id: true,
-                title: true,
-                category: {
-                  select: {
-                    name: true,
-                  },
+  getLastSolvedTasks: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const res = await ctx.prisma.taskAttempt.findMany({
+        take: -5,
+        where: {
+          userId: ctx.session.user.id,
+          result: "SUCCESS",
+        },
+        include: {
+          task: {
+            select: {
+              id: true,
+              title: true,
+              category: {
+                select: {
+                  name: true,
                 },
               },
             },
           },
-        });
-  
-        return res
-          .map((r) => ({
-            taskId: r.task.id,
-            title: r.task.title,
-            category: r.task.category.name,
-            createdAt: r.createdAt,
-            elapsedTime: r.elapsedTime,
-            finishedAt: addSeconds(r.createdAt, r.elapsedTime),
-          }))
-          .sort((a, b) => compareDesc(a.finishedAt, b.finishedAt));
-      } catch (error) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          cause: error,
-        });
-      }
-    })
-})
+        },
+      });
+
+      return res
+        .map((r) => ({
+          taskId: r.task.id,
+          title: r.task.title,
+          category: r.task.category.name,
+          createdAt: r.createdAt,
+          elapsedTime: r.elapsedTime,
+          finishedAt: addSeconds(r.createdAt, r.elapsedTime),
+        }))
+        .sort((a, b) => compareDesc(a.finishedAt, b.finishedAt));
+    } catch (error) {
+      throw new TRPCError({
+        code: "NOT_FOUND",
+        cause: error,
+      });
+    }
+  }),
+});
