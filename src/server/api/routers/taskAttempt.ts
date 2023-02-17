@@ -2,15 +2,11 @@ import { ComputeEngine } from "@cortex-js/compute-engine";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format } from "date-fns";
 import { z } from "zod";
+import {
+  roundToFifthMinute,
+  sortAndAggretatePoints,
+} from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-
-const GroupedAndAggregatedPointsSchema = z
-  .object({
-    timestamp: z.date(),
-    user_sum: z.number().nullable(),
-    group_sum: z.number(),
-  })
-  .array();
 
 const SuccessfullCategoriesSchema = z
   .object({
@@ -77,6 +73,7 @@ export const taskAttemptRouter = createTRPCRouter({
         },
         take: 1,
       });
+
       if (!recentAttempt) {
         throw new TRPCError({
           code: "BAD_REQUEST",
@@ -151,56 +148,84 @@ export const taskAttemptRouter = createTRPCRouter({
     }
   }),
 
-  getGroupedAndAggregatedPoints: protectedProcedure.query(async ({ ctx }) => {
+  getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
     try {
-      const res = await ctx.prisma.$queryRaw`
-        WITH group_results AS (
-          SELECT 
-            date_trunc('hour', ta."created_at") as timestamp, 
-            extract(minute FROM ta."created_at")::int/5 + 1 as five_min, 
-            sum(t.points), 
-            count(distinct u)
-          FROM "TaskAttempt" ta
-          JOIN "Task" t ON t."id" = ta."task_id"
-          JOIN "User" u On u."id"=ta."user_id"
-          WHERE result = 'SUCCESS'
-          GROUP BY 1,2
-          ORDER BY 1,2
-        ),
+      const [tasks, attempts] = await ctx.prisma.$transaction([
+        ctx.prisma.task.findMany(),
+        ctx.prisma.taskAttempt.findMany({
+          where: {
+            result: {
+              equals: "SUCCESS",
+            },
+          },
+        }),
+      ]);
 
-        user_results AS (
-          SELECT 
-            date_trunc('hour', ta."created_at") as timestamp, 
-            extract(minute FROM ta."created_at")::int/5 + 1 as five_min, 
-            sum(t.points), 
-            count(*)
-          FROM "TaskAttempt" ta
-          JOIN "Task" t ON t."id" = ta."task_id"
-          WHERE result = 'SUCCESS'
-          AND ta."user_id" = ${ctx.session.user.id}
-          GROUP BY 1,2
-          ORDER BY 1,2
-        )
+      const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
+      const respondentsAtTime = new Map<string, string[]>();
 
-        SELECT 
-          gr.timestamp + (gr.five_min * interval '5 minutes') as timestamp,
-          sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as group_sum,
-          sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as user_sum
-        FROM group_results gr
-        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.five_min = gr.five_min
-      `;
+      // Points aquired in a time interval
+      const pointsAtTime = new Map<
+        string,
+        { groupPoints: number; userPoints: number }
+      >();
 
-      const validated = GroupedAndAggregatedPointsSchema.parse(res);
+      attempts.forEach((a) => {
+        // Round timestamp to nearest fith and extract HH:mm
+        const rounded = roundToFifthMinute(a.createdAt);
+        const timestamp = format(rounded, "HH:mm");
 
-      const transformed = validated.map((x) => ({
-        timestamp: format(new Date(x.timestamp), "HH:mm"),
-        user_sum: x.user_sum ?? 0,
-        group_sum: x.group_sum ?? 0,
-      }));
+        const points = taskToPoints.get(a.taskId) || 0;
 
-      return transformed;
+        // Get points at time as well as counter
+        const entry = pointsAtTime.get(timestamp);
+        const respondents = respondentsAtTime.get(timestamp);
+
+        // If timestamp and respondents list exists, update points at timestamp and respondents
+        if (entry && respondents) {
+          // If the user has not answered in this time interval
+          if (!respondents.includes(a.userId)) {
+            respondentsAtTime.set(timestamp, [...respondents, a.userId]);
+          }
+
+          // If current user is the task solver, update user points and group points
+          if (ctx.session.user.id === a.userId) {
+            pointsAtTime.set(timestamp, {
+              groupPoints: entry.groupPoints + points,
+              userPoints: entry.userPoints + points,
+            });
+
+            // Else only update group points
+          } else {
+            pointsAtTime.set(timestamp, {
+              groupPoints: entry.groupPoints + points,
+              userPoints: entry.userPoints,
+            });
+          }
+
+          // If time interval does not exist, add to points and respondents maps
+        } else {
+          respondentsAtTime.set(timestamp, [a.userId]);
+
+          // If current user is the task solver, add points to user and group
+          if (ctx.session.user.id === a.userId) {
+            pointsAtTime.set(timestamp, {
+              groupPoints: points,
+              userPoints: points,
+            });
+
+            // Else only add to group
+          } else {
+            pointsAtTime.set(timestamp, {
+              groupPoints: points,
+              userPoints: 0,
+            });
+          }
+        }
+      });
+
+      return sortAndAggretatePoints(respondentsAtTime, pointsAtTime);
     } catch (error) {
-      console.error(error);
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
         cause: error,

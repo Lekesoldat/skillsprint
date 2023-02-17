@@ -11,8 +11,7 @@ import { api } from "../../utils/api";
 import { Loader } from "../ui/Loader";
 
 export const PerformanceGraph = () => {
-  const { data, error } =
-    api.taskAttempt.getGroupedAndAggregatedPoints.useQuery();
+  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
 
   if (error) return <>Error..</>;
   if (!data) return <Loader />;
