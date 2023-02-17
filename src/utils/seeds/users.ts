@@ -98,6 +98,16 @@ export async function createUsers(
       name: "øystein",
       password: await argon2.hash("bjørkeng"),
     },
+    {
+      id: "cle9u344q000008lf2zcjgkc4",
+      name: "natten",
+      password: await argon2.hash("jonas"),
+    },
+    {
+      id: "cle9u4c7x000108lf3cgl2sk5",
+      name: "carlsen",
+      password: await argon2.hash("jonas"),
+    },
   ];
 
   let output = await generateRandomUsers();
