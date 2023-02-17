@@ -159,9 +159,10 @@ export const taskAttemptRouter = createTRPCRouter({
             date_trunc('hour', ta."created_at") as timestamp, 
             extract(minute FROM ta."created_at")::int/5 + 1 as five_min, 
             sum(t.points), 
-            count(*)
+            count(distinct u)
           FROM "TaskAttempt" ta
           JOIN "Task" t ON t."id" = ta."task_id"
+          JOIN "User" u On u."id"=ta."user_id"
           WHERE result = 'SUCCESS'
           GROUP BY 1,2
           ORDER BY 1,2
