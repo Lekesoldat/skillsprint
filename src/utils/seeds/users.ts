@@ -3,6 +3,20 @@ import type { Prisma, PrismaClient } from "@prisma/client";
 import argon2 from "argon2";
 import { users } from "./ids";
 
+const generateRandomUsers = async () => {
+  const userPromises = users.map(async (u) => {
+    const name = u.username;
+    const password = await argon2.hash(u.password);
+
+    return {
+      name,
+      password,
+    };
+  });
+
+  return await Promise.all(userPromises);
+};
+
 export async function createUsers({
   prismaClient,
 }: {
@@ -71,14 +85,8 @@ export async function createUsers({
       name: "kristian",
       password: await argon2.hash("gran"),
     },
+    ...(await generateRandomUsers()),
   ];
-
-  users.forEach(async (u) => {
-    data.push({
-      name: u.username,
-      password: await argon2.hash(u.password),
-    });
-  });
 
   return await prismaClient.$transaction(
     data.map((user) =>
