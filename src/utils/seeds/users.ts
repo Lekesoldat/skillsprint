@@ -17,14 +17,17 @@ const generateRandomUsers = async () => {
   return await Promise.all(userPromises);
 };
 
-export async function createUsers({
-  prismaClient,
-}: {
-  prismaClient: PrismaClient;
-  faker: Faker;
-}) {
-  console.info("\n🎓 Seeding users...");
-  const data: Prisma.UserCreateInput[] = [
+export async function createUsers(
+  {
+    prismaClient,
+  }: {
+    prismaClient: PrismaClient;
+    faker: Faker;
+  },
+  withFriends = false
+) {
+  console.info(`\n🎓 Seeding users ${withFriends ? "with friends" : ""} ...`);
+  const friends: Prisma.UserCreateInput[] = [
     {
       id: "cle2wz3id0000fxpb8bgt5f3f",
       name: "anhkha",
@@ -85,11 +88,26 @@ export async function createUsers({
       name: "kristian",
       password: await argon2.hash("gran"),
     },
-    ...(await generateRandomUsers()),
+    {
+      id: "cle8i692f000008mp1tmz5liy",
+      name: "alexander",
+      password: await argon2.hash("orvik"),
+    },
+    {
+      id: "cle8i7e0g000108mpaawh9cw0",
+      name: "øystein",
+      password: await argon2.hash("bjørkeng"),
+    },
   ];
 
+  let output = await generateRandomUsers();
+
+  if (withFriends) {
+    output = [...output, ...friends];
+  }
+
   return await prismaClient.$transaction(
-    data.map((user) =>
+    output.map((user) =>
       prismaClient.user.upsert({
         where: { name: user.name },
         create: user,
