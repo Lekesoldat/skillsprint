@@ -157,7 +157,7 @@ export const taskAttemptRouter = createTRPCRouter({
         WITH group_results AS (
           SELECT 
             date_trunc('hour', ta."created_at") as timestamp, 
-            extract(minute FROM ta."created_at")::int/5 + 1 as ten_min, 
+            extract(minute FROM ta."created_at")::int/5 + 1 as five_min, 
             sum(t.points), 
             count(*)
           FROM "TaskAttempt" ta
@@ -170,7 +170,7 @@ export const taskAttemptRouter = createTRPCRouter({
         user_results AS (
           SELECT 
             date_trunc('hour', ta."created_at") as timestamp, 
-            extract(minute FROM ta."created_at")::int/5 + 1 as ten_min, 
+            extract(minute FROM ta."created_at")::int/5 + 1 as five_min, 
             sum(t.points), 
             count(*)
           FROM "TaskAttempt" ta
@@ -182,11 +182,11 @@ export const taskAttemptRouter = createTRPCRouter({
         )
 
         SELECT 
-          gr.timestamp + (gr.ten_min * interval '5 minutes') as timestamp,
+          gr.timestamp + (gr.five_min * interval '5 minutes') as timestamp,
           sum(gr.sum/gr.count) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as group_sum,
           sum(ur.sum) OVER (ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)::int as user_sum
         FROM group_results gr
-        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.ten_min = gr.ten_min
+        LEFT JOIN user_results ur ON ur.timestamp = gr.timestamp AND ur.five_min = gr.five_min
       `;
 
       const validated = GroupedAndAggregatedPointsSchema.parse(res);
