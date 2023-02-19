@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { addSeconds, compareDesc } from "date-fns";
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const taskRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -51,6 +51,7 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
+
   getAllAvailableTaskIds: publicProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.task.findMany({
       select: { id: true },
