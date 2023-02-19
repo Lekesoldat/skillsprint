@@ -36,7 +36,7 @@ const taskCardStyle = cva(
     variants: {
       solved: {
         true: ["shadow-4-right-border-green"],
-        false: ["shadow-4-right-border-purple"],
+        false: ["shadow-4-right-border-pink"],
       },
     },
     defaultVariants: {
