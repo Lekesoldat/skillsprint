@@ -60,7 +60,7 @@ export const TopNav = () => {
 
       {/* Points */}
       <span className="grid min-w-[150px] place-content-center border-2 border-brand-black bg-brand-purple py-3 px-5 font-bold shadow-4-right shadow-brand-black">
-        {user ? <>🎉 {user.points} p</> : <Loader />}
+        {user ? <>🎉 {user.points} p</> : "🎉 0 p"}
       </span>
     </nav>
   );
