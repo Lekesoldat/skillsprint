@@ -88,7 +88,7 @@ export default function TaskPage({
             {attempt?.result === "SUCCESS" && (
               <div>
                 <p className="mb-4 font-medium text-brand-green">
-                  Du har svart på denne oppgaven allerede
+                  Denne oppgaven er fullført!
                 </p>
                 <div className="flex justify-between">
                   {task.prevTask?.id ? (
