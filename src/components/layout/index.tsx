@@ -38,9 +38,7 @@ export const Layout: FC<LayoutProps> = ({
         <title>{title}</title>
       </Head>
 
-      <header className="sticky w-full py-4">
-        <TopNav />
-      </header>
+      <TopNav />
 
       <AnimatePresence
         mode="wait"
@@ -54,7 +52,7 @@ export const Layout: FC<LayoutProps> = ({
           animate="enter" // Animated state to variants.enter
           exit="exit" // Exit state (used later) to variants.exit
           transition={{ type: "linear" }} // Set the transition to linear
-          className="mx-auto flex w-full max-w-screen-lg flex-grow px-6 py-10"
+          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-6"
         >
           {children}
         </motion.main>
