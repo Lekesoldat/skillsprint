@@ -50,62 +50,66 @@ export default function TaskPage({
   console.log(attempt);
 
   return (
-    <div className="bg-[url('/grid.svg')]">
-      <div className="mt-10 flex flex-col items-center justify-center gap-12 rounded-md border-2 border-brand-blue bg-gradient-radial from-[rgba(217,217,217,0.12)] to-white bg-cover py-10 shadow-4-right shadow-brand-blue">
-        <div className="text-6xl font-bold text-brand-green">{task.title}</div>
-        <Badge text={task.category.name} />
-        <div className="max-w-[75ch] rounded-md bg-white p-4">
-          <TaskDescription description={task.description} />
-        </div>
-        <form
-          className="grid gap-6"
-          onSubmit={handleSubmit((data) => {
-            mutate({
-              answer: data.answer,
-              taskId: task.id,
-            });
-          })}
-        >
-          <MathInput control={control} name="answer" />
-
-          <TaskCompletionPopover
-            points={task.points}
-            status={attempt?.result || "PENDING"}
-            // show={answered && }
-            submitted={
-              submitted && attempt
-                ? attempt.result !== "PENDING"
-                : false && !isAnswering
-            }
+    <div className="w-full">
+      <div className="bg-[url('/grid.svg')]">
+        <div className="mt-10 flex flex-col items-center justify-center gap-12 rounded-md border-2 border-brand-blue bg-gradient-radial from-[rgba(217,217,217,0.12)] to-white bg-cover py-10 shadow-4-right shadow-brand-blue">
+          <div className="text-6xl font-bold text-brand-green">
+            {task.title}
+          </div>
+          <Badge text={task.category.name} />
+          <div className="max-w-[75ch] rounded-md bg-white p-4">
+            <TaskDescription description={task.description} />
+          </div>
+          <form
+            className="grid gap-6"
+            onSubmit={handleSubmit((data) => {
+              mutate({
+                answer: data.answer,
+                taskId: task.id,
+              });
+            })}
           >
-            <Button type="submit" loading={isLoading}>
-              Sjekk svar
-            </Button>
-          </TaskCompletionPopover>
-          {attempt?.result === "SUCCESS" && (
-            <div>
-              <p className="mb-4 font-medium text-brand-green">
-                Du har svart på denne oppgaven allerede
-              </p>
-              <div className="flex justify-between">
-                {task.prevTask?.id ? (
-                  <Link href={`/tasks/${task.prevTask.id}`}>
-                    <Button size="xs">Gå tilbake</Button>
-                  </Link>
-                ) : (
-                  <div />
-                )}
-                {task.nextTaskId ? (
-                  <Link href={`/tasks/${task.nextTaskId}`}>
-                    <Button size="xs">Gå videre</Button>
-                  </Link>
-                ) : (
-                  <div />
-                )}
+            <MathInput control={control} name="answer" />
+
+            <TaskCompletionPopover
+              points={task.points}
+              status={attempt?.result || "PENDING"}
+              // show={answered && }
+              submitted={
+                submitted && attempt
+                  ? attempt.result !== "PENDING"
+                  : false && !isAnswering
+              }
+            >
+              <Button type="submit" loading={isLoading}>
+                Sjekk svar
+              </Button>
+            </TaskCompletionPopover>
+            {attempt?.result === "SUCCESS" && (
+              <div>
+                <p className="mb-4 font-medium text-brand-green">
+                  Denne oppgaven er fullført!
+                </p>
+                <div className="flex justify-between">
+                  {task.prevTask?.id ? (
+                    <Link href={`/tasks/${task.prevTask.id}`}>
+                      <Button size="xs">Gå tilbake</Button>
+                    </Link>
+                  ) : (
+                    <div />
+                  )}
+                  {task.nextTaskId ? (
+                    <Link href={`/tasks/${task.nextTaskId}`}>
+                      <Button size="xs">Gå videre</Button>
+                    </Link>
+                  ) : (
+                    <div />
+                  )}
+                </div>
               </div>
-            </div>
-          )}
-        </form>
+            )}
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const categoryRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     try {
       return await ctx.prisma.category.findMany();
     } catch (error) {
@@ -69,7 +69,7 @@ export const categoryRouter = createTRPCRouter({
     }
   }),
 
-  getById: publicProcedure
+  getById: protectedProcedure
     .input(
       z.object({
         id: z.string(),

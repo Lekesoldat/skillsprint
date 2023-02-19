@@ -26,9 +26,7 @@ export function Layout(props: PropsWithChildren) {
         ` ${spaceGrotesk.variable}`
       }
     >
-      <header className="sticky w-full py-4">
-        <TopNav />
-      </header>
+      <TopNav />
       <AnimatePresence
         mode="wait"
         initial={false}
@@ -41,7 +39,7 @@ export function Layout(props: PropsWithChildren) {
           animate="enter" // Animated state to variants.enter
           exit="exit" // Exit state (used later) to variants.exit
           transition={{ type: "linear" }} // Set the transition to linear
-          className="mx-auto w-full max-w-7xl flex-grow py-10"
+          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-6"
         >
           {props.children}
         </motion.main>

@@ -1,67 +1,70 @@
 import { BookOpen, LineChart, Medal, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { api } from "../../utils/api";
-import { cn } from "../../utils/classnames";
-import { Loader } from "../ui/Loader";
-
 const links = [
   {
-    icon: <BookOpen />,
+    icon: <BookOpen height={20} />,
     path: "/tasks",
     text: "Oppgaver",
   },
   {
-    icon: <Trophy />,
+    icon: <Trophy height={20} />,
     path: "/leaderboard",
     text: "Ledertavle",
   },
   {
-    icon: <Medal />,
+    icon: <Medal height={20} />,
     path: "/achievements",
     text: "Prestasjoner",
   },
   {
-    icon: <LineChart />,
+    icon: <LineChart height={20} />,
     path: "/insight",
     text: "Innsikt",
   },
 ];
+
 export const TopNav = () => {
-  const currentPath = usePathname();
   const { data: user } = api.auth.me.useQuery(undefined, {
     staleTime: Infinity,
   });
-
   return (
-    <nav className="container mx-auto flex items-center justify-between">
-      {/* Brand Icon */}
-      <Link href="/">
-        <Image src={"/logo.png"} alt="logo" width={60} height={60} />
-      </Link>
+    <header className="mx-auto w-full max-w-screen-lg px-4 sm:px-9">
+      <div className="flex h-16">
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="logo" width={60} height={60} />
+        </Link>
+        <NavigationMenu />
+        <div className="flex flex-grow items-center justify-end md:flex-grow-0">
+          <span className="grid min-w-[150px] place-content-center border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
+            {user ? <>🎉 {user.points} p</> : "🎉 0 p"}
+          </span>
+        </div>
+      </div>
+    </header>
+  );
+};
 
-      {/* Links */}
-      <ul className="flex gap-x-16 uppercase md:flex-row">
+const NavigationMenu = () => {
+  return (
+    <nav className="relative z-10 ml-6 flex w-min flex-1 items-center md:flex">
+      <ul className="group flex flex-1 list-none items-center justify-start">
         {links.map((link) => (
-          <Link key={link.path} href={link.path}>
-            <li
-              className={cn(
-                "flex gap-x-2",
-                currentPath === link.path && "border-b-2 border-brand-black"
-              )}
+          <li
+            key={link.text}
+            className="text-md inline-flex h-10 items-center justify-center rounded-md bg-transparent py-2 px-4 font-semibold transition-colors hover:bg-purple-100"
+          >
+            <Link
+              href={link.path}
+              className="grid grid-flow-col items-center gap-2 text-stone-800"
             >
               {link.icon}
               {link.text}
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
-
-      {/* Points */}
-      <span className="grid min-w-[150px] place-content-center border-2 border-brand-black bg-brand-purple py-3 px-5 font-bold shadow-4-right shadow-brand-black">
-        {user ? <>🎉 {user.points} p</> : <Loader />}
-      </span>
     </nav>
   );
 };

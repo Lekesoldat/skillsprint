@@ -2,8 +2,8 @@ import AuthShowcase from "../components/AuthShowcase";
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex w-full flex-col justify-center">
       <AuthShowcase />
-    </main>
+    </div>
   );
 }
