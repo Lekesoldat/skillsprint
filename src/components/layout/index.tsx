@@ -26,9 +26,7 @@ export function Layout(props: PropsWithChildren) {
         ` ${spaceGrotesk.variable}`
       }
     >
-      <header className="sticky w-full py-4">
-        <TopNav />
-      </header>
+      <TopNav />
       <AnimatePresence
         mode="wait"
         initial={false}
