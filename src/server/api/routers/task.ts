@@ -1,10 +1,10 @@
 import { TRPCError } from "@trpc/server";
 import { addSeconds, compareDesc } from "date-fns";
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const taskRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     try {
       return await ctx.prisma.task.findMany();
     } catch (error) {
@@ -15,7 +15,7 @@ export const taskRouter = createTRPCRouter({
     }
   }),
 
-  getById: publicProcedure
+  getById: protectedProcedure
     .input(
       z.object({
         id: z.string(),
@@ -32,7 +32,7 @@ export const taskRouter = createTRPCRouter({
       }
     }),
 
-  getByIdIncludeCategory: publicProcedure
+  getByIdIncludeCategory: protectedProcedure
     .input(
       z.object({
         id: z.string(),
@@ -51,7 +51,8 @@ export const taskRouter = createTRPCRouter({
         });
       }
     }),
-  getAllAvailableTaskIds: publicProcedure.query(async ({ ctx }) => {
+
+  getAllAvailableTaskIds: protectedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.task.findMany({
       select: { id: true },
     });
