@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { api } from "../../utils/api";
 import { cn } from "../../utils/classnames";
-import { Loader } from "../ui/Loader";
 
 const links = [
   {
