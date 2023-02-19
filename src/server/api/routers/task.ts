@@ -70,6 +70,7 @@ export const taskRouter = createTRPCRouter({
             select: {
               id: true,
               title: true,
+              points: true,
               category: {
                 select: {
                   name: true,
@@ -84,6 +85,7 @@ export const taskRouter = createTRPCRouter({
         .map((r) => ({
           taskId: r.task.id,
           title: r.task.title,
+          points: r.task.points,
           category: r.task.category.name,
           createdAt: r.createdAt,
           elapsedTime: r.elapsedTime,
