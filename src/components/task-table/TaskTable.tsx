@@ -16,12 +16,7 @@ const columnHelper = createColumnHelper<SolvedTask>();
 const columns = [
   columnHelper.accessor("title", {
     cell: (info) => <p>{info.getValue().split(" ")[1]}</p>,
-    header: () => "Siste Oppgaver",
-  }),
-
-  columnHelper.accessor("points", {
-    cell: (info) => <p>+ {info.getValue()}p</p>,
-    header: () => "Poeng",
+    header: () => "Oppgave",
   }),
 
   columnHelper.accessor("category", {
