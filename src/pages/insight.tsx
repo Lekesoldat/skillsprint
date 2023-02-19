@@ -5,7 +5,7 @@ import { TaskTable } from "../components/task-table/TaskTable";
 
 export default function Page() {
   return (
-    <div>
+    <div className="w-full">
       <div className="flex">
         <TaskTable />
         <CategoryPie />

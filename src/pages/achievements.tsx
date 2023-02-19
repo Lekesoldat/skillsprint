@@ -7,5 +7,9 @@ export default function Page() {
 
   if (!xd.data) return <Loader />;
 
-  return <AchievementList list={xd.data} />;
+  return (
+    <div className="w-full">
+      <AchievementList list={xd.data} />
+    </div>
+  );
 }

@@ -46,7 +46,7 @@ export function Leaderboard() {
   });
 
   return (
-    <div className="w-[850px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right">
+    <div className="h-fit w-[850px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right">
       <table className="w-full table-auto divide-y divide-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
