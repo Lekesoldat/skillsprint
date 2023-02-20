@@ -22,7 +22,7 @@ export const PerformanceGraph = () => {
         <XAxis dataKey="timestamp" />
         <YAxis />
         <Tooltip />
-        <Legend iconType="circle" verticalAlign="top" />
+        <Legend iconType="circle" />
         <Line type="monotone" dataKey="user_sum" stroke="#22CA94" name="Deg" />
         <Line
           type="monotone"

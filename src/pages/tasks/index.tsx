@@ -11,7 +11,7 @@ export default function Page() {
 
   return (
     // Grid
-    <div className="grid w-full grid-cols-3">
+    <div className="grid w-full grid-cols-2 lg:grid-cols-3">
       {data.tasks.map((d) => (
         // Columns
         <div key={d.id} className="flex flex-col items-center">
