@@ -30,7 +30,7 @@ export const Layout: FC<LayoutProps> = ({
   return (
     <div
       className={
-        "flex h-full min-h-screen w-full flex-col justify-between bg-background font-space-grotesk" +
+        "min-h-screen-safe flex h-full w-full flex-col justify-between bg-background font-space-grotesk" +
         ` ${spaceGrotesk.variable}`
       }
     >
@@ -52,7 +52,7 @@ export const Layout: FC<LayoutProps> = ({
           animate="enter" // Animated state to variants.enter
           exit="exit" // Exit state (used later) to variants.exit
           transition={{ type: "linear" }} // Set the transition to linear
-          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-6"
+          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-20 lg:px-6"
         >
           {children}
         </motion.main>
