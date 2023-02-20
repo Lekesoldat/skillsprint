@@ -7,12 +7,12 @@ export const Skeleton = ({ count = 1 }: SkeletonProps) => {
   return (
     <div
       role="status"
-      className="flex w-full animate-pulse flex-col items-center justify-center space-y-4 space-x-2 px-4 py-2"
+      className="flex w-full animate-pulse flex-col items-center justify-center space-y-4 space-x-2 px-4 py-4"
     >
       {amount.map((_, index) => (
         <div
           key={`skeleton-${index}`}
-          className="h-2.5 w-8/12 rounded-full bg-gray-200 dark:bg-gray-700"
+          className="h-4 w-8/12 rounded-full bg-gray-200 dark:bg-gray-700"
         ></div>
       ))}
       <span className="sr-only">Loading...</span>
