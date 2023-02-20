@@ -1,10 +1,10 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
 import { TRPCError } from "@trpc/server";
-import { differenceInSeconds, format } from "date-fns";
+import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
 import {
   roundToNthMinute,
-  sortAndAggretatePoints,
+  sortAndAggretatePoints
 } from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
@@ -167,6 +167,8 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
+    const GRAPH_INTERVAL = 5;
+
     try {
       const [tasks, attempts] = await ctx.prisma.$transaction([
         ctx.prisma.task.findMany(),
@@ -190,8 +192,8 @@ export const taskAttemptRouter = createTRPCRouter({
 
       attempts.forEach((a) => {
         // Round timestamp to nearest fith and extract HH:mm
-        const rounded = roundToNthMinute(a.createdAt, 2.5);
-        const timestamp = format(rounded, "HH:mm");
+        const rounded = roundToNthMinute(a.createdAt, GRAPH_INTERVAL);
+        const timestamp = formatISO(rounded);
 
         const points = taskToPoints.get(a.taskId) || 0;
 
@@ -242,7 +244,26 @@ export const taskAttemptRouter = createTRPCRouter({
         }
       });
 
-      return sortAndAggretatePoints(respondentsAtTime, pointsAtTime);
+      const sortedAndAggregated = sortAndAggretatePoints(
+        respondentsAtTime,
+        pointsAtTime
+      );
+
+      const first = sortedAndAggregated[0];
+
+      if (first) {
+        const newFirst = subMinutes(new Date(first.timestamp), GRAPH_INTERVAL);
+        sortedAndAggregated.unshift({
+          group_sum: 0,
+          user_sum: 0,
+          timestamp: newFirst.toISOString(),
+        });
+      }
+
+      return sortedAndAggregated.map((s) => ({
+        ...s,
+        timestamp: format(new Date(s.timestamp), "HH:mm"),
+      }));
     } catch (error) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
