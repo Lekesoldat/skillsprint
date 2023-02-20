@@ -39,7 +39,9 @@ export const TopNav = () => {
         <div className="flex flex-grow items-center justify-end md:flex-grow-0">
           <span className="flex min-w-[150px] justify-between border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
             <div>{user ? <>🎉 {user.points} p</> : "🎉 0 p"}</div>
-            <div>🔥 {user ? user.streak : 0}</div>
+            <div className="ml-2 border-l-2 border-brand-black pl-2">
+              {user ? user.streak : 0} 🚀
+            </div>
           </span>
         </div>
       </div>
