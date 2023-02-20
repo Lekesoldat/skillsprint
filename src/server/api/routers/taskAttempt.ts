@@ -50,35 +50,34 @@ export const taskAttemptRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const task = await ctx.prisma.task.findUnique({
-        where: {
-          id: input.taskId,
-        },
-      });
+      const userId = ctx.session.user.id;
+      const [task, recentAttempt, user] = await Promise.all([
+        ctx.prisma.task.findUnique({
+          where: {
+            id: input.taskId,
+          },
+        }),
+        ctx.prisma.taskAttempt.findFirst({
+          where: {
+            userId,
+            taskId: input.taskId,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+          take: 1,
+        }),
+        ctx.prisma.user.findUnique({
+          where: {
+            id: userId,
+          },
+        }),
+      ]);
 
-      if (!task) {
+      if (!task || !recentAttempt) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "Invalid Task",
-        });
-      }
-
-      const userId = ctx.session.user.id;
-      const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
-        where: {
-          userId,
-          taskId: task.id,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-        take: 1,
-      });
-
-      if (!recentAttempt) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "User had not started an attempt",
         });
       }
 
@@ -102,11 +101,6 @@ export const taskAttemptRouter = createTRPCRouter({
         return { ...recentAttempt, result: result };
       }
 
-      const user = await ctx.prisma.user.findUnique({
-        where: {
-          id: userId,
-        },
-      });
       if (result === "SUCCESS") {
         await ctx.prisma.user.update({
           where: {
@@ -120,7 +114,9 @@ export const taskAttemptRouter = createTRPCRouter({
               increment: 1,
             },
             bestStreak:
-              user?.streak === user?.bestStreak ? { increment: 1 } : undefined,
+              user && user.streak === user.bestStreak
+                ? { increment: 1 }
+                : undefined,
           },
         });
       } else if (result === "FAIL") {
