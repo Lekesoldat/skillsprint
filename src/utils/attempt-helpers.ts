@@ -1,5 +1,5 @@
-export const roundToFifthMinute = (date: Date) => {
-  const coeff = 1000 * 60 * 5;
+export const roundToNthMinute = (date: Date, n = 5) => {
+  const coeff = 1000 * 60 * n;
 
   return new Date(Math.ceil(date.getTime() / coeff) * coeff);
 };

@@ -3,7 +3,7 @@ import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format } from "date-fns";
 import { z } from "zod";
 import {
-  roundToFifthMinute,
+  roundToNthMinute,
   sortAndAggretatePoints,
 } from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
@@ -172,7 +172,7 @@ export const taskAttemptRouter = createTRPCRouter({
 
       attempts.forEach((a) => {
         // Round timestamp to nearest fith and extract HH:mm
-        const rounded = roundToFifthMinute(a.createdAt);
+        const rounded = roundToNthMinute(a.createdAt, 2.5);
         const timestamp = format(rounded, "HH:mm");
 
         const points = taskToPoints.get(a.taskId) || 0;
