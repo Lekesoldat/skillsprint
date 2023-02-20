@@ -7,13 +7,13 @@ import {
   Tooltip,
 } from "recharts";
 import { api } from "../../utils/api";
-import { Loader } from "../ui/Loader";
+import { Spinner } from "../ui/loaders/Spinner";
 
 export const AttemptPie = () => {
   const { data, error } = api.taskAttempt.getUserAttempts.useQuery();
 
   if (error) return <div>Klarte ikke laste inn forsøk.</div>;
-  if (!data) return <Loader />;
+  if (!data) return <Spinner />;
 
   return (
     <ResponsiveContainer width="100%" height="100%">

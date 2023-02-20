@@ -6,6 +6,7 @@ import {
 import { format } from "date-fns";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
+import { Skeleton } from "../ui/loaders/Skeleton";
 import { TaskTableHeader } from "./TaskTableHeader";
 import { TaskTableRow } from "./TaskTableRow";
 
@@ -39,8 +40,14 @@ export const TaskTable = () => {
   const { data } = api.task.getLastSolvedTasks.useQuery();
 
   const table = useReactTable({
-    data: data ?? [],
-    columns,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    data: data ?? Array(5).fill({}),
+    columns: !data
+      ? columns.map((column) => ({
+          ...column,
+          cell: () => <Skeleton />,
+        }))
+      : columns,
     getCoreRowModel: getCoreRowModel(),
   });
 

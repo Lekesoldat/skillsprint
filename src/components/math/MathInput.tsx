@@ -17,6 +17,7 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
     if (ref.current) {
       ref.current.onchange = field.onChange;
       ref.current.onblur = field.onBlur;
+      ref.current.virtualKeyboardTheme = "apple";
     }
   }, [field]);
 

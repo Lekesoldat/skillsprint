@@ -13,7 +13,7 @@ export const TaskCard: FC<TaskCardProps> = ({ title, points, solved }) => {
     <div className={taskCardStyle({ solved })}>
       <div>{title}</div>
 
-      {solved ? <p>🎉</p> : <p>{points}p</p>}
+      {solved ? <p>+{points}p </p> : <p>{points}p</p>}
     </div>
   );
 };
@@ -35,7 +35,7 @@ const taskCardStyle = cva(
   {
     variants: {
       solved: {
-        true: ["shadow-4-right-border-green"],
+        true: ["shadow-4-right-border-green text-brand-green"],
         false: ["shadow-4-right-border-pink"],
       },
     },
