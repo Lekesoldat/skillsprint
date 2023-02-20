@@ -4,7 +4,7 @@ import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
 import {
   roundToNthMinute,
-  sortAndAggretatePoints
+  sortAndAggretatePoints,
 } from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
