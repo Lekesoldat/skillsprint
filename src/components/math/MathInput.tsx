@@ -25,7 +25,7 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
       name={field.name}
       sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
       fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
-      virtual-keyboard-mode="manual"
+      virtual-keyboard-mode="onfocus"
       class="min-w-[300px] rounded-md border border-black bg-white py-2 px-4 text-xl shadow-2-hard"
       ref={ref}
     >
