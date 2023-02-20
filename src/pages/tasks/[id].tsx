@@ -32,6 +32,7 @@ export default function TaskPage({
   const { data: attempt, isLoading } = api.taskAttempt.startAttempt.useQuery(
     task.id
   );
+
   const { mutate, isLoading: isAnswering } =
     api.taskAttempt.attemptAnswer.useMutation({
       onSettled: (data) => {
@@ -81,10 +82,11 @@ export default function TaskPage({
                   : false && !isAnswering
               }
             >
-              <Button type="submit" loading={isLoading}>
+              <Button type="submit" loading={isLoading || isAnswering}>
                 Sjekk svar
               </Button>
             </TaskCompletionPopover>
+
             {attempt?.result === "SUCCESS" && (
               <div>
                 <p className="mb-4 font-medium text-brand-green">
