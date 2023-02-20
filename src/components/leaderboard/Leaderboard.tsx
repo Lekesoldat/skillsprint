@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-table";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
-import { Skeleton } from "../ui/SkeletonLoader";
+import { Skeleton } from "../ui/loaders/Skeleton";
 import { AvatarCell } from "./AvatarCell";
 import { LeaderboardHeader } from "./LeaderboardHeader";
 import { LeaderboardRow } from "./LeaderboardRow";

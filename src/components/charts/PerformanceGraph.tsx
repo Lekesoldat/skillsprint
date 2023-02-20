@@ -8,7 +8,7 @@ import {
   YAxis,
 } from "recharts";
 import { api } from "../../utils/api";
-import { Skeleton } from "../ui/SkeletonLoader";
+import { Skeleton } from "../ui/loaders/Skeleton";
 
 export const PerformanceGraph = () => {
   const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();

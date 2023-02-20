@@ -6,7 +6,7 @@ import {
 import { format } from "date-fns";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
-import { Skeleton } from "../ui/SkeletonLoader";
+import { Skeleton } from "../ui/loaders/Skeleton";
 import { TaskTableHeader } from "./TaskTableHeader";
 import { TaskTableRow } from "./TaskTableRow";
 

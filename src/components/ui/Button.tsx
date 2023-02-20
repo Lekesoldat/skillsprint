@@ -2,7 +2,7 @@ import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import React from "react";
 import { cn } from "../../utils/classnames";
-import { Loader } from "./Loader";
+import { Spinner } from "./loaders/Spinner";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -19,7 +19,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={!!loading || props.disabled}
         {...props}
       >
-        {loading ? <Loader /> : props.children}
+        {loading ? <Spinner /> : props.children}
       </button>
     );
   }
