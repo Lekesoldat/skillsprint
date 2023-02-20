@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import React from "react";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
 import { Skeleton } from "../ui/loaders/Skeleton";
@@ -38,17 +39,23 @@ const columns = [
 ];
 
 export function Leaderboard() {
-  const { data } = api.user.getTopFive.useQuery();
+  const { data, isLoading } = api.user.getTopFive.useQuery();
+
+  const columnsMemo = React.useMemo(
+    () =>
+      isLoading
+        ? columns.map((column) => ({
+            ...column,
+            cell: () => <Skeleton />,
+          }))
+        : columns,
+    [isLoading]
+  );
 
   const table = useReactTable({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    data: data ?? Array(5).fill({}),
-    columns: !data
-      ? columns.map((column) => ({
-          ...column,
-          cell: () => <Skeleton />,
-        }))
-      : columns,
+    data: data || Array(5).fill({}),
+    columns: columnsMemo,
     getCoreRowModel: getCoreRowModel(),
   });
 

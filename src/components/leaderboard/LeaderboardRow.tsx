@@ -18,7 +18,7 @@ export const LeaderboardRow: FC<TableRowProps> = ({ row }) => {
         <td
           key={cell.id}
           className={rowStyle({
-            onLeaderboard: row.original.id === data?.user?.id,
+            onLeaderboard: data && row.original.id === data.user?.id,
           })}
         >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
