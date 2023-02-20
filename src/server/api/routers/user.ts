@@ -26,10 +26,14 @@ export const userRouter = createTRPCRouter({
         best_streak
       FROM "User"
       ORDER BY points DESC, best_streak DESC
-      LIMIT 5
+      -- LIMIT 5
     `;
 
-      return RankedUserSchema.parse(res);
+      const data = RankedUserSchema.parse(res);
+
+      const index = data.findIndex((u) => u.id === ctx.session.user.id);
+
+      return { rows: data.slice(0, 5), placement: index + 1 };
     } catch (error) {
       throw new TRPCError({
         code: "BAD_REQUEST",

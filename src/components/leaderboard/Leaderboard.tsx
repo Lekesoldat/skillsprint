@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useSession } from "next-auth/react";
 import React from "react";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
@@ -11,7 +12,7 @@ import { AvatarCell } from "./AvatarCell";
 import { LeaderboardHeader } from "./LeaderboardHeader";
 import { LeaderboardRow } from "./LeaderboardRow";
 
-export type RankedUser = RouterOutputs["user"]["getTopFive"][number];
+export type RankedUser = RouterOutputs["user"]["getTopFive"]["rows"][number];
 
 const columnHelper = createColumnHelper<RankedUser>();
 
@@ -54,25 +55,34 @@ export function Leaderboard() {
 
   const table = useReactTable({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    data: data || Array(5).fill({}),
+    data: data ? data.rows : Array(5).fill({}),
     columns: columnsMemo,
     getCoreRowModel: getCoreRowModel(),
   });
 
   return (
-    <div className="h-fit w-[850px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right">
-      <table className="w-full table-auto divide-y divide-gray-300">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <LeaderboardHeader key={headerGroup.id} headerGroup={headerGroup} />
-          ))}
-        </thead>
-        <tbody className="divide-y divide-gray-200">
-          {table.getRowModel().rows.map((row) => (
-            <LeaderboardRow key={row.id} row={row} />
-          ))}
-        </tbody>
-      </table>
+    <div className="flex flex-col items-center">
+      <div className="h-fit w-[850px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right">
+        <table className="w-full table-auto divide-y divide-gray-300">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <LeaderboardHeader
+                key={headerGroup.id}
+                headerGroup={headerGroup}
+              />
+            ))}
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {table.getRowModel().rows.map((row) => (
+              <LeaderboardRow key={row.id} row={row} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {data && data.placement > 5 && (
+        <div className="mt-10">Din plassering er {data?.placement}. plass!</div>
+      )}
     </div>
   );
 }
