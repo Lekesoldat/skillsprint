@@ -28,7 +28,7 @@ export const PerformanceGraph = () => {
           type="monotone"
           dataKey="group_sum"
           stroke="#FDA16E"
-          name="Klassen"
+          name="Snitt i klassen"
         />
       </LineChart>
     </ResponsiveContainer>
