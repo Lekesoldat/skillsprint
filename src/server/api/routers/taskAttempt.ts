@@ -4,7 +4,7 @@ import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
 import {
   roundToNthMinute,
-  sortAndAggretatePoints
+  sortAndAggretatePoints,
 } from "../../../utils/attempt-helpers";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
@@ -167,7 +167,7 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
-    const GRAPH_INTERVAL = 5;
+    const GRAPH_INTERVAL = 1;
 
     try {
       const [tasks, attempts] = await ctx.prisma.$transaction([
