@@ -62,6 +62,7 @@ export const taskAttemptRouter = createTRPCRouter({
           message: "Invalid Task",
         });
       }
+
       const userId = ctx.session.user.id;
       const recentAttempt = await ctx.prisma.taskAttempt.findFirst({
         where: {
