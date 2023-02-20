@@ -15,7 +15,7 @@ export const FooterContent = () => {
       {/* <div className="flex flex-1 justify-center">
         Anh-Kha & Magnus&apos; masteroppgave @ NTNU
       </div> */}
-      <div>{format(new Date(), "eeee Mo MMMM", { locale: nb })}</div>
+      <div>{format(new Date(), "eeee do MMMM", { locale: nb })}</div>
     </div>
   );
 };
