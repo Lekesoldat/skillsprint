@@ -58,7 +58,7 @@ export const Layout: FC<LayoutProps> = ({
         </motion.main>
       </AnimatePresence>
 
-      <footer className="mx-auto mb-0 w-full bg-[#29314D] py-4">
+      <footer className="mx-auto mb-0 w-full bg-[#29314D] pb-8 pt-6 lg:py-4">
         <FooterContent />
       </footer>
     </div>
