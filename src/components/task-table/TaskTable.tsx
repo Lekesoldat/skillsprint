@@ -39,8 +39,14 @@ export const TaskTable = () => {
   const { data } = api.task.getLastSolvedTasks.useQuery();
 
   const table = useReactTable({
-    data: data ?? [],
-    columns,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    data: data ?? Array(5).fill({}),
+    columns: !data
+      ? columns.map((column) => ({
+          ...column,
+          cell: () => <Skeleton />,
+        }))
+      : columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -58,6 +64,18 @@ export const TaskTable = () => {
           ))}
         </tbody>
       </table>
+    </div>
+  );
+};
+
+const Skeleton = () => {
+  return (
+    <div
+      role="status"
+      className="w-full animate-pulse space-y-8 md:flex md:items-center md:space-y-0 md:space-x-8"
+    >
+      <div className="h-2.5 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+      <span className="sr-only">Loading...</span>
     </div>
   );
 };
