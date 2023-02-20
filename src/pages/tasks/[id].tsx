@@ -42,7 +42,7 @@ export default function TaskPage({
           void utils.taskAttempt.startAttempt.setData(task.id, data);
           console.log({ attempt });
         }
-        if (res === "SUCCESS") {
+        if (res != "PENDING") {
           void utils.auth.me.invalidate();
         }
       },
