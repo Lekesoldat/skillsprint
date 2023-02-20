@@ -51,7 +51,7 @@ export const taskAttemptRouter = createTRPCRouter({
     )
     .mutation(async ({ input, ctx }) => {
       const userId = ctx.session.user.id;
-      const [task, recentAttempt, user] = await Promise.all([
+      const [task, recentAttempt, user] = await ctx.prisma.$transaction([
         ctx.prisma.task.findUnique({
           where: {
             id: input.taskId,
