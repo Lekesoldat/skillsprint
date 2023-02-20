@@ -167,7 +167,7 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
-    const GRAPH_INTERVAL = 1;
+    const GRAPH_INTERVAL = 5;
 
     try {
       const [tasks, attempts] = await ctx.prisma.$transaction([
