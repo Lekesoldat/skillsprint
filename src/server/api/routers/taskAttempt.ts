@@ -100,7 +100,14 @@ export const taskAttemptRouter = createTRPCRouter({
 
       if (alreadyAnswered) {
         return { ...recentAttempt, result: result };
-      } else if (result === "SUCCESS") {
+      }
+
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+      if (result === "SUCCESS") {
         await ctx.prisma.user.update({
           where: {
             id: userId,
@@ -109,6 +116,20 @@ export const taskAttemptRouter = createTRPCRouter({
             points: {
               increment: task.points,
             },
+            streak: {
+              increment: 1,
+            },
+            bestStreak:
+              user?.streak === user?.bestStreak ? { increment: 1 } : undefined,
+          },
+        });
+      } else if (result === "FAIL") {
+        await ctx.prisma.user.update({
+          where: {
+            id: userId,
+          },
+          data: {
+            streak: 0,
           },
         });
       }

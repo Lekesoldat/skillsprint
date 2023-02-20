@@ -70,6 +70,7 @@ export const authRouter = createTRPCRouter({
         id: true,
         points: true,
         name: true,
+        streak: true,
         bestStreak: true,
         email: true,
         image: true,
