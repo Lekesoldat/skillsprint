@@ -1,10 +1,11 @@
-import type { PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { Space_Grotesk } from "@next/font/google";
 import { FooterContent } from "./FooterContent";
 import { TopNav } from "./TopNav";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
+import Head from "next/head";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--space-grotesk",
@@ -17,16 +18,28 @@ const variants = {
   exit: { opacity: 0, x: 0, y: -20 },
 };
 
-export function Layout(props: PropsWithChildren) {
+interface LayoutProps extends PropsWithChildren {
+  title?: string;
+}
+
+export const Layout: FC<LayoutProps> = ({
+  children,
+  title = "Fragile Flower",
+}) => {
   const router = useRouter();
   return (
     <div
       className={
-        "flex h-full min-h-screen w-full flex-col justify-between bg-background font-space-grotesk" +
+        "min-h-screen-safe flex h-full w-full flex-col justify-between bg-background font-space-grotesk" +
         ` ${spaceGrotesk.variable}`
       }
     >
+      <Head>
+        <title>{title}</title>
+      </Head>
+
       <TopNav />
+
       <AnimatePresence
         mode="wait"
         initial={false}
@@ -39,14 +52,15 @@ export function Layout(props: PropsWithChildren) {
           animate="enter" // Animated state to variants.enter
           exit="exit" // Exit state (used later) to variants.exit
           transition={{ type: "linear" }} // Set the transition to linear
-          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-6"
+          className="mx-auto flex w-full max-w-screen-lg flex-grow py-10 px-20 lg:px-6"
         >
-          {props.children}
+          {children}
         </motion.main>
       </AnimatePresence>
-      <footer className="mx-auto mb-0 w-full bg-[#29314D] py-4">
+
+      <footer className="mx-auto mb-0 w-full bg-[#29314D] pb-8 pt-6 lg:py-4">
         <FooterContent />
       </footer>
     </div>
   );
-}
+};
