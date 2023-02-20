@@ -30,7 +30,7 @@ export const Layout: FC<LayoutProps> = ({
   return (
     <div
       className={
-        "min-h-screen-safe flex h-full w-full flex-col justify-between bg-background font-space-grotesk" +
+        "min-h-screen-safe flex h-full w-full flex-col justify-between font-space-grotesk" +
         ` ${spaceGrotesk.variable}`
       }
     >
