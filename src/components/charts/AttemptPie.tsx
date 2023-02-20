@@ -9,17 +9,17 @@ import {
 import { api } from "../../utils/api";
 import { Loader } from "../ui/Loader";
 
-export const CategoryPie = () => {
+export const AttemptPie = () => {
   const { data, error } = api.taskAttempt.getUserAttempts.useQuery();
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div>Klarte ikke laste inn forsøk.</div>;
   if (!data) return <Loader />;
 
   return (
-    <ResponsiveContainer width={"35%"} aspect={4 / 3}>
+    <ResponsiveContainer width="100%" height="100%">
       <PieChart>
-        <Legend iconType="circle" verticalAlign="top" />
-        <Pie data={data} dataKey={"count"} innerRadius={80}>
+        <Legend iconType="circle" />
+        <Pie data={data} dataKey={"count"} innerRadius="50%">
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
