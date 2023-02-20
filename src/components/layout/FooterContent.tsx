@@ -11,7 +11,7 @@ export const FooterContent = () => {
 
   return (
     <div className="flex w-full items-center justify-between px-8 text-brand-white">
-      <div>👋, {sessionData?.user?.name}</div>
+      {sessionData?.user?.name && <div>👋, {sessionData?.user?.name}</div>}
       {/* <div className="flex flex-1 justify-center">
         Anh-Kha & Magnus&apos; masteroppgave @ NTNU
       </div> */}
