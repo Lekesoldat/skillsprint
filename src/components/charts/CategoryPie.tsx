@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from "recharts";
 import { api } from "../../utils/api";
-import { Loader } from "../ui/Loader";
+import { Spinner } from "../ui/loaders/Spinner";
 
 const COLORS = [
   "#22CA94",
@@ -25,7 +25,7 @@ export const CategoryPie = () => {
   const { data, error } = api.taskAttempt.getCategoriesOfSuccesses.useQuery();
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <Loader />;
+  if (!data) return <Spinner />;
 
   return (
     <ResponsiveContainer width="100%" height="100%">

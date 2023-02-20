@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-table";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
+import { Skeleton } from "../ui/loaders/Skeleton";
 import { AvatarCell } from "./AvatarCell";
 import { LeaderboardHeader } from "./LeaderboardHeader";
 import { LeaderboardRow } from "./LeaderboardRow";
@@ -40,8 +41,14 @@ export function Leaderboard() {
   const { data } = api.user.getTopFive.useQuery();
 
   const table = useReactTable({
-    data: data ?? [],
-    columns,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    data: data ?? Array(5).fill({}),
+    columns: !data
+      ? columns.map((column) => ({
+          ...column,
+          cell: () => <Skeleton />,
+        }))
+      : columns,
     getCoreRowModel: getCoreRowModel(),
   });
 

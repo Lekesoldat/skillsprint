@@ -8,13 +8,13 @@ import {
   YAxis,
 } from "recharts";
 import { api } from "../../utils/api";
-import { Loader } from "../ui/Loader";
+import { Skeleton } from "../ui/loaders/Skeleton";
 
 export const PerformanceGraph = () => {
   const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
 
-  if (error) return <>Error..</>;
-  if (!data) return <Loader />;
+  if (error) return <>Noe gikk galt med progresjonsgrafen...</>;
+  if (!data) return <Skeleton count={5} />;
 
   return (
     <ResponsiveContainer width="100%" aspect={3}>

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { TaskCard } from "../../components/TaskCard";
-import { Loader } from "../../components/ui/Loader";
+import { Skeleton } from "../../components/ui/loaders/Skeleton";
 import { api } from "../../utils/api";
 
 export default function Page() {
   const { data, isError } = api.category.getCategoriesAndTasks.useQuery();
-  if (isError) return <>Error bruvv...</>;
 
-  if (!data) return <Loader />;
+  if (isError) return <>Noe gikkk galt ved henting av oppgaver..</>;
+
+  if (!data) return <LoadingComponent />;
 
   return (
     // Grid
@@ -36,3 +37,16 @@ export default function Page() {
     </div>
   );
 }
+
+const LoadingComponent = () => {
+  const data = Array(6).fill(0);
+
+  return (
+    // Grid
+    <div className="grid w-full grid-cols-2 lg:grid-cols-3">
+      {data.map((_, index) => (
+        <Skeleton key={`skeleton-${index}`} count={10} />
+      ))}
+    </div>
+  );
+};
