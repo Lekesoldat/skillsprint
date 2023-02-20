@@ -13,7 +13,7 @@ export async function createTasks({
     {
       id: "cle79684v000708mlbqti5tbn",
       title: "Oppgave 1a",
-      description: "Hva er math(2+2)?",
+      description: "Hva er math$2+2&?",
       category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
       points: 50,
       answer: "4",
@@ -48,7 +48,7 @@ export async function createTasks({
     {
       id: "cle798ake000b08ml2v6g351s",
       title: "Oppgave 1e",
-      description: "Hva er math(2+2*2)?",
+      description: "Hva er math$2+2*2&?",
       category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
       points: 125,
       answer: "6",
@@ -60,7 +60,7 @@ export async function createTasks({
       id: "cldiog5kk000008l29k73fx8g",
       title: "Oppgave 1a",
       description:
-        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Hva er formelen for grunnlinjen i denne trekanten?",
+        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math$A=\\frac{gh}{2}&. Hva er formelen for grunnlinjen i denne trekanten?",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 50,
       answer: "g=\\frac{2A}{h}",
@@ -69,7 +69,7 @@ export async function createTasks({
       id: "cldioiaq9000f08l27ek850k3",
       title: "Oppgave 1b",
       description:
-        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math(A=\\frac{gh}{2}). Bruk formelen og regn ut lengden til grunnlinjen.",
+        "En liten seilbåt har et trekantet seil med et areal på 9 m². Høyden på seilet er 6 meter. Formelen for arealet til en trekant er math$A=\\frac{gh}{2}&. Bruk formelen og regn ut lengden til grunnlinjen.",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 75,
       answer: "3",
@@ -79,7 +79,7 @@ export async function createTasks({
       id: "cldudjgkh000008ig5tnn2ixf",
       title: "Oppgave 2a",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(5a+20b+10c)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$5a+20b+10c&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 25,
       answer: "5(a+4b+2c)",
@@ -88,7 +88,7 @@ export async function createTasks({
       id: "cldudoi2p000208igdu8ebtud",
       title: "Oppgave 2b",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(2a^2 b-2ab)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$2a^2 b-2ab&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 50,
       answer: "2ab(a-1)",
@@ -98,7 +98,7 @@ export async function createTasks({
       id: "cldudqbi5000308ig86l16ppf",
       title: "Oppgave 2c",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(2b^3 + 10b^2 - 4b)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$2b^3 + 10b^2 - 4b&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 75,
       answer: "2b(b^2 + 5b - 2)",
@@ -108,7 +108,7 @@ export async function createTasks({
       id: "cldudr1a2000408ig1qzaa7pm",
       title: "Oppgave 2d",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(5x^3 y^2-10x^2 y+xy^2)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$5x^3 y^2-10x^2 y+xy^2&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 100,
       answer: "xy(5x^2 y-10x+y)",
@@ -118,7 +118,7 @@ export async function createTasks({
       id: "cldudrdaz000508ig6393dei9",
       title: "Oppgave 2e",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(9x^3 y^2 + 27x^2 y^3)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$9x^3 y^2 + 27x^2 y^3&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 100,
       answer: "9x^2 y^2 (x + 3y)",
@@ -128,7 +128,7 @@ export async function createTasks({
       id: "cldudrj6k000608igclru197t",
       title: "Oppgave 2f",
       description:
-        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math(4xy^2 z+8x^2 yz + 16xyz^2)",
+        "Anvend kunnskapen din om faktorisering når du faktoriserer uttrykkene. math$4xy^2 z+8x^2 yz + 16xyz^2&",
       category: { connect: { id: "cldacdi520000sbxe8eyqu26y" } },
       points: 125,
       answer: "4xyz(y+2x+4z)",
@@ -180,7 +180,7 @@ export async function createTasks({
       id: "cldx88udv000008l49cllfn9h",
       title: "Oppgave 1a",
       description:
-        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2=121)",
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2=121&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 50,
       answer: "x=11,x=-11",
@@ -189,7 +189,7 @@ export async function createTasks({
       id: "cldx891wg000108l4hv703vl7",
       title: "Oppgave 1b",
       description:
-        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2+23=72)",
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2+23=72&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 75,
       answer: "x=7,x=-7",
@@ -199,7 +199,7 @@ export async function createTasks({
       id: "cldx899n7000208l489j16ufq",
       title: "Oppgave 1c",
       description:
-        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(x^2-16=9)",
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2-16=9&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 90,
       answer: "x=5,x=-5",
@@ -209,7 +209,7 @@ export async function createTasks({
       id: "cldx89jld000308l4bautag2d",
       title: "Oppgave 1d",
       description:
-        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math(x^2). Løs likningene ved regning: math(2x^2=128)",
+        "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$2x^2=128&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 100,
       answer: "x=8,x=-8",

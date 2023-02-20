@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
-import { TaskDescription } from "../../components/math/MathDisplay";
+import { MathDisplay } from "../../components/math/MathDisplay";
 import { MathInput } from "../../components/math/MathInput";
 import { TaskCompletionPopover } from "../../components/TaskCompletionPopover";
 import { Badge } from "../../components/ui/Badge";
@@ -40,15 +40,12 @@ export default function TaskPage({
         setSubmitted(true);
         if (data) {
           void utils.taskAttempt.startAttempt.setData(task.id, data);
-          console.log({ attempt });
         }
         if (res != "PENDING") {
           void utils.auth.me.invalidate();
         }
       },
     });
-
-  console.log(attempt);
 
   return (
     <div className="w-full">
@@ -59,7 +56,7 @@ export default function TaskPage({
           </div>
           <Badge text={task.category.name} />
           <div className="max-w-[75ch] rounded-md bg-white p-4">
-            <TaskDescription description={task.description} />
+            <MathDisplay description={task.description} />
           </div>
           <form
             className="grid gap-6"
@@ -70,44 +67,53 @@ export default function TaskPage({
               });
             })}
           >
-            <MathInput control={control} name="answer" />
+            {attempt?.result === "SUCCESS" ? (
+              <div className="flex w-full justify-center">
+                <div className="rounded-lg border-2 bg-brand-white p-4">
+                  <MathDisplay description={`math$${task.answer}&`} />
+                </div>
+              </div>
+            ) : (
+              <MathInput control={control} name="answer" />
+            )}
 
             <TaskCompletionPopover
               points={task.points}
               status={attempt?.result || "PENDING"}
-              // show={answered && }
               submitted={
                 submitted && attempt
                   ? attempt.result !== "PENDING"
                   : false && !isAnswering
               }
             >
-              <Button type="submit" loading={isLoading || isAnswering}>
-                Sjekk svar
-              </Button>
+              {/* If task is answered */}
+              {attempt?.result === "SUCCESS" ? (
+                <p className="mb-4 font-medium text-brand-green">
+                  Denne oppgaven er fullført! Svaret ser du over.
+                </p>
+              ) : (
+                <Button type="submit" loading={isLoading || isAnswering}>
+                  Sjekk svar
+                </Button>
+              )}
             </TaskCompletionPopover>
 
             {attempt?.result === "SUCCESS" && (
-              <div>
-                <p className="mb-4 font-medium text-brand-green">
-                  Denne oppgaven er fullført!
-                </p>
-                <div className="flex justify-between">
-                  {task.prevTask?.id ? (
-                    <Link href={`/tasks/${task.prevTask.id}`}>
-                      <Button size="xs">Gå tilbake</Button>
-                    </Link>
-                  ) : (
-                    <div />
-                  )}
-                  {task.nextTaskId ? (
-                    <Link href={`/tasks/${task.nextTaskId}`}>
-                      <Button size="xs">Gå videre</Button>
-                    </Link>
-                  ) : (
-                    <div />
-                  )}
-                </div>
+              <div className="flex justify-between">
+                {task.prevTask?.id ? (
+                  <Link href={`/tasks/${task.prevTask.id}`}>
+                    <Button size="xs">Gå tilbake</Button>
+                  </Link>
+                ) : (
+                  <div />
+                )}
+                {task.nextTaskId ? (
+                  <Link href={`/tasks/${task.nextTaskId}`}>
+                    <Button size="xs">Gå videre</Button>
+                  </Link>
+                ) : (
+                  <div />
+                )}
               </div>
             )}
           </form>
