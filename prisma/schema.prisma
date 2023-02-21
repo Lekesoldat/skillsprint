@@ -42,6 +42,7 @@ model Task {
     category    Category      @relation(fields: [categoryId], references: [id])
     categoryId  String        @map("category_id")
     answer      String
+    image       String?
     TaskAttempt TaskAttempt[]
     nextTaskId  String?       @unique @map("next_task_id")
     nextTask    Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
