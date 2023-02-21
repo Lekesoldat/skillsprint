@@ -4,6 +4,7 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
@@ -54,14 +55,24 @@ export default function TaskPage({
     });
 
   return (
-    <div className="mt-8 w-full">
+    <div className="mb-[200px] mt-8 w-full lg:mb-0">
       <div className="bg-[url('/grid.svg')]">
-        <div className="mt-10 flex flex-col items-center justify-center gap-12 rounded-md border-2 border-brand-blue bg-gradient-radial from-[rgba(217,217,217,0.12)] to-white bg-cover px-10 py-10 shadow-4-right shadow-brand-blue lg:px-0">
-          <div className="text-6xl font-bold text-brand-green">
+        <div className="mt-0 flex flex-col items-center justify-center gap-4 rounded-md border-2 border-brand-purple bg-gradient-radial from-[rgba(217,217,217,0.12)] to-white bg-cover px-10 py-10 shadow-4-right shadow-brand-purple lg:mt-10 lg:gap-8 lg:px-0">
+          <div className="text-4xl font-bold text-brand-green lg:text-5xl">
             {task.title}
           </div>
           <Badge text={task.category.name} />
-          <div className="max-w-[75ch] rounded-md bg-white p-4">
+          <div className="flex max-w-[75ch] flex-col items-center rounded-md bg-white p-4">
+            {task.image && (
+              <div className="relative mb-4 h-[350px] w-[350px] lg:h-[450px] lg:w-[450px]">
+                <Image
+                  src={task.image}
+                  alt={task.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            )}
             <MathDisplay description={task.description} />
           </div>
           <form
