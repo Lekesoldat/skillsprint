@@ -38,7 +38,7 @@ export async function createInverseProportionalFunctionTasks({
       prevTask: { connect: { id: "cleecr4gm000108kx9d636p65" } },
     },
     {
-      id: "",
+      id: "cleefr8xh000008lc9mjj8p1c",
       title: "Oppgave 1d",
       description:
         "En hytteeier må bære 200 terassebord fra parkeringsplassen til hytta. Vis at funksjonen tilfredsstiller kravet til omvendt proporsjonale funksjoner. Godkjenn svar hos lærer.",
