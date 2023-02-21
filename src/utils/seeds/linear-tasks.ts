@@ -1,7 +1,7 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
 
 const PROPERTIES_1_1_URL =
-  "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/linear-functions/properties/2-1.svg";
+  "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/linear-functions/properties/1-1.svg";
 
 const PROPERTIES_2_1_URL =
   "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/linear-functions/properties/2-1.svg";
