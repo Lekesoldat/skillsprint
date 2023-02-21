@@ -5,14 +5,13 @@ import type {
   InferGetStaticPropsType,
 } from "next";
 import Link from "next/link";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
 import { MathDisplay } from "../../components/math/MathDisplay";
 import { MathInput } from "../../components/math/MathInput";
-import { TaskCompletionPopover } from "../../components/TaskCompletionPopover";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
+import { useToast } from "../../hooks/use-toast";
 import { appRouter } from "../../server/api/root";
 import { createInnerTRPCContext } from "../../server/api/trpc";
 import type { RouterOutputs } from "../../utils/api";
@@ -27,7 +26,7 @@ export default function TaskPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { handleSubmit, control } = useForm<FormValues>();
   const utils = api.useContext();
-  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const { data: attempt, isLoading } = api.taskAttempt.startAttempt.useQuery(
     task.id
@@ -37,8 +36,15 @@ export default function TaskPage({
     api.taskAttempt.attemptAnswer.useMutation({
       onSettled: (data) => {
         const res = data?.result || "PENDING";
-        setSubmitted(true);
+
         if (data) {
+          toast({
+            title:
+              data.result === "SUCCESS"
+                ? `Riktig svar! +${task.points} poeng`
+                : "Svaret ditt er feil. Prøv igjen!",
+            variant: data.result === "SUCCESS" ? "success" : "destructive",
+          });
           void utils.taskAttempt.startAttempt.setData(task.id, data);
         }
         if (res != "PENDING") {
@@ -48,7 +54,7 @@ export default function TaskPage({
     });
 
   return (
-    <div className="w-full">
+    <div className="mt-8 w-full">
       <div className="bg-[url('/grid.svg')]">
         <div className="mt-10 flex flex-col items-center justify-center gap-12 rounded-md border-2 border-brand-blue bg-gradient-radial from-[rgba(217,217,217,0.12)] to-white bg-cover px-10 py-10 shadow-4-right shadow-brand-blue lg:px-0">
           <div className="text-6xl font-bold text-brand-green">
@@ -77,26 +83,16 @@ export default function TaskPage({
               <MathInput control={control} name="answer" />
             )}
 
-            <TaskCompletionPopover
-              points={task.points}
-              status={attempt?.result || "PENDING"}
-              submitted={
-                submitted && attempt
-                  ? attempt.result !== "PENDING"
-                  : false && !isAnswering
-              }
-            >
-              {/* If task is answered */}
-              {attempt?.result === "SUCCESS" ? (
-                <p className="mb-4 font-medium text-brand-green">
-                  Denne oppgaven er fullført! Svaret ser du over.
-                </p>
-              ) : (
-                <Button type="submit" loading={isLoading || isAnswering}>
-                  Sjekk svar
-                </Button>
-              )}
-            </TaskCompletionPopover>
+            {/* If task is answered */}
+            {attempt?.result === "SUCCESS" ? (
+              <p className="mb-4 font-medium text-brand-green">
+                Denne oppgaven er fullført! Svaret ser du over.
+              </p>
+            ) : (
+              <Button type="submit" loading={isLoading || isAnswering}>
+                Sjekk svar
+              </Button>
+            )}
 
             {attempt?.result === "SUCCESS" && (
               <div className="flex justify-between">
