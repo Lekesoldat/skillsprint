@@ -12,7 +12,7 @@ export async function createQuadraticTasks({
       id: "cleeb7hsj000008l81muxehco",
       title: "Oppgave 1a",
       description:
-        "Lag en verditabell og tegn grafen math$k(x)=x^2& i et koordinatsystem.",
+        "Lag en verditabell og tegn grafen math$k(x)=x^2& i et koordinatsystem. Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
       answer: "lion-horse",
@@ -32,7 +32,8 @@ export async function createQuadraticTasks({
     {
       id: "cleebrirf000008jt8er15aem",
       title: "Oppgave 2a",
-      description: "Tegn grafen til funksjonen math$h(x)=-x^{2}+2x-2$",
+      description:
+        "Tegn grafen til funksjonen math$h(x)=-x^{2}+2x-2$. Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
       answer: "turtle-chimp",
@@ -76,42 +77,48 @@ export async function createQuadraticTasks({
       prevTask: { connect: { id: "cleebi44d000208jv85hpa9vx" } },
     },
 
-    // Oppgave 3 - https://www.matematika.no/andregradslikninger-grafisk-losning-1-spor-i/
+    // Oppgave 3 - https://www.matematika.no/kvadratiske-funksjoner-2-spor-iv/
     {
-      id: "cleebs9cy000108jt2h90em7p",
+      id: "cleecfgai000008js7ber34v8",
       title: "Oppgave 3a",
-      description: "math$x^2+2x-3=0&. Oppgi på formen math$x=...,x=...&",
+      description:
+        "Lag en verditabell og tegn grafen math$f(x)=2x^2+1& i et koordinatsystem. Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
-      answer: "x=1,x=-3",
+      answer: "rusten-spiker",
       prevTask: { connect: { id: "cleebiad3000308jv9ad98zj8" } },
     },
     {
-      id: "cleebse3x000208jtgg6n1nya",
+      id: "cleecflo5000108js4ivfcv3g",
       title: "Oppgave 3b",
-      description: "math$x^2-2x-8=0&. Oppgi på formen math$x=...,x=...&",
+      description:
+        "Lag en verditabell og tegn grafen math$g(x)=-2x^2+1& i et koordinatsystem. Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
-      answer: "x=4,x=-2",
-      prevTask: { connect: { id: "cleebs9cy000108jt2h90em7p" } },
+      answer: "rusten-spiker-femten",
+      prevTask: { connect: { id: "cleecfgai000008js7ber34v8" } },
     },
     {
-      id: "cleebsiuj000308jt8r82ebx7",
+      id: "cleecfr1s000208js74h45hfc",
       title: "Oppgave 3c",
-      description: "math$x^2+2x-15=0&. Oppgi på formen math$x=...,x=...&",
+      description:
+        "Hva er forskjellen og likheten mellom de to funksjonene math$f(x)& og math$g(x)&? Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
-      answer: "x=3,x=-5",
-      prevTask: { connect: { id: "cleebse3x000208jtgg6n1nya" } },
+      answer: "sliten-and",
+      prevTask: { connect: { id: "cleecflo5000108js4ivfcv3g" } },
     },
+
+    // Oppgave 4 - https://www.matematika.no/kvadratiske-funksjoner-i-praksis-2-spor-iv
     {
-      id: "cleebsojt000408jt7lr31h4m",
-      title: "Oppgave 3d",
-      description: "math$x^2+10x+25=0&. Oppgi på formen math$x=...,x=...&",
+      id: "cleecj177000008l44s817sqf",
+      title: "Oppgave 4",
+      description:
+        "En gruppe forskere øver opp en fotballrobot til å sparke en ball så nøyaktig som mulig. Punktet på bakken ligger 8 meter unna roboten. Forskerne har funnet to funksjoner som beskriver buene til de to forsøkene som traff på riktig sted. Det er de to kvadratiske funksjonene math$k(x)=-0.3x^2+2.4x& og math$l(x)=-\\frac{1}{2}x^2-4x&. Bruk en graftegner og finn minst 3 andre kvadratiske funksjoner som også treffer på riktig sted. Godkjenn svar hos lærer.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
-      points: 100,
-      answer: "x=-5",
-      prevTask: { connect: { id: "cleebsiuj000308jt8r82ebx7" } },
+      points: 150,
+      answer: "vanskelig-oppgave",
+      prevTask: { connect: { id: "cleecfr1s000208js74h45hfc" } },
     },
   ];
 

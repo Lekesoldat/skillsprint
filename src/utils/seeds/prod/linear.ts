@@ -25,7 +25,7 @@ export async function createLinearTasks({
 }) {
   console.info("\n📝 Seeding linear tasks...");
   const data: Prisma.TaskCreateInput[] = [
-    // Oppgave 1 - https://www.matematika.no/egenskaper-til-lineaere-funksjoner-2-spor-i/
+    // Oppgave 1 (LAV) - https://www.matematika.no/egenskaper-til-lineaere-funksjoner-2-spor-i/
     {
       id: "clee2cpn2000008kzevn87azv",
       title: "Oppgave 1a - 1",
@@ -73,18 +73,18 @@ export async function createLinearTasks({
       id: "clee9bdxx000108lf52yo6lfc",
       title: "Oppgave 1b",
       description:
-        "To av grafene er parallelle. Hvordan kommer dette fram i funksjonsuttrykket?",
+        "To av grafene er parallelle. Hvordan kommer dette fram i funksjonsuttrykket? Godkjenn svar hos lærer.",
       image: PROPERTIES_1_1_URL,
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 75,
-      answer: "panda-sjimpanse",
+      answer: "panda-ape",
       prevTask: { connect: { id: "clee4nn30000608mk61de7snf" } },
     },
     {
       id: "clee9bt7g000208lf1tyvcq82",
       title: "Oppgave 1c",
       description:
-        "To av grafene skjærer math$y-aksen& i samme punkt. Hvordan kommer dette fram i funksjonsuttrykket?",
+        "To av grafene skjærer math$y-aksen& i samme punkt. Hvordan kommer dette fram i funksjonsuttrykket? Godkjenn svar hos lærer.",
       image: PROPERTIES_1_1_URL,
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 75,
@@ -92,7 +92,7 @@ export async function createLinearTasks({
       prevTask: { connect: { id: "clee9bdxx000108lf52yo6lfc" } },
     },
 
-    // Oppgave 2 - https://www.matematika.no/egenskaper-til-lineaere-funksjoner-2-spor-ii/
+    // Oppgave 2 (LAV) - https://www.matematika.no/egenskaper-til-lineaere-funksjoner-2-spor-ii/
     {
       id: "clee9f4qw000308lf4r7k1fyz",
       title: "Oppgave 2a - 1",
