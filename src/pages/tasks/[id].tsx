@@ -64,7 +64,7 @@ export default function TaskPage({
           <Badge text={task.category.name} />
           <div className="flex max-w-[75ch] flex-col items-center rounded-md bg-white p-4">
             {task.image && (
-              <div className="relative mb-4 h-[350px] w-[350px] lg:h-[450px] lg:w-[450px]">
+              <div className="relative mb-4 h-[300px] w-[300px] lg:h-[400px] lg:w-[400px]">
                 <Image
                   src={task.image}
                   alt={task.title}
