@@ -3,6 +3,7 @@ import { differenceInSeconds } from "date-fns";
 import { createCategories } from "./categories";
 import { prismaClient } from "./clients";
 import { createDummyTasks } from "./dummy-tasks";
+import { createSchoolProvidedTasks } from "./prod";
 import { createLinearTasks } from "./prod/linear";
 import { createQuadraticTasks } from "./prod/quadratic";
 import { createUsers } from "./users";
@@ -24,9 +25,8 @@ async function prod_init() {
 
   // Tasks
   const startTasks = new Date();
-  await createLinearTasks({ prismaClient });
-  await createQuadraticTasks({ prismaClient });
   // await createDummyTasks({ prismaClient });
+  await createSchoolProvidedTasks({ prismaClient });
   console.log(`Took ${differenceInSeconds(new Date(), startTasks)}s`);
 
   console.info(
