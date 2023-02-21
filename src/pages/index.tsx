@@ -7,16 +7,6 @@ export default function Page() {
   return (
     <div className="flex w-full flex-col justify-center">
       <AuthShowcase />
-      <Button
-        onClick={() => {
-          toast({
-            title: "Riktig svar!",
-            description: "+50 poeng",
-          });
-        }}
-      >
-        Show Toast
-      </Button>
     </div>
   );
 }
