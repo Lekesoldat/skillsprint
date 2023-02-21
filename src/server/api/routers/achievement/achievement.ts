@@ -41,6 +41,7 @@ export const achievementRouter = createTRPCRouter({
           solved.set(category, (solved.get(category) || 0) + 1);
         }
       } else if (attempt.result === "FAIL") {
+        longestStreak = streak;
         streak = 0;
       }
     }

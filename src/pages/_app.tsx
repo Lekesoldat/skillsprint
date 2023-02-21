@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import "../styles/mathlive-fonts.css";
 
 import { api } from "../utils/api";
+import { Toaster } from "../components/ui/Toaster";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -17,6 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <Layout>
         <Component {...pageProps} />
+        <Toaster />
         <Analytics />
       </Layout>
     </SessionProvider>

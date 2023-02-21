@@ -2,7 +2,7 @@ import type { Faker } from "@faker-js/faker";
 import type { Prisma, PrismaClient, Task, User } from "@prisma/client";
 import { taskAttemptCuids } from "./ids";
 
-export async function createTasks({
+export async function createDummyTasks({
   prismaClient,
 }: {
   prismaClient: PrismaClient;
@@ -249,7 +249,7 @@ export async function createTasks({
   );
 }
 
-export async function createTaskAttempts({
+export async function createDummyTaskAttempts({
   tasks,
   users,
   prismaClient,

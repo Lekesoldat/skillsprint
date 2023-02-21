@@ -14,5 +14,9 @@ const config = {
   experimental: {
     swcPlugins: [["next-superjson-plugin", {}]],
   },
+  images: {
+    domains: ["tliacbojiuhirqtqavdn.supabase.co"],
+  },
 };
+
 export default config;

@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { differenceInSeconds } from "date-fns";
 import { createCategories } from "./categories";
 import { prismaClient } from "./clients";
-import { createTaskAttempts, createTasks } from "./tasks";
+import { createDummyTaskAttempts, createDummyTasks } from "./dummy-tasks";
 import { createUsers } from "./users";
 
 async function dev_init() {
@@ -22,12 +22,12 @@ async function dev_init() {
 
   // Tasks
   const startTasks = new Date();
-  const tasks = await createTasks({ prismaClient });
+  const tasks = await createDummyTasks({ prismaClient });
   console.log(`Took ${differenceInSeconds(new Date(), startTasks)}s`);
 
   // Task Attempts
   const startAttempts = new Date();
-  await createTaskAttempts({ tasks, users, prismaClient, faker });
+  await createDummyTaskAttempts({ tasks, users, prismaClient, faker });
   console.log(`Took ${differenceInSeconds(new Date(), startAttempts)}s`);
 
   console.info(
