@@ -69,7 +69,7 @@ export default function TaskPage({
                   src={task.image}
                   alt={task.title}
                   fill
-                  className="object-fill"
+                  className="object-contain"
                 />
               </div>
             )}
