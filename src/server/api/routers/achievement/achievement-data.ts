@@ -9,7 +9,7 @@ type Color =
   | "LIGHTGRAY"
   | "ORANGE";
 
-type Achievement = {
+export type Achievement = {
   title: string;
   icon: string;
   description: string;
@@ -63,6 +63,15 @@ export const achievements: Achievement[] = [
     progress: 0,
     requirement: 1,
     color: "ORANGE",
+    type: "FULL_CATEGORY",
+  },
+  {
+    icon: "🤖",
+    title: "Ferdigstiller",
+    description: "Fullfør alle 5 kategoriene",
+    progress: 0,
+    requirement: 5,
+    color: "RED",
     type: "FULL_CATEGORY",
   },
   {
