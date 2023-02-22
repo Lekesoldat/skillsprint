@@ -1,5 +1,5 @@
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
-import { achievements } from "./achievement-data";
+import { Achievement, achievements } from "./achievement-data";
 
 export const achievementRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -49,37 +49,32 @@ export const achievementRouter = createTRPCRouter({
     for (const achievement of achievements) {
       switch (achievement.type) {
         case "STREAK": {
-          if (
-            achievement.progress < longestStreak &&
-            longestStreak <= achievement.requirement
-          )
-            achievement.progress = longestStreak;
+          updateAndCapProgress(achievement, longestStreak);
           break;
         }
         case "SOLVED": {
           let counter = 0;
           solved.forEach((val) => (counter += val));
-          achievement.progress =
-            counter >= achievement.requirement
-              ? achievement.requirement
-              : counter;
+          updateAndCapProgress(achievement, counter);
           break;
         }
         case "CATEGORIES_ATTEMPED": {
-          if (achievement.progress <= solved.size) {
-            achievement.progress = solved.size;
-          }
+          updateAndCapProgress(achievement, solved.size);
           break;
         }
         case "FULL_CATEGORY": {
+          let solvedFullCategoriesCount = 0;
           for (const [category, solvedCount] of solved.entries()) {
             const availableTaskCount =
               categories.find((cat) => cat.id === category)?.task.length || 0;
-            console.log({ availableTaskCount, solvedCount });
+
+            console.log({ solvedCount, availableTaskCount });
             if (solvedCount >= availableTaskCount) {
-              achievement.progress = achievement.requirement;
+              solvedFullCategoriesCount += 1;
             }
           }
+          updateAndCapProgress(achievement, solvedFullCategoriesCount);
+          break;
         }
       }
     }
@@ -87,3 +82,11 @@ export const achievementRouter = createTRPCRouter({
     return achievements;
   }),
 });
+
+const updateAndCapProgress = (achievement: Achievement, progress: number) => {
+  if (progress >= achievement.requirement) {
+    achievement.progress = achievement.requirement;
+  } else {
+    achievement.progress = progress;
+  }
+};
