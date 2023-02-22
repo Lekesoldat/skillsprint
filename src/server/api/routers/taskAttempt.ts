@@ -1,4 +1,5 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
+import { PrismaClient } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
@@ -30,15 +31,7 @@ export const taskAttemptRouter = createTRPCRouter({
       if (recentAttempt) {
         return recentAttempt;
       } else {
-        return ctx.prisma.taskAttempt.create({
-          data: {
-            result: "PENDING",
-            taskId: input,
-            userId: ctx.session.user.id,
-            elapsedTime: 0,
-            createdAt: new Date(),
-          },
-        });
+        return startNewAttempt(ctx.prisma, input, ctx.session.user.id);
       }
     }),
 
@@ -120,14 +113,18 @@ export const taskAttemptRouter = createTRPCRouter({
           },
         });
       } else if (result === "FAIL") {
-        await ctx.prisma.user.update({
-          where: {
-            id: userId,
-          },
-          data: {
-            streak: 0,
-          },
-        });
+        // Reset streak and create a new attempt
+        await ctx.prisma.$transaction([
+          ctx.prisma.user.update({
+            where: {
+              id: userId,
+            },
+            data: {
+              streak: 0,
+            },
+          }),
+          startNewAttempt(ctx.prisma, input.taskId, userId),
+        ]);
       }
 
       return ctx.prisma.taskAttempt.update({
@@ -291,3 +288,18 @@ export const taskAttemptRouter = createTRPCRouter({
     }
   }),
 });
+
+const startNewAttempt = (
+  prisma: PrismaClient,
+  taskId: string,
+  userId: string
+) =>
+  prisma.taskAttempt.create({
+    data: {
+      result: "PENDING",
+      taskId,
+      userId,
+      elapsedTime: 0,
+      createdAt: new Date(),
+    },
+  });

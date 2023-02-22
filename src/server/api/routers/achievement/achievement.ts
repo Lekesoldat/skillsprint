@@ -31,6 +31,7 @@ export const achievementRouter = createTRPCRouter({
     let streak = 0;
     const solved = new Map<string, number>();
     for (const attempt of attempts) {
+      console.log(attempt.result);
       if (attempt.result === "SUCCESS") {
         streak += 1;
         if (streak > longestStreak) {

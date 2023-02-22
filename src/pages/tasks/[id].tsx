@@ -36,20 +36,27 @@ export default function TaskPage({
   const { mutate, isLoading: isAnswering } =
     api.taskAttempt.attemptAnswer.useMutation({
       onSettled: (data) => {
-        const res = data?.result || "PENDING";
-
-        if (data) {
-          toast({
-            title:
-              data.result === "SUCCESS"
-                ? `Riktig svar! +${task.points} poeng`
-                : "Svaret ditt er feil. Prøv igjen!",
-            variant: data.result === "SUCCESS" ? "success" : "destructive",
-          });
-          void utils.taskAttempt.startAttempt.setData(task.id, data);
+        if (!data || data.result === "PENDING") {
+          return;
         }
-        if (res != "PENDING") {
+        if (data.result === "SUCCESS") {
+          toast({
+            title: `Riktig svar! +${task.points} poeng`,
+            variant: "success",
+          });
           void utils.auth.me.invalidate();
+          void utils.taskAttempt.startAttempt.setData(task.id, data);
+        } else if (data.result === "FAIL") {
+          toast({
+            title: "Svaret ditt er feil. Prøv igjen!",
+            variant: "destructive",
+          });
+          // Start a new attempt on fail if the user has not previously solved it
+          // if (attempt?.result === "SUCCESS") {
+          //   void utils.taskAttempt.startAttempt.setData(task.id, data);
+          // } else {
+          void utils.taskAttempt.startAttempt.invalidate(task.id);
+          // }
         }
       },
     });
