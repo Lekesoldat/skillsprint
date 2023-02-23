@@ -1,5 +1,6 @@
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
-import { Achievement, achievements } from "./achievement-data";
+import type { Achievement } from "./achievement-data";
+import { achievements } from "./achievement-data";
 
 export const achievementRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -31,7 +32,6 @@ export const achievementRouter = createTRPCRouter({
     let streak = 0;
     const solved = new Map<string, number>();
     for (const attempt of attempts) {
-      console.log(attempt.result);
       if (attempt.result === "SUCCESS") {
         streak += 1;
         if (streak > longestStreak) {
@@ -68,7 +68,6 @@ export const achievementRouter = createTRPCRouter({
             const availableTaskCount =
               categories.find((cat) => cat.id === category)?.task.length || 0;
 
-            console.log({ solvedCount, availableTaskCount });
             if (solvedCount >= availableTaskCount) {
               solvedFullCategoriesCount += 1;
             }

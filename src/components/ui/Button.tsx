@@ -42,6 +42,8 @@ const buttonVariants = cva(
         brand:
           "uppercase bg-brand-yellow text-brand-black border-brand-black font-bold border-2 shadow-brand",
         outline: "bg-white border-2 border-brand-black",
+        ghost:
+          "bg-transparent hover:bg-slate-100 data-[state=open]:bg-transparent",
       },
     },
     defaultVariants: {
