@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from "react";
 import React, { useEffect } from "react";
-import type { RouterOutputs } from "../utils/api";
+import type { RouterOutputs } from "../../utils/api";
 
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/Popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover";
 
 type Status = RouterOutputs["taskAttempt"]["attemptAnswer"]["result"];
 
