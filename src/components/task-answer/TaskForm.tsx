@@ -1,15 +1,25 @@
-import type { TaskAttempt } from "@prisma/client";
+import type { TaskAttempt, TaskHint } from "@prisma/client";
 import type { Control } from "react-hook-form";
 import type {
-  TaskPageProps,
   FormValues,
   SubmitHandler,
+  TaskPageProps,
 } from "../../pages/tasks/[id]";
 import { MathDisplay } from "../math/MathDisplay";
 import { MathInput } from "../math/MathInput";
 import { Button } from "../ui/Button";
 import { Collapsible } from "../ui/Collapsible";
 import { TaskNavigation } from "./TaskNavigation";
+
+const TaskHints: Record<TaskHint, string> = {
+  MULTIPLE_VALUES:
+    "Denne oppgaven kan ha flere svar. Oppgi med komma mellom svarene, f.eks: x=13,x=-13",
+  FUNCTION:
+    "Oppgi funksjonen uten deklarasjonen foran, f.eks: 2x+1 og ikke f(x)=2x+1",
+  DECIMAL:
+    "Dersom svaret har desimaler i seg, bruk punktum i stedet for komma, f.eks: 1.5",
+  FLAG: "Løsningsordet på denne oppgaven får du av læreren din når du har gjort oppgaven.",
+};
 
 interface TaskFormProps {
   task: TaskPageProps["task"];
@@ -52,9 +62,16 @@ export const AnswerForm = ({
         )}
         <MathInput control={control} name="answer" />
 
+        {task.hint && (
+          <div className="rounded-md border-2 border-brand-black bg-brand-babyBlue px-2 py-1 text-brand-black">
+            NB! {TaskHints[task.hint]}
+          </div>
+        )}
+
         <Button type="submit" loading={isLoading || isAnswering}>
           Sjekk svar
         </Button>
+
         {attempt?.result === "SUCCESS" && (
           <TaskNavigation
             prevTaskId={task.prevTask?.id}
