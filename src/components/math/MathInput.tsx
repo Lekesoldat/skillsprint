@@ -6,6 +6,9 @@ import { useController } from "react-hook-form";
 import type { FormValues } from "../../pages/tasks/[id]";
 
 // export interface MathProps extends MathfieldElementAttributes {}
+function isTouchDevice() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
 
 export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
   const ref = useRef<MathfieldElement>(null);
@@ -18,6 +21,7 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
       ref.current.onchange = field.onChange;
       ref.current.onblur = field.onBlur;
       ref.current.virtualKeyboardTheme = "apple";
+      ref.current.virtualKeyboardMode = isTouchDevice() ? "auto" : "manual";
       ref.current.focus();
     }
   }, [field]);
@@ -27,7 +31,6 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
       name={field.name}
       sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
       fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
-      virtual-keyboard-mode="manual"
       class="min-w-[300px] rounded-md border border-black bg-white py-2 px-4 text-xl shadow-2-hard"
       ref={ref}
     >
