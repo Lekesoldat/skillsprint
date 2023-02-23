@@ -158,7 +158,7 @@ export const taskAttemptRouter = createTRPCRouter({
   }),
 
   getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
-    const GRAPH_INTERVAL = 5;
+    const GRAPH_INTERVAL = 1.5; // TODO: Go back to 5 for production
 
     try {
       const [tasks, attempts] = await ctx.prisma.$transaction([
@@ -280,6 +280,14 @@ export const taskAttemptRouter = createTRPCRouter({
     } catch (error) {
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", cause: error });
     }
+  }),
+  getSolvedAttempts: protectedProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.taskAttempt.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        result: "SUCCESS",
+      },
+    });
   }),
 });
 

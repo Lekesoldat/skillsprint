@@ -1,35 +1,54 @@
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import type { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { TaskCard } from "../../components/TaskCard";
-import { Skeleton } from "../../components/ui/loaders/Skeleton";
+import { appRouter } from "../../server/api/root";
+import { createInnerTRPCContext } from "../../server/api/trpc";
+import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
+import superjson from "superjson";
+import { TaskCollapsible } from "../../components/TaskCollapsible";
 
-export default function Page() {
-  const { data, isError } = api.category.getCategoriesAndTasks.useQuery();
+type Tasks = RouterOutputs["task"]["getAll"];
+type Solved = RouterOutputs["taskAttempt"]["getSolvedAttempts"];
+// Group tasks that are net to each other
+const groupTasks = (tasks: Tasks) => {
+  const grouped: Map<string, Tasks> = new Map();
+  for (const task of tasks) {
+    const match = task.title.match(/(Oppgave\s\d)[a-z]/);
+    if (match && match[1]) {
+      const key = match[1];
+      const list = grouped.get(key);
+      if (!list) {
+        grouped.set(key, [task]);
+        continue;
+      } else {
+        list.push(task);
+      }
+    }
+  }
 
-  if (isError) return <>Noe gikkk galt ved henting av oppgaver..</>;
+  return [...grouped.entries()] as const;
+};
 
-  if (!data) return <LoadingComponent />;
+export default function Page(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
+  const { data: solved } = api.taskAttempt.getSolvedAttempts.useQuery();
 
   return (
     // Grid
     <div className="grid w-full grid-cols-2 lg:grid-cols-3">
-      {data.tasks.map((d) => (
+      {props.categories.map((cat) => (
         // Columns
-        <div key={d.id} className="flex flex-col items-center">
+        <div key={cat.id} className="flex flex-col items-center">
           {/* Title */}
-          <div className="font-bold uppercase">{d.name}</div>
+          <div className="font-bold uppercase">{cat.name}</div>
 
           {/* Tasks container*/}
           <div className="flex w-full flex-col items-center">
-            {d.tasks.map((t) => (
-              // Task
-              <Link key={t.id} href={`/tasks/${t.id}`}>
-                <TaskCard
-                  title={t.title}
-                  points={t.points}
-                  solved={data.successes.includes(t.id)}
-                />
-              </Link>
+            {cat.tasks.map((entry) => (
+              <TaskCards key={entry[0]} tasks={entry} solved={solved} />
             ))}
           </div>
         </div>
@@ -38,15 +57,73 @@ export default function Page() {
   );
 }
 
-const LoadingComponent = () => {
-  const data = Array(6).fill(0);
+const TaskCards = (props: {
+  tasks: ReturnType<typeof groupTasks>[number];
+  solved: Solved | undefined;
+}) => {
+  if (props.tasks[1].length === 1) {
+    const t = props.tasks[1][0]!;
 
-  return (
-    // Grid
-    <div className="grid w-full grid-cols-2 lg:grid-cols-3">
-      {data.map((_, index) => (
-        <Skeleton key={`skeleton-${index}`} count={10} />
-      ))}
-    </div>
-  );
+    return (
+      <Link href={`/tasks/${t.id}`}>
+        <TaskCard
+          title={t.title}
+          points={t.points}
+          variant={
+            props.solved?.some((s) => s.taskId === t.id) ? "solved" : "unsolved"
+          }
+        />
+      </Link>
+    );
+  } else {
+    const total = props.tasks[1].reduce((acc, t) => acc + t.points, 0);
+    let current = 0;
+    for (const task of props.tasks[1]) {
+      if (props.solved?.some((s) => s.taskId === task.id)) {
+        current += task.points;
+      }
+    }
+    return (
+      <TaskCollapsible trigger={props.tasks[0]} current={current} total={total}>
+        <ul className="grid gap-1">
+          {props.tasks[1].map((t) => (
+            <li key={t.id}>
+              <Link href={`/tasks/${t.id}`}>
+                <TaskCard
+                  title={t.title}
+                  points={t.points}
+                  variant={
+                    props.solved?.some((s) => s.taskId === t.id)
+                      ? "solved"
+                      : "unsolved"
+                  }
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </TaskCollapsible>
+    );
+  }
+};
+
+export const getStaticProps = async () => {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  const categories = await ssg.category.getAll.fetch();
+  return {
+    props: {
+      categories: categories
+        .filter((x) => x.task.length > 0)
+        .map((x) => ({
+          id: x.id,
+          name: x.name,
+          tasks: groupTasks(x.task),
+        })),
+    },
+  };
 };
