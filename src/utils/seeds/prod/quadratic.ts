@@ -12,9 +12,10 @@ export async function createQuadraticTasks({
       id: "cleeb7hsj000008l81muxehco",
       title: "Oppgave 1a",
       description:
-        "Lag en verditabell og tegn grafen math$k(x)=x^2& i et koordinatsystem. Godkjenn svar hos lærer.",
+        "Lag en verditabell og tegn grafen math$k(x)=x^2& i et koordinatsystem. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
+      hint: "FLAG",
       answer: "lion-horse",
     },
     {
@@ -32,10 +33,10 @@ export async function createQuadraticTasks({
     {
       id: "cleebrirf000008jt8er15aem",
       title: "Oppgave 2a",
-      description:
-        "Tegn grafen til funksjonen math$h(x)=-x^{2}+2x-2$. Godkjenn svar hos lærer.",
+      description: "Tegn grafen til funksjonen math$h(x)=-x^{2}+2x-2$. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
+      hint: "FLAG",
       answer: "turtle-chimp",
       prevTask: { connect: { id: "cleeb9bth000108l86ezw6p0v" } },
     },
@@ -82,9 +83,10 @@ export async function createQuadraticTasks({
       id: "cleecfgai000008js7ber34v8",
       title: "Oppgave 3a",
       description:
-        "Lag en verditabell og tegn grafen math$f(x)=2x^2+1& i et koordinatsystem. Godkjenn svar hos lærer.",
+        "Lag en verditabell og tegn grafen math$f(x)=2x^2+1& i et koordinatsystem. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
+      hint: "FLAG",
       answer: "rusten-spiker",
       prevTask: { connect: { id: "cleebiad3000308jv9ad98zj8" } },
     },
@@ -92,19 +94,21 @@ export async function createQuadraticTasks({
       id: "cleecflo5000108js4ivfcv3g",
       title: "Oppgave 3b",
       description:
-        "Lag en verditabell og tegn grafen math$g(x)=-2x^2+1& i et koordinatsystem. Godkjenn svar hos lærer.",
+        "Lag en verditabell og tegn grafen math$g(x)=-2x^2+1& i et koordinatsystem. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
-      answer: "rusten-spiker-femten",
+      hint: "FLAG",
+      answer: "tafatt-gomp",
       prevTask: { connect: { id: "cleecfgai000008js7ber34v8" } },
     },
     {
       id: "cleecfr1s000208js74h45hfc",
       title: "Oppgave 3c",
       description:
-        "Hva er forskjellen og likheten mellom de to funksjonene math$f(x)& og math$g(x)&? Godkjenn svar hos lærer.",
+        "Hva er forskjellen og likheten mellom de to funksjonene math$f(x)& og math$g(x)&? ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 100,
+      hint: "FLAG",
       answer: "sliten-and",
       prevTask: { connect: { id: "cleecflo5000108js4ivfcv3g" } },
     },
@@ -114,9 +118,10 @@ export async function createQuadraticTasks({
       id: "cleecj177000008l44s817sqf",
       title: "Oppgave 4",
       description:
-        "En gruppe forskere øver opp en fotballrobot til å sparke en ball så nøyaktig som mulig. Punktet på bakken ligger 8 meter unna roboten. Forskerne har funnet to funksjoner som beskriver buene til de to forsøkene som traff på riktig sted. Det er de to kvadratiske funksjonene math$k(x)=-0.3x^2+2.4x& og math$l(x)=-\\frac{1}{2}x^2-4x&. Bruk en graftegner og finn minst 3 andre kvadratiske funksjoner som også treffer på riktig sted. Godkjenn svar hos lærer.",
+        "En gruppe forskere øver opp en fotballrobot til å sparke en ball så nøyaktig som mulig. Punktet på bakken ligger 8 meter unna roboten. Forskerne har funnet to funksjoner som beskriver buene til de to forsøkene som traff på riktig sted. Det er de to kvadratiske funksjonene math$k(x)=-0.3x^2+2.4x& og math$l(x)=-\\frac{1}{2}x^2-4x&. Bruk en graftegner og finn minst 3 andre kvadratiske funksjoner som også treffer på riktig sted.",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 150,
+      hint: "FLAG",
       answer: "vanskelig-oppgave",
       prevTask: { connect: { id: "cleecfr1s000208js74h45hfc" } },
     },
