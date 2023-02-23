@@ -2,12 +2,13 @@ import type { Faker } from "@faker-js/faker";
 import type { Prisma, PrismaClient, Task, User } from "@prisma/client";
 import { taskAttemptCuids } from "./ids";
 
+// ! Oppgavenavnene sorteres weird på forsiden fordi flere oppgaver deler navn i samme kategori
 export async function createDummyTasks({
   prismaClient,
 }: {
   prismaClient: PrismaClient;
 }) {
-  console.info("\n📝 Seeding tasks...");
+  console.info("\n📝 Seeding dummy tasks...");
   const data: Prisma.TaskCreateInput[] = [
     // Algebra
     {
