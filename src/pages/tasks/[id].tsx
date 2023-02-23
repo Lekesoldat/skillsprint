@@ -8,6 +8,7 @@ import type { BaseSyntheticEvent } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
 import { PictureTask } from "../../components/task-answer/PictureTask";
+import { AnswerForm } from "../../components/task-answer/TaskForm";
 import { TextTask } from "../../components/task-answer/TextTask";
 import { useToast } from "../../hooks/use-toast";
 import { appRouter } from "../../server/api/root";
@@ -74,21 +75,25 @@ export default function TaskPage({ task }: TaskPageProps) {
     <div className="mb-[200px] mt-8 w-full lg:mb-40">
       <div className="bg-[url('/grid.svg')]">
         {task.image ? (
-          <PictureTask
-            task={task}
-            attempt={attempt}
-            form={{ submitHandler, control }}
-            isAnswering={isAnswering}
-            isLoading={isLoading}
-          />
+          <PictureTask task={task}>
+            <AnswerForm
+              task={task}
+              attempt={attempt}
+              form={{ control, submitHandler }}
+              isAnswering={isAnswering}
+              isLoading={isLoading}
+            />
+          </PictureTask>
         ) : (
-          <TextTask
-            task={task}
-            attempt={attempt}
-            form={{ submitHandler, control }}
-            isAnswering={isAnswering}
-            isLoading={isLoading}
-          />
+          <TextTask task={task}>
+            <AnswerForm
+              task={task}
+              attempt={attempt}
+              form={{ control, submitHandler }}
+              isAnswering={isAnswering}
+              isLoading={isLoading}
+            />
+          </TextTask>
         )}
       </div>
     </div>
