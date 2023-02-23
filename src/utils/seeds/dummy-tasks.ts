@@ -9,52 +9,6 @@ export async function createDummyTasks({
 }) {
   console.info("\n📝 Seeding tasks...");
   const data: Prisma.TaskCreateInput[] = [
-    // Noobs
-    {
-      id: "cle79684v000708mlbqti5tbn",
-      title: "Oppgave 1a",
-      description: "Hva er math$2+2&?",
-      category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
-      points: 50,
-      answer: "4",
-    },
-    {
-      id: "cle7975f5000808mlf20ma3qh",
-      title: "Oppgave 1b",
-      description: "Hva er den største verdien av 2, 3 og 4?",
-      category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
-      points: 75,
-      answer: "4",
-      prevTask: { connect: { id: "cle79684v000708mlbqti5tbn" } },
-    },
-    {
-      id: "cle797rt1000908ml608z61ww",
-      title: "Oppgave 1c",
-      description: "Hvor mange timer er det i 2 dager?",
-      category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
-      points: 75,
-      answer: "48",
-      prevTask: { connect: { id: "cle7975f5000808mlf20ma3qh" } },
-    },
-    {
-      id: "cle7980os000a08mlgg12fedd",
-      title: "Oppgave 1d",
-      description: "Hvor mange sekunder er det i ett døgn?",
-      category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
-      points: 100,
-      answer: "86400",
-      prevTask: { connect: { id: "cle797rt1000908ml608z61ww" } },
-    },
-    {
-      id: "cle798ake000b08ml2v6g351s",
-      title: "Oppgave 1e",
-      description: "Hva er math$2+2*2&?",
-      category: { connect: { id: "cle791t0y000308ml7zsw59wo" } },
-      points: 125,
-      answer: "6",
-      prevTask: { connect: { id: "cle7980os000a08mlgg12fedd" } },
-    },
-
     // Algebra
     {
       id: "cldiog5kk000008l29k73fx8g",
@@ -162,6 +116,7 @@ export async function createDummyTasks({
         "Charlotte skal på språkreise i Malaga og ønsker å veksle norske kroner til euro. Bruk tabellen til høyre for å finne vekslingskurs for ønsket valuta. Hvor mange norske kroner må hun betale for 50 €?",
       category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
       points: 50,
+      hint: "DECIMAL",
       answer: "523.52",
     },
     {
@@ -171,6 +126,7 @@ export async function createDummyTasks({
         "Charlotte skal på språkreise i Malaga og ønsker å veksle norske kroner til euro. Bruk tabellen til høyre for å finne vekslingskurs for ønsket valuta. Hvor mange euro får hun for 600 norske kroner?",
       category: { connect: { id: "cldx7ez8a000008juf4sl1wdq" } },
       points: 75,
+      hint: "DECIMAL",
       answer: "57.30",
       prevTask: { connect: { id: "cldx7ra2p000008mt7td7grls" } },
     },
@@ -183,6 +139,7 @@ export async function createDummyTasks({
         "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2=121&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 50,
+      hint: "MULTIPLE_VALUES",
       answer: "x=11,x=-11",
     },
     {
@@ -192,6 +149,7 @@ export async function createDummyTasks({
         "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2+23=72&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 75,
+      hint: "MULTIPLE_VALUES",
       answer: "x=7,x=-7",
       prevTask: { connect: { id: "cldx88udv000008l49cllfn9h" } },
     },
@@ -202,6 +160,7 @@ export async function createDummyTasks({
         "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$x^2-16=9&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 90,
+      hint: "MULTIPLE_VALUES",
       answer: "x=5,x=-5",
       prevTask: { connect: { id: "cldx891wg000108l4hv703vl7" } },
     },
@@ -212,6 +171,7 @@ export async function createDummyTasks({
         "Andregradslikninger kalles også kvadratiske likninger og inneholder et ledd med math$x^2&. Løs likningene ved regning: math$2x^2=128&",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 100,
+      hint: "MULTIPLE_VALUES",
       answer: "x=8,x=-8",
       prevTask: { connect: { id: "cldx899n7000208l489j16ufq" } },
     },
@@ -224,7 +184,8 @@ export async function createDummyTasks({
         "Et håndballag fra CSK ønsker å reise til Storhamar-cup med buss. Å leie sjåfør og buss tur/retur vil koste 30 000 kr. Bussen tar maksimalt 50 passasjerer. Skriv ned funksjonsuttrykket som viser utgiftene per person.",
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 50,
-      answer: "f(x)=\\frac{30000}{x}",
+      hint: "FUNCTION",
+      answer: "\\frac{30000}{x}",
     },
     {
       id: "cldx8f46d000508l4ap9983lt",

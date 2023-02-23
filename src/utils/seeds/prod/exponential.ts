@@ -12,18 +12,20 @@ export async function createExponentialTasks({
       id: "cleec345q000108meb2avbgw2",
       title: "Oppgave 1a",
       description:
-        "En ny bil koster math$285 000& kroner. Verditapet er på math$10%& hvert år. Lag en eksponentialfunksjon math$V(x)& som beskriver bilens verdi etter math$x& år. Oppgi på formen math$V(x)=...&",
+        "En ny bil koster math$285 000& kroner. Verditapet er på math$10%& hvert år. Lag en eksponentialfunksjon math$f(x)& som beskriver bilens verdi etter math$x& år.",
       category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
       points: 100,
-      answer: "V(x)=0.9^x*285000",
+      hint: "FUNCTION",
+      answer: "0.9^x*285000",
     },
     {
       id: "cleec3gww000208mebunf6mo9",
       title: "Oppgave 1b",
       description:
-        "En ny bil koster math$285 000& kroner. Verditapet er på math$10%& hvert år. Lag en eksponentialfunksjon math$V(x)& som beskriver bilens verdi etter math$x& år. Tegn grafen og godkjenn svar hos lærer.",
+        "En ny bil koster math$285 000& kroner. Verditapet er på math$10%& hvert år. Tegn grafen fra forrige oppgave.",
       category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
       points: 75,
+      hint: "FLAG",
       answer: "sulten-gullfisk",
       prevTask: { connect: { id: "cleec345q000108meb2avbgw2" } },
     },
