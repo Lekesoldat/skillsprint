@@ -4,7 +4,7 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from "next";
-import type { BaseSyntheticEvent } from "react";
+import { BaseSyntheticEvent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
 import { PictureTask } from "../../components/task-answer/PictureTask";

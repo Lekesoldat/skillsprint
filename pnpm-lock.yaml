@@ -85,7 +85,7 @@ dependencies:
   clsx: 1.2.1
   date-fns: 2.29.3
   encoding: 0.1.13
-  framer-motion: 9.1.2_biqbaboplfbrettd7655fr4n2y
+  framer-motion: 9.1.5_biqbaboplfbrettd7655fr4n2y
   lucide-react: 0.105.0_react@18.2.0
   mathlive: 0.87.1
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -647,7 +647,7 @@ packages:
       open: 8.4.0
       picocolors: 1.0.0
       tiny-glob: 0.2.9
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: true
 
   /@previewjs/config-helper-nextjs/1.0.6_next@13.1.6+react@18.2.0:
@@ -1115,7 +1115,7 @@ packages:
   /@swc/helpers/0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.4.1
 
   /@tanstack/query-core/4.24.10:
     resolution: {integrity: sha512-2QywqXEAGBIUoTdgn1lAB4/C8QEqwXHj2jrCLeYTk2xVGtLiPEUD8jcMoeB2noclbiW2mMt4+Fq7fZStuz3wAQ==}
@@ -1566,7 +1566,7 @@ packages:
     dependencies:
       '@types/react': 18.0.28
       react: 18.2.0
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /aria-query/5.1.3:
@@ -1717,10 +1717,6 @@ packages:
 
   /caniuse-lite/1.0.30001446:
     resolution: {integrity: sha512-fEoga4PrImGcwUUGEol/PoFCSBnSkA9drgdkxXkJLsUBOnJ8rs3zDv6ApqYXGQFOyMPsjh79naWhF4DAxbF8rw==}
-    dev: true
-
-  /caniuse-lite/1.0.30001457:
-    resolution: {integrity: sha512-SDIV6bgE1aVbK6XyxdURbUE89zY7+k1BBBaOwYwkNCglXlel/E7mELiHC64HQ+W0xSKlqWhV9Wh7iHxUjMs4fA==}
 
   /chalk/4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -2832,8 +2828,8 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion/9.1.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-8O0eFcV8+7aAHqftFByNLoqMa2j9l3v7fDcm4nETyl+Ufw3r8KURUbn7TnHjA1F3ccadbMJJIVaSf3HyG0ve8A==}
+  /framer-motion/9.1.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-1YdDoSsB6T04eLIem6NK/8Z/Y548PqubI1LC+xQk67vQqznhJOCSOHWJU/Bd4jdarXF8TC3BjYYX2Iyh8Orq6w==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -3550,7 +3546,7 @@ packages:
     dependencies:
       '@next/env': 13.1.6
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001457
+      caniuse-lite: 1.0.30001446
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -4033,7 +4029,7 @@ packages:
       '@types/react': 18.0.28
       react: 18.2.0
       react-style-singleton: 2.2.1_pmekkgnqduwlme35zpnqhenc34
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /react-remove-scroll/2.5.5_pmekkgnqduwlme35zpnqhenc34:
@@ -4050,7 +4046,7 @@ packages:
       react: 18.2.0
       react-remove-scroll-bar: 2.3.4_pmekkgnqduwlme35zpnqhenc34
       react-style-singleton: 2.2.1_pmekkgnqduwlme35zpnqhenc34
-      tslib: 2.5.0
+      tslib: 2.4.1
       use-callback-ref: 1.3.0_pmekkgnqduwlme35zpnqhenc34
       use-sidecar: 1.1.2_pmekkgnqduwlme35zpnqhenc34
     dev: false
@@ -4107,7 +4103,7 @@ packages:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /react-transition-group/2.9.0_biqbaboplfbrettd7655fr4n2y:
@@ -4439,7 +4435,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/utils': 2.3.1
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: true
 
   /tailwind-merge/1.10.0:
@@ -4575,10 +4571,6 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
-    dev: false
-
-  /tslib/2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
   /tsutils/3.21.0_typescript@4.9.5:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
@@ -4678,7 +4670,7 @@ packages:
     dependencies:
       '@types/react': 18.0.28
       react: 18.2.0
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /use-isomorphic-layout-effect/1.1.2_pmekkgnqduwlme35zpnqhenc34:
@@ -4707,7 +4699,7 @@ packages:
       '@types/react': 18.0.28
       detect-node-es: 1.1.0
       react: 18.2.0
-      tslib: 2.5.0
+      tslib: 2.4.1
     dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:

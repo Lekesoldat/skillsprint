@@ -281,6 +281,14 @@ export const taskAttemptRouter = createTRPCRouter({
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", cause: error });
     }
   }),
+  getSolvedAttempts: protectedProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.taskAttempt.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        result: "SUCCESS",
+      },
+    });
+  }),
 });
 
 const startNewAttempt = (

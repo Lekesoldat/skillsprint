@@ -18,6 +18,7 @@ module.exports = {
         "4-right-border-green": "4px 4px #22CA94, 5px 5px black",
         "4-right-border-purple": "4px 4px #C8BEFD, 5px 5zpx black",
         "4-right-border-pink": "4px 4px #F8BED4, 5px 5px black",
+        "4-right-border-blue": "4px 4px #4B83F9, 5px 5px black",
         achievment: "inset 0px -4px",
       },
       colors: {
@@ -43,6 +44,23 @@ module.exports = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+      keyframes: {
+        "collapsible-down": {
+          from: { height: 0, opacity: 0 },
+          to: { height: "var(--radix-collapsible-content-height)", opacity: 1 },
+        },
+        "collapsible-up": {
+          from: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: 1,
+          },
+          to: { height: 0, opacity: 0 },
+        },
+      },
+      animation: {
+        "collapsible-down": "collapsible-down 0.3s ease-out",
+        "collapsible-up": "collapsible-up 0.3s ease-out",
       },
     },
   },
