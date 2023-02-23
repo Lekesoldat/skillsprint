@@ -71,7 +71,7 @@ export default function TaskPage({ task }: TaskPageProps) {
   });
 
   return (
-    <div className="mb-[200px] mt-8 w-full lg:mb-0">
+    <div className="mb-[200px] mt-8 w-full lg:mb-20">
       <div className="bg-[url('/grid.svg')]">
         {task.image ? (
           <PictureTask

@@ -18,6 +18,7 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
       ref.current.onchange = field.onChange;
       ref.current.onblur = field.onBlur;
       ref.current.virtualKeyboardTheme = "apple";
+      ref.current.focus();
     }
   }, [field]);
 
@@ -26,7 +27,7 @@ export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
       name={field.name}
       sounds-directory="https://unpkg.com/mathlive@0.87.1/dist/sounds/"
       fonts-directory="https://unpkg.com/mathlive@0.87.1/dist/fonts/"
-      virtual-keyboard-mode="onfocus"
+      virtual-keyboard-mode="manual"
       class="min-w-[300px] rounded-md border border-black bg-white py-2 px-4 text-xl shadow-2-hard"
       ref={ref}
     >
