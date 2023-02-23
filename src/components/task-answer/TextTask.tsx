@@ -9,6 +9,7 @@ import { MathDisplay } from "../math/MathDisplay";
 import { MathInput } from "../math/MathInput";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
+import { Collapsible } from "../ui/Collapsible";
 import { TaskNavigation } from "./TaskNavigation";
 
 interface Props {
@@ -38,27 +39,29 @@ export const TextTask = ({
         <div className="flex max-w-[75ch] flex-col items-center rounded-md bg-white p-4">
           <MathDisplay description={task.description} />
         </div>
-        <form className="grid gap-6" onSubmit={submitHandler}>
-          {attempt?.result === "SUCCESS" ? (
+        <form className="mt-3 flex flex-col gap-4" onSubmit={submitHandler}>
+          {attempt?.result === "SUCCESS" && (
             <div className="flex w-full justify-center">
               <div className="rounded-lg border-2 bg-brand-white p-4">
-                <MathDisplay description={`math$${task.answer}&`} />
+                <Collapsible
+                  trigger="Du har svart på denne oppgaven"
+                  className="[&>div>button]:font-bold [&>div>button]:text-brand-green"
+                >
+                  <MathDisplay
+                    description={`math$${task.answer}&`}
+                    className="text-center text-xl"
+                  />
+                </Collapsible>
               </div>
             </div>
-          ) : (
-            <MathInput control={control} name="answer" />
           )}
 
           {/* If task is answered */}
-          {attempt?.result === "SUCCESS" ? (
-            <p className="mb-4 font-medium text-brand-green">
-              Denne oppgaven er fullført! Svaret ser du over.
-            </p>
-          ) : (
-            <Button type="submit" loading={isLoading || isAnswering}>
-              Sjekk svar
-            </Button>
-          )}
+          <MathInput control={control} name="answer" />
+
+          <Button type="submit" loading={isLoading || isAnswering}>
+            Sjekk svar
+          </Button>
 
           {attempt?.result === "SUCCESS" && (
             <TaskNavigation
