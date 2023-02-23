@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useToast } from "../../hooks/use-toast";
 import { Button } from "../ui/Button";
 
 interface TaskNavigationProps {
@@ -10,8 +11,10 @@ export const TaskNavigation = ({
   prevTaskId,
   nextTaskId,
 }: TaskNavigationProps) => {
+  // TODO: remove this
+  const { dismiss } = useToast();
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between" onClick={() => dismiss()}>
       {prevTaskId ? (
         <Link href={`/tasks/${prevTaskId}`}>
           <Button size="xs">Gå tilbake</Button>
