@@ -18,13 +18,13 @@ import { createInnerTRPCContext } from "../../server/api/trpc";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
 
+export type TaskPageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
 export type FormValues = {
   answer: string;
 };
 
-export default function TaskPage({
-  task,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function TaskPage({ task }: TaskPageProps) {
   const { handleSubmit, control } = useForm<FormValues>();
   const utils = api.useContext();
   const { toast } = useToast();
@@ -61,6 +61,13 @@ export default function TaskPage({
       },
     });
 
+  const submitHandler = handleSubmit((data) => {
+    mutate({
+      answer: data.answer,
+      taskId: task.id,
+    });
+  });
+
   return (
     <div className="mb-[200px] mt-8 w-full lg:mb-0">
       <div className="bg-[url('/grid.svg')]">
@@ -82,15 +89,7 @@ export default function TaskPage({
             )}
             <MathDisplay description={task.description} />
           </div>
-          <form
-            className="grid gap-6"
-            onSubmit={handleSubmit((data) => {
-              mutate({
-                answer: data.answer,
-                taskId: task.id,
-              });
-            })}
-          >
+          <form className="grid gap-6" onSubmit={submitHandler}>
             {attempt?.result === "SUCCESS" ? (
               <div className="flex w-full justify-center">
                 <div className="rounded-lg border-2 bg-brand-white p-4">
