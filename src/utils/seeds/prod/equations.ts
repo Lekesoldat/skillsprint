@@ -12,9 +12,9 @@ export async function createEquationTasks({
       id: "cleebs9cy000108jt2h90em7p",
       title: "Oppgave 1a",
       description: "math$x^2+2x-3=0&",
-      hint: "MULTIPLE_VALUES",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 100,
+      hint: "MULTIPLE_VALUES",
       answer: "x=1,x=-3",
     },
     {

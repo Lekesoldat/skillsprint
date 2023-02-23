@@ -181,7 +181,6 @@ export async function createLinearTasks({
       hint: "FUNCTION",
       answer: "2x-1",
     },
-
     {
       id: "cleeaap7l000408jzbf9xahbq",
       title: "Oppgave 3b",
@@ -204,7 +203,6 @@ export async function createLinearTasks({
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 50,
       answer: "11",
-      prevTask: { connect: { id: "cleeaap7l000408jzbf9xahbq" } },
     },
     {
       id: "cleea1eir000008l72fy9977z",
