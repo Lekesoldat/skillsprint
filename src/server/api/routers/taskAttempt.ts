@@ -1,5 +1,5 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
@@ -79,12 +79,6 @@ export const taskAttemptRouter = createTRPCRouter({
       const ce = new ComputeEngine();
       const answer = ce.parse(input.answer);
       const solution = ce.parse(task.answer);
-
-      console.log({
-        answer: answer.toString(),
-        solution: solution.toString(),
-        same: answer.isSame(solution),
-      });
 
       const result: "SUCCESS" | "FAIL" = answer.isSame(solution)
         ? "SUCCESS"
