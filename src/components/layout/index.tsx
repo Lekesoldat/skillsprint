@@ -24,7 +24,7 @@ interface LayoutProps extends PropsWithChildren {
 
 export const Layout: FC<LayoutProps> = ({
   children,
-  title = "Fragile Flower",
+  title = "SkillSprint",
 }) => {
   const router = useRouter();
   return (
