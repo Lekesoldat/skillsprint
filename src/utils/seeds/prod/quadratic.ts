@@ -72,7 +72,7 @@ export async function createQuadraticTasks({
       description:
         "Finn eventuelle ekstremalpunkter. Oppgi på formen math$(x,y)&",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
-      points: 100,
+      points: 75,
       answer: "(1,-1)",
       prevTask: { connect: { id: "cleebi44d000208jv85hpa9vx" } },
     },
@@ -84,7 +84,7 @@ export async function createQuadraticTasks({
       description:
         "Lag en verditabell og tegn grafen math$f(x)=2x^2+1& i et koordinatsystem. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
-      points: 100,
+      points: 75,
       hint: "FLAG",
       answer: "rusten-spiker",
     },
@@ -94,7 +94,7 @@ export async function createQuadraticTasks({
       description:
         "Lag en verditabell og tegn grafen math$g(x)=-2x^2+1& i et koordinatsystem. ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
-      points: 100,
+      points: 75,
       hint: "FLAG",
       answer: "tafatt-gomp",
       prevTask: { connect: { id: "cleecfgai000008js7ber34v8" } },
@@ -105,7 +105,7 @@ export async function createQuadraticTasks({
       description:
         "Hva er forskjellen og likheten mellom de to funksjonene math$f(x)& og math$g(x)&? ",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
-      points: 100,
+      points: 75,
       hint: "FLAG",
       answer: "sliten-and",
       prevTask: { connect: { id: "cleecflo5000108js4ivfcv3g" } },
