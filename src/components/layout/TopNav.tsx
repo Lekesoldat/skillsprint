@@ -30,7 +30,7 @@ export const TopNav = () => {
     staleTime: Infinity,
   });
   return (
-    <header className="mx-auto w-full max-w-screen-lg px-4 sm:px-9">
+    <header className="mx-auto mt-2 w-full max-w-screen-lg px-4 sm:px-9">
       <div className="flex h-16">
         <Link href="/" className="flex items-center">
           <Image src="/logo.png" alt="logo" width={60} height={60} />
