@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { differenceInSeconds } from "date-fns";
 import { createCategories } from "./categories";
 import { prismaClient } from "./clients";
