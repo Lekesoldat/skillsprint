@@ -1,4 +1,3 @@
-import type { Faker } from "@faker-js/faker";
 import type { Prisma, PrismaClient } from "@prisma/client";
 import argon2 from "argon2";
 import { users } from "./ids";
@@ -19,7 +18,6 @@ const generateRandomUsers = async () => {
 
 interface CreateUsersOptions {
   prismaClient: PrismaClient;
-  faker: Faker;
   withFriends?: boolean;
   onlyFriends?: boolean;
 }

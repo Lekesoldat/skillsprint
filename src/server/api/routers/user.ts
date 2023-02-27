@@ -31,9 +31,15 @@ export const userRouter = createTRPCRouter({
 
       const data = RankedUserSchema.parse(res);
 
-      const index = data.findIndex((u) => u.id === ctx.session.user.id);
+      const user = data.find((u) => u.id === ctx.session.user.id);
 
-      return { rows: data.slice(0, 5), placement: index + 1 };
+      const topFive = data.slice(0, 5);
+
+      if (user && !topFive.includes(user)) {
+        topFive.push(user);
+      }
+
+      return { rows: topFive };
     } catch (error) {
       throw new TRPCError({
         code: "BAD_REQUEST",

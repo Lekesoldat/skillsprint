@@ -51,7 +51,7 @@ export const authOptions: NextAuthOptions = {
         username: {
           label: "Brukernavn",
           type: "text",
-          placeholder: "bumi_bever",
+          placeholder: "bumi-bever",
         },
         password: {
           label: "Passord",
@@ -60,13 +60,19 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        const user = await proxyClient.auth.login.mutate({
-          username: credentials?.username || "",
-          password: credentials?.password || "",
-        });
-        if (user) {
-          return user;
-        } else {
+        try {
+          const user = await proxyClient.auth.login.mutate({
+            username: credentials?.username || "",
+            password: credentials?.password || "",
+          });
+
+          if (user) {
+            return user;
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.error(error);
           return null;
         }
       },

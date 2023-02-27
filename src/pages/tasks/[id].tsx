@@ -15,6 +15,7 @@ import { appRouter } from "../../server/api/root";
 import { createInnerTRPCContext } from "../../server/api/trpc";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
+import { starsConfetti } from "../../utils/confetti";
 
 export type TaskPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -47,6 +48,7 @@ export default function TaskPage({ task }: TaskPageProps) {
             title: `Riktig svar! +${task.points} poeng`,
             variant: "success",
           });
+          starsConfetti();
           void utils.auth.me.invalidate();
           void utils.taskAttempt.startAttempt.setData(task.id, data);
         } else if (data.result === "FAIL") {

@@ -1,9 +1,7 @@
-import { faker } from "@faker-js/faker";
 import { differenceInSeconds } from "date-fns";
 import { createCategories } from "./categories";
 import { prismaClient } from "./clients";
-import { createDummyTasks } from "./dummy-tasks";
-import { createSchoolProvidedTasks } from "./prod";
+import { initBlussuvoll } from "./prod/blussuvoll";
 import { createNoobTasks } from "./prod/noobs";
 import { createUsers } from "./users";
 
@@ -14,7 +12,7 @@ async function prod_init() {
 
   // Users
   const startUsers = new Date();
-  await createUsers({ prismaClient, faker, onlyFriends: true });
+  await createUsers({ prismaClient, onlyFriends: true });
   console.log(`Took ${differenceInSeconds(new Date(), startUsers)}s`);
 
   // Categories
@@ -23,11 +21,10 @@ async function prod_init() {
   console.log(`Took ${differenceInSeconds(new Date(), startCategories)}s`);
 
   // Tasks
-  const startTasks = new Date();
-  // await createDummyTasks({ prismaClient });
+  const initBlussuvollTimer = new Date();
+  await initBlussuvoll({ prismaClient });
   await createNoobTasks({ prismaClient });
-  await createSchoolProvidedTasks({ prismaClient });
-  console.log(`Took ${differenceInSeconds(new Date(), startTasks)}s`);
+  console.log(`Took ${differenceInSeconds(new Date(), initBlussuvollTimer)}s`);
 
   console.info(
     `\n🌴 Done seeding database for production after ${differenceInSeconds(
