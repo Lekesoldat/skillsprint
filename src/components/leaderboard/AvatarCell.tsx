@@ -12,10 +12,7 @@ export const AvatarCell: FC<AvatarCellProps> = ({ info }) => {
     <div className="mx-auto w-12">
       <Avatar>
         <AvatarImage
-          src={
-            info.getValue() ??
-            "https://cdn-icons-png.flaticon.com/512/2202/2202112.png"
-          }
+          src={info.getValue() ?? ""}
           alt={info.row.original.name.slice(0, 2)}
         />
         <AvatarFallback className="capitalize">

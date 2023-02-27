@@ -31,13 +31,18 @@ export const TopNav = () => {
   });
   return (
     <header className="mx-auto mt-2 w-full max-w-screen-lg px-4 sm:px-9">
-      <div className="flex h-16">
-        <Link href="/" className="flex items-center">
-          <Image src="/logo.png" alt="logo" width={60} height={60} />
-        </Link>
+      <div className="flex h-16 items-center justify-center">
+        {/* <Link href="/" className="flex items-center">
+          <Image
+            src="https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/049-mortarboard.svg"
+            alt="logo"
+            width={60}
+            height={60}
+          />
+        </Link> */}
         <NavigationMenu />
         <div className="flex flex-grow items-center justify-end md:flex-grow-0">
-          <span className="flex min-w-[150px] justify-around border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
+          <span className="flex min-w-[150px] justify-around rounded-md border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
             <div>{user ? <>{user.points} p</> : "0 p"}</div>
             <div>{user ? user.streak : 0} 🔥</div>
           </span>
