@@ -21,7 +21,7 @@ const columns = [
     header: () => "#",
   }),
   columnHelper.accessor("avatar", {
-    cell: (info) => <AvatarCell info={info} />, // TODO do url
+    cell: (info) => <AvatarCell info={info} />,
     header: () => undefined,
   }),
   columnHelper.accessor("name", {
