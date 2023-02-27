@@ -12,7 +12,7 @@ async function dev_init() {
 
   // Users
   const startUsers = new Date();
-  const users = await createUsers({ prismaClient, faker });
+  const users = await createUsers({ prismaClient });
   console.log(`Took ${differenceInSeconds(new Date(), startUsers)}s`);
 
   // Categories
