@@ -115,7 +115,7 @@ export const achievements: Achievement[] = [
   },
   {
     avatar:
-      "",
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/037-trophy.svg",
     title: "Mester",
     description: "Fullfør 20 oppgaver",
     progress: 0,
