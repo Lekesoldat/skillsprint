@@ -4,8 +4,9 @@ import { createExponentialTasks } from "./exponential";
 import { createInverseProportionalFunctionTasks } from "./inverse";
 import { createLinearTasks } from "./linear";
 import { createQuadraticTasks } from "./quadratic";
+import { userList } from "./users";
 
-export const createSchoolProvidedTasks = async ({
+const createBlussuvollTasks = async ({
   prismaClient,
 }: {
   prismaClient: PrismaClient;
@@ -15,4 +16,30 @@ export const createSchoolProvidedTasks = async ({
   await createInverseProportionalFunctionTasks({ prismaClient });
   await createLinearTasks({ prismaClient });
   await createQuadraticTasks({ prismaClient });
+};
+
+const createBlussuvollUsers = async ({
+  prismaClient,
+}: {
+  prismaClient: PrismaClient;
+}) => {
+  console.info("\n📝 Seeding Blussuvoll users...");
+  return await prismaClient.$transaction(
+    userList.map((user) =>
+      prismaClient.user.upsert({
+        where: { name: user.name },
+        create: user,
+        update: user,
+      })
+    )
+  );
+};
+
+export const initBlussuvoll = async ({
+  prismaClient,
+}: {
+  prismaClient: PrismaClient;
+}) => {
+  await createBlussuvollUsers({ prismaClient });
+  await createBlussuvollTasks({ prismaClient });
 };
