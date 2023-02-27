@@ -11,7 +11,7 @@ type Color =
 
 export type Achievement = {
   title: string;
-  icon: string;
+  avatar: string;
   description: string;
   progress: number;
   requirement: number;
@@ -20,9 +20,11 @@ export type Achievement = {
 };
 
 export const achievements: Achievement[] = [
+  // Streaks
   {
-    icon: "🏕️",
-    title: "Leirbål",
+    title: "Skolebuss",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/023-school%20bus.svg",
     description: "Fullfør 3 oppgaver på rad",
     progress: 0,
     requirement: 3,
@@ -30,35 +32,71 @@ export const achievements: Achievement[] = [
     type: "STREAK",
   },
   {
-    icon: "🔥",
-    title: "Skogbrann",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/014-solar%20system.svg",
+    title: "Solsystem",
     description: "Fullfør 5 oppgaver på rad",
     progress: 0,
     requirement: 5,
-    color: "YELLOW",
+    color: "PINK",
     type: "STREAK",
   },
   {
-    icon: "🌱",
-    title: "Spire",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/047-atom.svg",
+    title: "Atom",
+    description: "Fullfør 5 oppgaver på rad",
+    progress: 0,
+    requirement: 5,
+    color: "PINK",
+    type: "STREAK",
+  },
+  {
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/038-easel.svg",
+    title: "Staffeli",
+    description: "Fullfør 7 oppgaver på rad",
+    progress: 0,
+    requirement: 7,
+    color: "PINK",
+    type: "STREAK",
+  },
+  {
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/039-id%20card.svg",
+    title: "ID-kort",
+    description: "Fullfør 10 oppgaver på rad",
+    progress: 0,
+    requirement: 10,
+    color: "PINK",
+    type: "STREAK",
+  },
+  {
+    title: "Briller",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/035-glasses.svg",
     description: "Løs din første oppgave",
     progress: 0,
     requirement: 1,
     color: "PINK",
     type: "SOLVED",
   },
+
+  // Solved
   {
-    icon: "🧠",
-    title: "Dreven",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/026-geography.svg",
+    title: "Globus",
     description: "Fullfør 5 oppgaver",
     progress: 0,
     requirement: 5,
-    color: "BLUE",
+    color: "GREEN",
     type: "SOLVED",
   },
   {
-    icon: "🚀",
-    title: "Rakett",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/028-sculpture.svg",
+    title: "Skulptur",
     description: "Fullfør 10 oppgaver",
     progress: 0,
     requirement: 10,
@@ -66,54 +104,54 @@ export const achievements: Achievement[] = [
     type: "SOLVED",
   },
   {
-    icon: "💡",
-    title: "Skolelys",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/025-medal.svg",
+    title: "Medalje",
     description: "Fullfør 15 oppgaver",
     progress: 0,
     requirement: 15,
-    color: "PURPLE",
+    color: "GREEN",
     type: "SOLVED",
   },
   {
-    icon: "🏆",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/049-mortarboard.svg",
     title: "Mester",
     description: "Fullfør 20 oppgaver",
     progress: 0,
     requirement: 20,
-    color: "BLUE",
+    color: "GREEN",
     type: "SOLVED",
   },
-  // {
-  //   icon: "👀",
-  //   title: "Pionér",
-  //   description: "Prøv 1 oppgave fra <kategorinavn>",
-  //   progress: 0,
-  //   requirement: 1,
-  //   color: "PINK",
-  //   type: "CATEGORIES_ATTEMPED",
-  // },
+
+  // Full category
   {
-    icon: "💯",
-    title: "Profesjonell",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/018-paper%20plane.svg",
+    title: "Papirfly",
     description: "Fullfør en hel kategori",
     progress: 0,
     requirement: 1,
-    color: "ORANGE",
+    color: "PURPLE",
     type: "FULL_CATEGORY",
   },
   {
-    icon: "🤖",
-    title: "Ferdigstiller",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/019-exam.svg",
+    title: "Eksamen",
     description: "Fullfør alle 5 kategoriene",
     progress: 0,
     requirement: 5,
-    color: "RED",
+    color: "PURPLE",
     type: "FULL_CATEGORY",
   },
+
+  // Categories attemped
   {
-    icon: "🕵🏻",
-    title: "Utforsker",
-    description: "Løs 1 oppgave i 4 kategorier",
+    avatar:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/020-diploma.svg",
+    title: "Diplom",
+    description: "Løs én oppgave i hver kategori",
     progress: 0,
     requirement: 4,
     color: "BLUE",
