@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getSession } from "next-auth/react";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
+import { getSession, signOut } from "next-auth/react";
 
 export const FooterContent = () => {
   const { data: sessionData } = useQuery({
@@ -16,6 +16,15 @@ export const FooterContent = () => {
         Anh-Kha & Magnus&apos; masteroppgave @ NTNU
       </div> */}
       <div>{format(new Date(), "eeee do MMMM", { locale: nb })}</div>
+
+      {sessionData && (
+        <button
+          className="rounded-md py-2 px-4 transition-colors hover:bg-purple-300"
+          onClick={() => signOut()}
+        >
+          Logg ut
+        </button>
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const columns = [
     header: () => "#",
   }),
   columnHelper.accessor("avatar", {
-    cell: (info) => <AvatarCell info={info} />, // TODO do url
+    cell: (info) => <AvatarCell info={info} />,
     header: () => undefined,
   }),
   columnHelper.accessor("name", {
@@ -61,7 +61,7 @@ export function Leaderboard() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="h-fit w-[850px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right">
+      <div className="h-fit w-[650px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right lg:w-[850px]">
         <table className="w-full table-auto divide-y divide-gray-300">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
