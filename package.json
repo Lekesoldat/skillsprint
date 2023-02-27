@@ -55,6 +55,7 @@
     "superjson": "^1.12.2",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
+    "tsparticles-confetti": "^2.9.3",
     "zod": "^3.20.6"
   },
   "devDependencies": {
