@@ -36,6 +36,7 @@ export const Layout: FC<LayoutProps> = ({
     >
       <Head>
         <title>{title}</title>
+        <link rel="shortcut icon" href="/calculator.svg" />
       </Head>
 
       <TopNav />
