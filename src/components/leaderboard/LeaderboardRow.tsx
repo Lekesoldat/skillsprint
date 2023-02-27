@@ -12,13 +12,18 @@ interface TableRowProps {
 export const LeaderboardRow: FC<TableRowProps> = ({ row }) => {
   const { data } = useSession();
 
+  const outsideLeaderboard = +row.original.rank > 5;
+  const onLeaderboard =
+    data && row.original.id === data.user?.id && !outsideLeaderboard;
+
   return (
     <tr key={row.id}>
       {row.getVisibleCells().map((cell) => (
         <td
           key={cell.id}
           className={rowStyle({
-            onLeaderboard: data && row.original.id === data.user?.id,
+            onLeaderboard,
+            outsideLeaderboard,
           })}
         >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -34,6 +39,9 @@ const rowStyle = cva(["mx-auto text-center"], {
       true: [
         "bg-brand-yellow border-y-[1px] first:border-l-[1px] last:border-r-[1px] border-brand-black",
       ],
+    },
+    outsideLeaderboard: {
+      true: ["bg-brand-babyBlue border-t-[1px] border-brand-black"],
     },
   },
 });

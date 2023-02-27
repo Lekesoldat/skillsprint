@@ -3,7 +3,6 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useSession } from "next-auth/react";
 import React from "react";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
@@ -79,10 +78,6 @@ export function Leaderboard() {
           </tbody>
         </table>
       </div>
-
-      {data && data.placement > 5 && (
-        <div className="mt-10">Din plassering er {data?.placement}. plass!</div>
-      )}
     </div>
   );
 }
