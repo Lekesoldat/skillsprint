@@ -12,9 +12,8 @@ export default function AuthShowcase() {
       {sessionData && (
         <>
           <p className="text-2xl text-blue-500">
-            Logged in as {sessionData?.user?.name}
+            Velkommen, {sessionData?.user?.name} 👋
           </p>
-          <pre>{JSON.stringify(sessionData, null, 2)}</pre>
         </>
       )}
       <button
