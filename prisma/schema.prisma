@@ -41,6 +41,14 @@ enum TaskHint {
     FLAG
 }
 
+enum AnswerType {
+    NORMAL
+    MULTIPLE_CHOICE
+    MULTIPLE_VALUES
+    FLAG
+    FUNCTION_ANSWER
+}
+
 model Task {
     id          String        @id @default(cuid())
     title       String
@@ -51,6 +59,8 @@ model Task {
     answer      String
     image       String?
     hint        TaskHint?
+    answerType  AnswerType    @default(NORMAL) @map("answer_type")
+    placeholder String?
     TaskAttempt TaskAttempt[]
     nextTaskId  String?       @unique @map("next_task_id")
     nextTask    Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
