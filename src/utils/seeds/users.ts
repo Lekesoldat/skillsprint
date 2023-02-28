@@ -82,11 +82,13 @@ export async function createUsers({
     //   name: "kristine",
     //   password: await argon2.hash("larssen"),
     // },
-    // {
-    //   id: "cle78jrxx000708lgglob19m9",
-    //   name: "hilde",
-    //   password: await argon2.hash("haug"),
-    // },
+    {
+      id: "cle78jrxx000708lgglob19m9",
+      name: "hilde",
+      image:
+        "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
+      password: await argon2.hash("haug"),
+    },
     // {
     //   id: "cle79f67w000c08ml2leeejzg",
     //   name: "markus",
@@ -102,11 +104,13 @@ export async function createUsers({
     //   name: "alexander",
     //   password: await argon2.hash("orvik"),
     // },
-    // {
-    //   id: "cle8i7e0g000108mpaawh9cw0",
-    //   name: "øystein",
-    //   password: await argon2.hash("bjørkeng"),
-    // },
+    {
+      id: "cle8i7e0g000108mpaawh9cw0",
+      name: "øystein",
+      image:
+        "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
+      password: await argon2.hash("bjørkeng"),
+    },
     // {
     //   id: "clecore5x000008mq56fa3dzo",
     //   name: "adrian",
