@@ -37,14 +37,14 @@ const Achievement = ({
 }: Achievement) => {
   return (
     // <div className="flex border-t-2 border-brand-lightGray px-4 py-4 first:border-t-0">
-    <div className="flex rounded-xl border border-brand-lightGray bg-brand-white px-4 py-4">
+    <div className="flex rounded-xl border border-brand-lightGray bg-brand-white p-4">
       {/* Left side */}
       <div className={iconStyle({ color })}>
         <Image src={avatar} width={40} height={40} alt="Avatar" />
       </div>
 
       {/* Right side */}
-      <div className="ml-2 flex-grow">
+      <div className="ml-2 flex flex-grow flex-col gap-2">
         {/* Title and requirement */}
         <div className="flex justify-between">
           <p className="font-bold uppercase">{title}</p>
@@ -57,7 +57,7 @@ const Achievement = ({
         <Progress value={(progress / requirement) * 100} />
 
         {/* Description */}
-        <p className="text-brand-gray">{description}</p>
+        <p className="lg:text-md text-sm text-brand-gray">{description}</p>
       </div>
     </div>
   );
