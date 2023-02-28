@@ -7,9 +7,6 @@ export default withAuth({
       console.log(req.nextUrl);
       console.log({ token });
 
-      if (req.nextUrl.pathname === "/") {
-        return true;
-      }
       // `/admin` requires admin role
 
       // `/me` only requires the user to be logged in
