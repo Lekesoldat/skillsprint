@@ -31,7 +31,7 @@ export const TaskCollapsible = (
         />
         <span className="sr-only">Toggle</span>
       </CollapsibleTrigger>
-      <CollapsibleContent className="space-y-10 data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
+      <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
         {props.children}
       </CollapsibleContent>
     </CollapsibleRoot>
