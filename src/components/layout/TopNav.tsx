@@ -1,8 +1,11 @@
-import { BookOpen, LineChart, Medal, Trophy } from "lucide-react";
-import Image from "next/image";
+import { BookOpen, Home, LineChart, Medal, Trophy } from "lucide-react";
 import Link from "next/link";
 import { api } from "../../utils/api";
 const links = [
+  {
+    icon: <Home height={20} />,
+    path: "/",
+  },
   {
     icon: <BookOpen height={20} />,
     path: "/tasks",
@@ -59,7 +62,7 @@ const NavigationMenu = () => {
         {links.map((link) => (
           <li
             key={link.text}
-            className="text-md inline-flex h-10 items-center justify-center rounded-md bg-transparent py-2 px-4 font-semibold transition-colors hover:bg-purple-100"
+            className="text-md inline-flex h-10 items-center justify-center rounded-md bg-transparent py-2 px-2 font-semibold transition-colors hover:bg-purple-100"
           >
             <Link
               href={link.path}
