@@ -1,24 +1,16 @@
-import { withAuth } from "next-auth/middleware";
-import { serverEnv } from "./env/schema.mjs";
-
 // More on how NextAuth.js middleware works: https://next-auth.js.org/configuration/nextjs#middleware
-export default withAuth({
-  callbacks: {
-    authorized({ req, token }) {
-      console.log(serverEnv.NEXTAUTH_SECRET);
-      console.log(req.nextUrl);
-      console.log({ token });
+// export default withAuth({
+//   callbacks: {
+//     authorized({ req, token }) {
+//       return !!token;
+//     },
+//   },
+// });
 
-      // `/admin` requires admin role
-
-      // `/me` only requires the user to be logged in
-      return !!token;
-    },
-  },
-});
+export { default } from "next-auth/middleware";
 
 export const config = {
-  runtime: "nodejs",
+  // runtime: "nodejs",
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
