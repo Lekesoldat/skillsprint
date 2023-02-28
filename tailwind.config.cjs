@@ -59,8 +59,8 @@ module.exports = {
         },
       },
       animation: {
-        "collapsible-down": "collapsible-down 0.3s ease-out",
-        "collapsible-up": "collapsible-up 0.3s ease-out",
+        "collapsible-down": "collapsible-down 0.6s ease-out",
+        "collapsible-up": "collapsible-up 0.6s ease-out",
       },
     },
   },
