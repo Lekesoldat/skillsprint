@@ -4,9 +4,6 @@ import { withAuth } from "next-auth/middleware";
 export default withAuth({
   callbacks: {
     authorized({ req, token }) {
-      console.log("🚀 ~ authorized ~ token:", token);
-      // console.log(req.nextUrl.pathname);
-
       if (req.nextUrl.pathname === "/") {
         return true;
       }
