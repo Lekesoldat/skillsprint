@@ -1,9 +1,11 @@
 import { withAuth } from "next-auth/middleware";
+import { serverEnv } from "./env/schema.mjs";
 
 // More on how NextAuth.js middleware works: https://next-auth.js.org/configuration/nextjs#middleware
 export default withAuth({
   callbacks: {
     authorized({ req, token }) {
+      console.log(serverEnv.NEXTAUTH_SECRET);
       console.log(req.nextUrl);
       console.log({ token });
 
