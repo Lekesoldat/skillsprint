@@ -1,4 +1,6 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
+import { prisma } from "../../../server/db";
+import argon2 from "argon2";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 // Prisma adapter for NextAuth, optional and can be removed
@@ -38,7 +40,6 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: serverEnv.JWT_SECRET,
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -60,21 +61,25 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        try {
-          const user = await proxyClient.auth.login.mutate({
-            username: credentials?.username || "",
-            password: credentials?.password || "",
-          });
-
-          if (user) {
-            return user;
-          } else {
-            return null;
-          }
-        } catch (error) {
-          console.error(error);
+        if (!credentials) {
           return null;
         }
+
+        const user = await prisma.user.findUnique({
+          where: {
+            name: credentials.username,
+          },
+        });
+
+        if (!user) {
+          return null;
+        }
+        const valid = await argon2.verify(user.password, credentials.password);
+        if (!valid) {
+          return null;
+        }
+
+        return user;
       },
     }),
   ],

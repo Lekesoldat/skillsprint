@@ -30,8 +30,8 @@ export const TopNav = () => {
     staleTime: Infinity,
   });
   return (
-    <header className="mx-auto mt-2 w-full max-w-screen-lg px-4 sm:px-9">
-      <div className="flex h-16 items-center justify-center">
+    <header className="mx-auto mt-2 w-full max-w-screen-lg ">
+      <div className="flex h-16 items-center justify-between px-10 lg:px-0">
         {/* <Link href="/" className="flex items-center">
           <Image
             src="https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/049-mortarboard.svg"
@@ -54,7 +54,7 @@ export const TopNav = () => {
 
 const NavigationMenu = () => {
   return (
-    <nav className="relative z-10 ml-6 flex w-min flex-1 items-center md:flex">
+    <nav className="relative z-10 flex w-min items-center md:flex">
       <ul className="group flex flex-1 list-none items-center justify-start">
         {links.map((link) => (
           <li

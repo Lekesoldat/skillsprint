@@ -15,7 +15,7 @@ export const AvatarCell: FC<AvatarCellProps> = ({ info }) => {
           src={info.getValue() ?? ""}
           alt={info.row.original.name.slice(0, 2)}
         />
-        <AvatarFallback className="capitalize">
+        <AvatarFallback className="uppercase">
           {info.row.original.name.slice(0, 2)}
         </AvatarFallback>
       </Avatar>
