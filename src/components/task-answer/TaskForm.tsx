@@ -1,4 +1,4 @@
-import type { TaskAttempt, TaskHint } from "@prisma/client";
+import type { AnswerType, TaskAttempt, TaskHint } from "@prisma/client";
 import type { Control } from "react-hook-form";
 import type {
   FormValues,
@@ -19,6 +19,14 @@ const TaskHints: Record<TaskHint, string> = {
   DECIMAL:
     "Dersom svaret har desimaler i seg, bruk punktum i stedet for komma, f.eks: 1.5",
   FLAG: "Løsningsordet på denne oppgaven får du av læreren din når du har gjort oppgaven.",
+};
+
+const placeholders: Record<AnswerType, string> = {
+  MULTIPLE_VALUES: "x=\\placeholder[blank1]{} \\lor x=\\placeholder[blank2]{}",
+  NORMAL: "",
+  FUNCTION_ANSWER: "f(x)=\\placeholder[blank1]{a}x+\\placeholder[blank2]{b}",
+  FLAG: "",
+  MULTIPLE_CHOICE: "",
 };
 
 interface TaskFormProps {
@@ -60,7 +68,11 @@ export const AnswerForm = ({
             </div>
           </div>
         )}
-        <MathInput control={control} name="answer" />
+        <MathInput
+          control={control}
+          name="answer"
+          defaultValue={placeholders[task.answerType]}
+        />
 
         {task.hint && (
           <div className="rounded-md border-2 border-brand-black bg-brand-babyBlue px-2 py-1 text-brand-black">

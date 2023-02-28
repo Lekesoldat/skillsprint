@@ -10,7 +10,9 @@ function isTouchDevice() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0;
 }
 
-export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
+export const MathInput: FC<
+  UseControllerProps<FormValues> & { placeholder?: string }
+> = (props) => {
   const ref = useRef<MathfieldElement>(null);
 
   const { field } = useController(props);
