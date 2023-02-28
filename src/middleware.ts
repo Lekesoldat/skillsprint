@@ -4,7 +4,7 @@ import { withAuth } from "next-auth/middleware";
 export default withAuth({
   callbacks: {
     authorized({ req, token }) {
-      console.log({ req });
+      console.log(req.nextUrl);
       console.log({ token });
 
       if (req.nextUrl.pathname === "/") {
@@ -27,6 +27,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|_next/image|calculator.svg).*)",
   ],
 };
