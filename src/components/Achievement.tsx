@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
+import Image from "next/image";
 import type { RouterOutputs } from "../utils/api";
 import { api } from "../utils/api";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Skeleton } from "./ui/loaders/Skeleton";
 import { Progress } from "./ui/Progress";
 
@@ -40,10 +40,7 @@ const Achievement = ({
     <div className="flex rounded-xl border border-brand-lightGray bg-brand-white px-4 py-4">
       {/* Left side */}
       <div className={iconStyle({ color })}>
-        <Avatar>
-          <AvatarImage className="w-10 lg:w-12" src={avatar} />
-          <AvatarFallback>🧠</AvatarFallback>
-        </Avatar>
+        <Image src={avatar} width={40} height={40} alt="Avatar" />
       </div>
 
       {/* Right side */}
@@ -74,6 +71,7 @@ const iconStyle = cva(
         GREEN: "bg-brand-green",
         BLUE: "bg-brand-blue",
         RED: "bg-brand-red",
+        LIGHTRED: "bg-brand-red/80",
         PINK: "bg-brand-pink",
         YELLOW: "bg-brand-yellow",
         PURPLE: "bg-brand-purple",

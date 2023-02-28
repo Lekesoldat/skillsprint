@@ -2,12 +2,12 @@ type Color =
   | "GREEN"
   | "BLUE"
   | "RED"
-  | "PINK"
+  | "LIGHTRED"
   | "YELLOW"
   | "PURPLE"
   | "GRAY"
   | "LIGHTGRAY"
-  | "ORANGE";
+  | "LIGHTRED";
 
 export type Achievement = {
   title: string;
@@ -28,7 +28,7 @@ export const achievements: Achievement[] = [
     description: "Fullfør 3 oppgaver på rad",
     progress: 0,
     requirement: 3,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "STREAK",
   },
   {
@@ -38,7 +38,7 @@ export const achievements: Achievement[] = [
     description: "Fullfør 5 oppgaver på rad",
     progress: 0,
     requirement: 5,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "STREAK",
   },
   {
@@ -48,7 +48,7 @@ export const achievements: Achievement[] = [
     description: "Fullfør 5 oppgaver på rad",
     progress: 0,
     requirement: 5,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "STREAK",
   },
   {
@@ -58,7 +58,7 @@ export const achievements: Achievement[] = [
     description: "Fullfør 7 oppgaver på rad",
     progress: 0,
     requirement: 7,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "STREAK",
   },
   {
@@ -68,7 +68,7 @@ export const achievements: Achievement[] = [
     description: "Fullfør 10 oppgaver på rad",
     progress: 0,
     requirement: 10,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "STREAK",
   },
   {
@@ -78,7 +78,7 @@ export const achievements: Achievement[] = [
     description: "Løs din første oppgave",
     progress: 0,
     requirement: 1,
-    color: "PINK",
+    color: "LIGHTRED",
     type: "SOLVED",
   },
 
