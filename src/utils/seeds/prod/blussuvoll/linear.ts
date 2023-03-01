@@ -35,7 +35,8 @@ export async function createLinearTasks({
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 25,
       hint: "FUNCTION",
-      answer: "-\\frac{1}{2}x+2",
+      answerType: "FUNCTION_ANSWER",
+      answer: "f(x)=-\\frac{1}{2}x+2",
     },
     {
       id: "clee4l0x5000308mkhvhj73ag",
@@ -46,7 +47,8 @@ export async function createLinearTasks({
       category: { connect: { id: "cldacdi520001sbxekmyct9yd" } },
       points: 25,
       hint: "FUNCTION",
-      answer: "2x+2",
+      answerType: "FUNCTION_ANSWER",
+      answer: "f(x)=2x+2",
       prevTask: { connect: { id: "clee2cpn2000008kzevn87azv" } },
     },
     {

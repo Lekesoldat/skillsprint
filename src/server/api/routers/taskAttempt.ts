@@ -1,5 +1,5 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
-import type { PrismaClient } from "@prisma/client";
+import type { PrismaClient, Task } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
 import { z } from "zod";
@@ -76,11 +76,7 @@ export const taskAttemptRouter = createTRPCRouter({
 
       const alreadyAnswered = recentAttempt.result === "SUCCESS";
 
-      const ce = new ComputeEngine();
-      const answer = ce.parse(input.answer);
-      const solution = ce.parse(task.answer);
-
-      const result: "SUCCESS" | "FAIL" = answer.isSame(solution)
+      const result: "SUCCESS" | "FAIL" = validateAnswer(input.answer, task)
         ? "SUCCESS"
         : "FAIL";
 
@@ -305,3 +301,50 @@ const startNewAttempt = (
       createdAt: new Date(),
     },
   });
+
+const validateAnswer = (answer: string, task: Task) => {
+  switch (task.answerType) {
+    case "FUNCTION_ANSWER":
+    case "NORMAL": {
+      const ce = new ComputeEngine();
+      const userAnswer = ce.parse(answer);
+      const solution = ce.parse(task.answer);
+      console.log(userAnswer.isSame(solution));
+      return userAnswer.isSame(solution);
+    }
+    case "MULTIPLE_VALUES": {
+      const userAnswers = answer
+        .split("\\lor")
+        .map((a) => a.trim())
+        .sort();
+      const solutions = task.answer
+        .split("\\lor")
+        .map((a) => a.trim())
+        .sort();
+      if (userAnswers.length !== solutions.length) {
+        return false;
+      }
+
+      const ce = new ComputeEngine();
+      for (let i = 0; i < userAnswers.length; i++) {
+        const userAnswer = ce.parse(userAnswers[i]!);
+        const solution = ce.parse(solutions[i]!);
+        if (!userAnswer.isSame(solution)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    case "FLAG": {
+      return (
+        answer.trim().toLocaleLowerCase() ===
+        task.answer.trim().toLocaleLowerCase()
+      );
+    }
+    case "MULTIPLE_CHOICE": {
+      throw new Error("Not implemented yet");
+    }
+    default:
+      return false;
+  }
+};

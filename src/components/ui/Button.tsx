@@ -44,6 +44,7 @@ const buttonVariants = cva(
         outline: "bg-white border-2 border-brand-black",
         ghost:
           "bg-transparent hover:bg-slate-100 data-[state=open]:bg-transparent",
+        icon: "bg-brand-purple border-brand-black font-bold border-2 shadow-2-hard",
       },
     },
     defaultVariants: {
