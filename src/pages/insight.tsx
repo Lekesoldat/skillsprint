@@ -5,7 +5,7 @@ import { TaskTable } from "../components/task-table/TaskTable";
 
 export default function Page() {
   return (
-    <div className="flex w-full flex-1 flex-col justify-between">
+    <div className="flex w-full flex-1 flex-col justify-between gap-y-14">
       <div className="flex flex-col items-center">
         <div className="mb-2 font-bold">Siste løste oppgaver</div>
 
