@@ -39,6 +39,7 @@ export default function TaskPage({ task }: TaskPageProps) {
         if (!data || data.result === "PENDING") {
           return;
         }
+        console.log(data);
         if (data.result === "SUCCESS") {
           toast({
             title: `Riktig svar! +${task.points} poeng`,
@@ -56,6 +57,7 @@ export default function TaskPage({ task }: TaskPageProps) {
           // if (attempt?.result === "SUCCESS") {
           //   void utils.taskAttempt.startAttempt.setData(task.id, data);
           // } else {
+          void utils.auth.me.invalidate();
           void utils.taskAttempt.startAttempt.invalidate(task.id);
           // }
         }
