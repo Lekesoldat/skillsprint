@@ -1,12 +1,15 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
+import { differenceInSeconds } from "date-fns";
 
 export async function createNoobTasks({
   prismaClient,
 }: {
   prismaClient: PrismaClient;
 }) {
+  const timer = new Date();
   console.info("\n📝 Seeding noob tasks...");
-  const data: Prisma.TaskCreateInput[] = [
+
+  const noobTasks: Prisma.TaskCreateInput[] = [
     {
       id: "cle79684v000708mlbqti5tbn",
       title: "Oppgave 1a",
@@ -53,8 +56,8 @@ export async function createNoobTasks({
     },
   ];
 
-  return await prismaClient.$transaction(
-    data.map((task) =>
+  const data = await prismaClient.$transaction(
+    noobTasks.map((task) =>
       prismaClient.task.upsert({
         where: { id: task.id },
         create: task,
@@ -62,4 +65,8 @@ export async function createNoobTasks({
       })
     )
   );
+
+  console.log(`Took ${differenceInSeconds(new Date(), timer)}s`);
+
+  return data;
 }
