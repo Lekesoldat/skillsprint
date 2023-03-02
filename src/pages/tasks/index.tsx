@@ -43,7 +43,7 @@ export default function Page(
         // Columns
         <div key={cat.id} className="flex flex-col items-center">
           {/* Title */}
-          <div className="font-bold uppercase">{cat.name}</div>
+          <div className="text-center font-bold uppercase">{cat.name}</div>
 
           {/* Tasks container*/}
           <div className="flex w-full flex-col items-center">

@@ -19,16 +19,12 @@ import { starsConfetti } from "../../utils/confetti";
 
 export type TaskPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export type SubmitHandler = (
-  e?: BaseSyntheticEvent<object, any, any> | undefined
-) => Promise<void>;
-
 export type FormValues = {
   answer: string;
 };
 
 export default function TaskPage({ task }: TaskPageProps) {
-  const { handleSubmit, control } = useForm<FormValues>();
+  const form = useForm<FormValues>();
 
   const utils = api.useContext();
   const { toast } = useToast();
@@ -66,12 +62,12 @@ export default function TaskPage({ task }: TaskPageProps) {
       },
     });
 
-  const submitHandler = handleSubmit((data) => {
+  const handleSubmit = (data: FormValues) => {
     mutate({
       answer: data.answer,
       taskId: task.id,
     });
-  });
+  };
 
   return (
     <div className="mb-[200px] mt-8 w-full lg:mb-40">
@@ -81,9 +77,10 @@ export default function TaskPage({ task }: TaskPageProps) {
             <AnswerForm
               task={task}
               attempt={attempt}
-              form={{ control, submitHandler }}
+              form={form}
               isAnswering={isAnswering}
               isLoading={isLoading}
+              onSubmit={handleSubmit}
             />
           </PictureTask>
         ) : (
@@ -91,9 +88,10 @@ export default function TaskPage({ task }: TaskPageProps) {
             <AnswerForm
               task={task}
               attempt={attempt}
-              form={{ control, submitHandler }}
+              form={form}
               isAnswering={isAnswering}
               isLoading={isLoading}
+              onSubmit={handleSubmit}
             />
           </TextTask>
         )}

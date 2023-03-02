@@ -31,6 +31,7 @@ export const PictureTask = ({ task, children }: PropsWithChildren<Props>) => {
                   alt={task.title}
                   fill
                   className="object-contain"
+                  placeholder="empty"
                 />
               </div>
             </div>

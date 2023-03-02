@@ -1,11 +1,9 @@
+import argon2 from "argon2";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import { prisma } from "../../../server/db";
-import argon2 from "argon2";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 // Prisma adapter for NextAuth, optional and can be removed
-import { serverEnv } from "../../../env/schema.mjs";
-import { proxyClient } from "../../../utils/api";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session

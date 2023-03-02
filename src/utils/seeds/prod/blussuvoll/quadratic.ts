@@ -16,6 +16,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "lion-horse",
     },
     {
@@ -26,6 +27,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
       answer: "kvadrattall",
+      answerType: "FLAG",
       prevTask: { connect: { id: "cleeb7hsj000008l81muxehco" } },
     },
 
@@ -45,6 +47,7 @@ export async function createQuadraticTasks({
       description: "Hva slags type funksjon er math$h(x)&?",
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
+      answerType: "FLAG",
       answer: "andregradsfunksjon",
       prevTask: { connect: { id: "cleebrirf000008jt8er15aem" } },
     },
@@ -86,6 +89,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 75,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "rusten-spiker",
     },
     {
