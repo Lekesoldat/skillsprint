@@ -212,6 +212,165 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     points: 100,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
   },
+
+  // 2.28
+  {
+    id: "clevep44w000208mbhy5mgzq5",
+    title: "Oppgave 2.28a",
+    description:
+      "Samenhengen mellom celsiusgrader og fahrenheitgrader kan beskrives med funksjonen math$F(C)=1.8C+32& der F er fahrenheitgrader og C er celsiusgrader. Tegn grafen til funksjonen math$F(C)=1.8C+32&.",
+    answer: "nyttig-graf",
+    points: 100,
+    hint: "FLAG",
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+  },
+  {
+    id: "clevevakk000308mb4h4ieulr",
+    title: "Oppgave 2.28b",
+    description:
+      "Samenhengen mellom celsiusgrader og fahrenheitgrader kan beskrives med funksjonen math$F(C)=1.8C+32& der F er fahrenheitgrader og C er celsiusgrader. Les av på grafen hvor mange grader fahrenheit det er når det er 30 grader celsius.",
+    answer: "86F",
+    placeholder: "\\placeholder[blank1]{}F",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevep44w000208mbhy5mgzq5" } },
+  },
+  {
+    id: "clevexgs8000408mbb5ypbp6m",
+    title: "Oppgave 2.28c",
+    description:
+      'Samenhengen mellom celsiusgrader og fahrenheitgrader kan beskrives med funksjonen math$F(C)=1.8C+32& der F er fahrenheitgrader og C er celsiusgrader. Undersøk om det stemmer at kokepunktet til vann er 212 grader fahrenheit. Hvis det stemmer, skriv "riktig", hvis ikke skriv "feil".',
+    answer: "riktig",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevevakk000308mb4h4ieulr" } },
+  },
+  {
+    id: "clevf1fk2000508mb24292rrc",
+    title: "Oppgave 2.28d",
+    description:
+      "Samenhengen mellom celsiusgrader og fahrenheitgrader kan beskrives med funksjonen math$F(C)=1.8C+32& der F er fahrenheitgrader og C er celsiusgrader. Hvor mange grader celsius er det hvis det er 32F?",
+    answer: "0C",
+    placeholder: "\\placeholder[blank1]{}C",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevexgs8000408mbb5ypbp6m" } },
+  },
+
+  // 2.29.1
+  {
+    id: "clevf4bnr000608mbechdb00z",
+    title: "Oppgave 2.29.1a",
+    description:
+      "Hassan sykler med en hastighet på 24 km/h. Funksjonsuttrykekt math$L(x)=24x& viser hvor langt han har syklet på x timer. Tegn grafen til funksjonen.",
+    answer: "sykkeltur",
+    hint: "FLAG",
+    points: 100,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+  },
+  {
+    id: "clevf4bnr000608mbechdb00z",
+    title: "Oppgave 2.29.1b",
+    description:
+      "Hassan sykler med en hastighet på 24 km/h. Funksjonsuttrykekt math$L(x)=24x& viser hvor langt han har syklet på x timer. Les av på grafen hvor langt han har syklet etter 2 timer (x = 2).",
+    answer: "48km",
+    placeholder: "\\placeholder[blank1]{}km",
+    points: 50,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevf4bnr000608mbechdb00z" } },
+  },
+
+  // 2.29.2
+  {
+    id: "clevf8oxk000808mb8wvj4fqw",
+    title: "Oppgave 2.29.2a",
+    description:
+      "Erik går 30 km på ski. Han går i gjennomsnitt 0.2 km på 1 minutt. Lag et funksjonuttrykk math$L(x)& som viser hvor langt han har igjen etter x minutter.",
+    answer: "L(x)=30-0.2x",
+    placeholder: "L(x)=\\placeholder[blank1]{}-\\placeholder[blank2]{}x",
+    points: 100,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevf4bnr000608mbechdb00z" } },
+  },
+  {
+    id: "clevfdiq4000908mbd0qv5c1z",
+    title: "Oppgave 2.29.2b",
+    description:
+      "Erik går 30 km på ski. Han går i gjennomsnitt 0.2 km på 1 minutt. Tegn grafen for funksjonen når math$0<=x<=150&.",
+    answer: "skitur",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevf8oxk000808mb8wvj4fqw" } },
+  },
+  {
+    id: "clevfj0kv000a08mbhcvqdijn",
+    title: "Oppgave 2.29.2c",
+    description:
+      "Erik går 30 km på ski. Han går i gjennomsnitt 0.2 km på 1 minutt. Les av på grafen hvor langt han har igjen etter 100 minutter (x = 100).",
+    answer: "10km",
+    placeholder: "\\placeholder[blank1]{}km",
+    points: 50,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfdiq4000908mbd0qv5c1z" } },
+  },
+
+  // 2.29.3
+  {
+    id: "clevfkzsz000b08mbf9or0rue",
+    title: "Oppgave 2.29.3a",
+    description:
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Lag et funksjonsuttrykk math$G(x)& som viser hvor mye han har igjen etter x dager.",
+    answer: "G(x)=560-40x",
+    placeholder: "G(x)=\\placeholder[blank1]{}-\\placeholder[blank2]{}x",
+    points: 100,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfj0kv000a08mbhcvqdijn" } },
+  },
+  {
+    id: "clevfp5sx000c08mb22gahsk8",
+    title: "Oppgave 2.29.3b",
+    description:
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Tegn grafen for funksjonen når math$0<=x<=14&.",
+    answer: "strikkegenser",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfj0kv000a08mbhcvqdijn" } },
+  },
+  {
+    id: "clevfpbdl000d08mbekze7ze3",
+    title: "Oppgave 2.29.3c",
+    description:
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Forklar hvorfor vi ikke bør bruke x-verdier høyere enn 14.",
+    answer: "negativitet",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfp5sx000c08mb22gahsk8" } },
+  },
+  {
+    id: "clevfpunn000e08mbac1f4y5w",
+    title: "Oppgave 2.29.3d",
+    description:
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Les av på grafen hvor mye han har igjen etter 5 dager.",
+    answer: "360g",
+    placeholder: "\\placeholder[blank1]{}g",
+    points: 50,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfpbdl000d08mbekze7ze3" } },
+  },
+  {
+    id: "clevfq1hw000f08mbdnq42xtq",
+    title: "Oppgave 2.29.3e",
+    description:
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Les av på grafen hvor mange dager det er gått når han har 100 g garn igjen. Skriv kun inn desimaltallet.",
+    answer: "11.5",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clevfpunn000e08mbac1f4y5w" } },
+  },
 ];
 
 export async function createDayOneTasks({
