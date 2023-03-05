@@ -15,7 +15,7 @@ type Solved = RouterOutputs["taskAttempt"]["getSolvedAttempts"];
 const groupTasks = (tasks: Tasks) => {
   const grouped: Map<string, Tasks> = new Map();
   for (const task of tasks) {
-    const match = task.title.match(/(Oppgave\s\d)[a-z]/);
+    const match = task.title.match(/(Oppgave\s[\d.]+)[a-z]*/);
     if (match && match[1]) {
       const key = match[1];
       const list = grouped.get(key);

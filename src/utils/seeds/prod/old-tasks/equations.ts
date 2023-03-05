@@ -15,7 +15,8 @@ export async function createEquationTasks({
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 100,
       hint: "MULTIPLE_VALUES",
-      answer: "x=1,x=-3",
+      answerType: "MULTIPLE_VALUES",
+      answer: "x=1 \\lor x=-3",
     },
     {
       id: "cleebse3x000208jtgg6n1nya",
@@ -24,7 +25,8 @@ export async function createEquationTasks({
       hint: "MULTIPLE_VALUES",
       category: { connect: { id: "cldacdi530002sbxeu6rgijzl" } },
       points: 100,
-      answer: "x=4,x=-2",
+      answerType: "MULTIPLE_VALUES",
+      answer: "x=4 \\lor x=-2",
       prevTask: { connect: { id: "cleebs9cy000108jt2h90em7p" } },
     },
     {
