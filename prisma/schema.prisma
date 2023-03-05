@@ -14,16 +14,17 @@ datasource db {
 // Necessary for Next auth
 
 model User {
-    id            String        @id @default(cuid())
-    name          String        @unique
-    email         String?       @unique
+    id            String          @id @default(cuid())
+    name          String          @unique
+    email         String?         @unique
     emailVerified DateTime?
     image         String?
     password      String
-    points        Int           @default(0)
-    streak        Int           @default(0)
-    bestStreak    Int           @default(0) @map("best_streak")
+    points        Int             @default(0)
+    streak        Int             @default(0)
+    bestStreak    Int             @default(0) @map("best_streak")
     TaskAttempt   TaskAttempt[]
+    Participation Participation[]
 }
 
 // SkillSprint
@@ -82,4 +83,20 @@ model TaskAttempt {
     result      AttemptResult @default(PENDING)
     createdAt   DateTime      @default(now()) @map("created_at")
     elapsedTime Int           @default(0) @map("elapsed_time")
+}
+
+model Session {
+    id            String          @id @default(cuid())
+    start         DateTime
+    end           DateTime
+    Participation Participation[]
+}
+
+model Participation {
+    user      User    @relation(fields: [userId], references: [id])
+    userId    String  @map("user_id")
+    session   Session @relation(fields: [sessionId], references: [id])
+    sessionId String  @map("session_id")
+
+    @@id([userId, sessionId])
 }
