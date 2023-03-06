@@ -1555,14 +1555,167 @@ const providedTasks: Prisma.TaskCreateInput[] = [
   },
 
   // Oppgave 2.52.1
+  {
+    id: "clex1hlpt000608l0b4lvgu5g",
+    title: "Oppgave 2.52.1",
+    description:
+      "I en kommune er folketallet 10 000. Det er beregnet en befolkningsøkning på 2% per år. Hva er folketallet beregnet til etter ett år? Oppgi bare tallet.",
+    answer: "10200",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+
   // Oppgave 2.52.2
+  {
+    id: "clex1hrtt000708l0ehd25j2r",
+    title: "Oppgave 2.52.2a",
+    description:
+      "I en kommune er folketallet 10 000. Det er beregnet en befolkningsøkning på 2% per år. Hva er folketallet beregnet til etter ett år? Finn et funksjonsuttrykk F(x) som viser folketallet F etter x år.",
+    answer: "F(x)=10000 \\cdot 1.02^x",
+    placeholder: "F(x)=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1hlpt000608l0b4lvgu5g" } },
+  },
+  {
+    id: "clex1mfmf000808l0chinfqpy",
+    title: "Oppgave 2.52.2b",
+    description:
+      "Ved hjelp av funksjonsuttrykket fra forrige oppgave, - hva er folketallet etter 8 år?",
+    answer: "11716",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1hrtt000708l0ehd25j2r" } },
+  },
+
   // Oppgave 2.52.3
+  {
+    id: "clex1oa59000908l06h8l16dv",
+    title: "Oppgave 2.52.3",
+    description:
+      "Gitt funksjonen math$F(x)=10000 \\cdot 1.02^x&, hva blir gjennomsnittlig veksthastighet for den lineære funksjonen som går gjennom punktene math$(0,10000)& og math$(10,12190)&? Oppgi bare tallet for innbyggere/år.",
+    answer: "219",
+    points: 150,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1mfmf000808l0chinfqpy" } },
+  },
+
   // Oppgave 2.53.1
+  {
+    id: "clex1tg78000a08l09ffl46e3",
+    title: "Oppgave 2.53.1a",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange dataspill selger selskapet etter 2 år? Oppgi bare tallet i millioner.",
+    answer: "8.6528",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  {
+    id: "clex1yzr4000b08l08ztg2m2x",
+    title: "Oppgave 2.53.1b",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange år har det gått når salget ER over 9 millioner solgte spill?",
+    answer: "4",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1tg78000a08l09ffl46e3" } },
+  },
+
   // Oppgave 2.53.2
+  {
+    id: "clex204on000c08l01776bw1f",
+    title: "Oppgave 2.53.2a",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Finn et funksjonsuttrykk S(x) som viser hvor stort salget S er etter x år i antall millioner.",
+    answer: "S(x)=8 \\cdot 1.04^x",
+    placeholder: "S(x)=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1yzr4000b08l08ztg2m2x" } },
+  },
+  {
+    id: "clex21t7f000d08l00mubdajc",
+    title: "Oppgave 2.53.2b",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange hele år har det gått når salget BLIR over 9 millioner solgte spill?",
+    answer: "3",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex204on000c08l01776bw1f" } },
+  },
+
   // Oppgave 2.53.3
+  {
+    id: "clex25svs000e08l082n79o9w",
+    title: "Oppgave 2.53.3a",
+    description:
+      "Gitt funksjonen math$S(x)=8 \\cdot 1.04^x&, hvor mange spill selges etter 8 år? Oppgi bare tallet i millioner.",
+    answer: "10.95",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex21t7f000d08l00mubdajc" } },
+  },
+  {
+    id: "clex2b3lq000f08l09d2m9p49",
+    title: "Oppgave 2.53.3b",
+    description:
+      "Gitt funksjonen math$S(x)=8 \\cdot 1.04^x&, hvor mange år har det gått når salget overstiger 10 millioner solgte spill? Rund opp uten desimaler.",
+    answer: "6",
+    points: 100,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex25svs000e08l082n79o9w" } },
+  },
+
   // Oppgave 2.54.1
+  {
+    id: "clex2gn88000g08l00w573kdf",
+    title: "Oppgave 2.54.1",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor mye er bilen verdt etter 5 år? Oppgi bare tallet i hele kroner.",
+    answer: "237479",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+
   // Oppgave 2.54.2
+  {
+    id: "clex2rw4a000008lacfv1ahvo",
+    title: "Oppgave 2.54.2",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Etter hvor mange år blir verdien av bilen under 200 000 kr? Oppgi bare tallet i år.",
+    answer: "6.34",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2gn88000g08l00w573kdf" } },
+  },
+
   // Oppgave 2.54.3
+  {
+    id: "clex2sfm6000108ladjlx9w14",
+    title: "Oppgave 2.54.3a",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor mange år går det før bilen er verdt mindre enn 200 000 kr? Oppgi bare tallet i år.",
+    answer: "6.34",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2rw4a000008lacfv1ahvo" } },
+  },
+  {
+    id: "clex2uv31000208la4chj4rbf",
+    title: "Oppgave 2.54.3b",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor gammel var bilen da Espen kjøpte bilen hvis nypris på bilen var 660 000 kr? Oppgi bare tallet i år.",
+    answer: "3",
+    points: 125,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2sfm6000108ladjlx9w14" } },
+  },
 ];
 
 export async function createDayOneTasks({
