@@ -371,6 +371,129 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
     prevTask: { connect: { id: "clevfpunn000e08mbac1f4y5w" } },
   },
+
+  // 2.30.1
+  {
+    id: "clewljxef000008mo1nd7ga92",
+    title: "Oppgave 2.30.1a",
+    description:
+      "Emma bruker 300 kWh (kilowattimer) strøm i uka. Lag et funksjonsuttrykk math$S(x)& som viser hvor mye strøm hun bruker på x uker.",
+    answer: "S(x)=300x",
+    points: 100,
+    placeholder: "S(x)=\\placeholder[blank1]{}\\placeholder[blank2]{}x",
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+  },
+  {
+    id: "clewlwc3k000208l760wqfvcd",
+    title: "Oppgave 2.30.1b",
+    description:
+      "Emma bruker 300 kWh (kilowattimer) strøm i uka. Tegn grafen til funksjonen.",
+    answer: "billig-strøm",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewljxef000008mo1nd7ga92" } },
+  },
+  {
+    id: "clewlyvwc000308l744kzhkpy",
+    title: "Oppgave 2.30.1b",
+    description:
+      "Emma bruker 300 kWh (kilowattimer) strøm i uka. Les av på grafen hvor mange kilowattimer Emma har brukt etter 52 uker (x = 52).",
+    answer: "15600kWh",
+    placeholder: "\\placeholder[blank1]{}kWh",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewlwc3k000208l760wqfvcd" } },
+  },
+  // 2.30.2
+  {
+    id: "clewm2gt2000408l77tgia843",
+    title: "Oppgave 2.30.2a",
+    description:
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Lag et funksjonsuttrykk math$E(x)& som viser hvor stor kapasitet det er igjen etter x mil.",
+    answer: "E(x)=81-1.8x",
+    placeholder: "E(x)=\\placeholder[blank1]{}-\\placeholder[blank2]{}x",
+    points: 100,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewlyvwc000308l744kzhkpy" } },
+  },
+  {
+    id: "clewm5rce000508l73bjf72bn",
+    title: "Oppgave 2.30.2b",
+    description:
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Tegn grafen til funksjonen når math$0<=x<=45$.",
+    answer: "elbil",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewm2gt2000408l77tgia843" } },
+  },
+  {
+    id: "clewmavx7000b08l7btdc1de8",
+    title: "Oppgave 2.30.2c",
+    description:
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Les av på grafen hvor mange mil bilen har kjørt når det er 20% strøm igjen på batteriet.",
+    answer: "36mil",
+    placeholder: "\\placeholder[blank1]{}mil",
+    points: 50,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewm5rce000508l73bjf72bn" } },
+  },
+  {
+    id: "clewm8pxt000a08l7ct9m78ad",
+    title: "Oppgave 2.30.2d",
+    description:
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Hva er maksimal kjørelengde med et forbruk på 1.8 kWh per mil?",
+    answer: "45mil",
+    placeholder: "\\placeholder[blank1]{}mil",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewmavx7000b08l7btdc1de8" } },
+  },
+  // 2.30.3
+  {
+    id: "clewme1gg000c08l7akvwgs31",
+    title: "Oppgave 2.30.3a",
+    description:
+      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Lag et funksjonsuttrykk math$C(x)& som viser hvor mange som ikke var vaksinert etter x uker.",
+    answer: "C(x)=54000-1500x",
+    placeholder: "C(x)=\\placeholder[blank1]{}-\\placeholder[blank2]{}x",
+    points: 100,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewm8pxt000a08l7ct9m78ad" } },
+  },
+  {
+    id: "clewmewcd000d08l74rmb7a50",
+    title: "Oppgave 2.30.3b",
+    description:
+      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Tegn grafen til funksjonen når math$0<=x<=36&.",
+    answer: "vaksine",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewme1gg000c08l7akvwgs31" } },
+  },
+  {
+    id: "clewmf0e2000e08l76iyq8ieo",
+    title: "Oppgave 2.30.3c",
+    description:
+      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Les av på grafen hvor mange som ikke var vaksinert etter 20 uker. Oppgi bare tallet.",
+    answer: "24000",
+    points: 50,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewmewcd000d08l74rmb7a50" } },
+  },
+  {
+    id: "clewmf68a000f08l71vqpevc5",
+    title: "Oppgave 2.30.3d",
+    description:
+      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Les av på grafen hvor mange uker som var gått når det var 21 000 personer igjen å vaksinere.",
+    answer: "22uker",
+    placeholder: "\\placeholder[blank1]{}uker",
+    points: 75,
+    category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
+    prevTask: { connect: { id: "clewmf0e2000e08l76iyq8ieo" } },
+  },
 ];
 
 export async function createDayOneTasks({
