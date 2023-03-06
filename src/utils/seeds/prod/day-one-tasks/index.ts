@@ -271,7 +271,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
   },
   {
-    id: "clevf4bnr000608mbechdb00z",
+    id: "clex6jlb5000008jrak2peih0",
     title: "Oppgave 2.29.1b",
     description:
       "Hassan sykler med en hastighet på 24 km/h. Funksjonsuttrykekt math$L(x)=24x& viser hvor langt han har syklet på x timer. Les av på grafen hvor langt han har syklet etter 2 timer (x = 2).",
@@ -292,7 +292,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     placeholder: "L(x)=\\placeholder[blank1]{}-\\placeholder[blank2]{}x",
     points: 100,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
-    prevTask: { connect: { id: "clevf4bnr000608mbechdb00z" } },
+    prevTask: { connect: { id: "clex6jlb5000008jrak2peih0" } },
   },
   {
     id: "clevfdiq4000908mbd0qv5c1z",
@@ -1146,7 +1146,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
   },
   {
     id: "clewut8e1000308mla7k07z1a",
-    title: "Opppgave 2.42.2b",
+    title: "Oppgave 2.42.2b",
     description:
       "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange bakterier er det etter 2 minutter?",
     answer: "24000",
@@ -1407,17 +1407,17 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     answer: "150",
     points: 150,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
-    prevTask: { connect: { id: "clewx59sf000008mc2hdg4efn" } },
+    prevTask: { connect: { id: "clewxdt37000008l97essfagl" } },
   },
   {
-    id: "clewxjrn3000108l9b38d9m54",
+    id: "clex6lsb9000208jrbqrng45t",
     title: "Oppgave 2.46.3b",
     description:
       "Basert på forrige oppgave, uttrykk gjennomsnittsfarten i kilometer per time. Oppgi kun tallet for km/h.",
     answer: "9000",
     points: 100,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
-    prevTask: { connect: { id: "clewx59sf000008mc2hdg4efn" } },
+    prevTask: { connect: { id: "clewxjrn3000108l9b38d9m54" } },
   },
   // Oppgave 2.47.1
   // Oppgave 2.47.2
@@ -1517,7 +1517,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
   },
   {
-    id: "clex12yom000108l0aiud2mgw",
+    id: "clex6ktln000108jr68m048k4",
     title: "Oppgave 2.51.2b",
     description:
       "Ved hjelp av en graftegner, tegn grafen math$f(x)=3 \\cdot 2^x& når math$-1 \\leqq x \\leqq 4&. Hva er x når verdien av funksjonen er 25?",
@@ -1539,7 +1539,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     hint: "DECIMAL",
     points: 90,
     category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
-    prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
+    prevTask: { connect: { id: "clex6ktln000108jr68m048k4" } },
   },
   {
     id: "clex1bwxa000408l078dk3vb7",
