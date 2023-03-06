@@ -632,6 +632,260 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewolm0m000208jth2k2b10v" } },
   },
+
+  // Oppgave 2.34
+  {
+    id: "clewp0hbe000008l5hqi8flea",
+    title: "Oppgave 2.34a",
+    description:
+      "Funksjonsuttrykket math$U(x)=\\frac{9000}{x}& viser utgiftene U som hver elev har når det reiser x antall elever på klassetur til Trondheim. Tegn grafen til funksjonen math$U(x)& når math$50<=x<=100&.",
+    answer: "klassetur",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+  {
+    id: "clewp4gec000108l54xgp73to",
+    title: "Oppgave 2.34b",
+    description:
+      "Funksjonsuttrykket math$U(x)=\\frac{9000}{x}& viser utgiftene U som hver elev har når det reiser x antall elever på klassetur til Trondheim. Bestem grafisk hva prisen per elev blir når det er 75 elever som drar. Oppgi bare tallet i kroner.",
+    answer: "120",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewp0hbe000008l5hqi8flea" } },
+  },
+  {
+    id: "clewp6op7000208l514w07ezb",
+    title: "Oppgave 2.34c",
+    description:
+      "Funksjonsuttrykket math$U(x)=\\frac{9000}{x}& viser utgiftene U som hver elev har når det reiser x antall elever på klassetur til Trondheim. Bestem grafisk hvor mange elever som drar når prisen per elev blir 150 kr.",
+    answer: "60",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewp4gec000108l54xgp73to" } },
+  },
+
+  // Oppgave 2.35.1
+  {
+    id: "clewp9amz000308l576y1e7hx",
+    title: "Oppgave 2.35.1",
+    description:
+      "En syklist skal sykle en strekning på 36 km. Farten er F km/h, og tiden hun bruker, er x timer. Vi får dette funksjonsuttrykket for farten: math$F(x)=\\frac{36}{x}&. Tegn grafen til funksjonen math$F(x)& med en graftegner. Hvor stor er farten hvis syklisten bruker 3 timer? Oppgi bare tallet i km/h.",
+    answer: "12",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+
+  // Oppgave 2.35.2
+  {
+    id: "clewpdqux000408l591xp5a7k",
+    title: "Oppgave 2.35.2a",
+    description:
+      "Marita leier en sykkel. Hun avtaler en leiepris på 2800 kr og kan da leie den i inntil 10 døgn. Sett opp et funksjonsuttrykk math$P(x)& som viser prisen P per døgn når du leier sykkelen i x døgn.",
+    answer: "P(x)=\\frac{2800}{x}",
+    placeholder: "P(x)=\\frac{}",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewp9amz000308l576y1e7hx" } },
+  },
+  {
+    id: "clewpuivy000108l73aki8v6q",
+    title: "Oppgave 2.35.2b",
+    description:
+      "Marita leier en sykkel. Hun avtaler en leiepris på 2800 kr og kan da leie den i inntil 10 døgn. Tegn grafen til funksjonen P(x) når math$1<=x<=10&.",
+    answer: "sykkel",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewpdqux000408l591xp5a7k" } },
+  },
+  {
+    id: "clewpwiix000008l1e0d6ae7b",
+    title: "Oppgave 2.35.2c",
+    description:
+      "Marita leier en sykkel. Hun avtaler en leiepris på 2800 kr og kan da leie den i inntil 10 døgn. Bestem grafisk hvor mange døgn sykkelen er leid når prisen per dgn blir 560 kr. Oppgi bare tallet i døgn.",
+    answer: "5",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewpuivy000108l73aki8v6q" } },
+  },
+
+  // Oppgave 2.35.3
+  {
+    id: "clewpyp43000108l15towbx03",
+    title: "Oppgave 2.35.3a",
+    description:
+      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Sett opp et funksjonsuttrykk som viser leieprisen K i kroner når du bruker sykkelen i x minutter. ",
+    answer: "K(x)=2x+15",
+    placeholder: "K(x)=\\placeholder[blank1]{}",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewpwiix000008l1e0d6ae7b" } },
+  },
+  {
+    id: "clewq42h5000208l18cay5iq7",
+    title: "Oppgave 2.35.3b",
+    description:
+      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Sett opp et funksjonsuttrykk P(x) som viser prisen P per minutt i kroner når du bruker sykkelen i x minutter.",
+    answer: "P(x)=2+\\frac{15}{x}",
+    placeholder: "P(x)=\\placeholder[blank1]{}",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewpyp43000108l15towbx03" } },
+  },
+  {
+    id: "clewq4c52000308l1cfsz6o8h",
+    title: "Oppgave 2.35.3c",
+    description:
+      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Tegn grafen til funksjonen P(x) når math$1<=x<=30&.",
+    answer: "sparkesykkel",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewq42h5000208l18cay5iq7" } },
+  },
+  {
+    id: "clewq66lw000408l1dpov2a7z",
+    title: "Oppgave 2.35.3d",
+    description:
+      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Bestem grafisk hva prisen per minutt blir hvis sykkelen leies i 2 minutter. Oppgi bare tallet i kroner.",
+    answer: "9.5",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewq4c52000308l1cfsz6o8h" } },
+  },
+
+  // Oppgave 2.36.1
+  {
+    id: "clewq9n54000608l1d1obd6b9",
+    title: "Oppgave 2.36.1b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.1.png",
+    description:
+      "Et rektangel har arealet math$24 cm^2&. Bredden er x cm, og lengden er l cm. Sammenhengen mellom lengden og bredden kan uttrykkes slik math$l(x)=\\frac{24}{x}&. Tegn grafen. Les av på grafen hvor stor bredden er når lengden er 6cm. Oppgi bare tallet i cm.",
+    answer: "4",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+  {
+    id: "clewqf4cx000h08l1azyy49xn",
+    title: "Oppgave 2.36.1c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.1.png",
+    description:
+      "Et rektangel har arealet math$24 cm^2&. Bredden er x cm, og lengden er l cm. Sammenhengen mellom lengden og bredden kan uttrykkes slik math$l(x)=\\frac{24}{x}&. Les av på grafen hvor stor lengden er når bredden er 10cm. Oppgi bare tallet i cm.",
+    answer: "2.4",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewq9n54000608l1d1obd6b9" } },
+  },
+
+  // Oppgave 2.36.2
+  {
+    id: "clewqh187000i08l1gek4f3fl",
+    title: "Oppgave 2.36.2a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.2.png",
+    description:
+      "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Tegn grafen til funksjonen for math$0<=x<=30&",
+    answer: "rektangel",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqf4cx000h08l1azyy49xn" } },
+  },
+  {
+    id: "clewqn3o8000j08l1758fehy4",
+    title: "Oppgave 2.36.2b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.2.png",
+    description:
+      "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Bruk grafen til å finne bredden av b når x = 5. Oppgi bare tallet i cm.",
+    answer: "10",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqh187000i08l1gek4f3fl" } },
+  },
+  {
+    id: "clewqn949000k08l12u7v40nd",
+    title: "Oppgave 2.36.2c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.2.png",
+    description:
+      "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Bruk grafen til å finne lengden av x når b = 4. Oppgi bare tallet i cm.",
+    answer: "20",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqn3o8000j08l1758fehy4" } },
+  },
+
+  // Oppgave 2.36.3
+  {
+    id: "clewqpczn000l08l1dpzhev3v",
+    title: "Oppgave 2.36.3a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
+    description:
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Finn et uttrykk b(x) der bredden er b cm, arealet er math$60 cm^2& og lengden er (x - 1) cm.",
+    answer: "b(x)=\\frac{60}{x-1}",
+    placeholder: "b(x)=\\placeholder[blank1]{}",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqn949000k08l12u7v40nd" } },
+  },
+  {
+    id: "clewqtcvv000m08l18nhih0lf",
+    title: "Oppgave 2.36.3b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
+    description:
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Tegn grafen til funksjonen for math$2<=x<=30&.",
+    answer: "sirkel",
+    hint: "FLAG",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqpczn000l08l1dpzhev3v" } },
+  },
+  {
+    id: "clewqvrfz000n08l13783ee2x",
+    title: "Oppgave 2.36.3c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
+    description:
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Hvorfor kan ikke x være lik 1?",
+    answer: "ulovlig",
+    hint: "FLAG",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqtcvv000m08l18nhih0lf" } },
+  },
+  {
+    id: "clewqy73t000o08l1flmufptk",
+    title: "Oppgave 2.36.3d",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
+    description:
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Bruk grafen til å finne lengden av bredden b når x = 10. Oppgi bare tallet i cm.",
+    answer: "6.67",
+    hint: "DECIMAL",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqvrfz000n08l13783ee2x" } },
+  },
+  {
+    id: "clewr071w000p08l1d65871kh",
+    title: "Oppgave 2.36.3e",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
+    description:
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Bruk grafen til å finne lengden av x når b = 20. Oppgi bare tallet i cm.",
+    answer: "4",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewqy73t000o08l1flmufptk" } },
+  },
 ];
 
 export async function createDayOneTasks({
