@@ -12,6 +12,7 @@ export const authRouter = createTRPCRouter({
         email: true,
         image: true,
         password: false,
+        session: true,
       },
       where: {
         id: ctx.session.user.id,

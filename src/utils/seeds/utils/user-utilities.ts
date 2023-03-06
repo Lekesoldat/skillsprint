@@ -1,6 +1,7 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { differenceInSeconds } from "date-fns";
 import argon2 from "argon2";
+import { faker } from "../clients";
 
 const hashPasswords = async (userList: Prisma.UserCreateInput[]) => {
   const userPromises = userList.map(async (user) => {
@@ -75,13 +76,14 @@ export async function createUsers({
   const output = await hashPasswords(users);
 
   const data = await prismaClient.$transaction(
-    output.map((user) =>
-      prismaClient.user.upsert({
+    output.map((user) => {
+      const session = faker.datatype.number({ min: 1, max: 2 });
+      return prismaClient.user.upsert({
         where: { name: user.name },
-        create: user,
-        update: user,
-      })
-    )
+        create: { ...user, session },
+        update: { ...user, session },
+      });
+    })
   );
 
   console.log(`Took ${differenceInSeconds(new Date(), timer)}s`);

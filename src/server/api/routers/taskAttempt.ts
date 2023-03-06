@@ -161,9 +161,14 @@ export const taskAttemptRouter = createTRPCRouter({
         ctx.prisma.task.findMany(),
         ctx.prisma.taskAttempt.findMany({
           where: {
-            result: {
-              equals: "SUCCESS",
-            },
+            AND: [
+              {
+                result: "SUCCESS",
+                user: {
+                  session: ctx.session.user.session,
+                },
+              },
+            ],
           },
         }),
       ]);

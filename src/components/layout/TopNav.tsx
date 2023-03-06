@@ -1,6 +1,7 @@
 import { BookOpen, Home, LineChart, Medal, Trophy } from "lucide-react";
 import Link from "next/link";
 import { api } from "../../utils/api";
+import { Spinner } from "../ui/loaders/Spinner";
 const links = [
   {
     icon: <Home height={20} />,
@@ -30,9 +31,10 @@ const links = [
 ];
 
 export const TopNav = () => {
-  const { data: user } = api.auth.me.useQuery(undefined, {
+  const { data: user, isLoading } = api.auth.me.useQuery(undefined, {
     staleTime: Infinity,
   });
+
   return (
     <header className="mx-auto mt-2 w-full max-w-screen-lg ">
       <div className="flex h-16 items-center justify-between px-10 lg:px-0">
@@ -47,8 +49,14 @@ export const TopNav = () => {
         <NavigationMenu />
         <div className="flex flex-grow items-center justify-end md:flex-grow-0">
           <span className="flex min-w-[150px] justify-around rounded-md border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
-            <div>{user ? <>{user.points} p</> : "0 p"}</div>
-            <div>{user ? user.streak : 0} 🔥</div>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <>
+                <div>{user ? <>{user.points} p</> : "0 p"}</div>
+                <div>{user ? user.streak : 0} 🔥</div>
+              </>
+            )}
           </span>
         </div>
       </div>

@@ -3,38 +3,29 @@ import NextAuth, { type NextAuthOptions } from "next-auth";
 import { prisma } from "../../../server/db";
 
 import CredentialsProvider from "next-auth/providers/credentials";
+import { User } from "@prisma/client";
 // Prisma adapter for NextAuth, optional and can be removed
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user, token }) {
-      const id = token.sub;
-      if (id) {
-        user = {
-          id,
-          name: token.name,
-          image: token.picture,
-        };
-        if (session.user) {
-          session.user.id = id;
-        }
+    session({ session, token }) {
+      /* eslint-disable */
+      if (token.user) {
+        session.user = token.user as User;
       }
-
       return session;
     },
-    // async jwt({ token, user }) {
-    //   if (token.id) {
-    //     user = {
-    //       id: token.sub,
-    //       name: token.name,
-    //       image: token.picture,
-    //     };
-    //   }
-    //   return Promise.resolve(token);
-    // },
+    jwt({ token, user }) {
+      if (user) {
+        if ("password" in user) {
+          user.password = undefined;
+        }
+        token.user = user;
+      }
+      return token;
+    },
   },
-  // Configure one or more authentication providers
   session: {
     strategy: "jwt",
   },
