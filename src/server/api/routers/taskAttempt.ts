@@ -314,11 +314,11 @@ const validateAnswer = (answer: string, task: Task) => {
     }
     case "MULTIPLE_VALUES": {
       const userAnswers = answer
-        .split("\\lor")
+        .split(/\\lor|\\land/)
         .map((a) => a.trim())
         .sort();
       const solutions = task.answer
-        .split("\\lor")
+        .split(/\\lor|\\land/)
         .map((a) => a.trim())
         .sort();
       if (userAnswers.length !== solutions.length) {
