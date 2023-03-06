@@ -86,12 +86,10 @@ export const AnswerForm = ({
           Sjekk svar
         </Button>
 
-        {attempt?.result === "SUCCESS" && (
-          <TaskNavigation
-            prevTaskId={task.prevTask?.id}
-            nextTaskId={task?.nextTaskId}
-          />
-        )}
+        <TaskNavigation
+          prevTaskId={task.prevTask?.id}
+          nextTaskId={task?.nextTaskId}
+        />
       </form>
     </>
   );
