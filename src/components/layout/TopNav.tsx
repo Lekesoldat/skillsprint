@@ -5,6 +5,7 @@ const links = [
   {
     icon: <Home height={20} />,
     path: "/",
+    text: "",
   },
   {
     icon: <BookOpen height={20} />,
