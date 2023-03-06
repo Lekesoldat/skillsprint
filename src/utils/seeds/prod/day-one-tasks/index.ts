@@ -1480,9 +1480,80 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
     prevTask: { connect: { id: "clewycnb0000308jre07sgbj6" } },
   },
+
   // Oppgave 2.51.1
+  {
+    id: "clex0zu0l000008l0csji7r9m",
+    title: "Oppgave 2.51.1a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.5^x&. Hva er f(2)?",
+    answer: "2.25",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  {
+    id: "clex12yom000108l0aiud2mgw",
+    title: "Oppgave 2.51.1b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.5^x&. Hva er x når verdien av funksjonen er 5?",
+    answer: "x=3.97",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex0zu0l000008l0csji7r9m" } },
+  },
+
   // Oppgave 2.51.2
+  {
+    id: "clex15vei000208l0heykfwnt",
+    title: "Oppgave 2.51.2a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=3 \\cdot 2^x& når math$-1 \\leqq x \\leqq 4&. Hva er f(0)?",
+    answer: "3",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
+  },
+  {
+    id: "clex12yom000108l0aiud2mgw",
+    title: "Oppgave 2.51.2b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=3 \\cdot 2^x& når math$-1 \\leqq x \\leqq 4&. Hva er x når verdien av funksjonen er 25?",
+    answer: "x=3.06",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex15vei000208l0heykfwnt" } },
+  },
+
   // Oppgave 2.51.3
+  {
+    id: "clex1bsjp000308l0gv5m83ym",
+    title: "Oppgave 2.51.3a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1200 \\cdot 1.05^x& når math$-5 \\leqq x \\leqq 30&. Hva er f(20)? Ta med alle desimaler.",
+    answer: "3183.96",
+    hint: "DECIMAL",
+    points: 90,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
+  },
+  {
+    id: "clex1bwxa000408l078dk3vb7",
+    title: "Oppgave 2.51.3b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1200 \\cdot 1.05^x& når math$-5 \\leqq x \\leqq 30&. Hva er x når verdien av funksjonen er 2000?",
+    answer: "x=10.47",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 90,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1bsjp000308l0gv5m83ym" } },
+  },
+
   // Oppgave 2.52.1
   // Oppgave 2.52.2
   // Oppgave 2.52.3
