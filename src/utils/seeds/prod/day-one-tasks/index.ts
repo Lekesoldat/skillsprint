@@ -1177,9 +1177,100 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewutf2c000408ml72zs71v5" } },
   },
+
   // Oppgave 2.43.1
+  {
+    id: "clewvci2k000008l3b1h81qj6",
+    title: "Oppgave 2.43.1a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen.",
+    answer: "kule",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewvffa2000108l3cs8jalew",
+    title: "Oppgave 2.43.1b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Bruk grafen og finn ut hvor høyt over bakken kula var etter 10 sekunder. Oppgi bare tallet i km.",
+    answer: "30",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvci2k000008l3b1h81qj6" } },
+  },
+
   // Oppgave 2.43.2
+  {
+    id: "clewvjegd000208l37c5v57gr",
+    title: "Oppgave 2.43.2a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen når math$0<=x<=20&.",
+    answer: "bane",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvffa2000108l3cs8jalew" } },
+  },
+  {
+    id: "clewvjj8m000308l3f0b71zyq",
+    title: "Oppgave 2.43.2b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Bruk grafen og finn ut hvor høyt over bakken kula var etter 5 sekunder. Oppgi bare tallet i km.",
+    answer: "22.5",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjegd000208l37c5v57gr" } },
+  },
+  {
+    id: "clewvjqoc000408l32bag6p32",
+    title: "Oppgave 2.43.2c",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Etter hvilke to tider var kula 15 km over bakken? Oppgi bare tallet i sekunder.",
+    placeholder: "\\placeholder[blank1]{}\\land\\placeholder[blank2]{}",
+    answer: "2.9 \\land 17.1",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjj8m000308l3f0b71zyq" } },
+  },
+
   // Oppgave 2.43.3
+  {
+    id: "clewvk6k4000508l36fhd4cv9",
+    title: "Oppgave 2.43.3a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen når math$0<=x<=20&.",
+    answer: "sos",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjqoc000408l32bag6p32" } },
+  },
+  {
+    id: "clewvkbx5000608l37qxr32b4",
+    title: "Oppgave 2.43.3b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Hvor lang tid var det gått når kula var 10 km over bakken? Oppgi svaret i sekunder med én desimal",
+    answer: "1.8 \\land 18.2",
+    placeholder: "\\placeholder[blank1]{}\\land\\placeholder[blank2]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvk6k4000508l36fhd4cv9" } },
+  },
+  {
+    id: "clewvkj97000708l33zso1zb9",
+    title: "Oppgave 2.43.3c",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Hvorfor kan vi ikke bruke x-verdier høyere enn 20?",
+    answer: "kopp",
+    hint: "FLAG",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvkbx5000608l37qxr32b4" } },
+  },
   // Oppgave 2.44.1
   // Oppgave 2.44.2
   // Oppgave 2.44.3
