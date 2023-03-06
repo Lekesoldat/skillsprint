@@ -164,6 +164,14 @@ export const taskAttemptRouter = createTRPCRouter({
             result: {
               equals: "SUCCESS",
             },
+            AND: [
+              {
+                result: "SUCCESS",
+                user: {
+                  session: ctx.session.user.session,
+                },
+              },
+            ],
           },
         }),
       ]);

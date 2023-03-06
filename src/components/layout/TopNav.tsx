@@ -32,6 +32,7 @@ export const TopNav = () => {
   const { data: user } = api.auth.me.useQuery(undefined, {
     staleTime: Infinity,
   });
+
   return (
     <header className="mx-auto mt-2 w-full max-w-screen-lg ">
       <div className="flex h-16 items-center justify-between px-10 lg:px-0">
