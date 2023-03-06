@@ -886,6 +886,179 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewqy73t000o08l1flmufptk" } },
   },
+
+  // Andregradsfunksjoner
+  // Oppgave 2.37
+  {
+    id: "clewsm11n000008mlhanccb7i",
+    title: "Oppgave 2.37.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
+    answer: "C",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewspj4o000108ml7wj3bs8l",
+    title: "Oppgave 2.37.2",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
+    answer: "A",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsm11n000008mlhanccb7i" } },
+  },
+  {
+    id: "clewsplxo000208ml3uw23qdj",
+    title: "Oppgave 2.37.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
+    answer: "B",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewspj4o000108ml7wj3bs8l" } },
+  },
+
+  // Oppgave 2.38
+  {
+    id: "clewsqmf0000308ml1m1h1xt6",
+    title: "Oppgave 2.38.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
+    answer: "C",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewsss88000408mlbgvvdpyw",
+    title: "Oppgave 2.38.2",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
+    answer: "A",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsqmf0000308ml1m1h1xt6" } },
+  },
+  {
+    id: "clewstf1x000508ml0k3lap09",
+    title: "Oppgave 2.38.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
+    answer: "B",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsss88000408mlbgvvdpyw" } },
+  },
+
+  // Oppgave 2.39
+  {
+    id: "clewsu4os000608mlhitdh6f8",
+    title: "Oppgave 2.39a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Hvilken verdi har y når x = 0?",
+    answer: "y=4.5",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewsyjlb000708mlbq5eha6o",
+    title: "Oppgave 2.39b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Omtrent hvilke verdier har x når y = 2.5?",
+    answerType: "MULTIPLE_VALUES",
+    answer: "x=1 \\lor x=-1",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsu4os000608mlhitdh6f8" } },
+  },
+  {
+    id: "clewt2uiu000808ml8zv75uil",
+    title: "Oppgave 2.39c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Hva er koordinatene til grafens to skjæringspunkter med x-aksen?",
+    answerType: "MULTIPLE_VALUES",
+    placeholder:
+      "(\\placeholder[blank1]{},\\placeholder[blank2]{}) \\land (\\placeholder[blank3]{},\\placeholder[blank4]{})}",
+    hint: "DECIMAL",
+    answer: "(-1.5,0) \\land (1.5,0)",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsyjlb000708mlbq5eha6o" } },
+  },
+
+  // Oppgave 2.40
+  {
+    id: "clewtb8qa000008l6et2gayj0",
+    title: "Oppgave 2.40a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hvilken verdi har y når x = -1?",
+    answer: "y=0",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewtf3ag000008mbcdat29j8",
+    title: "Oppgave 2.40b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hvilke verdier har x når y = 3?",
+    answerType: "MULTIPLE_VALUES",
+    answer: "x=2 \\lor x=-2",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtb8qa000008l6et2gayj0" } },
+  },
+  {
+    id: "clewtfjr3000208mb5ok1f2ue",
+    title: "Oppgave 2.40c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hva er koordinatene til grafens skjæringspunkt med y-aksen?",
+    answer: "(0,-1)",
+    placeholder: "(\\placeholder[blank1]{}, \\placeholder[blank2]{})",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtf3ag000008mbcdat29j8" } },
+  },
+  {
+    id: "clewtfrvr000308mb7isz39em",
+    title: "Oppgave 2.40d",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hva er koordinatene til grafens skjæringspunkter med x-aksen?",
+    answerType: "MULTIPLE_VALUES",
+    placeholder:
+      "(\\placeholder[blank1]{},\\placeholder[blank2]{}) \\land (\\placeholder[blank3]{},\\placeholder[blank4]{})}",
+    answer: "(1,0) \\land (-1,0)",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtfjr3000208mb5ok1f2ue" } },
+  },
 ];
 
 export async function createDayOneTasks({
