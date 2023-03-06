@@ -1059,6 +1059,56 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewtfjr3000208mb5ok1f2ue" } },
   },
+
+  // Oppave 2.41
+  {
+    id: "clewtvo1c000008mkcnw297qy",
+    title: "Oppgave 2.41.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Tegningen viser arealet av et område med faste og variable størrelser. Hva blir arealet av hele området hvis x = 6?",
+    answer: "41",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewtz1nw000208mk0nfr72gi",
+    title: "Oppgave 2.41.2a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Skriv et regnestykke som viser arealet av det kvadratiske området. Bruk * som gange-tegn.",
+    answer: "3\\cdot3",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtvo1c000008mkcnw297qy" } },
+  },
+  {
+    id: "clewu1mqo000408mk0urrcgg6",
+    title: "Oppgave 2.41.2b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Skriv et regnestykke som viser arealet av det rektangulære området.",
+    placeholder: "(\\placeholder[blank1]{})\\cdot(\\placeholder[blank2]{})",
+    answer: "(x+2)\\cdot(x-2)",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtz1nw000208mk0nfr72gi" } },
+  },
+  {
+    id: "clewtz4zx000308mk84p0gont",
+    title: "Oppgave 2.41.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Finn et uttrykk for arealet av hele området uttrykt så enkelt som mulig.",
+    answer: "x^2+5",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewu1mqo000408mk0urrcgg6" } },
+  },
 ];
 
 export async function createDayOneTasks({
