@@ -161,9 +161,14 @@ export const taskAttemptRouter = createTRPCRouter({
         ctx.prisma.task.findMany(),
         ctx.prisma.taskAttempt.findMany({
           where: {
-            result: {
-              equals: "SUCCESS",
-            },
+            AND: [
+              {
+                result: "SUCCESS",
+                user: {
+                  session: ctx.session.user.session,
+                },
+              },
+            ],
           },
         }),
       ]);
@@ -314,11 +319,11 @@ const validateAnswer = (answer: string, task: Task) => {
     }
     case "MULTIPLE_VALUES": {
       const userAnswers = answer
-        .split("\\lor")
+        .split(/\\lor|\\land/)
         .map((a) => a.trim())
         .sort();
       const solutions = task.answer
-        .split("\\lor")
+        .split(/\\lor|\\land/)
         .map((a) => a.trim())
         .sort();
       if (userAnswers.length !== solutions.length) {

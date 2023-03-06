@@ -25,6 +25,7 @@ export const userRouter = createTRPCRouter({
         points, 
         best_streak
       FROM "User"
+      WHERE "User"."session" = ${ctx.session.user.session}
       ORDER BY points DESC, best_streak DESC
       -- LIMIT 5
     `;

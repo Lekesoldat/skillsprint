@@ -298,7 +298,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clevfdiq4000908mbd0qv5c1z",
     title: "Oppgave 2.29.2b",
     description:
-      "Erik går 30 km på ski. Han går i gjennomsnitt 0.2 km på 1 minutt. Tegn grafen for funksjonen når math$0<=x<=150&.",
+      "Erik går 30 km på ski. Han går i gjennomsnitt 0.2 km på 1 minutt. Tegn grafen for funksjonen når math$0 \\leqq x \\leqq 150&.",
     answer: "skitur",
     hint: "FLAG",
     points: 75,
@@ -333,7 +333,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clevfp5sx000c08mb22gahsk8",
     title: "Oppgave 2.29.3b",
     description:
-      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Tegn grafen for funksjonen når math$0<=x<=14&.",
+      "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Tegn grafen for funksjonen når math$0 \\leqq x \\leqq 14&.",
     answer: "strikkegenser",
     hint: "FLAG",
     points: 75,
@@ -423,7 +423,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewm5rce000508l73bjf72bn",
     title: "Oppgave 2.30.2b",
     description:
-      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Tegn grafen til funksjonen når math$0<=x<=45$.",
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 45$.",
     answer: "elbil",
     hint: "FLAG",
     points: 75,
@@ -468,7 +468,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewmewcd000d08l74rmb7a50",
     title: "Oppgave 2.30.3b",
     description:
-      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Tegn grafen til funksjonen når math$0<=x<=36&.",
+      "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 36&.",
     answer: "vaksine",
     hint: "FLAG",
     points: 75,
@@ -638,7 +638,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewp0hbe000008l5hqi8flea",
     title: "Oppgave 2.34a",
     description:
-      "Funksjonsuttrykket math$U(x)=\\frac{9000}{x}& viser utgiftene U som hver elev har når det reiser x antall elever på klassetur til Trondheim. Tegn grafen til funksjonen math$U(x)& når math$50<=x<=100&.",
+      "Funksjonsuttrykket math$U(x)=\\frac{9000}{x}& viser utgiftene U som hver elev har når det reiser x antall elever på klassetur til Trondheim. Tegn grafen til funksjonen math$U(x)& når math$50 \\leqq x \\leqq 100&.",
     answer: "klassetur",
     hint: "FLAG",
     points: 50,
@@ -692,7 +692,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewpuivy000108l73aki8v6q",
     title: "Oppgave 2.35.2b",
     description:
-      "Marita leier en sykkel. Hun avtaler en leiepris på 2800 kr og kan da leie den i inntil 10 døgn. Tegn grafen til funksjonen P(x) når math$1<=x<=10&.",
+      "Marita leier en sykkel. Hun avtaler en leiepris på 2800 kr og kan da leie den i inntil 10 døgn. Tegn grafen til funksjonen P(x) når math$1 \\leqq x \\leqq 10&.",
     answer: "sykkel",
     hint: "FLAG",
     points: 50,
@@ -737,7 +737,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewq4c52000308l1cfsz6o8h",
     title: "Oppgave 2.35.3c",
     description:
-      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Tegn grafen til funksjonen P(x) når math$1<=x<=30&.",
+      "En elektrisk sparkesykkel koster 15kr i startpris og 2kr per minutt. Tegn grafen til funksjonen P(x) når math$1 \\leqq x \\leqq 30&.",
     answer: "sparkesykkel",
     hint: "FLAG",
     points: 75,
@@ -789,7 +789,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.2.png",
     description:
-      "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Tegn grafen til funksjonen for math$0<=x<=30&",
+      "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Tegn grafen til funksjonen for math$0 \\leqq x \\leqq 30&",
     answer: "rektangel",
     hint: "FLAG",
     points: 75,
@@ -841,7 +841,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
     description:
-      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Tegn grafen til funksjonen for math$2<=x<=30&.",
+      "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Tegn grafen til funksjonen for math$2 \\leqq x \\leqq 30&.",
     answer: "sirkel",
     hint: "FLAG",
     points: 100,
@@ -885,6 +885,836 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     points: 100,
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewqy73t000o08l1flmufptk" } },
+  },
+
+  // Andregradsfunksjoner
+  // Oppgave 2.37
+  {
+    id: "clewsm11n000008mlhanccb7i",
+    title: "Oppgave 2.37.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
+    answer: "C",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewspj4o000108ml7wj3bs8l",
+    title: "Oppgave 2.37.2",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
+    answer: "A",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsm11n000008mlhanccb7i" } },
+  },
+  {
+    id: "clewsplxo000208ml3uw23qdj",
+    title: "Oppgave 2.37.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
+    description:
+      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
+    answer: "B",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewspj4o000108ml7wj3bs8l" } },
+  },
+
+  // Oppgave 2.38
+  {
+    id: "clewsqmf0000308ml1m1h1xt6",
+    title: "Oppgave 2.38.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
+    answer: "C",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewsss88000408mlbgvvdpyw",
+    title: "Oppgave 2.38.2",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
+    answer: "A",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsqmf0000308ml1m1h1xt6" } },
+  },
+  {
+    id: "clewstf1x000508ml0k3lap09",
+    title: "Oppgave 2.38.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
+    description:
+      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
+    answer: "B",
+    points: 25,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsss88000408mlbgvvdpyw" } },
+  },
+
+  // Oppgave 2.39
+  {
+    id: "clewsu4os000608mlhitdh6f8",
+    title: "Oppgave 2.39a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Hvilken verdi har y når x = 0?",
+    answer: "y=4.5",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewsyjlb000708mlbq5eha6o",
+    title: "Oppgave 2.39b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Omtrent hvilke verdier har x når y = 2.5?",
+    answerType: "MULTIPLE_VALUES",
+    answer: "x=1 \\lor x=-1",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsu4os000608mlhitdh6f8" } },
+  },
+  {
+    id: "clewt2uiu000808ml8zv75uil",
+    title: "Oppgave 2.39c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.39.png",
+    description:
+      "Grafen math$y=-2x^2+4.5& kan du se i koordinatsystemet. Hva er koordinatene til grafens to skjæringspunkter med x-aksen?",
+    answerType: "MULTIPLE_VALUES",
+    placeholder:
+      "(\\placeholder[blank1]{},\\placeholder[blank2]{}) \\land (\\placeholder[blank3]{},\\placeholder[blank4]{})}",
+    hint: "DECIMAL",
+    answer: "(-1.5,0) \\land (1.5,0)",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewsyjlb000708mlbq5eha6o" } },
+  },
+
+  // Oppgave 2.40
+  {
+    id: "clewtb8qa000008l6et2gayj0",
+    title: "Oppgave 2.40a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hvilken verdi har y når x = -1?",
+    answer: "y=0",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewtf3ag000008mbcdat29j8",
+    title: "Oppgave 2.40b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hvilke verdier har x når y = 3?",
+    answerType: "MULTIPLE_VALUES",
+    answer: "x=2 \\lor x=-2",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtb8qa000008l6et2gayj0" } },
+  },
+  {
+    id: "clewtfjr3000208mb5ok1f2ue",
+    title: "Oppgave 2.40c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hva er koordinatene til grafens skjæringspunkt med y-aksen?",
+    answer: "(0,-1)",
+    placeholder: "(\\placeholder[blank1]{}, \\placeholder[blank2]{})",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtf3ag000008mbcdat29j8" } },
+  },
+  {
+    id: "clewtfrvr000308mb7isz39em",
+    title: "Oppgave 2.40d",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.40.png",
+    description:
+      "Grafen math$y=x^2-1& kan du se i koordinatsystemet. Hva er koordinatene til grafens skjæringspunkter med x-aksen?",
+    answerType: "MULTIPLE_VALUES",
+    placeholder:
+      "(\\placeholder[blank1]{},\\placeholder[blank2]{}) \\land (\\placeholder[blank3]{},\\placeholder[blank4]{})}",
+    answer: "(1,0) \\land (-1,0)",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtfjr3000208mb5ok1f2ue" } },
+  },
+
+  // Oppave 2.41
+  {
+    id: "clewtvo1c000008mkcnw297qy",
+    title: "Oppgave 2.41.1",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Tegningen viser arealet av et område med faste og variable størrelser. Hva blir arealet av hele området hvis x = 6?",
+    answer: "41",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewtz1nw000208mk0nfr72gi",
+    title: "Oppgave 2.41.2a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Skriv et regnestykke som viser arealet av det kvadratiske området. Bruk * som gange-tegn.",
+    answer: "3\\cdot3",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtvo1c000008mkcnw297qy" } },
+  },
+  {
+    id: "clewu1mqo000408mk0urrcgg6",
+    title: "Oppgave 2.41.2b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Skriv et regnestykke som viser arealet av det rektangulære området.",
+    placeholder: "(\\placeholder[blank1]{})\\cdot(\\placeholder[blank2]{})",
+    answer: "(x+2)\\cdot(x-2)",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewtz1nw000208mk0nfr72gi" } },
+  },
+  {
+    id: "clewtz4zx000308mk84p0gont",
+    title: "Oppgave 2.41.3",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.41.png",
+    description:
+      "Finn et uttrykk for arealet av hele området uttrykt så enkelt som mulig.",
+    answer: "x^2+5",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewu1mqo000408mk0urrcgg6" } },
+  },
+
+  // Oppgave 2.42.1
+  {
+    id: "clewum441000008ml2s1hb9bg",
+    title: "Oppgave 2.42.1a",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen.",
+    answer: "bakterier",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewup7s1000108mlerrv1vud",
+    title: "Oppgave 2.42.1b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange bakterier er det etter 1 minutt?",
+    answer: "6000",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewum441000008ml2s1hb9bg" } },
+  },
+
+  // Oppgave 2.42.2
+  {
+    id: "clewusyqk000208ml3acadf8o",
+    title: "Oppgave 2.42.2a",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 4&.",
+    answer: "hallo",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewup7s1000108mlerrv1vud" } },
+  },
+  {
+    id: "clewut8e1000308mla7k07z1a",
+    title: "Opppgave 2.42.2b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange bakterier er det etter 2 minutter?",
+    answer: "24000",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewusyqk000208ml3acadf8o" } },
+  },
+
+  // Oppgave 2.42.3
+  {
+    id: "clewutf2c000408ml72zs71v5",
+    title: "Opppgave 2.42.3b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 30&.",
+    answer: "koloni",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewut8e1000308mla7k07z1a" } },
+  },
+  {
+    id: "clewutmbg000508ml2jr4dl1b",
+    title: "Opppgave 2.42.3c",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange minutter har det gått når det er 3 750 000 bakterier i kolonien? Oppgi bare tallet i minutter.",
+    answer: "25",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewutf2c000408ml72zs71v5" } },
+  },
+
+  // Oppgave 2.43.1
+  {
+    id: "clewvci2k000008l3b1h81qj6",
+    title: "Oppgave 2.43.1a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen.",
+    answer: "kule",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewvffa2000108l3cs8jalew",
+    title: "Oppgave 2.43.1b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Bruk grafen og finn ut hvor høyt over bakken kula var etter 10 sekunder. Oppgi bare tallet i km.",
+    answer: "30",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvci2k000008l3b1h81qj6" } },
+  },
+
+  // Oppgave 2.43.2
+  {
+    id: "clewvjegd000208l37c5v57gr",
+    title: "Oppgave 2.43.2a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 20&.",
+    answer: "bane",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvffa2000108l3cs8jalew" } },
+  },
+  {
+    id: "clewvjj8m000308l3f0b71zyq",
+    title: "Oppgave 2.43.2b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Bruk grafen og finn ut hvor høyt over bakken kula var etter 5 sekunder. Oppgi bare tallet i km.",
+    answer: "22.5",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjegd000208l37c5v57gr" } },
+  },
+  {
+    id: "clewvjqoc000408l32bag6p32",
+    title: "Oppgave 2.43.2c",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Etter hvilke to tider var kula 15 km over bakken? Oppgi bare tallet i sekunder.",
+    placeholder: "\\placeholder[blank1]{}\\land\\placeholder[blank2]{}",
+    answer: "2.9 \\land 17.1",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjj8m000308l3f0b71zyq" } },
+  },
+
+  // Oppgave 2.43.3
+  {
+    id: "clewvk6k4000508l36fhd4cv9",
+    title: "Oppgave 2.43.3a",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 20&.",
+    answer: "sos",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvjqoc000408l32bag6p32" } },
+  },
+  {
+    id: "clewvkbx5000608l37qxr32b4",
+    title: "Oppgave 2.43.3b",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Hvor lang tid var det gått når kula var 10 km over bakken? Oppgi svaret i sekunder med én desimal",
+    answer: "1.8 \\land 18.2",
+    placeholder: "\\placeholder[blank1]{}\\land\\placeholder[blank2]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvk6k4000508l36fhd4cv9" } },
+  },
+  {
+    id: "clewvkj97000708l33zso1zb9",
+    title: "Oppgave 2.43.3c",
+    description:
+      "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Hvorfor kan vi ikke bruke x-verdier høyere enn 20?",
+    answer: "kopp",
+    hint: "FLAG",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvkbx5000608l37qxr32b4" } },
+  },
+
+  // Oppgave 2.44.1
+  {
+    id: "clewvz43u000008js74bs0buv",
+    title: "Oppgave 2.44.1a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description: "Hva blir omkretsen av gårdsplassen hvis x = 5?",
+    answer: "30m",
+    placeholder: "\\placeholder[blank1]{}m",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "cleww15s3000108jsebhvhmqg",
+    title: "Oppgave 2.44.1b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description: "Hva blir arealet av gårdsplassen hvis x = 10?",
+    answer: "150m^2",
+    placeholder: "\\placeholder[blank1]{}m^2",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewvz43u000008js74bs0buv" } },
+  },
+
+  // Oppgave 2.44.2
+  {
+    id: "cleww4b3u000208js5zn55c9k",
+    title: "Oppgave 2.44.2a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description:
+      "Lag et funksjonsuttrykk A(x) som viser arealet A av gårdsplassen.",
+    answer: "A(x)=\\frac{3x^2}{2}",
+    placeholder: "A(x)=\\placeholder[blank1]{}",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "cleww15s3000108jsebhvhmqg" } },
+  },
+  {
+    id: "cleww4mi1000308js7lkqcmdg",
+    title: "Oppgave 2.44.2b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description: "Framstill funksjonen A(x) når math$4 \\leqq x \\leqq 12&.",
+    answer: "carti",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "cleww4b3u000208js5zn55c9k" } },
+  },
+
+  // Oppgave 2.44.3
+  {
+    id: "cleww4sq0000408js2p453e3e",
+    title: "Oppgave 2.44.3b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description:
+      "Gitt funksjonen A(x) fra forrige oppgave. Hva blir arealet av gårdsplassen hvis x = 6m?",
+    answer: "54m^2",
+    placeholder: "\\placeholder[blank1]{}m^2",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "cleww4mi1000308js7lkqcmdg" } },
+  },
+  {
+    id: "cleww4zyc000508js8u779g9t",
+    title: "Oppgave 2.44.3c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.44.png",
+    description:
+      "Gitt funksjonen A(x) fra forrige oppgave. Hvilken verdi har x hvis arealet av gårdsplassen er math$96 m^2&?",
+    answer: "8",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "cleww4sq0000408js2p453e3e" } },
+  },
+
+  // Oppgave 2.45
+  {
+    id: "cleww56se000608jsbd4ofusk",
+    title: "Oppgave 2.45b",
+    description:
+      "Tegn grafen math$y=x^2-4x& med en graftegner. For hvilke verdier blir y = 0?",
+    answerType: "MULTIPLE_VALUES",
+    answer: "x=0 \\lor x=4",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewwkj3w000008js94zx8yqi",
+    title: "Oppgave 2.45c",
+    description:
+      "Tegn grafen math$y=x^2-4x& med en graftegner. Hva blir y når x = 3?",
+    answer: "y=-3",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "cleww56se000608jsbd4ofusk" } },
+  },
+
+  // Oppgave 2.46.1
+  {
+    id: "clewx59sf000008mc2hdg4efn",
+    title: "Oppgave 2.46.1",
+    description:
+      "Funksjonsuttrykket math$R(x)=-60x^2+300x& viser sammenhengen mellom høyde over bakken i kilometer og tid i minutter som en rakett bruker under oppskytning til den internasjonale romstasjonen (ISS), der R er høyde fra jorden i kilometer og x er tid i minutter. Finn grafens ekstremalpunkt.",
+    answer: "(2.5,375)",
+    placeholder: "(\\placeholder[blank1]{},\\placeholder[blank2]{})",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+
+  // Oppgave 2.46.2
+  {
+    id: "clewxdt37000008l97essfagl",
+    title: "Oppgave 2.46.2",
+    description:
+      "Funksjonsuttrykket math$R(x)=-60x^2+300x& viser sammenhengen mellom høyde over bakken i kilometer og tid i minutter som en rakett bruker under oppskytning til den internasjonale romstasjonen (ISS), der R er høyde fra jorden i kilometer og x er tid i minutter. Tegn grafen til funksjonen R(x) når math$0 \\leqq x \\leqq 3& og en lineær graf fra startpunktet til grafens toppunkt. Ved hjelp av den lineære grafen, finn stigningstallet til grafen. Oppgi kun tallet.",
+    answer: "150",
+    points: 150,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewx59sf000008mc2hdg4efn" } },
+  },
+
+  // Oppgave 2.46.3
+  {
+    id: "clewxjrn3000108l9b38d9m54",
+    title: "Oppgave 2.46.3a",
+    description:
+      "Funksjonsuttrykket math$R(x)=-60x^2+300x& viser sammenhengen mellom høyde over bakken i kilometer og tid i minutter som en rakett bruker under oppskytning til den internasjonale romstasjonen (ISS), der R er høyde fra jorden i kilometer og x er tid i minutter. Tegn grafen til funksjonen R(x) når math$0 \\leqq x \\leqq 3& og en lineær graf fra startpunktet til grafens toppunkt. Finn gjennomsnittsfarten til raketten. Oppgi kun tallet for km/min.",
+    answer: "150",
+    points: 150,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewx59sf000008mc2hdg4efn" } },
+  },
+  {
+    id: "clewxjrn3000108l9b38d9m54",
+    title: "Oppgave 2.46.3b",
+    description:
+      "Basert på forrige oppgave, uttrykk gjennomsnittsfarten i kilometer per time. Oppgi kun tallet for km/h.",
+    answer: "9000",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewx59sf000008mc2hdg4efn" } },
+  },
+  // Oppgave 2.47.1
+  // Oppgave 2.47.2
+  // Oppgave 2.47.3
+  // Oppgave 2.48
+  {
+    id: "clewy4key000008jr0buo3wv9",
+    title: "Oppgave 2.48",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$y=3^x&. Når x = 3, hva er y?",
+    answer: "y=27",
+    placeholder: "y=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  // Oppgave 2.49
+  {
+    id: "clewy8ggy000108jrdge450l4",
+    title: "Oppgave 2.49a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.2^x&. Hva er f(4)?",
+    answer: "2.07",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clewy4key000008jr0buo3wv9" } },
+  },
+  {
+    id: "clewyb9y3000208jrcc16av3p",
+    title: "Oppgave 2.49b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.2^x&. Hva er x når f(x) = 10?",
+    answer: "x=8",
+    placeholder: "x=\\placeholder[blank1]{}",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clewy8ggy000108jrdge450l4" } },
+  },
+
+  // Oppgave 2.50
+  {
+    id: "clewycnb0000308jre07sgbj6",
+    title: "Oppgave 2.50a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$y=20*0.8^x&. Hva er verdien av når x = 1.5?",
+    answer: "14.31",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  {
+    id: "clewyfq1z000408jr41gvg2t0",
+    title: "Oppgave 2.50b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$y=20*0.8^x&. Hva er x når verdien av funksjonen er 10?",
+    answer: "x=3.11",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 100,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clewycnb0000308jre07sgbj6" } },
+  },
+
+  // Oppgave 2.51.1
+  {
+    id: "clex0zu0l000008l0csji7r9m",
+    title: "Oppgave 2.51.1a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.5^x&. Hva er f(2)?",
+    answer: "2.25",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  {
+    id: "clex12yom000108l0aiud2mgw",
+    title: "Oppgave 2.51.1b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1.5^x&. Hva er x når verdien av funksjonen er 5?",
+    answer: "x=3.97",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex0zu0l000008l0csji7r9m" } },
+  },
+
+  // Oppgave 2.51.2
+  {
+    id: "clex15vei000208l0heykfwnt",
+    title: "Oppgave 2.51.2a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=3 \\cdot 2^x& når math$-1 \\leqq x \\leqq 4&. Hva er f(0)?",
+    answer: "3",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
+  },
+  {
+    id: "clex12yom000108l0aiud2mgw",
+    title: "Oppgave 2.51.2b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=3 \\cdot 2^x& når math$-1 \\leqq x \\leqq 4&. Hva er x når verdien av funksjonen er 25?",
+    answer: "x=3.06",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex15vei000208l0heykfwnt" } },
+  },
+
+  // Oppgave 2.51.3
+  {
+    id: "clex1bsjp000308l0gv5m83ym",
+    title: "Oppgave 2.51.3a",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1200 \\cdot 1.05^x& når math$-5 \\leqq x \\leqq 30&. Hva er f(20)? Ta med alle desimaler.",
+    answer: "3183.96",
+    hint: "DECIMAL",
+    points: 90,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex12yom000108l0aiud2mgw" } },
+  },
+  {
+    id: "clex1bwxa000408l078dk3vb7",
+    title: "Oppgave 2.51.3b",
+    description:
+      "Ved hjelp av en graftegner, tegn grafen math$f(x)=1200 \\cdot 1.05^x& når math$-5 \\leqq x \\leqq 30&. Hva er x når verdien av funksjonen er 2000?",
+    answer: "x=10.47",
+    placeholder: "x=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 90,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1bsjp000308l0gv5m83ym" } },
+  },
+
+  // Oppgave 2.52.1
+  {
+    id: "clex1hlpt000608l0b4lvgu5g",
+    title: "Oppgave 2.52.1",
+    description:
+      "I en kommune er folketallet 10 000. Det er beregnet en befolkningsøkning på 2% per år. Hva er folketallet beregnet til etter ett år? Oppgi bare tallet.",
+    answer: "10200",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+
+  // Oppgave 2.52.2
+  {
+    id: "clex1hrtt000708l0ehd25j2r",
+    title: "Oppgave 2.52.2a",
+    description:
+      "I en kommune er folketallet 10 000. Det er beregnet en befolkningsøkning på 2% per år. Hva er folketallet beregnet til etter ett år? Finn et funksjonsuttrykk F(x) som viser folketallet F etter x år.",
+    answer: "F(x)=10000 \\cdot 1.02^x",
+    placeholder: "F(x)=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1hlpt000608l0b4lvgu5g" } },
+  },
+  {
+    id: "clex1mfmf000808l0chinfqpy",
+    title: "Oppgave 2.52.2b",
+    description:
+      "Ved hjelp av funksjonsuttrykket fra forrige oppgave, - hva er folketallet etter 8 år?",
+    answer: "11716",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1hrtt000708l0ehd25j2r" } },
+  },
+
+  // Oppgave 2.52.3
+  {
+    id: "clex1oa59000908l06h8l16dv",
+    title: "Oppgave 2.52.3",
+    description:
+      "Gitt funksjonen math$F(x)=10000 \\cdot 1.02^x&, hva blir gjennomsnittlig veksthastighet for den lineære funksjonen som går gjennom punktene math$(0,10000)& og math$(10,12190)&? Oppgi bare tallet for innbyggere/år.",
+    answer: "219",
+    points: 150,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1mfmf000808l0chinfqpy" } },
+  },
+
+  // Oppgave 2.53.1
+  {
+    id: "clex1tg78000a08l09ffl46e3",
+    title: "Oppgave 2.53.1a",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange dataspill selger selskapet etter 2 år? Oppgi bare tallet i millioner.",
+    answer: "8.6528",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+  {
+    id: "clex1yzr4000b08l08ztg2m2x",
+    title: "Oppgave 2.53.1b",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange år har det gått når salget ER over 9 millioner solgte spill?",
+    answer: "4",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1tg78000a08l09ffl46e3" } },
+  },
+
+  // Oppgave 2.53.2
+  {
+    id: "clex204on000c08l01776bw1f",
+    title: "Oppgave 2.53.2a",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Finn et funksjonsuttrykk S(x) som viser hvor stort salget S er etter x år i antall millioner.",
+    answer: "S(x)=8 \\cdot 1.04^x",
+    placeholder: "S(x)=\\placeholder[blank1]{}",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex1yzr4000b08l08ztg2m2x" } },
+  },
+  {
+    id: "clex21t7f000d08l00mubdajc",
+    title: "Oppgave 2.53.2b",
+    description:
+      "Et spillselskap selger 8 millioner dataspill et år. Selskapet tror omsetningen i årene fremover vil øke med 4% per år. Hvor mange hele år har det gått når salget BLIR over 9 millioner solgte spill?",
+    answer: "3",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex204on000c08l01776bw1f" } },
+  },
+
+  // Oppgave 2.53.3
+  {
+    id: "clex25svs000e08l082n79o9w",
+    title: "Oppgave 2.53.3a",
+    description:
+      "Gitt funksjonen math$S(x)=8 \\cdot 1.04^x&, hvor mange spill selges etter 8 år? Oppgi bare tallet i millioner.",
+    answer: "10.95",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex21t7f000d08l00mubdajc" } },
+  },
+  {
+    id: "clex2b3lq000f08l09d2m9p49",
+    title: "Oppgave 2.53.3b",
+    description:
+      "Gitt funksjonen math$S(x)=8 \\cdot 1.04^x&, hvor mange år har det gått når salget overstiger 10 millioner solgte spill? Rund opp uten desimaler.",
+    answer: "6",
+    points: 100,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex25svs000e08l082n79o9w" } },
+  },
+
+  // Oppgave 2.54.1
+  {
+    id: "clex2gn88000g08l00w573kdf",
+    title: "Oppgave 2.54.1",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor mye er bilen verdt etter 5 år? Oppgi bare tallet i hele kroner.",
+    answer: "237479",
+    points: 50,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+  },
+
+  // Oppgave 2.54.2
+  {
+    id: "clex2rw4a000008lacfv1ahvo",
+    title: "Oppgave 2.54.2",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Etter hvor mange år blir verdien av bilen under 200 000 kr? Oppgi bare tallet i år.",
+    answer: "6.34",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2gn88000g08l00w573kdf" } },
+  },
+
+  // Oppgave 2.54.3
+  {
+    id: "clex2sfm6000108ladjlx9w14",
+    title: "Oppgave 2.54.3a",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor mange år går det før bilen er verdt mindre enn 200 000 kr? Oppgi bare tallet i år.",
+    answer: "6.34",
+    hint: "DECIMAL",
+    points: 75,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2rw4a000008lacfv1ahvo" } },
+  },
+  {
+    id: "clex2uv31000208la4chj4rbf",
+    title: "Oppgave 2.54.3b",
+    description:
+      "Espen kjøper en brukt elbil til 450 000 kr. Han regner med at bilen taper seg i verdi med 12 % hvert år siden han kjøpte den. Verdien V av bilen etter x år blir da math$V(x)=450000 \\cdot 0.88^x&. Hvor gammel var bilen da Espen kjøpte bilen hvis nypris på bilen var 660 000 kr? Oppgi bare tallet i år.",
+    answer: "3",
+    points: 125,
+    category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
+    prevTask: { connect: { id: "clex2sfm6000108ladjlx9w14" } },
   },
 ];
 
