@@ -494,6 +494,57 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
     prevTask: { connect: { id: "clewmf0e2000e08l76iyq8ieo" } },
   },
+
+  // 2.31
+  {
+    id: "clewmu5ym000008mb82ry4uek",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.31.png",
+    title: "Oppgave 2.31a1",
+    description:
+      "Klassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Hva er prisen per deltaker når det er 10 deltakere? Oppgi bare tallet.",
+    answer: "200",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+  {
+    id: "clewn0n45000108mb3gd3ammn",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.31.png",
+    title: "Oppgave 2.31a2",
+    description:
+      "Klassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Hva er prisen per deltaker når det er 20 deltakere? Oppgi bare tallet.",
+    answer: "100",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewmu5ym000008mb82ry4uek" } },
+  },
+  {
+    id: "clewn2mft000208mbht422lua",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.31.png",
+    title: "Oppgave 2.31b",
+    description:
+      "lassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Forklar hvorfor prisen per deltaker går ned i samme forhold osm antall deltakere øker.",
+    answer: "party",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewn0n45000108mb3gd3ammn" } },
+  },
+  {
+    id: "clewn8670000308mb67ub5aky",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.31.png",
+    title: "Oppgave 2.31c",
+    description:
+      "Klassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Lag et funksjonsuttrykk math$U(x)& som beskriver sammenhengen mellom utgiftene U og x antall deltakere.",
+    answer: "U(x)=2000/x",
+    placeholder: "\\placeholder[blank1]{U(x)=}",
+    points: 125,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewn2mft000208mbht422lua" } },
+  },
 ];
 
 export async function createDayOneTasks({
