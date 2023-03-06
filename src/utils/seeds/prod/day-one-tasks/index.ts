@@ -2,6 +2,7 @@ import type { Prisma, PrismaClient } from "@prisma/client";
 import { differenceInSeconds } from "date-fns";
 
 const providedTasks: Prisma.TaskCreateInput[] = [
+  // Lineære funksjoner
   // 2.23
   {
     id: "cler3i0se000008kxdq1adnxh",
@@ -201,6 +202,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     prevTask: { connect: { id: "clevdzvrn000408la1g6x9g5g" } },
   },
 
+  // Funksjon og graf
   // 2.27
   {
     id: "cleveej7i000008mb5cqe3f3k",
@@ -495,6 +497,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     prevTask: { connect: { id: "clewmf0e2000e08l76iyq8ieo" } },
   },
 
+  // Brøkfunksjoner
   // 2.31
   {
     id: "clewmu5ym000008mb82ry4uek",
@@ -539,11 +542,95 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.31c",
     description:
       "Klassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Lag et funksjonsuttrykk math$U(x)& som beskriver sammenhengen mellom utgiftene U og x antall deltakere.",
-    answer: "U(x)=2000/x",
-    placeholder: "\\placeholder[blank1]{U(x)=}",
+    answer: "U(x)=\\frac{2000}{x}",
+    placeholder: "U(x)=\\placeholder[blank1]{}",
     points: 125,
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewn2mft000208mbht422lua" } },
+  },
+
+  // 2.32
+  {
+    id: "clewno9ik000808mbfbokhf29",
+    title: "Oppgave 2.32.1",
+    description:
+      "Prisen for å leie en hytte i Lofoten skal deles likt mellom x antall venner. Det koster totalt 5400 kr å leie hytta. Finn en brøkfunksjon som beskriver situasjonen.",
+    answer: "f(x)=\\frac{5400}{x}",
+    placeholder: "f(x)=\\placeholder[blank1]{}",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+  {
+    id: "clewnwvoe000008mo9bwq7xb0",
+    title: "Oppgave 2.32.2",
+    description:
+      "På en hvalsafaritur må hver person betale 450 kr. I tillegg skal leiekostnadene på 4800 kr for båten fordeles på x antall personer. Finn en brøkfunksjon som beskriver situasjonen.",
+    answer: "f(x)=\\frac{4800}{x}+450",
+    placeholder: "f(x)=\\placeholder[blank1]{}",
+    points: 75,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewno9ik000808mbfbokhf29" } },
+  },
+  {
+    id: "clewo2rzg000108moegzobp6e",
+    title: "Oppgave 2.32.3",
+    description:
+      "Noen venner skal leie en hytte i Lofoten til 5400 kr, og de skal på hvalsafari hvor leie av båten koster 4800 kr. I tillegg skal guiden ha 450 kr per person. Finn en brøkfunksjon som beskriver situasjonen.",
+    answer: "f(x)=450+\\frac{10200}{x}",
+    placeholder: "f(x)=\\placeholder[blank1]{}",
+    points: 100,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewnwvoe000008mo9bwq7xb0" } },
+  },
+
+  // 2.33
+  {
+    id: "clewojnu6000008jt5kr451f7",
+    title: "Oppgave 2.33a",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.33.png",
+    description:
+      "Mona skal kjøre en strekning på 40 km. Grafen viser sammenhengen mellom farten og tiden hun bruker. Bruk grafen når du svarer på spørsmålene. Hva har farten vært hvis hun bruker 0.8 time på 40 km? Oppgi bare tallet i km/h.",
+    answer: "50",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+  },
+  {
+    id: "clewoliha000108jtetig4gbv",
+    title: "Oppgave 2.33b",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.33.png",
+    description:
+      "Mona skal kjøre en strekning på 40 km. Grafen viser sammenhengen mellom farten og tiden hun bruker. Bruk grafen når du svarer på spørsmålene. Omtrent hva har farten vært hvis hun bruker 1 time og 30 minutter? Oppgi bare tallet i km/h.",
+    answer: "26.7",
+    hint: "DECIMAL",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewojnu6000008jt5kr451f7" } },
+  },
+  {
+    id: "clewolm0m000208jth2k2b10v",
+    title: "Oppgave 2.33c",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.33.png",
+    description:
+      "Mona skal kjøre en strekning på 40 km. Grafen viser sammenhengen mellom farten og tiden hun bruker. Bruk grafen når du svarer på spørsmålene. Hvor lang tid bruker hun hvis farten er 20 km/h? Oppgi bare tallet i timer.",
+    answer: "2",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewoliha000108jtetig4gbv" } },
+  },
+  {
+    id: "clewolqbf000308jt5cdb1sqk",
+    title: "Oppgave 2.33d",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.33.png",
+    description:
+      "Mona skal kjøre en strekning på 40 km. Grafen viser sammenhengen mellom farten og tiden hun bruker. Bruk grafen når du svarer på spørsmålene. Omtrent hvor mange minutter bruker hun hvis farten er 50 km/h? Oppgi bare tallet i minutter.",
+    answer: "48",
+    points: 50,
+    category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
+    prevTask: { connect: { id: "clewolm0m000208jth2k2b10v" } },
   },
 ];
 
