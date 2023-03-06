@@ -9,7 +9,7 @@ async function init() {
   console.info("🌱 Seeding database for production!");
 
   await initBlussuvoll({ prismaClient });
-  await createNoobTasks({ prismaClient });
+  // await createNoobTasks({ prismaClient });
 
   console.info(
     `\n🌴 Done seeding database for production after ${differenceInSeconds(
