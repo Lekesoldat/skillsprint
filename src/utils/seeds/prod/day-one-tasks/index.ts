@@ -1109,6 +1109,102 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewu1mqo000408mk0urrcgg6" } },
   },
+
+  // Oppgave 2.42.1
+  {
+    id: "clewum441000008ml2s1hb9bg",
+    title: "Oppgave 2.42.1a",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen.",
+    answer: "bakterier",
+    hint: "FLAG",
+    points: 50,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+  },
+  {
+    id: "clewup7s1000108mlerrv1vud",
+    title: "Oppgave 2.42.1b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange bakterier er det etter 1 minutt?",
+    answer: "6000",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewum441000008ml2s1hb9bg" } },
+  },
+
+  // Oppgave 2.42.2
+  {
+    id: "clewusyqk000208ml3acadf8o",
+    title: "Oppgave 2.42.2a",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen når math$0<=x<=4&.",
+    answer: "hallo",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewup7s1000108mlerrv1vud" } },
+  },
+  {
+    id: "clewut8e1000308mla7k07z1a",
+    title: "Opppgave 2.42.2b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange bakterier er det etter 2 minutter?",
+    answer: "24000",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewusyqk000208ml3acadf8o" } },
+  },
+
+  // Oppgave 2.42.3
+  {
+    id: "clewutf2c000408ml72zs71v5",
+    title: "Opppgave 2.42.3b",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Tegn grafen til funksjonen når math$0<=x<=30&.",
+    answer: "koloni",
+    hint: "FLAG",
+    points: 75,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewut8e1000308mla7k07z1a" } },
+  },
+  {
+    id: "clewutmbg000508ml2jr4dl1b",
+    title: "Opppgave 2.42.3c",
+    description:
+      "I en bakteriekoloni er det flere tusen bakterier. Etter at kolonien har vokst i x minutter, er antallet bakterier B målt i tusen, B(x) er gitt ved funksjonsuttrykket math$B(x)=6x^2&. Hvor mange minutter har det gått når det er 3 750 000 bakterier i kolonien? Oppgi bare tallet i minutter.",
+    answer: "25",
+    points: 100,
+    category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
+    prevTask: { connect: { id: "clewutf2c000408ml72zs71v5" } },
+  },
+  // Oppgave 2.43.1
+  // Oppgave 2.43.2
+  // Oppgave 2.43.3
+  // Oppgave 2.44.1
+  // Oppgave 2.44.2
+  // Oppgave 2.44.3
+  // Oppgave 2.45
+  // Oppgave 2.46.1
+  // Oppgave 2.46.2
+  // Oppgave 2.46.3
+  // Oppgave 2.47.1
+  // Oppgave 2.47.2
+  // Oppgave 2.47.3
+  // Oppgave 2.48
+  // Oppgave 2.49
+  // Oppgave 2.50
+  // Oppgave 2.51.1
+  // Oppgave 2.51.2
+  // Oppgave 2.51.3
+  // Oppgave 2.52.1
+  // Oppgave 2.52.2
+  // Oppgave 2.52.3
+  // Oppgave 2.53.1
+  // Oppgave 2.53.2
+  // Oppgave 2.53.3
+  // Oppgave 2.54.1
+  // Oppgave 2.54.2
+  // Oppgave 2.54.3
 ];
 
 export async function createDayOneTasks({
