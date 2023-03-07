@@ -41,10 +41,19 @@ export default function TaskPage({ task }: TaskPageProps) {
         }
         console.log(data);
         if (data.result === "SUCCESS") {
-          toast({
-            title: `Riktig svar! +${task.points} poeng`,
-            variant: "success",
-          });
+          if (attempt?.result === "SUCCESS") {
+            toast({
+              title: "Riktig svar!",
+              description: "Men du har allerede fått poeng for denne oppgaven",
+              variant: "success",
+            });
+          } else {
+            toast({
+              title: `Riktig svar! +${task.points} poeng`,
+              variant: "success",
+            });
+          }
+
           starsConfetti();
           void utils.auth.me.invalidate();
           void utils.taskAttempt.startAttempt.setData(task.id, data);

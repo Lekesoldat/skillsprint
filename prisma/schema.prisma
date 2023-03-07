@@ -51,21 +51,22 @@ enum AnswerType {
 }
 
 model Task {
-    id          String        @id @default(cuid())
-    title       String
-    description String
-    points      Int
-    category    Category      @relation(fields: [categoryId], references: [id])
-    categoryId  String        @map("category_id")
-    answer      String
-    image       String?
-    hint        TaskHint?
-    answerType  AnswerType    @default(NORMAL) @map("answer_type")
-    placeholder String?
-    TaskAttempt TaskAttempt[]
-    nextTaskId  String?       @unique @map("next_task_id")
-    nextTask    Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
-    prevTask    Task?         @relation("TaskOrder")
+    id              String        @id @default(cuid())
+    title           String
+    description     String
+    points          Int
+    category        Category      @relation(fields: [categoryId], references: [id])
+    categoryId      String        @map("category_id")
+    answer          String
+    image           String?
+    hint            TaskHint?
+    answerType      AnswerType    @default(NORMAL) @map("answer_type")
+    multipleChoices String?
+    placeholder     String?
+    TaskAttempt     TaskAttempt[]
+    nextTaskId      String?       @unique @map("next_task_id")
+    nextTask        Task?         @relation("TaskOrder", fields: [nextTaskId], references: [id])
+    prevTask        Task?         @relation("TaskOrder")
 }
 
 enum AttemptResult {
