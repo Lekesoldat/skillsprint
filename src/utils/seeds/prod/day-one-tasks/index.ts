@@ -348,7 +348,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     answer: "2",
     answerType: "MULTIPLE_CHOICE",
     multipleChoices:
-      "Vi bør ikke bruke x-verdier høyere enn 14 fordi 14 er det magiske tallet for garnmengden som trengs for å strikke en genser.|Vi bør ikke bruke x-verdier høyere enn 14 fordi det vil gi oss en negativ verdi, noe som ikke gir mening i dette problemet.|Vi bør ikke bruke x-verdier høyere enn 14 fordi det vil overskride mengden garn Johan har tilgjengelig for å strikke genseren.",
+      "Fordi 14 er det magiske tallet for garnmengden som trengs for å strikke en genser.|Fordi det vil gi oss en negativ verdi, noe som ikke gir mening i dette problemet.|Fordi det tar mer enn 14 dager.|Fordi han bruker mer enn 40 g garn hver dag.",
     points: 75,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
     prevTask: { connect: { id: "clevfp5sx000c08mb22gahsk8" } },
