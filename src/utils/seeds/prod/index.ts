@@ -1,31 +1,13 @@
 import type { PrismaClient } from "@prisma/client";
-import { differenceInSeconds } from "date-fns";
 import { createUsers } from "../utils/user-utilities";
 import { createCategories } from "./categories";
 import { createDayOneTasks } from "./day-one-tasks";
-import { createEquationTasks } from "./old-tasks/equations";
-import { createExponentialTasks } from "./old-tasks/exponential";
-import { createInverseProportionalFunctionTasks } from "./old-tasks/inverse";
-import { createLinearTasks } from "./old-tasks/linear";
-import { createQuadraticTasks } from "./old-tasks/quadratic";
-import { userList as users } from "./user-list";
-
-const createOldTasks = async ({
-  prismaClient,
-}: {
-  prismaClient: PrismaClient;
-}) => {
-  const timer = new Date();
-  console.info("🏫 Seeding tasks for Blussuvoll ...");
-
-  await createEquationTasks({ prismaClient });
-  await createExponentialTasks({ prismaClient });
-  await createInverseProportionalFunctionTasks({ prismaClient });
-  await createLinearTasks({ prismaClient });
-  await createQuadraticTasks({ prismaClient });
-
-  console.log(`Took ${differenceInSeconds(new Date(), timer)}s`);
-};
+import {
+  SESSION_FOUR_USERS,
+  SESSION_ONE_USERS,
+  SESSION_THREE_USERS,
+  SESSION_TWO_USERS,
+} from "./user-list";
 
 export const initBlussuvoll = async ({
   prismaClient,
@@ -33,10 +15,12 @@ export const initBlussuvoll = async ({
   prismaClient: PrismaClient;
 }) => {
   console.info("🏫 Initializing Blussuvoll ...");
-
   await createCategories({ prismaClient });
-  await createUsers({ prismaClient, users, withAdmins: true });
   await createDayOneTasks({ prismaClient });
 
-  // await createOldTasks({ prismaClient });
+  await createUsers({ prismaClient, users: SESSION_ONE_USERS });
+  await createUsers({ prismaClient, users: SESSION_TWO_USERS });
+  await createUsers({ prismaClient, users: SESSION_THREE_USERS });
+  await createUsers({ prismaClient, users: SESSION_FOUR_USERS });
+  // await createUsers({ prismaClient, users: [], withAdmins: true });
 };

@@ -1,7 +1,6 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
-import { differenceInSeconds } from "date-fns";
 import argon2 from "argon2";
-import { faker } from "../clients";
+import { differenceInSeconds } from "date-fns";
 
 const hashPasswords = async (userList: Prisma.UserCreateInput[]) => {
   const userPromises = userList.map(async (user) => {
@@ -16,13 +15,14 @@ const hashPasswords = async (userList: Prisma.UserCreateInput[]) => {
   return await Promise.all(userPromises);
 };
 
-const admins = [
+const admins: Prisma.UserCreateInput[] = [
   {
     id: "cle2wz3id0000fxpb8bgt5f3f",
     name: "anhkha",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/047-turkey.svg",
     password: "hunter2",
+    session: 0,
   },
   {
     id: "cle2wz3id0002fxpb0digx7tv",
@@ -30,6 +30,7 @@ const admins = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/048-vulture.svg",
     password: "holtet",
+    session: 0,
   },
   {
     id: "cle78jrxx000708lgglob19m9",
@@ -37,6 +38,7 @@ const admins = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "haug",
+    session: 0,
   },
 
   {
@@ -45,6 +47,7 @@ const admins = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "olsen",
+    session: 0,
   },
   {
     id: "cleidrxes000008lf5b55f45t",
@@ -52,19 +55,20 @@ const admins = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "markmanrud",
+    session: 0,
   },
 ];
 
 interface CreateUsersOptions {
   prismaClient: PrismaClient;
   users: Prisma.UserCreateInput[];
-  withAdmins: boolean;
+  withAdmins?: boolean;
 }
 
 export async function createUsers({
   prismaClient,
   users,
-  withAdmins = true,
+  withAdmins,
 }: CreateUsersOptions) {
   const timer = new Date();
   console.info(`\n🎓 Seeding users ${withAdmins ? "and admins " : ""}!`);
@@ -77,11 +81,10 @@ export async function createUsers({
 
   const data = await prismaClient.$transaction(
     output.map((user) => {
-      const session = faker.datatype.number({ min: 1, max: 2 });
       return prismaClient.user.upsert({
         where: { name: user.name },
-        create: { ...user, session },
-        update: { ...user, session },
+        create: user,
+        update: user,
       });
     })
   );

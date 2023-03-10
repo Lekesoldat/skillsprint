@@ -3,8 +3,11 @@ import type { UseFormReturn } from "react-hook-form";
 import type { FormValues, TaskPageProps } from "../../pages/tasks/[id]";
 import { MathDisplay } from "../math/MathDisplay";
 import { MathInput } from "../math/MathInput";
+import { TaskMultipleChoice } from "../TaskMultipleChoice";
 import { Button } from "../ui/Button";
 import { Collapsible } from "../ui/Collapsible";
+import { Label } from "../ui/Label";
+import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 import { TaskNavigation } from "./TaskNavigation";
 
 const TaskHints: Record<TaskHint, string> = {
@@ -45,6 +48,7 @@ export const AnswerForm = ({
   onSubmit,
 }: TaskFormProps) => {
   const { handleSubmit, control } = form;
+
   return (
     <>
       <div className="flex max-w-[75ch] flex-col items-center rounded-md bg-white p-4">
@@ -63,18 +67,32 @@ export const AnswerForm = ({
                 className="[&>div>button]:font-bold [&>div>button]:text-brand-green"
               >
                 <MathDisplay
-                  description={`math$${task.answer}&`}
+                  description={
+                    task.answerType === "MULTIPLE_CHOICE"
+                      ? `Alternativ ${String.fromCharCode(
+                          "a".charCodeAt(0) - 1 + Number(task.answer)
+                        )})`
+                      : `math$${task.answer}&`
+                  }
                   className="text-center text-xl"
                 />
               </Collapsible>
             </div>
           </div>
         )}
-        <MathInput
-          control={control}
-          name="answer"
-          defaultValue={task.placeholder || getPlaceholder(task.answerType)}
-        />
+        {task.answerType === "MULTIPLE_CHOICE" && task.multipleChoices ? (
+          <TaskMultipleChoice
+            choices={task.multipleChoices.split("|")}
+            control={control}
+            name="answer"
+          />
+        ) : (
+          <MathInput
+            control={control}
+            name="answer"
+            defaultValue={task.placeholder || getPlaceholder(task.answerType)}
+          />
+        )}
 
         {task.hint && (
           <div className="my-2 rounded-md border-2 border-brand-black bg-brand-babyBlue px-2 py-1 text-brand-black">

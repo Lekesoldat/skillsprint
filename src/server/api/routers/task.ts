@@ -100,4 +100,23 @@ export const taskRouter = createTRPCRouter({
       });
     }
   }),
+
+  getAllFlags: publicProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.prisma.task.findMany({
+        select: {
+          title: true,
+          answer: true,
+        },
+        where: {
+          hint: "FLAG",
+        },
+      });
+    } catch (error) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        cause: error,
+      });
+    }
+  }),
 });

@@ -347,7 +347,7 @@ const validateAnswer = (answer: string, task: Task) => {
       );
     }
     case "MULTIPLE_CHOICE": {
-      throw new Error("Not implemented yet");
+      return answer === task.answer;
     }
     default:
       return false;
