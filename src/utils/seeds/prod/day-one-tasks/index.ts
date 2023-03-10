@@ -900,9 +900,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.37.1",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
-    description:
-      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
-    answer: "C",
+    description: "Hvilken funksjon hører til figur I?",
+    answer: "3",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
   },
@@ -911,9 +912,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.37.2",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
-    description:
-      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
-    answer: "A",
+    description: "Hvilken funksjon hører til figur II?",
+    answer: "1",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewsm11n000008mlhanccb7i" } },
@@ -923,9 +925,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.37.3",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.37.png",
-    description:
-      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
-    answer: "B",
+    description: "Hvilken funksjon hører til figur III?",
+    answer: "2",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewspj4o000108ml7wj3bs8l" } },
@@ -937,9 +940,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.38.1",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
-    description:
-      "Hvilken funksjon hører til figur I? Svar kun med stor bokstav.",
-    answer: "C",
+    description: "Hvilken funksjon hører til figur I?",
+    answer: "3",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
   },
@@ -948,9 +952,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.38.2",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
-    description:
-      "Hvilken funksjon hører til figur II? Svar kun med stor bokstav.",
-    answer: "A",
+    description: "Hvilken funksjon hører til figur II?",
+    answer: "1",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewsqmf0000308ml1m1h1xt6" } },
@@ -960,9 +965,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.38.3",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.38.png",
-    description:
-      "Hvilken funksjon hører til figur III? Svar kun med stor bokstav.",
-    answer: "B",
+    description: "Hvilken funksjon hører til figur III?",
+    answer: "2",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "A|B|C|D",
     points: 25,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewsss88000408mlbgvvdpyw" } },
