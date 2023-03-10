@@ -684,7 +684,7 @@ export const SESSION_FOUR_USERS: Prisma.UserCreateInput[] = [
   },
   {
     name: "smart-hjelp",
-    password: "gjennomtenkt-bistand",
+    password: "enkel-bistand",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/031-peacock.svg",
     session: 4,
@@ -796,7 +796,7 @@ export const SESSION_FOUR_USERS: Prisma.UserCreateInput[] = [
   },
   {
     name: "lang-kø",
-    password: "tålmodighetsprøvende-ventetid",
+    password: "kort-ventetid",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/013-goose.svg",
     session: 4,
@@ -886,3 +886,23 @@ export const SESSION_FOUR_USERS: Prisma.UserCreateInput[] = [
     session: 4,
   },
 ];
+
+export const pairUsersToCSV = (
+  u1: Prisma.UserCreateInput[],
+  u2: Prisma.UserCreateInput[]
+) => {
+  for (let i = 0; i < u1.length; i++) {
+    const user1 = u1[i];
+    const user2 = u2[i];
+
+    if (user1 && user2) {
+      console.log(
+        `${user1.name},${user1.password},${user2.name},${user2.password}`
+      );
+    }
+  }
+};
+
+pairUsersToCSV(SESSION_ONE_USERS, SESSION_THREE_USERS);
+console.log();
+pairUsersToCSV(SESSION_TWO_USERS, SESSION_FOUR_USERS);
