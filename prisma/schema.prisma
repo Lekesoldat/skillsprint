@@ -61,7 +61,7 @@ model Task {
     image           String?
     hint            TaskHint?
     answerType      AnswerType    @default(NORMAL) @map("answer_type")
-    multipleChoices String?
+    multipleChoices String?       @map("multiple_choices")
     placeholder     String?
     TaskAttempt     TaskAttempt[]
     nextTaskId      String?       @unique @map("next_task_id")
