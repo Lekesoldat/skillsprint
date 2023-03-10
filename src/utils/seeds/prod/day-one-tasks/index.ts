@@ -345,8 +345,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.29.3c",
     description:
       "Johan strikker en genser. Han kjøper 560 g garn. Han bruker 40 g garn hver dag i x dager. Forklar hvorfor vi ikke bør bruke x-verdier høyere enn 14.",
-    answer: "negativitet",
-    hint: "FLAG",
+    answer: "2",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices:
+      "Vi bør ikke bruke x-verdier høyere enn 14 fordi 14 er det magiske tallet for garnmengden som trengs for å strikke en genser.|Vi bør ikke bruke x-verdier høyere enn 14 fordi det vil gi oss en negativ verdi, noe som ikke gir mening i dette problemet.|Vi bør ikke bruke x-verdier høyere enn 14 fordi det vil overskride mengden garn Johan har tilgjengelig for å strikke genseren.",
     points: 75,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
     prevTask: { connect: { id: "clevfp5sx000c08mb22gahsk8" } },
@@ -528,9 +530,11 @@ const providedTasks: Prisma.TaskCreateInput[] = [
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.31.png",
     title: "Oppgave 2.31b",
     description:
-      "lassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Forklar hvorfor prisen per deltaker går ned i samme forhold osm antall deltakere øker.",
-    answer: "party",
-    hint: "FLAG",
+      "Klassen din skal arrangere en trinfest. De leier lys- og musikkanlegg for 2000kr. Utgiftene skal fordeles likt på festdeltagerne. Forklar hvorfor prisen per deltaker går ned i samme forhold som antall deltakere øker.",
+    answer: "1",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices:
+      "Prisen per deltaker går ned i samme forhold som antall deltakere øker fordi de totale utgiftene forblir de samme, men blir delt på flere personer. Dermed blir kostnaden per person mindre når antall deltakere øker.|Prisen per deltaker øker i samme forhold som antall deltakere øker, fordi flere personer betyr at det trengs mer lys- og musikkanlegg, som igjen øker kostnadene.|Prisen per deltaker forblir uendret uavhengig av antall deltakere, fordi utgiftene for lys- og musikkanlegg er faste og vil ikke endre seg uansett hvor mange som deltar på festen.|Prisen per deltaker vil øke eller reduseres vilkårlig, avhengig av hvor mye hver person ønsker å bidra til utgiftene, og ikke av antall deltakere på festen.",
     points: 75,
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewn0n45000108mb3gd3ammn" } },
@@ -855,8 +859,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.3.png",
     description:
       "Et rektangel har et areal på math$60 cm^2&. Sidene er b og x - 1 lange. Hvorfor kan ikke x være lik 1?",
-    answer: "ulovlig",
-    hint: "FLAG",
+    answer: "3",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices:
+      "Fordi da vil arealet av rektangelet være mindre enn 60 cm^2|Fordi da vil lengden på den ene siden bli negativ.|x = 1 gir nevner lik 0, vi kan ikke dividere med 0.",
     points: 100,
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
     prevTask: { connect: { id: "clewqtcvv000m08l18nhih0lf" } },
@@ -1265,8 +1271,10 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.43.3c",
     description:
       "Funksjonsuttrykket math$K(x)=-0.3x^2+6x& beskriver banen til en kule som skytes med stor fart opp i lufta. K er høyde over bakken i kilometer, og x er antall sekunder etter oppskytingen. Hvorfor kan vi ikke bruke x-verdier høyere enn 20?",
-    answer: "kopp",
-    hint: "FLAG",
+    answer: "2",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices:
+      "Fordi kula vil ha truffet bakken før 20 sekunder har gått.|Når x = 20, er K = 0. Da har vi laveste mulige høyde.|Fordi kula vil ha forlatt jordas atmosfære før 20 sekunder har gått.|Fordi funksjonsuttrykket ikke er definert for x-verdier høyere enn 20.",
     points: 100,
     category: { connect: { id: "cler3oqyo000308kxe2au80ds" } },
     prevTask: { connect: { id: "clewvkbx5000608l37qxr32b4" } },
