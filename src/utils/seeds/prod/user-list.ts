@@ -903,6 +903,6 @@ export const pairUsersToCSV = (
   }
 };
 
-pairUsersToCSV(SESSION_ONE_USERS, SESSION_THREE_USERS);
-console.log();
-pairUsersToCSV(SESSION_TWO_USERS, SESSION_FOUR_USERS);
+// pairUsersToCSV(SESSION_ONE_USERS, SESSION_THREE_USERS);
+// console.log();
+// pairUsersToCSV(SESSION_TWO_USERS, SESSION_FOUR_USERS);
