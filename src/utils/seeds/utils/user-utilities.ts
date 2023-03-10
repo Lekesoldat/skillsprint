@@ -22,6 +22,7 @@ const admins: Prisma.UserCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/047-turkey.svg",
     password: "hunter2",
+    session: 0,
   },
   {
     id: "cle2wz3id0002fxpb0digx7tv",
@@ -29,6 +30,7 @@ const admins: Prisma.UserCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/048-vulture.svg",
     password: "holtet",
+    session: 0,
   },
   {
     id: "cle78jrxx000708lgglob19m9",
@@ -36,6 +38,7 @@ const admins: Prisma.UserCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "haug",
+    session: 0,
   },
 
   {
@@ -44,6 +47,7 @@ const admins: Prisma.UserCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "olsen",
+    session: 0,
   },
   {
     id: "cleidrxes000008lf5b55f45t",
@@ -51,6 +55,7 @@ const admins: Prisma.UserCreateInput[] = [
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/049-bird.svg",
     password: "markmanrud",
+    session: 0,
   },
 ];
 

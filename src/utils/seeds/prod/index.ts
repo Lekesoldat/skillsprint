@@ -22,4 +22,5 @@ export const initBlussuvoll = async ({
   await createUsers({ prismaClient, users: SESSION_TWO_USERS });
   await createUsers({ prismaClient, users: SESSION_THREE_USERS });
   await createUsers({ prismaClient, users: SESSION_FOUR_USERS });
+  // await createUsers({ prismaClient, users: [], withAdmins: true });
 };
