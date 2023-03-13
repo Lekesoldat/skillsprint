@@ -2,8 +2,8 @@ import argon2 from "argon2";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import { prisma } from "../../../server/db";
 
+import type { User } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { User } from "@prisma/client";
 // Prisma adapter for NextAuth, optional and can be removed
 
 export const authOptions: NextAuthOptions = {
