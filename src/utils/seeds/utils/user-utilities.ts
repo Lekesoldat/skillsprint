@@ -57,6 +57,14 @@ const admins: Prisma.UserCreateInput[] = [
     password: "markmanrud",
     session: 0,
   },
+  {
+    id: "clf6jygmz000008jn7l43hafx",
+    name: "pilot",
+    image:
+      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/046-toucan.svg",
+    password: "fly-tur",
+    session: 0,
+  },
 ];
 
 interface CreateUsersOptions {
