@@ -1,4 +1,5 @@
 import { BookOpen, Home, LineChart, Medal, Trophy } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { api } from "../../utils/api";
 import { Spinner } from "../ui/loaders/Spinner";
@@ -31,8 +32,10 @@ const links = [
 ];
 
 export const TopNav = () => {
+  const { data: session } = useSession();
   const { data: user, isLoading } = api.auth.me.useQuery(undefined, {
     staleTime: Infinity,
+    enabled: !!session?.user,
   });
 
   return (
@@ -49,7 +52,7 @@ export const TopNav = () => {
         <NavigationMenu />
         <div className="flex flex-grow items-center justify-end md:flex-grow-0">
           <span className="flex min-w-[150px] justify-around rounded-md border-2 border-brand-black bg-brand-pink py-3 px-5 font-bold shadow-4-right shadow-brand-black">
-            {isLoading ? (
+            {isLoading && session ? (
               <Spinner />
             ) : (
               <>
