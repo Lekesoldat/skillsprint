@@ -1,11 +1,13 @@
+import { isAfter } from "date-fns";
+import { PostTest } from "../components/surveys/PostTest";
+import { PreTest } from "../components/surveys/PreTest";
+
 export default function Page() {
-  return (
-    <div className="flex w-full place-content-center">
-      <iframe
-        src="https://nettskjema.no/a/327747?embed=1"
-        title="SkillSprint"
-        width="100%"
-      ></iframe>
-    </div>
-  );
+  const testDay = new Date("2023-03-16");
+
+  if (isAfter(new Date(), testDay)) {
+    return <PostTest />;
+  }
+
+  return <PreTest />;
 }
