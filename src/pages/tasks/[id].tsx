@@ -4,7 +4,6 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from "next";
-import { BaseSyntheticEvent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
 import { PictureTask } from "../../components/task-answer/PictureTask";
@@ -39,7 +38,6 @@ export default function TaskPage({ task }: TaskPageProps) {
         if (!data || data.result === "PENDING") {
           return;
         }
-        console.log(data);
         if (data.result === "SUCCESS") {
           if (attempt?.result === "SUCCESS") {
             toast({
