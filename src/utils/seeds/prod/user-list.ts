@@ -48,7 +48,7 @@ export const SESSION_ONE_USERS: Prisma.UserCreateInput[] = [
     password: "tiger-fjell",
     image:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/avatars/019-humming%20bird.svg",
-    session: 1,
+    session: 5,
   },
   {
     name: "ryddig-bobil",
@@ -906,3 +906,27 @@ export const pairUsersToCSV = (
 // pairUsersToCSV(SESSION_ONE_USERS, SESSION_THREE_USERS);
 // console.log();
 // pairUsersToCSV(SESSION_TWO_USERS, SESSION_FOUR_USERS);
+
+// SESSION_ONE_USERS.forEach((u) =>
+//   console.log(
+//     `S${u.session}\nBrukernavn: ${u.name}\nPassord: ${u.password}\n\n`
+//   )
+// );
+
+// SESSION_TWO_USERS.forEach((u) =>
+//   console.log(
+//     `S${u.session}\nBrukernavn: ${u.name}\nPassord: ${u.password}\n\n`
+//   )
+// );
+
+// SESSION_THREE_USERS.forEach((u) =>
+//   console.log(
+//     `S${u.session}\nBrukernavn: ${u.name}\nPassord: ${u.password}\n\n`
+//   )
+// );
+
+// SESSION_FOUR_USERS.forEach((u) =>
+//   console.log(
+//     `S${u.session}\nBrukernavn: ${u.name}\nPassord: ${u.password}\n\n`
+//   )
+// );

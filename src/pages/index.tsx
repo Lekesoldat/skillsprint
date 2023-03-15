@@ -42,8 +42,8 @@ export default function Page() {
             lengste beste <span className="font-bold">streak</span>
           </li>
           <li>
-            Å fullføre <span className="font-bold">prestasjoner</span> gir
-            ekstrapoeng
+            Konkurrer med deg selv og jobb mot{" "}
+            <span className="font-bold">prestasjoner</span>
           </li>
           <li>
             På innsikt-siden kan du få en{" "}
