@@ -4,6 +4,7 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from "next";
+import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import superjson from "superjson";
 import { PictureTask } from "../../components/task-answer/PictureTask";
@@ -71,12 +72,29 @@ export default function TaskPage({ task }: TaskPageProps) {
       },
     });
 
-  const handleSubmit = (data: FormValues) => {
-    mutate({
-      answer: data.answer,
-      taskId: task.id,
-    });
-  };
+  const handleSubmit = useCallback(
+    (data: FormValues) => {
+      mutate({
+        answer: data.answer,
+        taskId: task.id,
+      });
+    },
+    [mutate, task.id]
+  );
+
+  useEffect(() => {
+    const keyDownHandler = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        void form.handleSubmit(handleSubmit)();
+      }
+    };
+    document.addEventListener("keydown", keyDownHandler);
+
+    // clean up
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, [form, form.handleSubmit, handleSubmit]);
 
   return (
     <div className="mb-[200px] mt-8 w-full lg:mb-40">
