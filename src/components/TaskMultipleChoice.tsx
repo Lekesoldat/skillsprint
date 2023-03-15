@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import React from "react";
 import type { UseControllerProps } from "react-hook-form";
 import { useController } from "react-hook-form";
 import type { FormValues } from "../pages/tasks/[id]";
@@ -18,7 +17,10 @@ export const TaskMultipleChoice: FC<TaskMultipleChoiceProps> = (props) => {
       {props.choices.map((choice, i) => (
         <div className="flex items-center space-x-2" key={choice}>
           <RadioGroupItem value={`${i + 1}`} id={`choice-{${i + 1}}`} />
-          <Label className="cursor-pointer" htmlFor={`choice-{${i + 1}}`}>
+          <Label
+            className="w-full cursor-pointer"
+            htmlFor={`choice-{${i + 1}}`}
+          >
             {String.fromCharCode("a".charCodeAt(0) + i)})&nbsp;{choice}
           </Label>
         </div>
