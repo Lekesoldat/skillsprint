@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "../components/ui/Button";
 
@@ -16,11 +16,12 @@ export default function Page() {
       </p>
 
       {!sessionData && (
-        <p className="italic">
-          NB! Vi ser at du ikke er logget inn, - klikk{" "}
-          <span className="font-bold italic">nede til høyre</span> for å fikse
-          det allerede nå!
-        </p>
+        <>
+          <p className="italic">
+            NB! Vi ser at du ikke er logget inn. Logg inn allerede nå!
+          </p>
+          <Button onClick={() => signIn()}>Logg inn</Button>
+        </>
       )}
 
       <div>
