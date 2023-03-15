@@ -315,7 +315,6 @@ const validateAnswer = (answer: string, task: Task) => {
       const ce = new ComputeEngine();
       const userAnswer = ce.parse(answer);
       const solution = ce.parse(task.answer);
-      console.log(userAnswer.isSame(solution));
       return userAnswer.isSame(solution);
     }
     case "MULTIPLE_VALUES": {

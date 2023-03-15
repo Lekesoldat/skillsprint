@@ -1,6 +1,6 @@
 import { RotateCw } from "lucide-react";
 import type { MathfieldElement } from "mathlive";
-import type { FC } from "react";
+import { FC, useState } from "react";
 import { useEffect, useRef } from "react";
 import type { UseControllerProps } from "react-hook-form";
 import { useController } from "react-hook-form";
@@ -12,21 +12,37 @@ function isTouchDevice() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0;
 }
 
-export const MathInput: FC<UseControllerProps<FormValues>> = (props) => {
+export const MathInput: FC<
+  UseControllerProps<FormValues> & { submitHandler: () => Promise<void> }
+> = (props) => {
   const ref = useRef<MathfieldElement>(null);
+  const [focused, setFocus] = useState(false);
 
   const { field } = useController(props);
 
   useEffect(() => {
     import("mathlive");
+  }, []);
+
+  useEffect(() => {
     if (ref.current) {
       ref.current.onchange = field.onChange;
       ref.current.onblur = field.onBlur;
       ref.current.virtualKeyboardTheme = "apple";
       ref.current.virtualKeyboardMode = isTouchDevice() ? "auto" : "manual";
-      ref.current.focus();
+      ref.current.onkeyup = (e) => {
+        if (e.key === "Enter") {
+          void props.submitHandler();
+        }
+      };
+
+      ref.current.onfocus = () => setFocus(true);
+      ref.current.onblur = () => setFocus(false);
+      if (!focused) {
+        ref.current.focus();
+      }
     }
-  }, [field]);
+  }, [field.onBlur, field.onChange, focused, props, ref]);
 
   return (
     <div className="flex w-full">

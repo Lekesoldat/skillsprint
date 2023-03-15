@@ -89,6 +89,7 @@ export const AnswerForm = ({
             control={control}
             name="answer"
             defaultValue={task.placeholder || getPlaceholder(task.answerType)}
+            submitHandler={handleSubmit(onSubmit)}
           />
         )}
 
