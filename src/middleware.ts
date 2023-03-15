@@ -7,5 +7,6 @@ export const config = {
     "/insight",
     "/achievements",
     "/leaderboard",
+    "/survey",
   ],
 };
