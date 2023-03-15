@@ -6,8 +6,6 @@ import { MathInput } from "../math/MathInput";
 import { TaskMultipleChoice } from "../TaskMultipleChoice";
 import { Button } from "../ui/Button";
 import { Collapsible } from "../ui/Collapsible";
-import { Label } from "../ui/Label";
-import { RadioGroup, RadioGroupItem } from "../ui/RadioGroup";
 import { TaskNavigation } from "./TaskNavigation";
 
 const TaskHints: Record<TaskHint, string> = {
