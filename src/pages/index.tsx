@@ -1,4 +1,6 @@
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { Button } from "../components/ui/Button";
 
 export default function Page() {
   const { data: sessionData } = useSession();
@@ -51,6 +53,12 @@ export default function Page() {
             an sammenlignet med klassen og i de ulike kapitlene
           </li>
         </ul>
+      </div>
+
+      <div>
+        <Link href={"/survey"}>
+          <Button>Til Spørreundersøkelse</Button>
+        </Link>
       </div>
     </div>
   );
