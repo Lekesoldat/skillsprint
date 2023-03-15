@@ -1,5 +1,7 @@
 import { BookOpen, Home, LineChart, Medal, Trophy } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { posthog } from "posthog-js";
 import { api } from "../../utils/api";
 import { Spinner } from "../ui/loaders/Spinner";
 const links = [
@@ -31,8 +33,15 @@ const links = [
 ];
 
 export const TopNav = () => {
+  const { data } = useSession();
   const { data: user, isLoading } = api.auth.me.useQuery(undefined, {
     staleTime: Infinity,
+    enabled: !!data?.user,
+    onSuccess: (data) => {
+      if (data) {
+        posthog.identify(data.id);
+      }
+    },
   });
 
   return (
