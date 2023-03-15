@@ -2,6 +2,7 @@ import { ComputeEngine } from "@cortex-js/compute-engine";
 import type { PrismaClient, Task } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
+import { nb } from "date-fns/locale";
 import { z } from "zod";
 import {
   roundToNthMinute,
@@ -254,7 +255,7 @@ export const taskAttemptRouter = createTRPCRouter({
 
       return sortedAndAggregated.map((s) => ({
         ...s,
-        timestamp: format(new Date(s.timestamp), "HH:mm"),
+        timestamp: format(new Date(s.timestamp), "HH:mm", { locale: nb }),
       }));
     } catch (error) {
       throw new TRPCError({
