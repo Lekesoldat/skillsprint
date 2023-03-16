@@ -29,7 +29,7 @@ export const MathInput: FC<
       ref.current.onchange = field.onChange;
       ref.current.onblur = field.onBlur;
       ref.current.virtualKeyboardTheme = "apple";
-      ref.current.virtualKeyboardMode = isTouchDevice() ? "auto" : "manual";
+      ref.current.virtualKeyboardMode = "manual";
       ref.current.onkeyup = (e) => {
         if (e.key === "Enter") {
           void props.submitHandler();
