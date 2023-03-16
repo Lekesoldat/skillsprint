@@ -97,7 +97,7 @@ export default function TaskPage({ task }: TaskPageProps) {
   }, [form, form.handleSubmit, handleSubmit]);
 
   return (
-    <div className="mb-[200px] mt-8 w-full lg:mb-40">
+    <div className="mb-[200px] mt-8 w-full lg:mb-60">
       <div className="bg-[url('/grid.svg')]">
         {task.image ? (
           <PictureTask task={task}>
