@@ -41,16 +41,16 @@ export const achievements: Achievement[] = [
     color: "LIGHTRED",
     type: "STREAK",
   },
-  {
-    avatar:
-      "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/047-atom.svg",
-    title: "Atom",
-    description: "Fullfør 5 oppgaver på rad",
-    progress: 0,
-    requirement: 5,
-    color: "LIGHTRED",
-    type: "STREAK",
-  },
+  // {
+  //   avatar:
+  //     "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/047-atom.svg",
+  //   title: "Atom",
+  //   description: "Fullfør 5 oppgaver på rad",
+  //   progress: 0,
+  //   requirement: 5,
+  //   color: "LIGHTRED",
+  //   type: "STREAK",
+  // },
   {
     avatar:
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/icons/achievements/038-easel.svg",
