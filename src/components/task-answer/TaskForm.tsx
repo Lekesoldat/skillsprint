@@ -6,6 +6,7 @@ import { MathInput } from "../math/MathInput";
 import { TaskMultipleChoice } from "../TaskMultipleChoice";
 import { Button } from "../ui/Button";
 import { Collapsible } from "../ui/Collapsible";
+import { Input } from "../ui/Input";
 import { TaskNavigation } from "./TaskNavigation";
 
 const TaskHints: Record<TaskHint, string> = {
@@ -45,7 +46,7 @@ export const AnswerForm = ({
   isLoading,
   onSubmit,
 }: TaskFormProps) => {
-  const { handleSubmit, control } = form;
+  const { handleSubmit, control, register } = form;
 
   return (
     <>
@@ -78,13 +79,15 @@ export const AnswerForm = ({
             </div>
           </div>
         )}
-        {task.answerType === "MULTIPLE_CHOICE" && task.multipleChoices ? (
+        {task.answerType === "MULTIPLE_CHOICE" && task.multipleChoices && (
           <TaskMultipleChoice
             choices={task.multipleChoices.split("|")}
             control={control}
             name="answer"
           />
-        ) : (
+        )}
+        {task.answerType === "FLAG" && <Input {...register("answer")} />}
+        {task.answerType != "FLAG" && task.answerType != "MULTIPLE_CHOICE" && (
           <MathInput
             control={control}
             name="answer"
