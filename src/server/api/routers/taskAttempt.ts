@@ -6,6 +6,7 @@ import {
   differenceInSeconds,
   format,
   formatISO,
+  isAfter,
   subMinutes,
 } from "date-fns";
 
@@ -98,9 +99,10 @@ export const taskAttemptRouter = createTRPCRouter({
             id: userId,
           },
           data: {
-            points: {
-              increment: task.points,
-            },
+            [isAfter(new Date(), new Date(2023, 3, 23)) ? "points2" : "points"]:
+              {
+                increment: task.points,
+              },
             streak: {
               increment: 1,
             },
