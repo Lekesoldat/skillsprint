@@ -1,8 +1,13 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
 import type { PrismaClient, Task } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
-import { differenceInSeconds, format, subMinutes } from "date-fns";
-import { formatInTimeZone } from "date-fns-tz";
+import {
+  add,
+  differenceInSeconds,
+  format,
+  formatISO,
+  subMinutes,
+} from "date-fns";
 
 import { nb } from "date-fns/locale";
 import { z } from "zod";
@@ -195,12 +200,10 @@ export const taskAttemptRouter = createTRPCRouter({
           // Round timestamp to nearest fith and extract HH:mm
           const rounded = roundToNthMinute(a.createdAt, GRAPH_INTERVAL);
 
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-          const timestamp = formatInTimeZone(
-            rounded,
-            "Europe/Paris",
-            "yyyy-MM-dd HH:mm:ss zzz"
-          );
+          const timeZoneAdjusted = add(rounded, {
+            hours: 1,
+          });
+          const timestamp = formatISO(timeZoneAdjusted);
 
           const points = taskToPoints.get(a.taskId) || 0;
 
