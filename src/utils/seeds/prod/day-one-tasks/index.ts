@@ -425,8 +425,8 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     id: "clewm5rce000508l73bjf72bn",
     title: "Oppgave 2.30.2b",
     description:
-      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 45$.",
-    answer: "elbil",
+      "En elbil har en batterikapasistet på 81 kWh (kilowattimer). Den bruker 1.8 kWh per mil. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 45&.",
+    answer: "elektrisk",
     hint: "FLAG",
     points: 75,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
@@ -471,7 +471,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.30.3b",
     description:
       "I en kommune med 60 000 innbyggere skulle 90% av innbyggerne vaksineres mot covid-19. I gjennomsnitt ble det vaksinert 1500 personer hver uke. Tegn grafen til funksjonen når math$0 \\leqq x \\leqq 36&.",
-    answer: "vaksine",
+    answer: "sprøyte",
     hint: "FLAG",
     points: 75,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
@@ -794,7 +794,7 @@ const providedTasks: Prisma.TaskCreateInput[] = [
       "https://tliacbojiuhirqtqavdn.supabase.co/storage/v1/object/public/task-images/day-one-tasks/task-2.36.2.png",
     description:
       "Et rektangel har et areal på math$100 cm^2&. Sidene er b og x + 5 lange. Funksjonsuttrykket math$b(x)=\\frac{100}{x+5}& beskriver sammenhengen mellom de to sidene når arealet er math$100 cm^2&. Tegn grafen til funksjonen for math$0 \\leqq x \\leqq 30&",
-    answer: "rektangel",
+    answer: "boks",
     hint: "FLAG",
     points: 75,
     category: { connect: { id: "cler3o0ps000208kxhg7u2v0n" } },
