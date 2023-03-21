@@ -1,3 +1,4 @@
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { AllTimePerformanceGraph } from "../components/charts/AllTimePerformanceGraph";
 import { AttemptPie } from "../components/charts/AttemptPie";
 import { CategoryPie } from "../components/charts/CategoryPie";
@@ -9,8 +10,25 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/tabs";
+import { appRouter } from "../server/api/root";
+import { createInnerTRPCContext } from "../server/api/trpc";
+import superjson from "superjson";
+import type { InferGetStaticPropsType } from "next";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/Select";
+import { useState } from "react";
+import { AttemptPerTaskChart } from "../components/charts/AttemptPerTask";
 
-export default function Page() {
+export default function Page({
+  categories,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [selected, setSelected] = useState<string>("all");
   return (
     <div className="flex w-full flex-1 flex-col justify-between gap-y-14">
       <div className="flex flex-col items-center">
@@ -43,17 +61,60 @@ export default function Page() {
         </Tabs>
       </div>
 
+      <Select onValueChange={(val) => setSelected(val)} defaultValue="all">
+        <SelectTrigger className="max-w-[300px] self-center">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="all">Alle</SelectItem>
+            {categories.map((category) => (
+              <SelectItem key={category.id} value={category.id}>
+                {category.name}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
       <div className="flex justify-between">
         <div className="flex h-[300px] w-[300px] flex-col items-center lg:h-[400px] lg:w-[400px]">
           <div className="font-bold">Svarfordeling</div>
-          <AttemptPie />
+          <AttemptPie categoryId={selected !== "all" ? selected : undefined} />
         </div>
 
         <div className="flex h-[300px] w-[300px] flex-col items-center lg:h-[400px] lg:w-[400px]">
-          <div className="font-bold">Kategorifordeling</div>
-          <CategoryPie />
+          {selected === "all" ? (
+            <>
+              <div className="font-bold">Kategorifordeling</div>
+              <CategoryPie />
+            </>
+          ) : (
+            <>
+              <div className="font-bold">Forsøksfordeling</div>
+              <AttemptPerTaskChart
+                categories={categories}
+                categoryId={selected}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  const categories = await ssg.category.getAll.fetch();
+  return {
+    props: {
+      categories,
+    },
+  };
 }
