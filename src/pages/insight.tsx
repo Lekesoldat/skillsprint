@@ -62,13 +62,7 @@ export default function Page({
         </Tabs>
       </div>
 
-      <Select
-        onValueChange={(val) => {
-          posthog.capture("filtered_insight", { category: val });
-          setSelected(val);
-        }}
-        defaultValue="all"
-      >
+      <Select onValueChange={(val) => setSelected(val)} defaultValue="all">
         <SelectTrigger className="max-w-[300px] self-center">
           <SelectValue />
         </SelectTrigger>
