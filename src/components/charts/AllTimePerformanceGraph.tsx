@@ -10,7 +10,7 @@ import {
 import { api } from "../../utils/api";
 import { Skeleton } from "../ui/loaders/Skeleton";
 
-export const PerformanceGraph = () => {
+export const AllTimePerformanceGraph = () => {
   const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
 
   if (error) return <>Noe gikk galt med progresjonsgrafen...</>;
@@ -19,7 +19,7 @@ export const PerformanceGraph = () => {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <LineChart data={data}>
-        <XAxis dataKey="timestamp" />
+        <XAxis dataKey="timestamp" tick={false} label="tid" />
         <YAxis />
         <Tooltip />
         <Legend iconType="circle" />
