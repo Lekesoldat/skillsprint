@@ -8,44 +8,63 @@ const RankedUserSchema = z
     rank: z.string(),
     name: z.string(),
     avatar: z.string().nullable(),
-    points: z.number(),
+    points: z.coerce.number(),
     best_streak: z.number(),
   })
   .array();
 
 export const userRouter = createTRPCRouter({
-  getTopFive: protectedProcedure.query(async ({ ctx }) => {
-    try {
-      const res = await ctx.prisma.$queryRaw`
-      SELECT
-        id,
-        ROW_NUMBER() OVER (ORDER BY points DESC, best_streak DESC)::text as rank,
-        name,
-        image as avatar,
-        points, 
-        best_streak
-      FROM "User"
-      WHERE "User"."session" = ${ctx.session.user.session}
-      ORDER BY points DESC, best_streak DESC
-      -- LIMIT 5
-    `;
+  getTopFive: protectedProcedure
+    .input(z.number().default(1))
+    .query(async ({ ctx, input }) => {
+      try {
+        let res: unknown;
+        if (input === 2) {
+          res = await ctx.prisma.$queryRaw`
+          SELECT
+            id,
+            ROW_NUMBER() OVER (ORDER BY points2 DESC, best_streak DESC)::text as rank,
+            name,
+            image as avatar,
+            points2 as points,
+            best_streak
+          FROM "User"
+          WHERE "User"."session" = ${ctx.session.user.session}
+          ORDER BY points2 DESC, best_streak DESC
+          -- LIMIT 5
+          `;
+        } else {
+          res = await ctx.prisma.$queryRaw`
+          SELECT
+            id,
+            ROW_NUMBER() OVER (ORDER BY points DESC, best_streak DESC)::text as rank,
+            name,
+            image as avatar,
+            points,
+            best_streak
+          FROM "User"
+          WHERE "User"."session" = ${ctx.session.user.session}
+          ORDER BY points DESC, best_streak DESC
+          -- LIMIT 5
+          `;
+        }
 
-      const data = RankedUserSchema.parse(res);
+        const data = RankedUserSchema.parse(res);
 
-      const user = data.find((u) => u.id === ctx.session.user.id);
+        const user = data.find((u) => u.id === ctx.session.user.id);
 
-      const topFive = data.slice(0, 5);
+        const topFive = data.slice(0, 5);
 
-      if (user && !topFive.includes(user)) {
-        topFive.push(user);
+        if (user && !topFive.includes(user)) {
+          topFive.push(user);
+        }
+
+        return { rows: topFive };
+      } catch (error) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          cause: error,
+        });
       }
-
-      return { rows: topFive };
-    } catch (error) {
-      throw new TRPCError({
-        code: "BAD_REQUEST",
-        cause: error,
-      });
-    }
-  }),
+    }),
 });
