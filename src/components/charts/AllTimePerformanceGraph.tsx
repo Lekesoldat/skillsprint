@@ -11,7 +11,7 @@ import { api } from "../../utils/api";
 import { Skeleton } from "../ui/loaders/Skeleton";
 
 export const AllTimePerformanceGraph = () => {
-  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
+  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery({});
 
   if (error) return <>Noe gikk galt med progresjonsgrafen...</>;
   if (!data) return <Skeleton count={5} />;

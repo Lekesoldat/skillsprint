@@ -11,7 +11,9 @@ import { api } from "../../utils/api";
 import { Skeleton } from "../ui/loaders/Skeleton";
 
 export const TodayPerformanceGraph = () => {
-  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery();
+  const { data, error } = api.taskAttempt.getSuccessGrouped.useQuery({
+    after: new Date("2023-03-21"),
+  });
 
   if (error) return <>Noe gikk galt med progresjonsgrafen...</>;
   if (!data) return <Skeleton count={5} />;

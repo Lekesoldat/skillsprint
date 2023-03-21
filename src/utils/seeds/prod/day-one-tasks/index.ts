@@ -242,7 +242,9 @@ const providedTasks: Prisma.TaskCreateInput[] = [
     title: "Oppgave 2.28c",
     description:
       'Samenhengen mellom celsiusgrader og fahrenheitgrader kan beskrives med funksjonen math$F(C)=1.8C+32& der F er fahrenheitgrader og C er celsiusgrader. Undersøk om det stemmer at kokepunktet til vann er 212 grader fahrenheit. Hvis det stemmer, skriv "riktig", hvis ikke skriv "feil".',
-    answer: "riktig",
+    answer: "1",
+    answerType: "MULTIPLE_CHOICE",
+    multipleChoices: "riktig|feil",
     points: 75,
     category: { connect: { id: "cler3mpi9000108kxdzogagj4" } },
     prevTask: { connect: { id: "clevevakk000308mb4h4ieulr" } },
