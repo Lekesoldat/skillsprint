@@ -1,7 +1,9 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
 import type { PrismaClient, Task } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
-import { differenceInSeconds, format, formatISO, subMinutes } from "date-fns";
+import { differenceInSeconds, format, subMinutes } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
+
 import { nb } from "date-fns/locale";
 import { z } from "zod";
 import {
@@ -154,116 +156,131 @@ export const taskAttemptRouter = createTRPCRouter({
     }
   }),
 
-  getSuccessGrouped: protectedProcedure.query(async ({ ctx }) => {
-    const GRAPH_INTERVAL = 5;
-
-    try {
-      const [tasks, attempts] = await ctx.prisma.$transaction([
-        ctx.prisma.task.findMany(),
-        ctx.prisma.taskAttempt.findMany({
-          where: {
-            AND: [
-              {
-                result: "SUCCESS",
-                user: {
-                  session: ctx.session.user.session,
+  getSuccessGrouped: protectedProcedure
+    .input(z.object({ after: z.date().optional() }))
+    .query(async ({ ctx, input }) => {
+      const GRAPH_INTERVAL = 5;
+      try {
+        const [tasks, attempts] = await ctx.prisma.$transaction([
+          ctx.prisma.task.findMany(),
+          ctx.prisma.taskAttempt.findMany({
+            where: {
+              AND: [
+                {
+                  result: "SUCCESS",
+                  user: {
+                    session: ctx.session.user.session,
+                  },
                 },
-              },
-            ],
-          },
-        }),
-      ]);
+                {
+                  createdAt: input.after && {
+                    gte: input.after,
+                  },
+                },
+              ],
+            },
+          }),
+        ]);
 
-      const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
-      const respondentsAtTime = new Map<string, string[]>();
+        const taskToPoints = new Map(tasks.map((t) => [t.id, t.points]));
+        const respondentsAtTime = new Map<string, string[]>();
 
-      // Points aquired in a time interval
-      const pointsAtTime = new Map<
-        string,
-        { groupPoints: number; userPoints: number }
-      >();
+        // Points aquired in a time interval
+        const pointsAtTime = new Map<
+          string,
+          { groupPoints: number; userPoints: number }
+        >();
 
-      attempts.forEach((a) => {
-        // Round timestamp to nearest fith and extract HH:mm
-        const rounded = roundToNthMinute(a.createdAt, GRAPH_INTERVAL);
-        const timestamp = formatISO(rounded);
+        attempts.forEach((a) => {
+          // Round timestamp to nearest fith and extract HH:mm
+          const rounded = roundToNthMinute(a.createdAt, GRAPH_INTERVAL);
 
-        const points = taskToPoints.get(a.taskId) || 0;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          const timestamp = formatInTimeZone(
+            rounded,
+            "Europe/Paris",
+            "yyyy-MM-dd HH:mm:ss zzz"
+          );
 
-        // Get points at time as well as counter
-        const entry = pointsAtTime.get(timestamp);
-        const respondents = respondentsAtTime.get(timestamp);
+          const points = taskToPoints.get(a.taskId) || 0;
 
-        // If timestamp and respondents list exists, update points at timestamp and respondents
-        if (entry && respondents) {
-          // If the user has not answered in this time interval
-          if (!respondents.includes(a.userId)) {
-            respondentsAtTime.set(timestamp, [...respondents, a.userId]);
-          }
+          // Get points at time as well as counter
+          const entry = pointsAtTime.get(timestamp);
+          const respondents = respondentsAtTime.get(timestamp);
 
-          // If current user is the task solver, update user points and group points
-          if (ctx.session.user.id === a.userId) {
-            pointsAtTime.set(timestamp, {
-              groupPoints: entry.groupPoints + points,
-              userPoints: entry.userPoints + points,
-            });
+          // If timestamp and respondents list exists, update points at timestamp and respondents
+          if (entry && respondents) {
+            // If the user has not answered in this time interval
+            if (!respondents.includes(a.userId)) {
+              respondentsAtTime.set(timestamp, [...respondents, a.userId]);
+            }
 
-            // Else only update group points
+            // If current user is the task solver, update user points and group points
+            if (ctx.session.user.id === a.userId) {
+              pointsAtTime.set(timestamp, {
+                groupPoints: entry.groupPoints + points,
+                userPoints: entry.userPoints + points,
+              });
+
+              // Else only update group points
+            } else {
+              pointsAtTime.set(timestamp, {
+                groupPoints: entry.groupPoints + points,
+                userPoints: entry.userPoints,
+              });
+            }
+
+            // If time interval does not exist, add to points and respondents maps
           } else {
-            pointsAtTime.set(timestamp, {
-              groupPoints: entry.groupPoints + points,
-              userPoints: entry.userPoints,
-            });
+            respondentsAtTime.set(timestamp, [a.userId]);
+
+            // If current user is the task solver, add points to user and group
+            if (ctx.session.user.id === a.userId) {
+              pointsAtTime.set(timestamp, {
+                groupPoints: points,
+                userPoints: points,
+              });
+
+              // Else only add to group
+            } else {
+              pointsAtTime.set(timestamp, {
+                groupPoints: points,
+                userPoints: 0,
+              });
+            }
           }
+        });
 
-          // If time interval does not exist, add to points and respondents maps
-        } else {
-          respondentsAtTime.set(timestamp, [a.userId]);
+        const sortedAndAggregated = sortAndAggretatePoints(
+          respondentsAtTime,
+          pointsAtTime
+        );
 
-          // If current user is the task solver, add points to user and group
-          if (ctx.session.user.id === a.userId) {
-            pointsAtTime.set(timestamp, {
-              groupPoints: points,
-              userPoints: points,
-            });
+        const first = sortedAndAggregated[0];
 
-            // Else only add to group
-          } else {
-            pointsAtTime.set(timestamp, {
-              groupPoints: points,
-              userPoints: 0,
-            });
-          }
+        if (first) {
+          const newFirst = subMinutes(
+            new Date(first.timestamp),
+            GRAPH_INTERVAL
+          );
+          sortedAndAggregated.unshift({
+            group_sum: 0,
+            user_sum: 0,
+            timestamp: newFirst.toISOString(),
+          });
         }
-      });
 
-      const sortedAndAggregated = sortAndAggretatePoints(
-        respondentsAtTime,
-        pointsAtTime
-      );
-
-      const first = sortedAndAggregated[0];
-
-      if (first) {
-        const newFirst = subMinutes(new Date(first.timestamp), GRAPH_INTERVAL);
-        sortedAndAggregated.unshift({
-          group_sum: 0,
-          user_sum: 0,
-          timestamp: newFirst.toISOString(),
+        return sortedAndAggregated.map((s) => ({
+          ...s,
+          timestamp: format(new Date(s.timestamp), "HH:mm", { locale: nb }),
+        }));
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          cause: error,
         });
       }
-
-      return sortedAndAggregated.map((s) => ({
-        ...s,
-        timestamp: format(new Date(s.timestamp), "HH:mm", { locale: nb }),
-      }));
-    } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        cause: error,
-      });
-    }
-  }),
+    }),
 
   getCategoriesOfSuccesses: protectedProcedure.query(async ({ ctx }) => {
     try {
