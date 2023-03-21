@@ -10,9 +10,17 @@ import { posthogClient } from "../../../lib/posthog-server";
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, token }) {
+    session({ session, token, user }) {
       /* eslint-disable */
       if (token.user) {
+        posthogClient.identify({
+          distinctId: user.id,
+          properties: {
+            username: user.name,
+            image: user.image,
+            session: 2,
+          },
+        });
         session.user = token.user as User;
       }
       return session;
@@ -70,6 +78,7 @@ export const authOptions: NextAuthOptions = {
           properties: {
             username: user.name,
             image: user.image,
+            session: 2,
           },
         });
         const valid = await argon2.verify(user.password, credentials.password);
