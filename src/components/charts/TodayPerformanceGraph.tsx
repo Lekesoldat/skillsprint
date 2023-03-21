@@ -23,7 +23,7 @@ export const TodayPerformanceGraph = () => {
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <LineChart data={data}>
-        <XAxis dataKey="timestamp" />
+        <XAxis dataKey="timestamp" tick={false} label="tid" />
         <YAxis />
         <Tooltip />
         <Legend iconType="circle" />

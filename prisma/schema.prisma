@@ -21,6 +21,7 @@ model User {
     image         String?
     password      String
     points        Int           @default(0)
+    points2       Int           @default(0)
     streak        Int           @default(0)
     bestStreak    Int           @default(0) @map("best_streak")
     TaskAttempt   TaskAttempt[]

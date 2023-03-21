@@ -39,7 +39,7 @@ const columns = [
 ];
 
 export function Leaderboard() {
-  const { data, isLoading } = api.user.getTopFive.useQuery();
+  const { data, isLoading } = api.user.getTopFive.useQuery(2);
 
   const columnsMemo = React.useMemo(
     () =>
