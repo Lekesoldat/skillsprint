@@ -39,6 +39,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 50,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "turtle-chimp",
     },
     {
@@ -100,6 +101,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 75,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "tafatt-gomp",
       prevTask: { connect: { id: "cleecfgai000008js7ber34v8" } },
     },
@@ -111,6 +113,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 75,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "sliten-and",
       prevTask: { connect: { id: "cleecflo5000108js4ivfcv3g" } },
     },
@@ -124,6 +127,7 @@ export async function createQuadraticTasks({
       category: { connect: { id: "cleeb63a5000008judykn4061" } },
       points: 150,
       hint: "FLAG",
+      answerType: "FLAG",
       answer: "vanskelig-oppgave",
     },
   ];

@@ -26,6 +26,7 @@ export async function createExponentialTasks({
       category: { connect: { id: "cleebx9wi000508jt5ik9fgpx" } },
       points: 75,
       hint: "FLAG",
+      answerType: 'FLAG',
       answer: "sulten-gullfisk",
       prevTask: { connect: { id: "cleec345q000108meb2avbgw2" } },
     },

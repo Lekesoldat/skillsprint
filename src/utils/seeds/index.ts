@@ -1,7 +1,6 @@
 import { differenceInSeconds } from "date-fns";
 import { prismaClient } from "./clients";
 import { initBlussuvoll } from "./prod";
-import { createNoobTasks } from "./prod/noobs";
 
 async function init() {
   const timer = new Date();
@@ -9,7 +8,6 @@ async function init() {
   console.info("🌱 Seeding database for production!");
 
   await initBlussuvoll({ prismaClient });
-  // await createNoobTasks({ prismaClient });
 
   console.info(
     `\n🌴 Done seeding database for production after ${differenceInSeconds(
