@@ -25,7 +25,7 @@ export default function Page() {
         <p className="mb-4">Poeng over tid</p>
         <Tabs defaultValue="today">
           <TabsList>
-            <TabsTrigger value="today">Dagens Økt</TabsTrigger>
+            <TabsTrigger value="today">Dagens økt</TabsTrigger>
             <TabsTrigger value="all-time">Sammenlagt</TabsTrigger>
           </TabsList>
 

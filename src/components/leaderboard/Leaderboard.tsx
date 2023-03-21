@@ -69,8 +69,8 @@ export function Leaderboard() {
         onValueChange={(value) => setActive(value)}
       >
         <TabsList>
-          <TabsTrigger value="2">Denne uken</TabsTrigger>
-          <TabsTrigger value="1">Forrige uke</TabsTrigger>
+          <TabsTrigger value="2">Dagens økt</TabsTrigger>
+          <TabsTrigger value="1">Sammenlagt</TabsTrigger>
         </TabsList>
       </Tabs>
       <div className="h-fit w-[650px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right lg:w-[850px]">
