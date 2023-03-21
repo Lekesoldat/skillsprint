@@ -5,6 +5,7 @@ import { prisma } from "../../../server/db";
 import type { User } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { posthogClient } from "../../../lib/posthog-server";
+import { isAfter } from "date-fns";
 // Prisma adapter for NextAuth, optional and can be removed
 
 export const authOptions: NextAuthOptions = {
@@ -70,7 +71,7 @@ export const authOptions: NextAuthOptions = {
           properties: {
             username: user.name,
             image: user.image,
-            session: 2,
+            session: isAfter(new Date(), new Date(2023, 3, 23)) ? 2 : undefined,
           },
         });
         const valid = await argon2.verify(user.password, credentials.password);
