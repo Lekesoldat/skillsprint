@@ -1,7 +1,14 @@
+import { AllTimePerformanceGraph } from "../components/charts/AllTimePerformanceGraph";
 import { AttemptPie } from "../components/charts/AttemptPie";
 import { CategoryPie } from "../components/charts/CategoryPie";
-import { PerformanceGraph } from "../components/charts/PerformanceGraph";
+import { TodayPerformanceGraph } from "../components/charts/TodayPerformanceGraph";
 import { TaskTable } from "../components/task-table/TaskTable";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
 
 export default function Page() {
   return (
@@ -14,9 +21,26 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center">
-        <div className="font-bold">Poeng over tid</div>
-        <PerformanceGraph />
+      <div className="w-full text-center font-bold">
+        <p className="mb-4">Poeng over tid</p>
+        <Tabs defaultValue="today">
+          <TabsList>
+            <TabsTrigger value="today">Dagens Økt</TabsTrigger>
+            <TabsTrigger value="all-time">Sammenlagt</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="today">
+            <div className="flex flex-col items-center">
+              <TodayPerformanceGraph />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="all-time">
+            <div className="flex flex-col items-center">
+              <AllTimePerformanceGraph />
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
       <div className="flex justify-between">
