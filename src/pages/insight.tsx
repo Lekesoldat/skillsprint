@@ -24,6 +24,7 @@ import {
 } from "../components/ui/Select";
 import { useState } from "react";
 import { AttemptPerTaskChart } from "../components/charts/AttemptPerTask";
+import { posthog } from "posthog-js";
 
 export default function Page({
   categories,
@@ -61,7 +62,13 @@ export default function Page({
         </Tabs>
       </div>
 
-      <Select onValueChange={(val) => setSelected(val)} defaultValue="all">
+      <Select
+        onValueChange={(val) => {
+          posthog.capture("filtered_insight", { category: val });
+          setSelected(val);
+        }}
+        defaultValue="all"
+      >
         <SelectTrigger className="max-w-[300px] self-center">
           <SelectValue />
         </SelectTrigger>
