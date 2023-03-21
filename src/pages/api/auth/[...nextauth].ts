@@ -13,14 +13,6 @@ export const authOptions: NextAuthOptions = {
     session({ session, token, user }) {
       /* eslint-disable */
       if (token.user) {
-        posthogClient.identify({
-          distinctId: user.id,
-          properties: {
-            username: user.name,
-            image: user.image,
-            session: 2,
-          },
-        });
         session.user = token.user as User;
       }
       return session;

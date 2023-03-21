@@ -7,6 +7,7 @@ import React from "react";
 import type { RouterOutputs } from "../../utils/api";
 import { api } from "../../utils/api";
 import { Skeleton } from "../ui/loaders/Skeleton";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { AvatarCell } from "./AvatarCell";
 import { LeaderboardHeader } from "./LeaderboardHeader";
 import { LeaderboardRow } from "./LeaderboardRow";
@@ -39,7 +40,8 @@ const columns = [
 ];
 
 export function Leaderboard() {
-  const { data, isLoading } = api.user.getTopFive.useQuery(2);
+  const [active, setActive] = React.useState("2");
+  const { data, isLoading } = api.user.getTopFive.useQuery(Number(active));
 
   const columnsMemo = React.useMemo(
     () =>
@@ -61,6 +63,16 @@ export function Leaderboard() {
 
   return (
     <div className="flex flex-col items-center">
+      <Tabs
+        defaultValue="2"
+        className="mb-8"
+        onValueChange={(value) => setActive(value)}
+      >
+        <TabsList>
+          <TabsTrigger value="2">Denne uken</TabsTrigger>
+          <TabsTrigger value="1">Forrige uke</TabsTrigger>
+        </TabsList>
+      </Tabs>
       <div className="h-fit w-[650px] rounded-xl border-2 border-black bg-white py-2 px-4 shadow-4-right lg:w-[850px]">
         <table className="w-full table-auto divide-y divide-gray-300">
           <thead>

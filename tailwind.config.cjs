@@ -7,6 +7,7 @@ module.exports = {
       boxShadow: {
         brand: "2px 2px black",
         "2-hard": "0px 2px black",
+        "2-hard-slate": "0px 2px #D9D9D9",
         "4-hard": "0px 4px black",
         "2-left": "-2px 2px",
         "2-right": "2px 2px",
