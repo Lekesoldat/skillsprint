@@ -1,8 +1,5 @@
-import { PreTest } from "../components/surveys/PreTest";
+import { PostTest } from "../components/surveys/PostTest";
 
 export default function Page() {
-  // TODO: Switch to post test when ready
-  // return <PostTest />;
-
-  return <PreTest />;
+  return <PostTest />;
 }
