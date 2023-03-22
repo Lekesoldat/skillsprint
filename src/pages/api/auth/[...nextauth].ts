@@ -71,7 +71,9 @@ export const authOptions: NextAuthOptions = {
           properties: {
             username: user.name,
             image: user.image,
-            session: isAfter(new Date(), new Date(2023, 3, 23)) ? 2 : undefined,
+            session: isAfter(new Date(), new Date("2023-03-23"))
+              ? 2
+              : undefined,
           },
         });
         const valid = await argon2.verify(user.password, credentials.password);
