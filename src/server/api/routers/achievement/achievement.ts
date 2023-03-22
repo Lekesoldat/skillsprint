@@ -94,9 +94,14 @@ export const achievementRouter = createTRPCRouter({
       }
       locked.push(achievement);
     }
-    return [...locked, ...unlocked].sort((b, a) =>
-      a.type.localeCompare(b.type)
-    );
+    return [...locked, ...unlocked].sort((a, b) => {
+      const typeSort = b.type.localeCompare(a.type);
+      if (typeSort === 0) {
+        return a.requirement - b.requirement;
+      } else {
+        return typeSort;
+      }
+    });
   }),
   unlock: protectedProcedure
     .input(z.object({ title: z.string() }))
