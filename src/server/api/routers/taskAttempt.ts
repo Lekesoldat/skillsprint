@@ -99,15 +99,20 @@ export const taskAttemptRouter = createTRPCRouter({
             id: userId,
           },
           data: {
-            [isAfter(new Date(), new Date(2023, 3, 23)) ? "points2" : "points"]:
-              {
-                increment: task.points,
-              },
+            [isAfter(new Date(), new Date("2023-03-21"))
+              ? "points2"
+              : "points"]: {
+              increment: task.points,
+            },
             streak: {
               increment: 1,
             },
             bestStreak:
               user && user.streak === user.bestStreak
+                ? { increment: 1 }
+                : undefined,
+            bestStreak2:
+              user && user.streak === user.bestStreak2
                 ? { increment: 1 }
                 : undefined,
           },
@@ -138,30 +143,41 @@ export const taskAttemptRouter = createTRPCRouter({
       });
     }),
 
-  getUserAttempts: protectedProcedure.query(async ({ ctx }) => {
-    try {
-      const res = await ctx.prisma.taskAttempt.groupBy({
-        by: ["result"],
-        where: {
-          userId: ctx.session.user.id,
-          OR: [{ result: "SUCCESS" }, { result: "FAIL" }],
-        },
-        _count: {
-          result: true,
-        },
-      });
+  getUserAttempts: protectedProcedure
+    .input(
+      z.object({
+        categoryId: z.string().optional(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      try {
+        const res = await ctx.prisma.taskAttempt.groupBy({
+          by: ["result"],
+          where: {
+            userId: ctx.session.user.id,
+            task: input && {
+              category: {
+                id: input.categoryId,
+              },
+            },
+            OR: [{ result: "SUCCESS" }, { result: "FAIL" }],
+          },
+          _count: {
+            result: true,
+          },
+        });
 
-      return res.map((r) => ({
-        result: r.result,
-        count: r._count.result,
-      }));
-    } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        cause: error,
-      });
-    }
-  }),
+        return res.map((r) => ({
+          result: r.result,
+          count: r._count.result,
+        }));
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          cause: error,
+        });
+      }
+    }),
 
   getSuccessGrouped: protectedProcedure
     .input(z.object({ after: z.date().optional() }))
@@ -313,6 +329,34 @@ export const taskAttemptRouter = createTRPCRouter({
       },
     });
   }),
+  getAttemptsPerTask: protectedProcedure
+    .input(z.object({ categoryId: z.string().optional() }))
+    .query(async ({ ctx, input }) => {
+      const attempts = await ctx.prisma.taskAttempt.findMany({
+        where: {
+          userId: ctx.session.user.id,
+          task: {
+            categoryId: input.categoryId,
+          },
+        },
+        include: {
+          task: true,
+        },
+      });
+
+      const attemptCount = new Map<string, number>();
+      for (const attempt of attempts) {
+        const curr = attemptCount.get(attempt.task.title) || 0;
+        attemptCount.set(attempt.task.title, curr + 1);
+      }
+
+      return [...attemptCount.entries()]
+        .map(([key, value]) => ({
+          attempts: value,
+          name: key.split(" ")[1]!,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+    }),
 });
 
 const startNewAttempt = (

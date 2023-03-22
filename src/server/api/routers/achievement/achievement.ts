@@ -1,12 +1,11 @@
+import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import type { Achievement } from "./achievement-data";
 import { achievements } from "./achievement-data";
 
 export const achievementRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
-    const userId = ctx.session.user.id;
-
-    const [categories, attempts] = await Promise.all([
+    const [categories, attempts, user] = await ctx.prisma.$transaction([
       ctx.prisma.category.findMany({
         include: {
           task: true,
@@ -14,10 +13,15 @@ export const achievementRouter = createTRPCRouter({
       }),
       ctx.prisma.taskAttempt.findMany({
         where: {
-          userId: userId,
+          userId: ctx.session.user.id,
         },
         orderBy: {
           createdAt: "asc",
+        },
+      }),
+      ctx.prisma.user.findUniqueOrThrow({
+        where: {
+          id: ctx.session.user.id,
         },
       }),
     ]);
@@ -46,7 +50,19 @@ export const achievementRouter = createTRPCRouter({
         streak = 0;
       }
     }
+
+    const locked: Achievement[] = [];
+    const unlocked: Achievement[] = [];
+
     for (const achievement of achievements) {
+      if (user.unlockedAchievements.includes(achievement.title)) {
+        unlocked.push({
+          ...achievement,
+          progress: achievement.requirement,
+          unlocked: true,
+        });
+        continue;
+      }
       switch (achievement.type) {
         case "STREAK": {
           updateAndCapProgress(achievement, longestStreak);
@@ -76,10 +92,42 @@ export const achievementRouter = createTRPCRouter({
           break;
         }
       }
+      locked.push(achievement);
     }
-
-    return achievements;
+    return [...locked, ...unlocked].sort((b, a) =>
+      a.type.localeCompare(b.type)
+    );
   }),
+  unlock: protectedProcedure
+    .input(z.object({ title: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.prisma.user.findUniqueOrThrow({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+      if (user.unlockedAchievements.includes(input.title)) {
+        return;
+      }
+
+      const achievement = achievements.find((ach) => ach.title === input.title);
+
+      if (achievement) {
+        await ctx.prisma.user.update({
+          where: {
+            id: ctx.session.user.id,
+          },
+          data: {
+            points2: {
+              increment: 200,
+            },
+            unlockedAchievements: {
+              push: achievement?.title,
+            },
+          },
+        });
+      }
+    }),
 });
 
 const updateAndCapProgress = (achievement: Achievement, progress: number) => {

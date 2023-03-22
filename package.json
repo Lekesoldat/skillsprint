@@ -11,6 +11,7 @@
     "start": "next start",
     "migrate": "doppler run -- prisma migrate dev",
     "tasks-seed": "doppler run -- tsx src/utils/seeds/seed-tasks.ts",
+    "reset-streaks": "doppler run -- tsx src/utils/seeds/reset-streaks.ts",
     "gen": "prisma generate"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@radix-ui/react-popover": "^1.0.3",
     "@radix-ui/react-progress": "^1.0.1",
     "@radix-ui/react-radio-group": "^1.1.1",
+    "@radix-ui/react-select": "^1.2.1",
     "@radix-ui/react-tabs": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.2",
     "@supabase/supabase-js": "^2.8.0",
