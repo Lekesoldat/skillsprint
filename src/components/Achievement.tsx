@@ -1,7 +1,11 @@
 import { cva } from "class-variance-authority";
+import { CheckCircleIcon } from "lucide-react";
 import Image from "next/image";
+import { useToast } from "../hooks/use-toast";
 import type { RouterOutputs } from "../utils/api";
 import { api } from "../utils/api";
+import { starsConfetti } from "../utils/confetti";
+import { Button } from "./ui/Button";
 import { Skeleton } from "./ui/loaders/Skeleton";
 import { Progress } from "./ui/Progress";
 
@@ -34,30 +38,56 @@ const Achievement = ({
   progress,
   color,
   requirement,
+  unlocked,
 }: Achievement) => {
+  const utils = api.useContext();
+  const { toast } = useToast();
+  const { mutate } = api.achievement.unlock.useMutation({
+    onSuccess: () => {
+      toast({
+        title: "Du har løst inn en achievement! + 200 poeng",
+        variant: "success",
+      });
+      starsConfetti();
+      void utils.achievement.getAll.invalidate();
+      void utils.auth.me.invalidate();
+    },
+  });
+  const canUnlock = progress >= requirement;
+
   return (
     // <div className="flex border-t-2 border-brand-lightGray px-4 py-4 first:border-t-0">
-    <div className="flex rounded-xl border border-brand-lightGray bg-brand-white p-4">
+    <div className="flex min-h-[125px] rounded-xl border border-brand-lightGray bg-brand-white p-4">
       {/* Left side */}
-      <div className={iconStyle({ color })}>
-        <Image src={avatar} width={40} height={40} alt="Avatar" />
+      <div className={iconStyle({ color: unlocked ? "YELLOW" : color })}>
+        <Image src={avatar} width={50} height={50} alt="Avatar" />
       </div>
 
       {/* Right side */}
-      <div className="ml-2 flex flex-grow flex-col gap-2">
+      <div className="ml-2 flex flex-grow flex-col justify-around gap-2">
         {/* Title and requirement */}
         <div className="flex justify-between">
           <p className="font-bold uppercase">{title}</p>
-          <p>
-            {progress} av {requirement}
-          </p>
+          {!unlocked ? (
+            <p>
+              {progress} av {requirement}
+            </p>
+          ) : (
+            <CheckCircleIcon color="#22CA94" />
+          )}
         </div>
 
-        {/* Progress */}
-        <Progress value={(progress / requirement) * 100} />
-
-        {/* Description */}
+        {!unlocked && !canUnlock && (
+          <Progress value={(progress / requirement) * 100} />
+        )}
         <p className="lg:text-md text-sm text-brand-gray">{description}</p>
+        {canUnlock && !unlocked && (
+          <div className="flex w-full justify-end">
+            <Button size="xs" onClick={() => mutate({ title })}>
+              Løs inn 200 poeng
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
