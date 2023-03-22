@@ -56,7 +56,11 @@ export default function Page() {
         </ul>
       </div>
 
-      <div>
+      <div className="text-center">
+        <div className="mb-4">
+          I dag starter vi <span className="font-bold">ikke</span> med
+          undersøkelsen. Denne tas på slutten av timen.
+        </div>
         <Link href={"/survey"}>
           <Button>Til Spørreundersøkelse</Button>
         </Link>

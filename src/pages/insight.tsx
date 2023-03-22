@@ -1,19 +1,13 @@
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import type { InferGetStaticPropsType } from "next";
+import { useState } from "react";
+import superjson from "superjson";
 import { AllTimePerformanceGraph } from "../components/charts/AllTimePerformanceGraph";
+import { AttemptPerTaskChart } from "../components/charts/AttemptPerTask";
 import { AttemptPie } from "../components/charts/AttemptPie";
 import { CategoryPie } from "../components/charts/CategoryPie";
 import { TodayPerformanceGraph } from "../components/charts/TodayPerformanceGraph";
 import { TaskTable } from "../components/task-table/TaskTable";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "../components/ui/tabs";
-import { appRouter } from "../server/api/root";
-import { createInnerTRPCContext } from "../server/api/trpc";
-import superjson from "superjson";
-import type { InferGetStaticPropsType } from "next";
 import {
   Select,
   SelectContent,
@@ -22,9 +16,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/Select";
-import { useState } from "react";
-import { AttemptPerTaskChart } from "../components/charts/AttemptPerTask";
-import { posthog } from "posthog-js";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
+import { appRouter } from "../server/api/root";
+import { createInnerTRPCContext } from "../server/api/trpc";
 
 export default function Page({
   categories,

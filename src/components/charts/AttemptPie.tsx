@@ -1,10 +1,10 @@
-import { FC } from "react";
+import type { FC } from "react";
 import {
-  ResponsiveContainer,
-  PieChart,
+  Cell,
   Legend,
   Pie,
-  Cell,
+  PieChart,
+  ResponsiveContainer,
   Tooltip,
 } from "recharts";
 import { api } from "../../utils/api";
@@ -44,7 +44,7 @@ export const AttemptPie: FC<{ categoryId?: string }> = (props) => {
           formatter={(value, name) => [
             `${value.toString()} (${percentage(Number(value), total).toFixed(
               1
-            )}%})`,
+            )}%)`,
             name,
           ]}
         />
