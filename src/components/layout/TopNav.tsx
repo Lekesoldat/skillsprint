@@ -62,7 +62,7 @@ export const TopNav = () => {
               <Spinner />
             ) : (
               <>
-                <div>{user ? <>{user.points} p</> : "0 p"}</div>
+                <div>{user ? <>{user.points2} p</> : "0 p"}</div>
                 <div>{user ? user.streak : 0} 🔥</div>
               </>
             )}

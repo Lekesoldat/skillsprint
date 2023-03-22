@@ -24,6 +24,7 @@ model User {
     points2              Int           @default(0)
     streak               Int           @default(0)
     bestStreak           Int           @default(0) @map("best_streak")
+    bestStreak2          Int           @default(0) @map("best_streak2")
     TaskAttempt          TaskAttempt[]
     session              Int           @default(1)
     unlockedAchievements String[]

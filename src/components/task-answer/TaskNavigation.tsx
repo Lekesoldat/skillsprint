@@ -27,7 +27,9 @@ export const TaskNavigation = ({
           <Button size="xs">Gå videre</Button>
         </Link>
       ) : (
-        <div />
+        <Link href={`/tasks`}>
+          <Button size="xs">Alle oppgaver</Button>
+        </Link>
       )}
     </div>
   );

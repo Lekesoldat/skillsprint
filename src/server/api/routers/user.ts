@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
 import z from "zod";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 const RankedUserSchema = z
   .object({
@@ -23,14 +23,14 @@ export const userRouter = createTRPCRouter({
           res = await ctx.prisma.$queryRaw`
           SELECT
             id,
-            ROW_NUMBER() OVER (ORDER BY points2 DESC, best_streak DESC)::text as rank,
+            ROW_NUMBER() OVER (ORDER BY points2 DESC, best_streak2 DESC)::text as rank,
             name,
             image as avatar,
             points2 as points,
-            best_streak
+            best_streak2 as best_streak
           FROM "User"
           WHERE "User"."session" = ${ctx.session.user.session}
-          ORDER BY points2 DESC, best_streak DESC
+          ORDER BY points2 DESC, best_streak2 DESC
           -- LIMIT 5
           `;
         } else {
