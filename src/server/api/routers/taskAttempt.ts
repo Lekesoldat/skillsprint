@@ -1,5 +1,5 @@
 import { ComputeEngine } from "@cortex-js/compute-engine";
-import type { PrismaClient, Task, TaskAttempt } from "@prisma/client";
+import type { PrismaClient, Task } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import {
   add,
@@ -99,15 +99,20 @@ export const taskAttemptRouter = createTRPCRouter({
             id: userId,
           },
           data: {
-            [isAfter(new Date(), new Date(2023, 3, 23)) ? "points2" : "points"]:
-              {
-                increment: task.points,
-              },
+            [isAfter(new Date(), new Date("2023-03-21"))
+              ? "points2"
+              : "points"]: {
+              increment: task.points,
+            },
             streak: {
               increment: 1,
             },
             bestStreak:
               user && user.streak === user.bestStreak
+                ? { increment: 1 }
+                : undefined,
+            bestStreak2:
+              user && user.streak === user.bestStreak2
                 ? { increment: 1 }
                 : undefined,
           },

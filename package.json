@@ -11,6 +11,7 @@
     "start": "next start",
     "migrate": "doppler run -- prisma migrate dev",
     "tasks-seed": "doppler run -- tsx src/utils/seeds/seed-tasks.ts",
+    "reset-streaks": "doppler run -- tsx src/utils/seeds/reset-streaks.ts",
     "gen": "prisma generate"
   },
   "dependencies": {

@@ -6,6 +6,7 @@ export const authRouter = createTRPCRouter({
       select: {
         id: true,
         points: true,
+        points2: true,
         name: true,
         streak: true,
         bestStreak: true,
