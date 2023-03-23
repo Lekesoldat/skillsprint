@@ -41,7 +41,7 @@ export const userRouter = createTRPCRouter({
             name,
             image as avatar,
             (points + points2) as points,
-            best_streak,
+            best_streak
           FROM "User"
           WHERE "User"."session" = ${ctx.session.user.session}
           ORDER BY (points + points2) DESC, best_streak DESC
