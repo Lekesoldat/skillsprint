@@ -37,14 +37,14 @@ export const userRouter = createTRPCRouter({
           res = await ctx.prisma.$queryRaw`
           SELECT
             id,
-            ROW_NUMBER() OVER (ORDER BY points DESC, best_streak DESC)::text as rank,
+            ROW_NUMBER() OVER (ORDER BY (points + points2) DESC, best_streak DESC)::text as rank,
             name,
             image as avatar,
-            points,
-            best_streak
+            (points + points2) as points,
+            best_streak,
           FROM "User"
           WHERE "User"."session" = ${ctx.session.user.session}
-          ORDER BY points DESC, best_streak DESC
+          ORDER BY (points + points2) DESC, best_streak DESC
           -- LIMIT 5
           `;
         }
