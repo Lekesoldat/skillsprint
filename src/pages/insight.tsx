@@ -40,7 +40,7 @@ export default function Page({
       </div>
 
       <div className="w-full text-center font-bold">
-        <p className="mb-4">Poeng over tid</p>
+        <p className="mb-4">Oppgavepoeng over tid</p>
         <Tabs defaultValue="today">
           <TabsList>
             <TabsTrigger value="today">Dagens økt</TabsTrigger>
