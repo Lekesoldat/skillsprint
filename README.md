@@ -9,14 +9,14 @@
 SkillSprint is a fun mathematical gamification web application that provides a challenging and interactive experience reminiscent of CTFs, improving users' problem-solving skills and mathematical knowledge.
   
 ## Built with
-- ![TypeScript](https://www.typescriptlang.org/)
-- ![TailwindCSS]((https://tailwindcss.com/))
-- ![tRPC](https://trpc.io/)
-- ![React.js](https://react.dev/)
-- ![Next.js](https://nextjs.org/)
-- ![Prisma](https://www.prisma.io/)
-- ![PostHog](https://posthog.com/)
-- ![NextAuth.js](https://next-auth.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [tRPC](https://trpc.io/)
+- [React.js](https://react.dev/)
+- [Next.js](https://nextjs.org/)
+- [Prisma](https://www.prisma.io/)
+- [PostHog](https://posthog.com/)
+- [NextAuth.js](https://next-auth.js.org/)
 
 ## Getting started
 
@@ -48,7 +48,7 @@ To get started, follow these steps.
 
 4. Fill out the environment variables with yours, such as the DATABASE_URL.
 
-5. Add your user to to the admin list in ![user-list](https://github.com/Lekesoldat/skillsprint/blob/main/src/utils/seeds/prod/user-list.ts)
+5. Add your user to to the admin list in [user-list](https://github.com/Lekesoldat/skillsprint/blob/main/src/utils/seeds/prod/user-list.ts)
 
 6. Run `pnpm seed-tasks` to seed the database with some tasks and your user.
 
@@ -56,4 +56,4 @@ To get started, follow these steps.
 
 ## Project structure
 
-This application follows the same folder structure as described in ![T3 Docs](https://create.t3.gg/en/folder-structure)
+This application follows the same folder structure as described in [T3 Docs](https://create.t3.gg/en/folder-structure)
