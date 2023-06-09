@@ -27,6 +27,7 @@ To get started, follow these steps.
 - Node.js (Version: >= 18.x)
 - PostgreSQL database
 - Pnpm
+- PostHog project (production only)
 
 ## Development
 
@@ -44,16 +45,16 @@ To get started, follow these steps.
 
 3. Set up your `.env` file.
 
-   - Create a `.env` file and copy the values from`.env.example` .
+   - Create a `.env` file and copy the values from`.env.example`.
 
 4. Fill out the environment variables with yours, such as the DATABASE_URL.
 
-5. Add your user to to the admin list in [user-utilities](https://github.com/Lekesoldat/skillsprint/blob/03bcdc3a7be94a163c63c1657f1a134099c72ffb/src/utils/seeds/utils/user-utilities.ts#L18)
+5. Add your user to to the admin list in [user-utilities](https://github.com/Lekesoldat/skillsprint/blob/03bcdc3a7be94a163c63c1657f1a134099c72ffb/src/utils/seeds/utils/user-utilities.ts#L18).
 
 6. Run `pnpm tasks-seed` to seed the database with some tasks and your user.
 
-7. Open a browser and go to http://localhost:3000
+7. Open a browser and go to http://localhost:3000.
 
 ## Project structure
 
-This application follows the same folder structure as described in [T3 Docs](https://create.t3.gg/en/folder-structure)
+This application follows the same folder structure as described in [T3 Docs](https://create.t3.gg/en/folder-structure).
