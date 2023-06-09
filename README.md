@@ -48,7 +48,7 @@ To get started, follow these steps.
 
 4. Fill out the environment variables with yours, such as the DATABASE_URL.
 
-5. Add your user to to the admin list in [user-list](https://github.com/Lekesoldat/skillsprint/blob/main/src/utils/seeds/prod/user-list.ts)
+5. Add your user to to the admin list in [user-utilities](https://github.com/Lekesoldat/skillsprint/blob/03bcdc3a7be94a163c63c1657f1a134099c72ffb/src/utils/seeds/utils/user-utilities.ts#L18)
 
 6. Run `pnpm seed-tasks` to seed the database with some tasks and your user.
 
