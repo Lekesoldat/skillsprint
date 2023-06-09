@@ -8,6 +8,6 @@
 
 SkillSprint is a fun mathematical gamification web application that provides a challenging and interactive experience reminiscent of CTFs, improving users' problem-solving skills and mathematical knowledge.
   
-# Project structure
+## Project structure
   
-# Development environment
+## Development environment
