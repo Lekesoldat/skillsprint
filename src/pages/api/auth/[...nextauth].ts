@@ -6,6 +6,7 @@ import type { User } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { posthogClient } from "../../../lib/posthog-server";
 import { isAfter } from "date-fns";
+import { env } from "../../../env/server.mjs";
 // Prisma adapter for NextAuth, optional and can be removed
 
 export const authOptions: NextAuthOptions = {
@@ -66,16 +67,19 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        posthogClient.identify({
-          distinctId: user.id,
-          properties: {
-            username: user.name,
-            image: user.image,
-            session: isAfter(new Date(), new Date("2023-03-23"))
-              ? 2
-              : undefined,
-          },
-        });
+        if (env.NODE_ENV === "production") {
+          posthogClient.identify({
+            distinctId: user.id,
+            properties: {
+              username: user.name,
+              image: user.image,
+              session: isAfter(new Date(), new Date("2023-03-23"))
+                ? 2
+                : undefined,
+            },
+          });
+        }
+
         const valid = await argon2.verify(user.password, credentials.password);
         if (!valid) {
           return null;

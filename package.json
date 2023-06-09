@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "doppler run -- next dev",
+    "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "migrate": "doppler run -- prisma migrate dev",
-    "tasks-seed": "doppler run -- tsx src/utils/seeds/seed-tasks.ts",
-    "reset-streaks": "doppler run -- tsx src/utils/seeds/reset-streaks.ts",
+    "migrate": "prisma migrate dev",
+    "tasks-seed": "tsx src/utils/seeds/seed-tasks.ts",
+    "reset-streaks": "tsx src/utils/seeds/reset-streaks.ts",
     "gen": "prisma generate"
   },
   "dependencies": {
