@@ -39,7 +39,7 @@ To get started, follow these steps.
 2. Go to the project folder.
 
    ```sh
-   cd cal.com
+   cd skillsprint
    ```
 
 3. Set up your `.env` file.
