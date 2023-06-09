@@ -50,7 +50,7 @@ To get started, follow these steps.
 
 5. Add your user to to the admin list in [user-utilities](https://github.com/Lekesoldat/skillsprint/blob/03bcdc3a7be94a163c63c1657f1a134099c72ffb/src/utils/seeds/utils/user-utilities.ts#L18)
 
-6. Run `pnpm seed-tasks` to seed the database with some tasks and your user.
+6. Run `pnpm tasks-seed` to seed the database with some tasks and your user.
 
 7. Open a browser and go to http://localhost:3000
 

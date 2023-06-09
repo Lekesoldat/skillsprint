@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "dotenv -- next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "migrate": "prisma migrate dev",
-    "tasks-seed": "tsx src/utils/seeds/seed-tasks.ts",
-    "reset-streaks": "tsx src/utils/seeds/reset-streaks.ts",
+    "migrate": "dotenv -- prisma migrate dev",
+    "tasks-seed": "dotenv -- tsx src/utils/seeds/seed-tasks.ts",
+    "reset-streaks": "dotenv -- tsx src/utils/seeds/reset-streaks.ts",
     "gen": "prisma generate"
   },
   "dependencies": {
@@ -74,6 +74,7 @@
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "autoprefixer": "^10.4.7",
+    "dotenv-cli": "^7.2.1",
     "eslint": "^8.34.0",
     "eslint-config-next": "13.1.2",
     "postcss": "^8.4.14",
