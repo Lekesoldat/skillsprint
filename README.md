@@ -16,6 +16,7 @@ SkillSprint is a fun mathematical gamification web application that provides a c
 - ![Next.js](https://nextjs.org/)
 - ![Prisma](https://www.prisma.io/)
 - ![PostHog](https://posthog.com/)
+- ![NextAuth.js](https://next-auth.js.org/)
 
 ## Getting started
 
@@ -52,3 +53,7 @@ To get started, follow these steps.
 6. Run `pnpm seed-tasks` to seed the database with some tasks and your user.
 
 7. Open a browser and go to http://localhost:3000
+
+## Project structure
+
+This application follows the same folder structure as described in ![T3 Docs](https://create.t3.gg/en/folder-structure)
