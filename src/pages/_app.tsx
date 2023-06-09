@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 // Check that PostHog is client-side (used to handle Next.js SSR)
-if (typeof window !== "undefined") {
+if (env.NODE_ENV === "production" && typeof window !== "undefined") {
   posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
     // Disable in development
