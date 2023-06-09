@@ -33,7 +33,7 @@ To get started, follow these steps.
 1. Clone this repository to your local machine.
 
    ```sh
-   git clone https://github.com/Lekesoldat/SkillSprint.git
+   git clone https://github.com/Lekesoldat/skillsprint.git
    ```
 
 2. Go to the project folder.
